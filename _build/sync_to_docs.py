@@ -259,7 +259,7 @@ def gerar_pilar_index(pilar: str) -> str:
             bloco_path = DOCS_DIR / pilar / fase / bloco_dir
 
             if (bloco_path / "p1.html").exists():
-                bloco_link = f"/{pilar}/{fase}/{bloco_dir}/"
+                bloco_link = f"{SITE_PREFIX}/{pilar}/{fase}/{bloco_dir}/"
                 fases_html += f'            <li><a href="{bloco_link}">Bloco {bloco_num:02d}</a></li>\n'
 
         fases_html += """        </ul>
