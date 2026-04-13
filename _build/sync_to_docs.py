@@ -430,6 +430,82 @@ def gerar_bloco_index(pilar: str, fase: str, bloco_num: int) -> str:
     return html
 
 
+
+
+def gerar_fase_index(pilar: str, fase: str) -> str:
+    """Gera index.html para cada fase dentro de um pilar."""
+    
+    blocos_html = ""
+    for bloco_num in range(1, NUM_BLOCOS + 1):
+        bloco_dir = f"bloco-{bloco_num:02d}"
+        bloco_path = DOCS_DIR / pilar / fase / bloco_dir
+        
+        if (bloco_path / "p1.html").exists():
+            bloco_link = f"{SITE_PREFIX}/{pilar}/{fase}/{bloco_dir}/"
+            blocos_html += f'            <li><a href="{bloco_link}">Bloco {bloco_num:02d}</a></li>\n'
+    
+    html = f"""<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{fase.capitalize()} — {pilar.capitalize()} — Vero</title>
+    <link rel="stylesheet" href="{{CSS_URL}}">
+    <style>
+        body {{
+            padding: 2rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }}
+        h1 {{
+            font-family: 'Playfair Display', serif;
+            color: var(--ink);
+        }}
+        .breadcrumb {{
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }}
+        .breadcrumb a {{
+            color: var(--ink);
+            text-decoration: none;
+        }}
+        .blocos {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }}
+        .bloco-item {{
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }}
+        .bloco-item a {{
+            color: var(--ink);
+            text-decoration: none;
+        }}
+        .bloco-item a:hover {{
+            color: var(--gold);
+        }}
+    </style>
+</head>
+<body>
+    <div class="breadcrumb">
+        <a href="{SITE_PREFIX}/">Home</a> /
+        <a href="{SITE_PREFIX}/{pilar}/">{pilar.capitalize()}</a> /
+        <span>{fase.capitalize()}</span>
+    </div>
+    
+    <h1>{fase.capitalize()} — {pilar.capitalize()}</h1>
+    
+    <div class="blocos">
+{blocos_html}    </div>
+</body>
+</html>
+"""
+    
+    return html
+
+
 def gerar_todos_indices():
     """Gera todos os índices (homepage, pilares, blocos)."""
 
@@ -453,6 +529,11 @@ def gerar_todos_indices():
         for fase in FASES:
             fase_dir = pilar_dir / fase
             fase_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Gerar índice da fase
+            fase_index = gerar_fase_index(pilar, fase)
+            with open(fase_dir / "index.html", "w", encoding="utf-8") as f:
+                f.write(fase_index)
 
             for bloco_num in range(1, NUM_BLOCOS + 1):
                 bloco_dir = f"bloco-{bloco_num:02d}"
