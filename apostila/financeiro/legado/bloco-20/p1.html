@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 20 — Quando um erro quebra o que deveria aguentar</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+
+.hero-image{width:100%;height:260px;object-fit:cover;display:block;}
+.content{padding:2.5rem 3rem 3rem;}
+.titulo-bloco{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:400;line-height:1.3;margin-bottom:0.3rem;color:var(--ink);}
+.subtitulo-pilar{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;}
+.pergunta-section{border-left:3px solid var(--gold);padding:0.9rem 1.4rem;margin-bottom:2rem;background:var(--gold-dim);}
+.pergunta-section p{font-family:'Playfair Display',serif;font-style:italic;font-size:0.95rem;color:var(--ink);line-height:1.55;}
+.narrativa p{font-size:0.88rem;line-height:1.72;margin-bottom:1rem;text-align:justify;}
+.narrativa .nome-personagem{font-weight:700;color:var(--ink);}
+.mid-image{width:100%;height:180px;object-fit:cover;margin:1.5rem 0;display:block;border-radius:2px;}
+.separador{border:none;border-top:1px solid var(--border);margin:1.8rem 0;}
+.fechamento{border-left:3px solid var(--gold);padding:1rem 1.4rem;margin-top:2rem;background:var(--gold-dim);}
+.fechamento p{font-family:'Playfair Display',serif;font-style:italic;font-size:0.92rem;line-height:1.6;color:var(--ink);}
+.rodape{padding:1.2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.rodape-texto{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresarios</div>
+    </div>
+    <div class="doc-meta">Financeiro <span>&middot;</span> Bloco 20 <span>&middot;</span> Pagina 01</div>
+    <div class="phase-badge">Legado</div>
+  </header>
+
+  <img class="hero-image" src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=900&q=80&auto=format" alt="Sistemas financeiros e proteção">
+
+  <div class="content">
+
+    <h1 class="titulo-bloco">quando um erro quebra o que deveria aguentar</h1>
+    <div class="subtitulo-pilar">Financeiro &middot; Legado</div>
+
+    <div class="pergunta-section">
+      <p>Se alguem na sua empresa errar um pagamento amanha, quanto tempo ate voce descobrir — e quanto estrago ja vai ter feito?</p>
+    </div>
+
+    <div class="narrativa">
+      <p><span class="nome-personagem">Silvana</span> tem uma empresa de eventos corporativos com oito anos de operacao. Em setembro, a assistente financeira pagou um fornecedor de cenografia em duplicidade — R$ 17 mil. O erro apareceu vinte e seis dias depois, quando o fluxo de caixa nao fechou com a projecao do mes.</p>
+
+      <p>Nao existia conciliacao semanal. Nao existia dupla conferencia para pagamentos acima de R$ 5 mil. O processo era: assistente confere, assistente paga. Quando Silvana descobriu, precisou de tres semanas para recuperar o valor — negociacao, comprovacao, devolucao parcelada. Nesse intervalo, o caixa ficou apertado justamente na semana em que precisava antecipar insumo para um evento de porte. Perdeu o contrato. Nao por incompetencia. Porque o sistema nao tinha camada nenhuma entre o erro humano e o estrago operacional.</p>
+
+      <p>Erro humano. Estrago estrutural.</p>
+    </div>
+
+    <img class="mid-image" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80&auto=format" alt="Controle financeiro e conciliacao">
+
+    <hr class="separador">
+
+    <div class="narrativa">
+      <p><span class="nome-personagem">Nelson</span> tem uma fabrica de pecas plasticas. A assistente dele tambem errou — programou um pagamento de R$ 23 mil na data errada, o que gerou multa de R$ 1.400. Mas o sistema de Nelson tinha tres travas. Conciliacao diaria com flag automatico para divergencias acima de R$ 500. Aprovacao obrigatoria de um segundo gestor para qualquer saida acima de R$ 10 mil. Relatorio de excecoes toda sexta-feira.</p>
+
+      <p>O erro entrou no sistema e o sistema avisou em vinte e quatro horas. A multa foi absorvida. O fluxo nao foi comprometido. Nenhum contrato travou. Nenhuma decisao foi adiada por falta de caixa.</p>
+
+      <p>Nao e que Nelson contrata melhor. E que o sistema dele foi construido para aguentar o erro sem transferir o impacto para a operacao inteira.</p>
+    </div>
+
+    <div class="fechamento">
+      <p>Pessoas vao errar. A pergunta que define maturidade financeira nao e se alguem vai errar — e quanto o negocio aguenta quando o erro acontece.</p>
+    </div>
+
+  </div>
+
+  <div class="rodape">
+    <div class="rodape-texto">Bloco 20 &middot; Financeiro &middot; Legado</div>
+    <div class="rodape-texto">Vero &mdash; Escola de Empresarios</div>
+  </div>
+
+</div>
+</body>
+</html>

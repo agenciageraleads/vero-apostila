@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 07 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+
+/* CANVAS — perguntas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:2rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.8rem;line-height:1.4;}
+.resposta-row{display:flex;align-items:center;gap:1.2rem;margin-bottom:0.5rem;}
+.resposta-prefix{font-size:0.85rem;color:var(--ink-light);white-space:nowrap;font-family:'DM Mono',monospace;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;flex:1;}
+.checkbox-row{display:flex;gap:1.5rem;align-items:center;margin-top:0.6rem;flex-wrap:wrap;}
+.checkbox-opt{display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:300;color:var(--ink-light);}
+.checkbox-opt .box{width:14px;height:14px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
+.checkbox-inline{display:flex;align-items:center;gap:0.55rem;font-size:0.82rem;font-weight:300;color:var(--ink-light);margin-left:1rem;}
+.checkbox-inline .box{width:14px;height:14px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
+.resposta-aberta{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-top:0.5rem;}
+.resposta-aberta + .resposta-aberta{margin-top:0.9rem;}
+.pergunta-hint{font-size:0.75rem;font-style:italic;font-weight:300;color:var(--ink-light);margin-top:0.7rem;letter-spacing:0.01em;line-height:1.55;}
+.pergunta-label--sub{font-size:0.88rem;font-weight:400;color:var(--ink);margin-top:1.1rem;margin-bottom:0.6rem;line-height:1.4;font-style:italic;}
+
+/* Pergunta-chave — destaque com borda lateral dourada */
+.pergunta-item--chave{
+  margin-top:2.6rem;
+  padding-left:1.2rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Dúvidas comuns */
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Trilha</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 07</span> · Página <span>02</span> / 02</div>
+    </div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Quando você descobre que vai faltar</h1>
+    <p class="bloco-sub">Pense no seu negócio. Responda com o que você realmente sabe agora — não com o que vai pesquisar.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que vai entrar nos próximos 30 dias?</div>
+      <div class="resposta-row">
+        <span class="resposta-prefix">R$</span>
+        <span class="input-line"></span>
+        <span class="checkbox-inline"><span class="box"></span> Não sei estimar</span>
+      </div>
+      <p class="pergunta-hint">vendas confirmadas + pedidos em aberto &nbsp;·&nbsp; contratos ativos + pagamentos previstos &nbsp;·&nbsp; ordens faturadas + entregas programadas</p>
+      <div class="pergunta-label pergunta-label--sub">Desse valor, quanto você considera como certo — não esperado, certo?</div>
+      <div class="resposta-row">
+        <span class="resposta-prefix">R$</span>
+        <span class="input-line"></span>
+        <span class="checkbox-inline"><span class="box"></span> Não sei separar</span>
+      </div>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que vai sair nos próximos 30 dias?</div>
+      <div class="resposta-row">
+        <span class="resposta-prefix">R$</span>
+        <span class="input-line"></span>
+        <span class="checkbox-inline"><span class="box"></span> Não sei estimar</span>
+      </div>
+      <p class="pergunta-hint">fornecedores + folha + impostos &nbsp;·&nbsp; prestadores + aluguel + obrigações fixas &nbsp;·&nbsp; insumos + mão de obra + encargos</p>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Com quanto de antecedência você costuma saber que vai apertar?</div>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> No mesmo dia ou depois</span>
+        <span class="checkbox-opt"><span class="box"></span> Alguns dias antes</span>
+        <span class="checkbox-opt"><span class="box"></span> Uma semana ou mais</span>
+      </div>
+    </div>
+
+    <div class="pergunta-item pergunta-item--chave">
+      <div class="pergunta-label">Qual foi a última vez que você precisou correr para cobrir um vencimento? O que aconteceu?</div>
+      <span class="resposta-aberta"></span>
+      <span class="resposta-aberta"></span>
+      <p class="pergunta-hint">prazo de fornecedor &nbsp;·&nbsp; pagamento de prestador ou parcela &nbsp;·&nbsp; boleto de insumo ou equipamento</p>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Se você soubesse com 2 semanas de antecedência, agiria diferente?</div>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> Sim</span>
+        <span class="checkbox-opt"><span class="box"></span> Provavelmente</span>
+        <span class="checkbox-opt"><span class="box"></span> Não mudaria nada</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Meu faturamento é irregular. Não tem como prever."</p>
+      <p class="duvida-a">Irregular não é imprevisível. Você sabe quais clientes costumam pagar em qual semana, quais pedidos estão em aberto, quais contratos têm data certa. A questão não é exatidão — é se você olha para frente ou só para o extrato de ontem.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Já tentei controlar e não mantive. Não adianta."</p>
+      <p class="duvida-a">O problema geralmente não foi a ferramenta. Foi tentar controlar tudo de uma vez. Uma visão simples de entradas e saídas por semana já muda o que você consegue ver — e quando consegue ver.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Quando está apertado, não tem tempo de olhar fluxo."</p>
+      <p class="duvida-a">É exatamente quando está apertado que a informação chega tarde. O fluxo não resolve o aperto — ele avisa antes. Sem ele, você descobre o problema só quando não tem mais escolha de como resolver.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você sabe se consegue ver o que vai acontecer antes de acontecer — ou se descobre só quando já não tem como evitar. Não é sobre ter um sistema perfeito. É sobre entender em que ponto da semana você ainda tem opção de escolher como apertar.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

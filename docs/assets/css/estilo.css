@@ -1,0 +1,429 @@
+/* ============================================================
+   VERO — ESCOLA DE EMPRESÁRIOS
+   Tema global da apostila
+   Versão: 1.0 · 2026-04-09
+   ============================================================ */
+
+/* VARIÁVEIS */
+:root {
+  --white:          #FFFFFF;
+  --bg:             #F0EBE1;
+  --surface:        #F2EDE4;
+  --ink:            #1A1A1A;
+  --ink-mid:        #4A4A4A;
+  --ink-light:      #909090;
+  --gold:           #C9A84C;
+  --gold-dim:       rgba(201,168,76,0.08);
+  --border:         #E0D9CE;
+  --border-dark:    #C8BFB0;
+
+  /* Canvas — grupos de cores */
+  --entrada-bg:         #F7FBF4;
+  --entrada-border:     #C8DFBE;
+  --saida-emp-bg:       #FBF7F4;
+  --saida-emp-border:   #DFCEC8;
+  --saida-pes-bg:       #FBF9F4;
+  --saida-pes-border:   #DFD9C8;
+  --total-bg:           #F0EBE1;
+}
+
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* BASE */
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* PAGE */
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--white);
+  box-shadow: 0 2px 40px rgba(0,0,0,0.07);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 1.2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.logo-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.46rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.doc-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.48rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-light);
+  text-transform: uppercase;
+}
+.doc-meta span { color: var(--gold); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  padding: 1.3rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+}
+.footer-left {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.44rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-light);
+  text-transform: uppercase;
+}
+.footer-nav {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.46rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-light);
+  text-transform: uppercase;
+}
+.footer-nav a { color: var(--gold); text-decoration: none; }
+.page-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.48rem;
+  color: var(--ink-light);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.6rem;
+}
+
+/* ============================================================
+   COMPONENTES COMUNS (P1 e P2)
+   ============================================================ */
+
+/* Título do bloco */
+.bloco-header {
+  padding: 2rem 3rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.bloco-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.bloco-sub {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--ink-light);
+  margin-top: 0.5rem;
+}
+
+/* Pergunta provocativa */
+.pergunta-section {
+  padding: 1.8rem 3rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.pergunta-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink);
+  border-left: 2px solid var(--gold);
+  padding-left: 1.2rem;
+}
+
+/* Fechamento */
+.fechamento-section {
+  padding: 2rem 3rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.fechamento-inner {
+  border-left: 3px solid var(--gold);
+  padding: 0.4rem 0 0.4rem 1.4rem;
+}
+.fechamento-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+/* Resultado esperado */
+.resultado-section {
+  padding: 2rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+.resultado-inner {
+  border-left: 3px solid var(--gold);
+  padding: 0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+/* ============================================================
+   COMPONENTES P1 — NARRATIVA
+   ============================================================ */
+
+/* Hero foto */
+.hero-image {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  filter: grayscale(20%) brightness(0.88);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 30%, rgba(255,255,255,0.95) 100%);
+}
+
+/* Narrativa */
+.narrativa-section {
+  padding: 2.8rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+.narrativa-body p {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 1.3rem;
+}
+.narrativa-body p:last-child { margin-bottom: 0; }
+.narrativa-body strong { font-weight: 500; }
+
+/* Imagem interna (divisor na narrativa) */
+.mid-image {
+  margin: 1.8rem 0;
+  height: 160px;
+  overflow: hidden;
+}
+.mid-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  filter: grayscale(20%) brightness(0.92);
+}
+
+/* ============================================================
+   COMPONENTES P2 — CANVAS
+   ============================================================ */
+
+.canvas-section {
+  padding: 2.5rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Tabela */
+.canvas-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.canvas-table thead tr { background: var(--ink); }
+.canvas-table thead th {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.46rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  padding: 0.7rem 1rem;
+  text-align: left;
+  font-weight: 400;
+}
+.canvas-table thead th:last-child { text-align: right; }
+
+/* Grupos */
+.group-header td {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.44rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem 0.3rem;
+  font-weight: 500;
+  border-bottom: none;
+}
+.group-entrada .group-header td  { color: #5A8A4A; background: var(--entrada-bg); }
+.group-saida-emp .group-header td { color: #8A5A4A; background: var(--saida-emp-bg); }
+.group-saida-pes .group-header td { color: #8A7A4A; background: var(--saida-pes-bg); }
+
+/* Linhas de dados */
+.canvas-table tbody tr.data-row td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 300;
+  color: var(--ink);
+}
+.group-entrada .data-row td  { background: var(--entrada-bg); }
+.group-saida-emp .data-row td { background: var(--saida-emp-bg); }
+.group-saida-pes .data-row td { background: var(--saida-pes-bg); }
+.data-row td:last-child {
+  text-align: right;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  min-width: 120px;
+}
+
+/* Input line */
+.input-line {
+  display: block;
+  border-bottom: 1px solid var(--border-dark);
+  min-width: 100px;
+  height: 1.2rem;
+  text-align: right;
+}
+
+/* Totais */
+.total-row td {
+  padding: 0.7rem 1rem;
+  background: var(--total-bg);
+  border-bottom: 1px solid var(--border-dark);
+  border-top: 2px solid var(--border-dark);
+}
+.total-row td:first-child {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+}
+.total-row td:last-child {
+  text-align: right;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 120px;
+}
+
+/* Sobrou */
+.sobrou-row td {
+  padding: 0.9rem 1rem;
+  background: var(--gold-dim);
+  border-bottom: 2px solid var(--gold);
+  border-top: 2px solid var(--gold);
+}
+.sobrou-row td:first-child {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.sobrou-row td:last-child {
+  text-align: right;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 120px;
+}
+
+/* Pergunta final */
+.pergunta-final {
+  margin-top: 1.8rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border-dark);
+}
+.pergunta-final p {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.opcoes { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.opcao {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+.opcao-circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-dark);
+  flex-shrink: 0;
+}
+
+/* Dúvidas */
+.duvidas-section {
+  padding: 2.2rem 3rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.duvida-item {
+  margin-bottom: 1.3rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 1px solid var(--border);
+}
+.duvida-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.duvida-q {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.duvida-a {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink);
+  padding-left: 1rem;
+  border-left: 2px solid var(--gold);
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+  body { background: #fff; }
+  .page { box-shadow: none; }
+  header { position: static; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 15 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:1.8rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.7rem;line-height:1.4;}
+.pergunta-label--sm{font-size:0.85rem;font-weight:300;color:var(--ink);margin-top:0.9rem;margin-bottom:0.5rem;line-height:1.4;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-bottom:0.5rem;}
+.hint{font-size:0.73rem;font-style:italic;color:var(--ink-light);line-height:1.55;margin-top:0.5rem;}
+.checkbox-row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin:0.6rem 0;}
+.checkbox-opt{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:300;color:var(--ink-light);}
+.checkbox-opt .box{width:13px;height:13px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
+.section-divider{border:none;border-top:1px solid var(--border);margin:1.8rem 0;}
+.pergunta-item--chave{padding-left:1.2rem;border-left:2px solid var(--gold);}
+/* Gate de decisão */
+.gate-block{background:var(--surface);border:1px solid var(--border);padding:1.4rem 1.6rem;margin-top:1.8rem;}
+.gate-label{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Gestão</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 15</span> · Página <span>02</span> / 02</div>
+    </div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que você está esperando que mude</h1>
+    <p class="bloco-sub">Pense em um projeto, canal ou aposta que você iniciou nos últimos 18 meses e ainda não encerrou. Responda com o que sabe agora.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que foi:</div>
+      <span class="input-line"></span>
+      <p class="hint">nova vertical ou linha de produto &nbsp;·&nbsp; canal de venda ou parceria &nbsp;·&nbsp; serviço novo ou expansão de segmento &nbsp;·&nbsp; contratação com expectativa de retorno específico</p>
+      <div style="display:flex;gap:2rem;margin-top:0.8rem;flex-wrap:wrap;">
+        <div>
+          <div class="pergunta-label--sm">Quando começou:</div>
+          <span class="input-line" style="max-width:140px;"></span>
+        </div>
+        <div>
+          <div class="pergunta-label--sm">Quanto investiu até agora:</div>
+          <div style="display:flex;align-items:center;gap:0.4rem;">
+            <span style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink-light);">R$</span>
+            <span class="input-line" style="max-width:120px;margin-bottom:0;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que você esperava que estivesse acontecendo agora:</div>
+      <span class="input-line"></span>
+      <div class="pergunta-label--sm">O que está acontecendo de fato:</div>
+      <span class="input-line"></span>
+    </div>
+
+    <div class="pergunta-item pergunta-item--chave">
+      <div class="pergunta-label">Você tinha um critério de saída definido antes de entrar?</div>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> Sim — qual era:</span>
+      </div>
+      <span class="input-line"></span>
+      <div class="checkbox-row" style="margin-top:0.3rem;">
+        <span class="checkbox-opt"><span class="box"></span> Não tinha</span>
+      </div>
+      <div class="pergunta-label--sm">Esse critério foi atingido?</div>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> Sim</span>
+        <span class="checkbox-opt"><span class="box"></span> Não</span>
+        <span class="checkbox-opt"><span class="box"></span> Não sei medir</span>
+        <span class="checkbox-opt"><span class="box"></span> Não tinha critério</span>
+      </div>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Se o retorno não chegou — o que você está esperando que mude, e qual o prazo que você dá para isso acontecer?</div>
+      <span class="input-line"></span>
+      <div style="display:flex;align-items:center;gap:1rem;margin-top:0.6rem;flex-wrap:wrap;">
+        <span style="font-size:0.85rem;font-weight:300;">Prazo:</span>
+        <span class="input-line" style="max-width:100px;margin-bottom:0;"></span>
+        <span class="checkbox-opt"><span class="box"></span> Não tenho prazo definido</span>
+      </div>
+      <div class="pergunta-label--sm">Quanto mais vai custar se continuar até lá:</div>
+      <div style="display:flex;align-items:center;gap:0.4rem;">
+        <span style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink-light);">R$</span>
+        <span class="input-line" style="max-width:140px;margin-bottom:0;"></span>
+      </div>
+    </div>
+
+    <div class="gate-block">
+      <div class="gate-label">Gate de decisão</div>
+      <div class="pergunta-item" style="margin-bottom:1rem;">
+        <div class="pergunta-label">Com o que você sabe hoje, o que faria se fosse decidir agora — começar ou não?</div>
+        <div class="checkbox-row">
+          <span class="checkbox-opt"><span class="box"></span> Começaria da mesma forma</span>
+          <span class="checkbox-opt"><span class="box"></span> Começaria diferente</span>
+          <span class="checkbox-opt"><span class="box"></span> Não começaria</span>
+        </div>
+      </div>
+      <div class="pergunta-item" style="margin-bottom:0;">
+        <div class="pergunta-label">Essa resposta muda alguma coisa no que você vai fazer agora?</div>
+        <div class="checkbox-row">
+          <span class="checkbox-opt"><span class="box"></span> Sim — o quê:</span>
+        </div>
+        <span class="input-line"></span>
+        <div class="checkbox-row">
+          <span class="checkbox-opt"><span class="box"></span> Não</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Já investi muito para parar agora."</p>
+      <p class="duvida-a">O que já foi investido não volta — independente do que você decidir agora. A pergunta não é o que já custou. É o que vai custar continuar por mais seis meses e o que vai voltar em troca. Se essa conta não fecha, continuar não é comprometimento — é postergação.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"O mercado ainda tem potencial. Só está demorando mais."</p>
+      <p class="duvida-a">Pode estar. Mas "está demorando mais" sem prazo novo e critério revisado é o mesmo argumento que Gilberto usou três vezes seguidas. Mercado com potencial e projeto que não entrega são coisas que podem existir ao mesmo tempo.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Parar vai passar uma imagem ruim."</p>
+      <p class="duvida-a">Parar com critério claro é gestão — não fracasso. O que corrói credibilidade é continuar sem resultado que justifique por mais tempo do que qualquer critério sustentaria.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você sabe se o que está mantendo aberto tem critério de continuidade — ou se está em andamento porque parar exige assumir algo que você ainda não está pronto para assumir. Não é sobre ter acertado a aposta. É sobre saber quando ela não está funcionando antes de perder mais do que já perdeu.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

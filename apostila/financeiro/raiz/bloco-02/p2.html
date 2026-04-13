@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 02 · P2 · Canvas — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.12);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+/* HEADER */
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+
+/* CANVAS */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+/* CAMPOS 1 e 2 — lado a lado */
+.campos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:1px;}
+
+.campo{padding:1.6rem;background:var(--white);}
+.campo-icon{margin-bottom:0.8rem;color:var(--gold);opacity:0.7;}
+.campo-num{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:0.3rem;}
+.campo-label{font-size:0.88rem;font-weight:400;color:var(--ink);margin-bottom:0.2rem;line-height:1.4;}
+.campo-hint{font-size:0.75rem;font-weight:300;color:var(--ink-light);margin-bottom:1rem;line-height:1.4;}
+.input-lines{display:flex;flex-direction:column;gap:8px;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.3rem;width:100%;}
+
+/* CAMPO 3 — sobrou/apertou/faltou */
+.campo-situacao{padding:1.6rem 1.6rem 1.8rem;background:var(--surface);border-bottom:1px solid var(--border);margin-bottom:1px;}
+.campo-situacao .campo-num{margin-bottom:0.3rem;}
+.campo-situacao .campo-label{font-size:0.9rem;font-weight:400;color:var(--ink);margin-bottom:1.2rem;}
+.situacao-opcoes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);}
+.situacao-card{
+  background:var(--white);
+  padding:1.2rem 1rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.6rem;
+  cursor:pointer;
+}
+.situacao-circle{
+  width:28px;height:28px;
+  border-radius:50%;
+  border:1.5px solid var(--border-dark);
+  flex-shrink:0;
+}
+.situacao-label{font-size:0.82rem;font-weight:400;color:var(--ink);text-align:center;}
+.situacao-desc{font-size:0.72rem;font-weight:300;color:var(--ink-light);text-align:center;line-height:1.4;}
+
+/* CAMPO 4 — confronto visual */
+.campo-confronto{background:var(--white);margin-bottom:0;}
+.confronto-header{padding:1.2rem 1.6rem 0.8rem;border-bottom:1px solid var(--border);}
+.confronto-header .campo-num{margin-bottom:0.3rem;}
+.confronto-header .campo-label{font-size:0.9rem;font-weight:400;color:var(--ink);}
+.confronto-grid{display:grid;grid-template-columns:1fr auto 1fr;background:var(--border);gap:1px;}
+.confronto-lado{padding:1.4rem 1.6rem;background:var(--white);}
+.confronto-lado-title{
+  font-family:'DM Mono',monospace;
+  font-size:0.44rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  margin-bottom:0.6rem;
+}
+.confronto-lado.esquerda .confronto-lado-title{color:#5A8A4A;}
+.confronto-lado.direita .confronto-lado-title{color:#8A5A4A;}
+.confronto-valor{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  opacity:0.15;
+}
+.confronto-divider{
+  background:var(--white);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 0.8rem;
+}
+.confronto-vs{
+  font-family:'DM Mono',monospace;
+  font-size:0.55rem;
+  letter-spacing:0.15em;
+  color:var(--ink-light);
+  text-transform:uppercase;
+  writing-mode:vertical-rl;
+}
+.confronto-input{display:flex;flex-direction:column;gap:6px;}
+
+/* DÚVIDAS */
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+
+/* RESULTADO */
+.resultado-section{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Financeiro · Raiz · <span>Bloco 02</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Separação mínima entre empresa e vida pessoal</h1>
+    <p class="bloco-sub">Preencha com os dados reais do último mês.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <!-- CAMPOS 1 e 2 lado a lado -->
+    <div class="campos-grid">
+      <div class="campo">
+        <div class="campo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+          </svg>
+        </div>
+        <div class="campo-label">O que saiu da empresa para você</div>
+        <div class="campo-hint">escola, cartão, aluguel, transferências</div>
+        <div class="input-lines">
+          <span class="input-line"></span>
+          <span class="input-line"></span>
+          <span class="input-line"></span>
+        </div>
+      </div>
+
+      <div class="campo">
+        <div class="campo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <div class="campo-label">O que você tirou sem chamar de retirada</div>
+        <div class="campo-hint">saques, transferências rápidas</div>
+        <div class="input-lines">
+          <span class="input-line"></span>
+          <span class="input-line"></span>
+          <span class="input-line"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMPO 3 — situação -->
+    <div class="campo-situacao">
+      <div class="campo-label">O que sobrou para a empresa depois disso</div>
+      <div class="situacao-opcoes">
+        <div class="situacao-card">
+          <div class="situacao-circle"></div>
+          <div class="situacao-label">Sobrou</div>
+          <div class="situacao-desc">Tinha dinheiro no fim do mês</div>
+        </div>
+        <div class="situacao-card">
+          <div class="situacao-circle"></div>
+          <div class="situacao-label">Apertou</div>
+          <div class="situacao-desc">Fechou no limite ou abaixo</div>
+        </div>
+        <div class="situacao-card">
+          <div class="situacao-circle"></div>
+          <div class="situacao-label">Faltou</div>
+          <div class="situacao-desc">Precisou buscar dinheiro fora</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMPO 4 — confronto -->
+    <div class="campo-confronto">
+      <div class="confronto-header">
+        <div class="campo-label">Quanto você acha que ganha vs quanto realmente saiu</div>
+      </div>
+      <div class="confronto-grid">
+        <div class="confronto-lado esquerda">
+          <div class="confronto-lado-title">Acho que ganho</div>
+          <div class="confronto-valor">R$</div>
+          <div class="confronto-input">
+            <span class="input-line"></span>
+          </div>
+        </div>
+        <div class="confronto-divider">
+          <span class="confronto-vs">vs</span>
+        </div>
+        <div class="confronto-lado direita">
+          <div class="confronto-lado-title">Realmente saiu</div>
+          <div class="confronto-valor">R$</div>
+          <div class="confronto-input">
+            <span class="input-line"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS -->
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas a empresa é minha."</p>
+      <p class="duvida-a">É exatamente por isso que o limite precisa existir.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu separar tudo agora, vai faltar dinheiro."</p>
+      <p class="duvida-a">Pode faltar. Mas ele já está faltando — só não está visível.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Isso não é coisa de empresa grande?"</p>
+      <p class="duvida-a">Empresa grande quebra quando ignora isso. Empresa pequena quebra porque nunca fez.</p>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Depois disso, você para de discutir lucro e começa a enxergar o limite. Se doer, é porque está funcionando. Se aliviar, algo ainda está sendo escondido de você mesmo.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

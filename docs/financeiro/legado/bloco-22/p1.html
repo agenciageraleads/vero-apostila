@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 22 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(20%) brightness(0.88);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.narrativa-body strong{font-weight:500;}
+.story-divider{margin:2rem 0;border:none;border-top:1px solid var(--border);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Legado</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 22</span> · Página <span>01</span></div>
+    </div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Legado financeiro e critério">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">o que o dinheiro vai significar quando você não estiver decidindo</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Se você saísse amanhã, o dinheiro da empresa continuaria obedecendo a um critério — ou ficaria esperando alguém mandar?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p><strong>Marta</strong> tem uma rede de papelarias há vinte e oito anos. Dois filhos trabalham no negócio — um cuida de uma filial, o outro coordena compras. Todo orçamento relevante passa por ela. Sempre passou.</p>
+
+      <p>Num dia comum, Marta perguntou ao mais velho quanto custava manter a filial dele por mês. Aluguel, folha, reposição, energia, tudo somado. Ele não sabia. Não porque fosse negligente — porque nunca precisou saber. Marta sempre decidia o que entrava, o que saía, o que podia esperar e o que não podia. Os filhos tinham relação de permissão com o dinheiro da empresa, não de critério. Pediam, ela liberava. Ou não.</p>
+
+      <p>Marta construiu tudo. Mas o que construiu foi um sistema que responde a ela. Quando sair — e vai sair —, não vai deixar critério financeiro. Vai deixar um vazio de comando. E os filhos vão fazer o que sempre fizeram: esperar alguém decidir.</p>
+
+      <hr class="story-divider">
+
+      <p><strong>Osvaldo</strong> tem uma metalúrgica há trinta e dois anos. Há seis, começou a mudar o papel do dinheiro dentro da empresa. Não porque quisesse sair — porque percebeu que o dinheiro obedecia a ele, não a um critério.</p>
+
+      <p>Documentou uma política de investimento: quando investir, retorno mínimo aceitável, quem aprova até qual faixa. Criou uma política de retirada: pró-labore fixo, dividendos vinculados a resultado auditado, sem exceção. Instituiu um comitê financeiro trimestral — gestores apresentam resultado da área e propõem alocação do período seguinte. Osvaldo ainda participa. Mas quando discorda, precisa argumentar dentro do critério que ele mesmo criou.</p>
+
+      <p>O dinheiro da metalúrgica não obedece mais a Osvaldo. Obedece à estrutura. Quando ele sair, o que fica não é controle. É um sistema que sabe o que o dinheiro deve fazer — mesmo que ninguém pergunte para ele.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Dinheiro que depende de quem manda não é legado. É poder pessoal. Legado financeiro é quando o critério de uso do dinheiro sobrevive à pessoa que o criou.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

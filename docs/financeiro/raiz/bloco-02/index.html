@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bloco-02 — Financeiro</title>
+    <link rel="stylesheet" href="/assets/css/estilo.css">
+    <style>
+        body {
+            padding: 2rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .breadcrumb {
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .breadcrumb a {
+            color: var(--ink);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+        .bloco-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .page-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--ink);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .page-btn:hover {
+            background: var(--gold);
+            color: var(--ink);
+        }
+        .page-btn.active {
+            background: var(--gold);
+            color: var(--ink);
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb">
+        <a href="/">Home</a> /
+        <a href="/financeiro/">Financeiro</a> /
+        <a href="/financeiro/raiz/">Raiz</a> /
+        <span>bloco-02</span>
+    </div>
+
+    <div class="bloco-nav">
+        <a href="./p1.html" class="page-btn">Página 1 — Narrativa</a>
+        <a href="./p2.html" class="page-btn">Página 2 — Canvas</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 17 — P2 — Mapeamento de dependencia e faixas</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+
+.content{padding:2.5rem 3rem 3rem;}
+.titulo-bloco{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:400;line-height:1.3;margin-bottom:0.3rem;color:var(--ink);}
+.subtitulo-pilar{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:1.8rem;}
+.instrucao-abertura{font-style:italic;font-size:0.85rem;line-height:1.6;color:var(--ink);margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:1.8rem;}
+.pergunta-item label{display:block;font-weight:700;font-size:0.85rem;margin-bottom:0.6rem;color:var(--ink);}
+.pergunta-item .linhas{border:none;border-bottom:1px solid var(--border-dark);width:100%;padding:0.5rem 0;font-family:'DM Sans',sans-serif;font-size:0.82rem;background:transparent;color:var(--ink);margin-bottom:0.25rem;display:block;}
+.pergunta-item .linhas+.linhas{margin-top:0.15rem;}
+.pergunta-item .hint{font-style:italic;font-size:0.72rem;color:var(--ink-light);margin-top:0.4rem;line-height:1.5;}
+.separador{border:none;border-top:1px solid var(--border);margin:2rem 0;}
+.duvidas-section{margin-top:0.5rem;}
+.duvidas-section h3{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;}
+.duvida-item{margin-bottom:1.3rem;}
+.duvida-item .duvida-pergunta{font-weight:700;font-size:0.84rem;margin-bottom:0.3rem;color:var(--ink);}
+.duvida-item .duvida-resposta{font-size:0.82rem;line-height:1.6;color:var(--ink);}
+.resultado{border-left:3px solid var(--gold);padding:1rem 1.4rem;margin-top:2rem;background:var(--gold-dim);}
+.resultado h3{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.6rem;}
+.resultado p{font-size:0.85rem;line-height:1.65;color:var(--ink);}
+.rodape{padding:1.2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.rodape-texto{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresarios</div>
+    </div>
+    <div class="doc-meta">Financeiro <span>&middot;</span> Bloco 17 <span>&middot;</span> Pagina 02</div>
+    <div class="phase-badge">Legado</div>
+  </header>
+
+  <div class="content">
+
+    <h1 class="titulo-bloco">mapeamento de dependencia e faixas</h1>
+    <div class="subtitulo-pilar">Financeiro &middot; Legado</div>
+
+    <p class="instrucao-abertura">Pense nas decisoes financeiras da sua empresa. Nao nas pequenas — nas que travam quando voce nao esta. Preencha com o que existe hoje, nao com o que deveria existir.</p>
+
+    <div class="pergunta-item">
+      <label>Decisoes que so voce pode tomar hoje:</label>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <p class="hint">aprovacao de compra de insumo &middot; liberacao de pagamento a fornecedor &middot; renegociacao de contrato recorrente</p>
+    </div>
+
+    <div class="pergunta-item">
+      <label>O que trava quando voce nao esta:</label>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <p class="hint">pedido que espera tres dias pela sua assinatura &middot; fornecedor que so negocia com o dono &middot; pagamento urgente que ninguem libera</p>
+    </div>
+
+    <div class="pergunta-item">
+      <label>Qual criterio existe por escrito para cada decisao:</label>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <p class="hint">regra clara de ate quanto aprovar sem consulta &middot; tabela de desconto maximo por fornecedor &middot; nenhum — todo mundo pergunta pra mim</p>
+    </div>
+
+    <div class="pergunta-item">
+      <label>Faixas de autonomia que podem existir:</label>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <p class="hint">gerente aprova compras ate determinado valor &middot; administrativo libera pagamentos recorrentes dentro do contrato &middot; coordenador renegocia prazo sem alterar valor</p>
+    </div>
+
+    <div class="pergunta-item">
+      <label>O que voce teria que aceitar se alguem decidisse diferente de voce:</label>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <span class="linhas">&nbsp;</span>
+      <p class="hint">fornecedor diferente do que voce escolheria &middot; prazo um pouco maior que o ideal &middot; margem levemente menor numa compra pontual</p>
+    </div>
+
+    <hr class="separador">
+
+    <div class="duvidas-section">
+      <h3>Duvidas comuns</h3>
+
+      <div class="duvida-item">
+        <p class="duvida-pergunta">"Ninguem conhece o negocio como eu."</p>
+        <p class="duvida-resposta">E exatamente esse o problema. Se o conhecimento esta em voce e nao no criterio, a empresa para quando voce para.</p>
+      </div>
+
+      <div class="duvida-item">
+        <p class="duvida-pergunta">"E se decidirem errado?"</p>
+        <p class="duvida-resposta">Vao decidir. A questao e se o erro cabe no criterio documentado ou se nao existe criterio nenhum e o erro nao tem limite.</p>
+      </div>
+
+      <div class="duvida-item">
+        <p class="duvida-pergunta">"Eu nao estou pronto para soltar isso."</p>
+        <p class="duvida-resposta">Nao e sobre estar pronto. E sobre o que acontece com o negocio quando voce precisar sair — querendo ou nao.</p>
+      </div>
+    </div>
+
+    <div class="resultado">
+      <h3>Resultado esperado</h3>
+      <p>Feito isso, voce sabe quais decisoes financeiras dependem exclusivamente de voce — e quais poderiam funcionar com criterio documentado, mesmo que a decisao fosse diferente da que voce tomaria.</p>
+    </div>
+
+  </div>
+
+  <div class="rodape">
+    <div class="rodape-texto">Bloco 17 &middot; Financeiro &middot; Legado</div>
+    <div class="rodape-texto">Vero &mdash; Escola de Empresarios</div>
+  </div>
+
+</div>
+</body>
+</html>

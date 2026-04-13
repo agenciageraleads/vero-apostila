@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 07 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(20%) brightness(0.88);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.narrativa-body strong{font-weight:500;}
+.story-divider{margin:2rem 0;border:none;border-top:1px solid var(--border);}
+.mid-image{margin:1.8rem 0;height:160px;overflow:hidden;}
+.mid-image img{width:100%;height:100%;object-fit:cover;object-position:center 50%;filter:grayscale(20%) brightness(0.92);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Trilha</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 07</span> · Página <span>01</span></div>
+    </div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80" alt="Calendário e planejamento financeiro">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Quando você descobre que vai faltar</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Você descobre a tempo de escolher como apertar — ou só quando a opção já foi embora?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p><strong>Beatriz</strong> tem uma loja de artigos para festas. Todo mês ela olha para a conta e enfrenta o mesmo buraco. Às vezes falta R$&nbsp;4&nbsp;mil. Às vezes R$&nbsp;9&nbsp;mil. O valor muda, a correria não.</p>
+
+      <p>Na semana passada, o boleto do principal fornecedor venceu na terça. Na segunda ela ainda achava que ia dar. Não deu. Ligou pedindo mais dez dias. O fornecedor aceitou — mas foi anotando. Ela tirou de uma reserva que estava guardando para reformar o estoque de novembro. Pagou o suficiente para não perder o crédito. Pediu prazo para outro fornecedor. Foi remendando o que sobrou de outubro com o que ainda não tinha entrado de novembro. No fim, resolveu. O mês passou, o faturamento entrou, tudo voltou ao lugar.</p>
+
+      <p>Vai acontecer de novo. Ela sabe disso. O que ela não sabe é quando — nem quanto vai faltar. Essa informação só aparece quando já passou da hora de escolher. Quando chega, já é segunda de manhã com vencimento na quinta. Ela ainda tem conta, mas já não tem opção.</p>
+
+      <div class="mid-image">
+        <img src="https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=800&q=80" alt="Controle e previsão">
+      </div>
+
+      <p><strong>Guilherme</strong> tem uma empresa de manutenção predial. Fatura parecido com Beatriz. Também tem meses mais apertados.</p>
+
+      <p>Duas semanas atrás, ele viu que novembro ia ficar curto. Ligou para um cliente e antecipou uma parcela. Ajustou o prazo de uma compra que não era urgente. Não precisou pedir favor para fornecedor. Não precisou sangrar reserva. O mês ficou apertado — mas foi ele que decidiu onde apertar, e quando apertar.</p>
+
+      <p>A diferença entre os dois não está no faturamento nem no segmento. Está em quanto tempo antes cada um descobre o que está chegando.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Beatriz não tem um problema de caixa. Tem um problema de quando descobre — e de quanto ainda resta para escolher quando a informação finalmente chega.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

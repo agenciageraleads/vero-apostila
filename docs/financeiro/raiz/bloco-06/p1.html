@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 06 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(20%) brightness(0.88);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.narrativa-body strong{font-weight:500;}
+.mid-image{margin:1.8rem 0;height:160px;overflow:hidden;}
+.mid-image img{width:100%;height:100%;object-fit:cover;object-position:center 60%;filter:grayscale(20%) brightness(0.92);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Financeiro · Raiz · <span>Bloco 06</span> · Página <span>01</span> / 02</div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" alt="Empresário analisando registros financeiros">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Quando o número que você usa não existe</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Quantas decisões antes dessa tinham sido tomadas do mesmo jeito?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+      <p>Celso tem uma oficina de esquadrias de alumínio. Atende construtoras pequenas e clientes diretos. Trabalha há onze anos, tem três funcionários fixos, uma van, e uma carteira de clientes que se repete toda temporada.</p>
+      <p>Ele não tem planilha. Não tem sistema. Não tem caderno de registros. Tem a cabeça.</p>
+      <p>Em julho, uma construtora com quem ele trabalha há quatro anos pediu orçamento para um prédio de dezesseis apartamentos. Seriam oito meses de trabalho garantido, início previsto para setembro. A proposta chegou por mensagem. Celso ficou satisfeito.</p>
+      <p>Para fechar, ele precisava decidir se contratava mais um funcionário — alguém com experiência em instalação de vidros temperados, que ele ainda não fazia internamente. O serviço novo iria melhorar a margem.</p>
+
+      <div class="mid-image">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Registros e controle financeiro">
+      </div>
+
+      <p>Ele ficou dois dias pensando. No fim, decidiu contratar. A lógica era clara: agosto estava movimentado, julho tinha sido bom, e ele sentia que o negócio estava num momento positivo. A conta fechava.</p>
+      <p>O que Celso não sabia com exatidão: quanto ele tinha faturado em julho. Quanto tinha sobrado depois de pagar fornecedores, salários e os impostos daquele mês. Quanto estava comprometido nos próximos sessenta dias com materiais já pedidos. Quanto a construtora costumava demorar para pagar nas primeiras parcelas de um contrato novo.</p>
+      <p>Ele não sabia porque não tinha anotado. Nunca tinha anotado de forma sistemática. Sabia que julho tinha sido bom porque tinha trabalhado muito, fechado alguns pedidos grandes, e a conta não tinha ficado negativa. Era o suficiente para ele.</p>
+      <p>O funcionário novo começou em agosto. O contrato com a construtora foi assinado em setembro, como previsto. Em outubro, o primeiro pagamento atrasou trinta dias. Celso precisou cobrir folha de pagamento com uma reserva que ele achava que existia — e que era menor do que ele imaginava.</p>
+      <p>Quando ele foi olhar o extrato para entender a situação, percebeu que não tinha referência nenhuma para comparar. Ele não sabia se aquele mês estava pior do que o anterior porque não tinha nenhum registro do anterior. Não sabia se o funcionário novo estava pesando porque nunca tinha calculado a margem real por serviço. Não sabia quanto a construtora representava do faturamento total porque nunca tinha somado.</p>
+      <p>O que Celso tinha eram impressões. Julho pareceu bom. Agosto pareceu corrido. Setembro pareceu promissor.</p>
+      <p>A informação que Celso usou para decidir não estava em nenhum lugar — estava só na memória dele, ajustada pelo humor do dia, pelo cansaço da semana, pela satisfação de ter fechado um contrato grande.</p>
+      <p>Quando o extrato disse o contrário, não havia nada para comparar. Nenhum registro anterior. Nenhum número real.</p>
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">A pergunta que ficou — que ele não conseguia responder, porque nunca tinha os dados para isso — era simples: quantas decisões antes dessa tinham sido tomadas do mesmo jeito?</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

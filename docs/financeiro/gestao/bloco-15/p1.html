@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 15 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(20%) brightness(0.88);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.narrativa-body strong{font-weight:500;}
+.story-divider{margin:2rem 0;border:none;border-top:1px solid var(--border);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Gestão</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 15</span> · Página <span>01</span></div>
+    </div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80" alt="Análise de retorno e decisão">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">o que você está esperando que mude</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Existe algo que você mantém aberto porque parar exige assumir algo que você ainda não está pronto para assumir?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p><strong>Gilberto</strong> tem uma empresa de desenvolvimento de software sob demanda. Há dezoito meses, abriu uma vertical nova: aplicativos para o setor de saúde. A lógica estava certa — mercado crescendo, demanda visível, diferencial técnico já existente.</p>
+
+      <p>Investiu R$ 94 mil nos primeiros doze meses: dois desenvolvedores especializados, homologação em plataformas hospitalares, marketing direcionado. Em doze meses, fechou três contratos. O projetado eram oito.</p>
+
+      <p>No décimo terceiro mês, ele fez a revisão. Três contratos com oito projetados. A vertical estava consumindo 38% do esforço comercial da empresa para gerar 11% da receita.</p>
+
+      <p>A conclusão mais honesta era clara: a vertical não estava entregando.</p>
+
+      <p>Mas Gilberto não fechou. Teve dois argumentos: o mercado ainda era promissor, e encerrar significava assumir que os R$ 94 mil investidos tinham ido embora. Preferiu reduzir a equipe da vertical para um desenvolvedor, cortar o marketing, e manter. "Mais seis meses", disse ele. O prazo foi renovado três vezes.</p>
+
+      <p>No décimo oitavo mês, a vertical ainda gerava 9% da receita com 31% do esforço comercial.</p>
+
+      <hr class="story-divider">
+
+      <p><strong>Andreia</strong> tem uma empresa de consultoria tributária. Há dois anos, abriu um serviço de planejamento fiscal para pessoas físicas de alta renda. No momento de aprovar o investimento, ela definiu um critério de saída: se em doze meses o serviço não representasse 15% da receita, seria descontinuado ou vendido para outro escritório.</p>
+
+      <p>No décimo mês, estava em 9%. Ela não esperou os doze — antecipou a análise. Verificou que o custo de aquisição de clientes nesse segmento era três vezes maior do que o estimado. O critério de 15% não seria alcançado.</p>
+
+      <p>Ela descontinuou. Direcionou a equipe para a operação principal. No trimestre seguinte, a margem da empresa subiu 4 pontos percentuais.</p>
+
+      <p>Andreia perdeu o que investiu. O que ela não perdeu foi mais dezoito meses de esforço no que não estava funcionando.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">A diferença não está em quem apostou certo. Está em quem definiu, antes de entrar, quando ia sair.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

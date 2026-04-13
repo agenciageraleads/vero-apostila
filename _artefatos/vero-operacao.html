@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operação do Time — Vero Escola de Empresários</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --off-white: #F5F2EC;
+    --cream: #EDE8DC;
+    --gold: #C9A84C;
+    --gold-dim: rgba(201,168,76,0.15);
+    --dark-gray: #161616;
+    --mid-gray: #3A3A3A;
+    --light-gray: #7A7A7A;
+    --border: #252525;
+    --border-light: #2E2E2E;
+    --red: #C0392B;
+    --green: #2ECC71;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* LAYOUT */
+  .page { max-width: 1100px; margin: 0 auto; }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.8rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(16px);
+    z-index: 100;
+  }
+
+  .logo-wrap { display: flex; flex-direction: column; gap: 3px; }
+  .logo-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; }
+  .logo-sub { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; }
+
+  .doc-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--light-gray);
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 0.35rem 0.8rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 3rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em { color: var(--gold); font-style: normal; }
+
+  .hero-desc {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--light-gray);
+    max-width: 580px;
+    font-weight: 300;
+  }
+
+  /* SECTION */
+  .section {
+    padding: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--border-light);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .section-label-wrap {}
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  /* STACK INFRA */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+
+  .stack-card {
+    background: var(--black);
+    padding: 1.8rem;
+  }
+
+  .stack-icon { font-size: 1.3rem; margin-bottom: 0.8rem; display: block; }
+  .stack-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .stack-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .stack-desc {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--light-gray);
+    font-weight: 300;
+  }
+
+  .note-box {
+    border: 1px solid var(--border-light);
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--light-gray);
+    font-weight: 300;
+  }
+
+  .note-box strong { color: var(--off-white); font-weight: 500; }
+
+  /* AGENT DELIVERABLES */
+  .agent-block {
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+
+  .agent-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: var(--dark-gray);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .agent-num-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--light-gray);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .agent-header-info {}
+  .agent-header-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  .agent-header-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .agent-trigger {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    color: var(--light-gray);
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .agent-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .agent-col {
+    padding: 1.8rem 2rem;
+    border-right: 1px solid var(--border);
+  }
+  .agent-col:last-child { border-right: none; }
+
+  .col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .col-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .deliverable-item {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    align-items: flex-start;
+  }
+
+  .di-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+
+  .di-text {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--light-gray);
+    font-weight: 300;
+  }
+
+  .di-text strong { color: var(--off-white); font-weight: 500; }
+
+  .format-pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.5rem;
+    color: var(--light-gray);
+    margin-right: 0.3rem;
+    margin-top: 0.3rem;
+  }
+
+  .format-pill.gold { border-color: var(--gold); color: var(--gold); }
+
+  /* CANVAS TYPES */
+  .canvas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .canvas-type {
+    background: var(--black);
+    padding: 1.8rem;
+  }
+
+  .canvas-type-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .canvas-type-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  .canvas-type-when {
+    font-size: 0.75rem;
+    color: var(--light-gray);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .canvas-preview {
+    border: 1px solid var(--border);
+    padding: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--border-light);
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+  }
+
+  .canvas-preview span { color: var(--light-gray); }
+
+  /* FLOW PIPELINE */
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pipeline-row {
+    display: grid;
+    grid-template-columns: 48px 180px 1fr auto;
+    gap: 1.5rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .pipeline-row:last-child { border-bottom: none; }
+
+  .pipe-step {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--border-light);
+    padding-top: 0.1rem;
+  }
+
+  .pipe-agent {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .pipe-action {
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: var(--off-white);
+  }
+
+  .pipe-detail {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--light-gray);
+    font-weight: 300;
+  }
+
+  .pipe-out {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    color: var(--light-gray);
+    text-align: right;
+    white-space: nowrap;
+    padding-top: 0.1rem;
+    line-height: 1.8;
+  }
+
+  .pipe-out .out-label { color: var(--gold); display: block; margin-bottom: 0.2rem; }
+
+  /* GATE */
+  .gate-row {
+    background: var(--dark-gray);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 0.8rem 1.5rem;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .gate-row::before { content: '⬡'; font-size: 0.8rem; }
+
+  /* WORDS */
+  .words-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .words-col { background: var(--black); padding: 2rem; }
+
+  .words-col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .words-col-label.proibido { color: var(--red); }
+  .words-col-label.permitido { color: var(--green); }
+
+  .word-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--light-gray);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .word-item:last-child { border-bottom: none; }
+  .word-item.no::before { content: '✕'; color: var(--red); font-size: 0.6rem; }
+  .word-item.ok::before { content: '✓'; color: var(--green); font-size: 0.6rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-mono { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 0.15em; color: var(--border-light); text-transform: uppercase; }
+  .footer-v { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--border-light); }
+
+  @media (max-width: 768px) {
+    header, .hero, .section, footer { padding: 1.5rem; }
+    .stack-grid, .agent-body, .canvas-grid, .words-grid { grid-template-columns: 1fr; }
+    .pipeline-row { grid-template-columns: 32px 1fr; }
+    .pipe-step, .pipe-out { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<header>
+  <div class="logo-wrap">
+    <div class="logo-name">Vero</div>
+    <div class="logo-sub">Escola de Empresários</div>
+  </div>
+  <div class="doc-id">Operação do Time · v1.1</div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Documento Interno — Time Editorial</div>
+  <h1>Como o time <em>opera</em>,<br>o que cada um entrega</h1>
+  <p class="hero-desc">Entregáveis concretos, formatos definidos, tipos de canvas, vocabulário e o fluxo exato bloco a bloco. Tudo que o time precisa para trabalhar sem ambiguidade.</p>
+</section>
+
+<!-- 01. STACK TÉCNICA -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">01</div>
+    <div class="section-label-wrap">
+      <div class="section-tag">Infraestrutura</div>
+      <div class="section-title">Stack Técnica de Entrega</div>
+    </div>
+  </div>
+
+  <div class="stack-grid">
+    <div class="stack-card">
+      <span class="stack-icon">💬</span>
+      <div class="stack-name">Camada 1</div>
+      <div class="stack-title">Texto no chat</div>
+      <div class="stack-desc">Todo o trabalho criativo acontece aqui — redação, crítica, revisão e aprovação. Um bloco por vez. Lucas lê, comenta e aprova antes de qualquer coisa avançar.</div>
+    </div>
+    <div class="stack-card">
+      <span class="stack-icon">🌐</span>
+      <div class="stack-name">Camada 2</div>
+      <div class="stack-title">HTML diagramado</div>
+      <div class="stack-desc">Após aprovação textual, Sofia diagrama o bloco completo em HTML. Cada bloco = dois arquivos HTML (P1 + P2) com CSS de impressão A4 embutido.</div>
+    </div>
+    <div class="stack-card">
+      <span class="stack-icon">📄</span>
+      <div class="stack-name">Camada 3</div>
+      <div class="stack-title">PDF via print</div>
+      <div class="stack-desc">O HTML com @media print gera PDF A4 perfeito pelo navegador — sem Canva, sem Word, sem InDesign. Resultado profissional, totalmente controlável.</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>Campos do Canvas na versão impressa:</strong> campos de preenchimento livre são espaços em branco reais, com altura definida e rótulo impresso. O empresário preenche à caneta. Campos circulares, quadrantes e frameworks têm layout gráfico gerado em SVG embutido no HTML — sem imagem externa.
+  </div>
+</section>
+
+<!-- 02. ENTREGÁVEIS DOS AGENTES -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">02</div>
+    <div class="section-label-wrap">
+      <div class="section-tag">Agentes</div>
+      <div class="section-title">Entregáveis Exatos por Agente</div>
+    </div>
+  </div>
+
+  <!-- VERA -->
+  <div class="agent-block">
+    <div class="agent-header">
+      <div class="agent-num-badge">00</div>
+      <div class="agent-header-info">
+        <div class="agent-header-role">Supervisora · Guardião do Método</div>
+        <div class="agent-header-name">Vera</div>
+      </div>
+      <div class="agent-trigger">Ativada em:<br>P1 aprovada · P2 aprovada · Pós-revisão</div>
+    </div>
+    <div class="agent-body">
+      <div class="agent-col">
+        <div class="col-label">Entrega</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Veredicto de P1</strong> — aprovado ou devolvido com instrução específica de ajuste (máximo 3 pontos)</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Veredicto de bloco completo</strong> — libera ou bloqueia antes da Revisão de Ana</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Comparação explícita</strong> com o Bloco-Referência da mesma fase sempre que reprovar</div></div>
+      </div>
+      <div class="agent-col">
+        <div class="col-label">Formato</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Texto corrido, sem listas. <strong>Primeira linha sempre:</strong> ✅ Aprovado / ❌ Devolvido</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Se devolvido: cita trecho exato com desvio + instrução de correção</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Nunca reescreve. Nunca sugere alternativa criativa. Apenas diagnostica desvio de padrão.</div></div>
+        <div style="margin-top:1rem;">
+          <span class="format-pill gold">Chat</span>
+          <span class="format-pill">Texto puro</span>
+          <span class="format-pill">Sem HTML</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCO -->
+  <div class="agent-block">
+    <div class="agent-header">
+      <div class="agent-num-badge">01</div>
+      <div class="agent-header-info">
+        <div class="agent-header-role">Redator Principal</div>
+        <div class="agent-header-name">Marco</div>
+      </div>
+      <div class="agent-trigger">Ativado em:<br>Início de bloco · Pós-diagnóstico do Paulo</div>
+    </div>
+    <div class="agent-body">
+      <div class="agent-col">
+        <div class="col-label">Entrega</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Página 1 completa</strong> — narrativa com personagem, situação, antagonismo, fechamento inevitável</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Densidade controlada</strong> — máximo 350 palavras (equivale a uma página A4 com tipografia Vero)</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Versão revisada</strong> pós-diagnóstico do Paulo — apenas o que foi apontado, sem reescrita total</div></div>
+      </div>
+      <div class="agent-col">
+        <div class="col-label">Formato</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Parágrafos corridos. <strong>Sem subtítulos, sem listas, sem negrito</strong> dentro do texto</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Quebras de parágrafo por ritmo, não por tópico</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Ao final da P1: <strong>frase-gancho</strong> que torna o canvas da P2 inevitável (sem comando explícito)</div></div>
+        <div style="margin-top:1rem;">
+          <span class="format-pill gold">Chat</span>
+          <span class="format-pill">Texto puro</span>
+          <span class="format-pill">Máx 350 palavras</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAULO -->
+  <div class="agent-block">
+    <div class="agent-header">
+      <div class="agent-num-badge">02</div>
+      <div class="agent-header-info">
+        <div class="agent-header-role">Crítico Editorial</div>
+        <div class="agent-header-name">Paulo</div>
+      </div>
+      <div class="agent-trigger">Ativado em:<br>P1 entregue pelo Marco</div>
+    </div>
+    <div class="agent-body">
+      <div class="agent-col">
+        <div class="col-label">Entrega</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Diagnóstico de P1</strong> — lê como o empresário-alvo da fase, não como editor</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Máximo 4 pontos</strong> de ajuste — cada um com: trecho citado + problema + direção (sem solução prescrita)</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Se nada desviar: entrega parecer positivo em uma linha</div></div>
+      </div>
+      <div class="agent-col">
+        <div class="col-label">Formato</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Lista numerada de pontos. <strong>Cada ponto:</strong> [Trecho] → [Problema] → [Direção]</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Nunca reescreve.</strong> Nunca entrega alternativa. Nunca elogia o que não merece.</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Tom: direto, sem suavização. Paulo fala como o empresário que sente o problema.</div></div>
+        <div style="margin-top:1rem;">
+          <span class="format-pill gold">Chat</span>
+          <span class="format-pill">Lista numerada</span>
+          <span class="format-pill">Máx 4 pontos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÍRIS -->
+  <div class="agent-block">
+    <div class="agent-header">
+      <div class="agent-num-badge">03</div>
+      <div class="agent-header-info">
+        <div class="agent-header-role">Arquiteta de Canvas + Elaboradora</div>
+        <div class="agent-header-name">Íris</div>
+      </div>
+      <div class="agent-trigger">Ativada em:<br>P1 aprovada por Vera · Pedido de canvas personalizado</div>
+    </div>
+    <div class="agent-body">
+      <div class="agent-col">
+        <div class="col-label">Entrega — Página 2 da Apostila</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Canvas modelo</strong> — tipo definido por ela conforme o bloco (ver seção 03). Campos em branco para preenchimento físico.</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Legenda dos campos</strong> — uma linha por campo explicando o que vai ali (não como preencher)</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Dúvidas Comuns</strong> — 3 a 4 resistências emocionais reais, respondidas com uma frase seca</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Resultado Esperado</strong> — uma linha dizendo o que o empresário tem em mãos depois de preencher</div></div>
+      </div>
+      <div class="agent-col">
+        <div class="col-label">Entrega — Canvas Personalizado (sob demanda)</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Recebe: contexto real do empresário (setor, fase, problema descrito)</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Entrega:</strong> canvas preenchido com exemplos reais do contexto desse empresário específico</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Campos preenchidos não substituem o modelo — são referência de uso, não resposta certa</div></div>
+        <div style="margin-top:1rem;">
+          <span class="format-pill gold">Chat (texto)</span>
+          <span class="format-pill gold">HTML (diagrama)</span>
+          <span class="format-pill">Modelo + Personalizado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANA -->
+  <div class="agent-block">
+    <div class="agent-header">
+      <div class="agent-num-badge">04</div>
+      <div class="agent-header-info">
+        <div class="agent-header-role">Revisora de Consistência</div>
+        <div class="agent-header-name">Ana</div>
+      </div>
+      <div class="agent-trigger">Ativada em:<br>Bloco completo (P1+P2) aprovado por Vera</div>
+    </div>
+    <div class="agent-body">
+      <div class="agent-col">
+        <div class="col-label">Entrega</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>Relatório de consistência</strong> — compara bloco com todos os anteriores da mesma fase e pilar</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Verifica: tom, vocabulário, densidade, ausência de contradição, progressão de fase</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Se consistente: libera para Lucas com <strong>✅ Consistente</strong> + nota de alinhamento em uma linha</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Se inconsistente: aponta desvio específico + bloco de referência que conflita</div></div>
+      </div>
+      <div class="agent-col">
+        <div class="col-label">Formato</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Checklist de 5 itens fixos: <strong>Tom · Vocabulário · Densidade · Progressão · Contradição</strong></div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Cada item: ✅ ou ⚠️ + nota de uma linha</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Não opina sobre qualidade criativa — apenas sobre coerência com o conjunto</div></div>
+        <div style="margin-top:1rem;">
+          <span class="format-pill gold">Chat</span>
+          <span class="format-pill">Checklist 5 itens</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOFIA -->
+  <div class="agent-block">
+    <div class="agent-header">
+      <div class="agent-num-badge">05</div>
+      <div class="agent-header-info">
+        <div class="agent-header-role">Designer Visual</div>
+        <div class="agent-header-name">Sofia</div>
+      </div>
+      <div class="agent-trigger">Ativada em:<br>Aprovação final de Lucas</div>
+    </div>
+    <div class="agent-body">
+      <div class="agent-col">
+        <div class="col-label">Entrega</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>HTML da Página 1</strong> — texto diagramado com tipografia Vero, margens A4, espaçamento editorial</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>HTML da Página 2</strong> — canvas com campos de preenchimento físico, legenda, dúvidas e resultado esperado</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text"><strong>@media print</strong> embutido — garante fidelidade A4 ao imprimir ou exportar PDF</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Canvas gráfico (círculo, quadrante, timeline) gerado em <strong>SVG inline</strong> — sem imagem externa</div></div>
+      </div>
+      <div class="agent-col">
+        <div class="col-label">Formato</div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Dois arquivos HTML por bloco: <strong>bloco-XX-p1.html</strong> e <strong>bloco-XX-p2.html</strong></div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Tudo self-contained — fontes via Google Fonts CDN, sem dependência local</div></div>
+        <div class="deliverable-item"><div class="di-dot"></div><div class="di-text">Entrega prévia para validação de Lucas antes de finalizar. Ajuste é parte do processo.</div></div>
+        <div style="margin-top:1rem;">
+          <span class="format-pill gold">HTML A4</span>
+          <span class="format-pill gold">SVG inline</span>
+          <span class="format-pill">PDF via print</span>
+          <span class="format-pill">2 arquivos/bloco</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03. TIPOS DE CANVAS -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">03</div>
+    <div class="section-label-wrap">
+      <div class="section-tag">Íris — Elaboradora</div>
+      <div class="section-title">Tipos de Canvas por Situação</div>
+    </div>
+  </div>
+
+  <div class="canvas-grid">
+
+    <div class="canvas-type">
+      <div class="canvas-type-name">Tipo A</div>
+      <div class="canvas-type-title">Canvas Linear (Pergunta → Campo)</div>
+      <div class="canvas-type-when">Quando o bloco exige que o empresário descreva situações, diagnósticos ou decisões em sequência lógica. Mais comum em blocos de Raiz.</div>
+      <div class="canvas-preview">
+        <span>CAMPO 01 ·</span> Situação atual<br>
+        ___________________________<br>
+        ___________________________<br><br>
+        <span>CAMPO 02 ·</span> O que você evita olhar<br>
+        ___________________________<br>
+        ___________________________
+      </div>
+    </div>
+
+    <div class="canvas-type">
+      <div class="canvas-type-name">Tipo B</div>
+      <div class="canvas-type-title">Quadrante (2×2)</div>
+      <div class="canvas-type-when">Quando o bloco exige classificação, priorização ou comparação entre duas variáveis. Comum em Vendas e Pessoas — decisão de onde competir, perfil de equipe.</div>
+      <div class="canvas-preview">
+        <span>ALTO ↑</span><br>
+        ┌─────────┬─────────┐<br>
+        │         │         │<br>
+        │    A    │    B    │<br>
+        │         │         │<br>
+        ├─────────┼─────────┤<br>
+        │    C    │    D    │<br>
+        └─────────┴─────────┘<br>
+        <span>                    → ALTO</span>
+      </div>
+    </div>
+
+    <div class="canvas-type">
+      <div class="canvas-type-name">Tipo C</div>
+      <div class="canvas-type-title">Roda / Círculo de Avaliação</div>
+      <div class="canvas-type-when">Quando o bloco exige diagnóstico de maturidade em múltiplas dimensões simultâneas. Comum em Operação e Financeiro — visão de saúde do negócio.</div>
+      <div class="canvas-preview">
+        <span>·</span> Financeiro &nbsp;&nbsp;&nbsp; <span>·</span> Operação<br>
+        <span>·</span> Pessoas &nbsp;&nbsp;&nbsp;&nbsp; <span>·</span> Vendas<br><br>
+        <span>[SVG gerado — círculo com eixos]</span><br>
+        <span>Empresário marca de 1 a 10 em cada eixo</span>
+      </div>
+    </div>
+
+    <div class="canvas-type">
+      <div class="canvas-type-name">Tipo D</div>
+      <div class="canvas-type-title">Framework Sequencial (Timeline / Processo)</div>
+      <div class="canvas-type-when">Quando o bloco exige mapeamento de etapas, marcos ou sequência de decisões. Comum em blocos de Trilha e Gestão — construção de padrão mínimo, processo de vendas.</div>
+      <div class="canvas-preview">
+        <span>ETAPA 1 →</span> Etapa 2 → Etapa 3<br>
+        ┌────────┐ ┌────────┐ ┌────────┐<br>
+        │        │ │        │ │        │<br>
+        │        │ │        │ │        │<br>
+        └────────┘ └────────┘ └────────┘<br>
+        <span>Quem faz · O que faz · Quando</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 04. FLUXO COMPLETO -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">04</div>
+    <div class="section-label-wrap">
+      <div class="section-tag">Pipeline</div>
+      <div class="section-title">Fluxo Completo — Bloco por Bloco</div>
+    </div>
+  </div>
+
+  <div class="pipeline">
+
+    <div class="pipeline-row">
+      <div class="pipe-step">01</div>
+      <div class="pipe-agent">Lucas</div>
+      <div>
+        <div class="pipe-action">Abre o bloco</div>
+        <div class="pipe-detail">Define pilar, fase e número. Pode dar contexto, dor central ou persona específica. Ou apenas abre o escopo.</div>
+      </div>
+      <div class="pipe-out"><span class="out-label">Saída</span>Briefing do bloco</div>
+    </div>
+
+    <div class="pipeline-row">
+      <div class="pipe-step">02</div>
+      <div class="pipe-agent">Marco</div>
+      <div>
+        <div class="pipe-action">Escreve Página 1</div>
+        <div class="pipe-detail">Narrativa completa. Personagem, situação, antagonismo, fechamento inevitável. Máx 350 palavras.</div>
+      </div>
+      <div class="pipe-out"><span class="out-label">Saída</span>P1 — rascunho</div>
+    </div>
+
+    <div class="pipeline-row">
+      <div class="pipe-step">03</div>
+      <div class="pipe-agent">Paulo</div>
+      <div>
+        <div class="pipe-action">Diagnóstico de P1</div>
+        <div class="pipe-detail">Lê como o empresário-alvo. Aponta desvios com trecho + problema + direção. Máx 4 pontos.</div>
+      </div>
+      <div class="pipe-out"><span class="out-label">Saída</span>Diagnóstico</div>
+    </div>
+
+    <div class="pipeline-row">
+      <div class="pipe-step">04</div>
+      <div class="pipe-agent">Marco</div>
+      <div>
+        <div class="pipe-action">Revisão de P1</div>
+        <div class="pipe-detail">Incorpora diagnóstico do Paulo. Apenas o necessário — sem reescrita total se o texto já está no caminho certo.</div>
+      </div>
+      <div class="pipe-out"><span class="out-label">Saída</span>P1 — revisada</div>
+    </div>
+
+    <div class="gate-row">Vera — Verificação de P1 contra Bloco-Referência da fase</div>
+
+    <div class="pipeline-row">
+      <div class="pipe-step">05</div>
+      <div class="pipe-agent">Íris</div>
+      <div>
+        <div class="pipe-action">Constrói Página 2</div>
+        <div class="pipe-detail">Define tipo de canvas, monta campos com legendas, escreve Dúvidas Comuns (resistência emocional) e Resultado Esperado.</div>
+      </div>
+      <div class="pipe-out"><span class="out-label">Saída</span>P2 — modelo</div>
+    </div>
+
+    <div class="pipeline-row">
+      <div class="pipe-step">06</div>
+      <div class="pipe-agent">Ana</div>
+      <div>
+        <div class="pipe-action">Revisão de Consistência</div>
+        <div class="pipe-detail">Bloco completo (P1+P2) comparado com todos os anteriores. Checklist de 5 itens. Libera ou aponta desvio.</div>
+      </div>
+      <div class="pipe-out"><span class="out-label">Saída</span>Checklist</div>
+    </div>
+
+    <div class="gate-row">Vera — Verificação final do bloco completo</div>
+
+    <div class="pipeline-row">
+      <div class="pipe-step">07</div>
+      <div class="pipe-agent">Lucas</div>
+      <div>
+        <div class="pipe-action">Aprovação Final</div>
+        <div class="pipe-detail">Lê como o empresário-alvo. Aprova, ajusta ou devolve com pontuações. Sua aprovação é o único passaporte para o design.</div>
+      </div>
+      <div class="pipe-out"><span class="out-label">Saída</span>Aprovação</div>
+    </div>
+
+    <div class="gate-row">Sofia — Entra aqui e somente aqui</div>
+
+    <div class="pipeline-row">
+      <div class="pipe-step">08</div>
+      <div class="pipe-agent">Sofia</div>
+      <div>
+        <div class="pipe-action">Diagramação</div>
+        <div class="pipe-detail">Produz HTML A4 de P1 e P2. Canvas em SVG inline. Entrega prévia, ajusta, finaliza.</div>
+      </div>
+      <div class="pipe-out"><span class="out-label">Saída</span>2× HTML A4</div>
+    </div>
+
+    <div class="pipeline-row">
+      <div class="pipe-step">09</div>
+      <div class="pipe-agent">Lucas</div>
+      <div>
+        <div class="pipe-action">Validação Visual + Export PDF</div>
+        <div class="pipe-detail">Abre HTML no navegador, verifica diagramação, imprime como PDF. Bloco finalizado.</div>
+      </div>
+      <div class="pipe-out"><span class="out-label">Saída</span>Bloco PDF ✓</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 05. VOCABULÁRIO -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">05</div>
+    <div class="section-label-wrap">
+      <div class="section-tag">Tom de Voz</div>
+      <div class="section-title">Vocabulário do Time</div>
+    </div>
+  </div>
+
+  <div class="words-grid">
+    <div class="words-col">
+      <div class="words-col-label proibido">Proibido — devolve automaticamente</div>
+      <div class="word-item no">sucesso (como promessa)</div>
+      <div class="word-item no">crescer / escalar</div>
+      <div class="word-item no">solução</div>
+      <div class="word-item no">transformar / transformação</div>
+      <div class="word-item no">jornada</div>
+      <div class="word-item no">potencial (do empresário)</div>
+      <div class="word-item no">simples / fácil</div>
+      <div class="word-item no">metodologia / framework (no texto da P1)</div>
+      <div class="word-item no">você consegue / você pode</div>
+      <div class="word-item no">passo a passo</div>
+    </div>
+    <div class="words-col">
+      <div class="words-col-label permitido">Permitido — calibrado ao tom Vero</div>
+      <div class="word-item ok">decidir / escolher / definir</div>
+      <div class="word-item ok">critério / padrão / régua</div>
+      <div class="word-item ok">resultado (concreto, não prometido)</div>
+      <div class="word-item ok">empresa (nunca "negócio" no sentido vago)</div>
+      <div class="word-item ok">problema / tensão / desvio</div>
+      <div class="word-item ok">lógica / raciocínio</div>
+      <div class="word-item ok">claro / direto / preciso</div>
+      <div class="word-item ok">responsabilidade / posição / postura</div>
+      <div class="word-item ok">funcionar / operar / estruturar</div>
+      <div class="word-item ok">sempre foi assim / sempre foi você</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-mono">Vero · Operação do Time · v1.1 · 2026</div>
+  <div class="footer-v">V</div>
+</footer>
+
+</div>
+</body>
+</html>

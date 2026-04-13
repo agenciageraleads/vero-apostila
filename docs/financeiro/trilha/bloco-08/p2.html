@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 08 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+
+/* CANVAS — perguntas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:2rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.8rem;line-height:1.4;}
+.resposta-row{display:flex;align-items:center;gap:1.2rem;margin-bottom:0.5rem;}
+.resposta-prefix{font-size:0.85rem;color:var(--ink-light);white-space:nowrap;font-family:'DM Mono',monospace;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;flex:1;}
+.checkbox-row{display:flex;gap:1.5rem;align-items:center;margin-top:0.6rem;flex-wrap:wrap;}
+.checkbox-opt{display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:300;color:var(--ink-light);}
+.checkbox-opt .box{width:14px;height:14px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
+.checkbox-inline{display:flex;align-items:center;gap:0.55rem;font-size:0.82rem;font-weight:300;color:var(--ink-light);margin-left:1rem;}
+.checkbox-inline .box{width:14px;height:14px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
+.resposta-aberta{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-top:0.5rem;}
+.resposta-aberta + .resposta-aberta{margin-top:0.9rem;}
+.pergunta-hint{font-size:0.75rem;font-style:italic;font-weight:300;color:var(--ink-light);margin-top:0.7rem;letter-spacing:0.01em;line-height:1.55;}
+.pergunta-label--sub{font-size:0.88rem;font-weight:400;color:var(--ink);margin-top:1.1rem;margin-bottom:0.6rem;line-height:1.4;font-style:italic;}
+
+/* Pergunta-chave — destaque com borda lateral dourada */
+.pergunta-item--chave{
+  margin-top:2.6rem;
+  padding-left:1.2rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Dúvidas comuns */
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Trilha</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 08</span> · Página <span>02</span> / 02</div>
+    </div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">o que você paga antes de vender qualquer coisa</h1>
+    <p class="bloco-sub">Pense no seu negócio. Responda com o que você sabe agora — não com o que vai pesquisar.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que você paga todo mês, venda ou não?</div>
+      <span class="resposta-aberta"></span>
+      <span class="resposta-aberta"></span>
+      <div class="resposta-row" style="margin-top:0.9rem;">
+        <span class="resposta-prefix">R$</span>
+        <span class="input-line"></span>
+        <span class="checkbox-inline"><span class="box"></span> Não sei estimar</span>
+      </div>
+      <p class="pergunta-hint">aluguel + folha + sistema de gestão &nbsp;·&nbsp; aluguel + prestadores fixos + plataforma &nbsp;·&nbsp; aluguel + folha + manutenção de equipamento</p>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que você paga só quando vende (ou produz)?</div>
+      <span class="resposta-aberta"></span>
+      <div class="resposta-row" style="margin-top:0.9rem;">
+        <span class="resposta-prefix">R$</span>
+        <span class="input-line"></span>
+        <span style="font-size:0.78rem;font-weight:300;color:var(--ink-light);white-space:nowrap;">por unidade</span>
+        <span class="checkbox-inline"><span class="box"></span> Não sei estimar</span>
+      </div>
+      <p class="pergunta-hint">mercadoria + frete + comissão &nbsp;·&nbsp; custo do serviço + material &nbsp;·&nbsp; insumo + mão de obra variável + embalagem</p>
+    </div>
+
+    <div class="pergunta-item pergunta-item--chave">
+      <div class="pergunta-label">Some o que você paga sempre. Qual é o seu piso mensal — o valor que vai sair mesmo que você não venda nada?</div>
+      <div class="resposta-row">
+        <span class="resposta-prefix">R$</span>
+        <span class="input-line"></span>
+        <span class="checkbox-inline"><span class="box"></span> Não sei calcular</span>
+      </div>
+      <p class="pergunta-hint">esse número é o seu custo mínimo para o negócio existir este mês</p>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Quando o volume cai, o que você faz primeiro?</div>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> Reduzo meu pró-labore</span>
+        <span class="checkbox-opt"><span class="box"></span> Corto algum fornecedor ou prestador</span>
+        <span class="checkbox-opt"><span class="box"></span> Empurro uma conta para o mês seguinte</span>
+        <span class="checkbox-opt"><span class="box"></span> Não faço nada diferente</span>
+        <span class="checkbox-opt"><span class="box"></span> Outra coisa</span>
+      </div>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Tem algum custo fixo que você paga e não sabe bem por quê ainda está lá?</div>
+      <span class="resposta-aberta"></span>
+      <span class="resposta-aberta"></span>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Nunca separei meus custos assim. Não sei o que é fixo e o que é variável."</p>
+      <p class="duvida-a">Se você fechar amanhã e não vender mais nada, o que ainda vai vencer? Isso é fixo. O resto depende de quanto você produz ou vende. A distinção não precisa ser perfeita — precisa existir.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Meu negócio é muito variável. Não dá para ter um piso fixo."</p>
+      <p class="duvida-a">Todo negócio tem pelo menos um custo que não oscila com o volume: o aluguel, a linha de telefone, o contador. Mesmo que pequeno, existe um valor que vence independente de você ter trabalhado ou não.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Já sei mais ou menos o que gasto. Não preciso detalhar."</p>
+      <p class="duvida-a">"Mais ou menos" não diz onde está o chão. Renata também achava que sabia. O problema dela não era ignorância — era não ter o número exato no momento em que precificou um pedido menor.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você tem uma visão do que o seu negócio custa para existir — antes de vender qualquer coisa. Não é sobre eliminar custo fixo. É sobre saber onde está o seu piso para que, quando o volume cair, você saiba o que está acontecendo antes de ver a conta no vermelho.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

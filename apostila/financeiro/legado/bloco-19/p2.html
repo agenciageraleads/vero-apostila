@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 19 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:1.8rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.7rem;line-height:1.4;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-bottom:0.5rem;}
+.hint{font-size:0.73rem;font-style:italic;color:var(--ink-light);line-height:1.55;margin-top:0.5rem;}
+.section-divider{border:none;border-top:1px solid var(--border);margin:1.8rem 0;}
+.pergunta-item--chave{padding-left:1.2rem;border-left:2px solid var(--gold);}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Legado</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 19</span> · Página <span>02</span> / 02</div>
+    </div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Transparência sem pânico</h1>
+    <p class="bloco-sub">Pense em quem, dentro da sua empresa, vê alguma informação financeira hoje. Responda com o que existe — não com o que deveria existir.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Quem vê alguma informação financeira hoje — e o que vê:</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+      <p class="hint">vendedora vê meta e comissão &nbsp;·&nbsp; coordenador vê custo do contrato &nbsp;·&nbsp; sócio vê DRE completo</p>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Onde a informação já gerou interpretação errada ou pânico:</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+      <p class="hint">funcionário viu faturamento e pediu aumento &nbsp;·&nbsp; equipe achou que margem baixa significava falência &nbsp;·&nbsp; coordenador questionou custo sem entender o contrato</p>
+    </div>
+
+    <div class="pergunta-item pergunta-item--chave">
+      <div class="pergunta-label">O que cada nível precisa ver para tomar decisão na função dele:</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+      <p class="hint">operacional precisa ver prazo e devolução &nbsp;·&nbsp; gerente precisa ver margem por linha &nbsp;·&nbsp; diretoria precisa ver fluxo de caixa consolidado</p>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que ninguém deveria ver sem contexto:</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+      <p class="hint">margem líquida sem entender custo fixo &nbsp;·&nbsp; folha de pagamento total sem saber a estrutura &nbsp;·&nbsp; faturamento bruto sem saber inadimplência</p>
+    </div>
+
+    <div class="pergunta-item" style="margin-bottom:0;">
+      <div class="pergunta-label">Qual informação você esconde por medo da reação — e qual esconde por não ter estrutura para compartilhar:</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+      <p class="hint">escondo margem porque não sei explicar &nbsp;·&nbsp; escondo folha porque temo comparação &nbsp;·&nbsp; não compartilho custos porque não tenho relatório adequado</p>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu não mostrar, vão achar que estou escondendo."</p>
+      <p class="duvida-a">Mostrar sem contexto gera desconfiança igual. A questão não é se mostra ou esconde — é se quem vê tem condição de interpretar.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Minha equipe não entende financeiro."</p>
+      <p class="duvida-a">Ninguém entende o que nunca viu estruturado. O problema não é a capacidade da equipe — é a ausência de formato adequado.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"E se usarem contra mim em negociação?"</p>
+      <p class="duvida-a">Informação vira arma quando não existe critério de acesso. Com níveis claros, o risco diminui.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você sabe quem vê o quê, quem deveria ver mais, quem está vendo demais — e onde a ausência de contexto está transformando transparência em problema.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

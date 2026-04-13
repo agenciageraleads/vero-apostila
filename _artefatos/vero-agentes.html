@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time de Criação — Vero Escola de Empresários</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --off-white: #F5F2EC;
+    --cream: #EDE8DC;
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --dark-gray: #1C1C1C;
+    --mid-gray: #3A3A3A;
+    --light-gray: #8A8A8A;
+    --border: #2E2E2E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--off-white);
+  }
+
+  .logo-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .header-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--light-gray);
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 3rem 3rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: 'TIME DE CRIAÇÃO';
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    color: var(--border);
+    white-space: nowrap;
+  }
+
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    max-width: 700px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--light-gray);
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  /* WORKFLOW BAR */
+  .workflow {
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .workflow-step {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    padding: 0.4rem 1.2rem;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .workflow-step:first-child { padding-left: 0; }
+  .workflow-step.active { color: var(--gold); }
+
+  .workflow-arrow {
+    color: var(--border);
+    padding: 0 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  /* SECTION */
+  .section {
+    padding: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--light-gray);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* AGENTS GRID */
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .agent-card {
+    background: var(--black);
+    padding: 2rem;
+    position: relative;
+    transition: background 0.2s ease;
+    cursor: default;
+  }
+
+  .agent-card:hover {
+    background: var(--dark-gray);
+  }
+
+  /* Featured card - supervisor */
+  .agent-card.featured {
+    background: var(--dark-gray);
+    grid-column: 1 / -1;
+  }
+
+  .agent-card.featured:hover {
+    background: #222;
+  }
+
+  .agent-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--border);
+    margin-bottom: 1.5rem;
+  }
+
+  .agent-icon {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .agent-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .agent-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--off-white);
+  }
+
+  .agent-card.featured .agent-name {
+    font-size: 2rem;
+  }
+
+  .agent-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--light-gray);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .agent-persona {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--off-white);
+    font-style: italic;
+    border-left: 2px solid var(--gold);
+    padding-left: 0.8rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .agent-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+    color: var(--light-gray);
+    text-transform: uppercase;
+  }
+
+  .tag.gold {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* RULES TABLE */
+  .rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  .rules-table tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .rules-table tr:last-child {
+    border-bottom: none;
+  }
+
+  .rules-table td {
+    padding: 1rem 0;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .rules-table td:first-child {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    width: 180px;
+    padding-right: 2rem;
+    padding-top: 1.1rem;
+  }
+
+  .rules-table td:last-child {
+    color: var(--light-gray);
+    font-weight: 300;
+  }
+
+  /* DELIVERABLE FLOW */
+  .flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .flow-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+    position: relative;
+  }
+
+  .flow-item:last-child {
+    border-bottom: none;
+  }
+
+  .flow-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--border);
+    line-height: 1;
+  }
+
+  .flow-content {}
+
+  .flow-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: var(--off-white);
+  }
+
+  .flow-agent {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .flow-desc {
+    font-size: 0.8rem;
+    color: var(--light-gray);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--border);
+    text-transform: uppercase;
+  }
+
+  .footer-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: var(--border);
+  }
+
+  /* ANIMATE IN */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero, .workflow, .section {
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section:nth-child(3) { animation-delay: 0.1s; }
+  .section:nth-child(4) { animation-delay: 0.2s; }
+  .section:nth-child(5) { animation-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    header, .hero, .section, footer { padding: 1.5rem; }
+    .workflow { padding: 1rem 1.5rem; }
+    .hero-title { font-size: 2rem; }
+    .agents-grid { grid-template-columns: 1fr; }
+    .agent-card.featured { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-name">Vero</div>
+    <div class="logo-sub">Escola de Empresários</div>
+  </div>
+  <div class="header-tag">Time Editorial — v1.0</div>
+</header>
+
+<section class="hero">
+  <div class="hero-label">Estrutura de Agentes</div>
+  <h1 class="hero-title">O time que vai<br>construir a <em>Apostila</em></h1>
+  <p class="hero-desc">Seis agentes com papéis fixos, tom único e um único compromisso: criar conteúdo que soe como Vero, não como template. Lucas como coautor e árbitro final.</p>
+</section>
+
+<div class="workflow">
+  <span class="workflow-step active">Briefing</span>
+  <span class="workflow-step">Redação</span>
+  <span class="workflow-step">Crítica</span>
+  <span class="workflow-step">Revisão</span>
+  <span class="workflow-step">Aprovação</span>
+  <span class="workflow-step">Design</span>
+  <span class="workflow-step">Publicação</span>
+</div>
+
+<!-- AGENTES -->
+<section class="section">
+  <div class="section-label">Os Agentes</div>
+  <div class="agents-grid">
+
+    <!-- SUPERVISOR -->
+    <div class="agent-card featured">
+      <div class="agent-number">00</div>
+      <span class="agent-icon">🏛</span>
+      <div class="agent-role">Guardião do Método</div>
+      <div class="agent-name">Vera — A Supervisora</div>
+      <p class="agent-persona">"Estilo pessoal não existe no Método Vero. Existe método."</p>
+      <p class="agent-desc">Conhece os quatro Blocos-Referência de memória. Antes de qualquer conteúdo avançar, Vera compara com o padrão congelado e faz três perguntas: isso parece Vero? gera o mesmo nível de desconforto? força decisão real? Se a resposta for não, o bloco volta. Ela não negocia tom, densidade nem estrutura.</p>
+      <div class="agent-tags">
+        <span class="tag gold">Decisão final de avanço</span>
+        <span class="tag gold">Guardião dos Blocos-Referência</span>
+        <span class="tag">Todas as fases</span>
+        <span class="tag">Todos os pilares</span>
+      </div>
+    </div>
+
+    <!-- REDATOR -->
+    <div class="agent-card">
+      <div class="agent-number">01</div>
+      <span class="agent-icon">✍️</span>
+      <div class="agent-role">Redator Principal</div>
+      <div class="agent-name">Marco — O Escritor</div>
+      <p class="agent-persona">"Escrevo o que o empresário sente mas não consegue dizer."</p>
+      <p class="agent-desc">Responsável pela Página 1 de cada bloco. Sempre começa pela persona da fase — quem é esse empresário, o que ele sente, o que ele evita olhar. Escreve narrativas realistas, com personagens e situações concretas. Nunca escreve listas na Página 1. Nunca motiva. Nunca explica o método.</p>
+      <div class="agent-tags">
+        <span class="tag gold">Página 1 de cada bloco</span>
+        <span class="tag">Narrativa + Problema</span>
+        <span class="tag">Antagonismo</span>
+        <span class="tag">Tom adulto</span>
+      </div>
+    </div>
+
+    <!-- CANVAS -->
+    <div class="agent-card">
+      <div class="agent-number">02</div>
+      <span class="agent-icon">🗂</span>
+      <div class="agent-role">Arquiteto de Canvas</div>
+      <div class="agent-name">Íris — A Estruturadora</div>
+      <p class="agent-persona">"Canvas não é formulário. É ação inevitável."</p>
+      <p class="agent-desc">Responsável pela Página 2. Monta o Canvas com 4 a 6 campos, escreve as Dúvidas Comuns como resistência emocional (não FAQ) e constrói o Prompt de IA que cria o canvas personalizado. Garante que texto e canvas se complementem — um cria sentido, o outro força ação.</p>
+      <div class="agent-tags">
+        <span class="tag gold">Página 2 de cada bloco</span>
+        <span class="tag">Canvas 4–6 campos</span>
+        <span class="tag">Dúvidas emocionais</span>
+        <span class="tag">Prompt de IA</span>
+      </div>
+    </div>
+
+    <!-- CRÍTICO -->
+    <div class="agent-card">
+      <div class="agent-number">03</div>
+      <span class="agent-icon">🔬</span>
+      <div class="agent-role">Crítico Editorial</div>
+      <div class="agent-name">Paulo — O Cirurgião</div>
+      <p class="agent-persona">"Comfort zone não é a Vero. Se não doeu um pouco, algo está errado."</p>
+      <p class="agent-desc">Lê cada bloco como se fosse o empresário-alvo da fase. Aponta onde o texto foi gentil demais, onde explicou o que deveria apenas mostrar, onde o Canvas virou burocracia, onde a dúvida pareceu manual. Não reescreve. Devolve com diagnóstico cirúrgico e pontos exatos de ajuste.</p>
+      <div class="agent-tags">
+        <span class="tag gold">Diagnóstico de desvio</span>
+        <span class="tag">Lente da persona</span>
+        <span class="tag">Nunca reescreve</span>
+        <span class="tag">Pós-redação</span>
+      </div>
+    </div>
+
+    <!-- REVISOR -->
+    <div class="agent-card">
+      <div class="agent-number">04</div>
+      <span class="agent-icon">🪄</span>
+      <div class="agent-role">Revisor de Consistência</div>
+      <div class="agent-name">Ana — A Coerente</div>
+      <p class="agent-persona">"Uma palavra fora do tom quebra a confiança do leitor."</p>
+      <p class="agent-desc">Garante que o bloco aprovado mantém consistência com todos os outros já escritos. Verifica: tom de voz uniforme, mesma densidade por fase, ausência de palavras proibidas (soluções, crescer, sucesso como promessa), continuidade entre personas e ausência de contradição com blocos anteriores.</p>
+      <div class="agent-tags">
+        <span class="tag gold">Consistência entre blocos</span>
+        <span class="tag">Tom de voz</span>
+        <span class="tag">Palavras proibidas</span>
+        <span class="tag">Pós-crítica</span>
+      </div>
+    </div>
+
+    <!-- DESIGNER -->
+    <div class="agent-card">
+      <div class="agent-number">05</div>
+      <span class="agent-icon">🎨</span>
+      <div class="agent-role">Designer Visual</div>
+      <div class="agent-name">Sofia — A Compositora</div>
+      <p class="agent-persona">"Design não decora. Amplifica o que o texto já faz."</p>
+      <p class="agent-desc">Entra após a aprovação textual. Responsável pela diagramação dos blocos: hierarquia visual, tipografia, espaços, e identidade da apostila. Garante que uma página cabe em uma página real — sem overflow de texto, sem excesso de elementos. O visual serve a leitura, nunca compete com ela.</p>
+      <div class="agent-tags">
+        <span class="tag gold">Diagramação final</span>
+        <span class="tag">Tipografia</span>
+        <span class="tag">1 bloco = 2 páginas</span>
+        <span class="tag">Pós-aprovação</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLUXO -->
+<section class="section">
+  <div class="section-label">Fluxo de Trabalho por Bloco</div>
+  <div class="flow-steps">
+
+    <div class="flow-item">
+      <div class="flow-num">01</div>
+      <div class="flow-content">
+        <div class="flow-agent">Lucas (você)</div>
+        <div class="flow-title">Escolha do bloco</div>
+        <div class="flow-desc">Você define o próximo bloco: pilar, fase e número. Pode dar direcionamentos iniciais — dor principal, situação que inspira, personagem, o que quer provocar. Ou apenas abrir o escopo e deixar Marco propor.</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-num">02</div>
+      <div class="flow-content">
+        <div class="flow-agent">Marco — Redator</div>
+        <div class="flow-title">Escrita da Página 1</div>
+        <div class="flow-desc">Narrativa com persona, situação realista, dois caminhos ou dois personagens, tensão crescente, fechamento que torna o Canvas inevitável. Sem comando mecânico. Sem motivação. Máximo: uma página impressa.</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-num">03</div>
+      <div class="flow-content">
+        <div class="flow-agent">Paulo — Crítico</div>
+        <div class="flow-title">Crítica da Página 1</div>
+        <div class="flow-desc">Avalia se o texto gera desconforto real, se a persona está correta para a fase, se o antagonismo existe, se o fechamento é inevitável. Devolve com diagnóstico — não reescreve.</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-num">04</div>
+      <div class="flow-content">
+        <div class="flow-agent">Marco — Redator (revisão)</div>
+        <div class="flow-title">Ajuste da Página 1</div>
+        <div class="flow-desc">Incorpora o diagnóstico do Paulo e reescreve o que for necessário. Pode ser uma linha. Pode ser metade do texto. O critério é o Bloco-Referência da mesma fase.</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-num">05</div>
+      <div class="flow-content">
+        <div class="flow-agent">Vera — Supervisora</div>
+        <div class="flow-title">Aprovação da Página 1</div>
+        <div class="flow-desc">Compara com o Bloco-Referência. Aprova ou devolve com instrução clara. Se aprovada, Íris recebe o bloco para construir a Página 2.</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-num">06</div>
+      <div class="flow-content">
+        <div class="flow-agent">Íris — Canvas</div>
+        <div class="flow-title">Escrita da Página 2</div>
+        <div class="flow-desc">Canvas com 4 a 6 campos (título, objetivo, campos com exemplos realistas), Dúvidas Comuns como resistência emocional, e Prompt de IA que instrui a criar o canvas personalizado. Resultado esperado fechando o bloco.</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-num">07</div>
+      <div class="flow-content">
+        <div class="flow-agent">Ana — Revisora</div>
+        <div class="flow-title">Revisão de Consistência (bloco completo)</div>
+        <div class="flow-desc">Verifica o bloco inteiro (P1 + P2) em relação a todos os blocos já escritos. Garante tom, vocabulário, densidade e progressão de fase.</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-num">08</div>
+      <div class="flow-content">
+        <div class="flow-agent">Lucas (você) — Coautor</div>
+        <div class="flow-title">Aprovação Final + Pontuações</div>
+        <div class="flow-desc">Você lê o bloco completo como se fosse o empresário-alvo. Aprova, ajusta ou devolve com comentários. Sua aprovação libera para o design.</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-num">09</div>
+      <div class="flow-content">
+        <div class="flow-agent">Sofia — Designer</div>
+        <div class="flow-title">Diagramação visual do bloco</div>
+        <div class="flow-desc">Entra somente após aprovação total do conteúdo. Diagrama P1 e P2 dentro do formato da apostila. Envia prévia para validação antes de finalizar.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REGRAS -->
+<section class="section">
+  <div class="section-label">Regras Inegociáveis do Time</div>
+  <table class="rules-table">
+    <tr>
+      <td>Tom</td>
+      <td>Adulto, direto, sem motivacional, sem explicação de método. Texto que parece autoajuda volta automaticamente.</td>
+    </tr>
+    <tr>
+      <td>Densidade</td>
+      <td>Cada página cabe em uma página impressa. Excesso de texto é sinal de problema conceitual, não editorial.</td>
+    </tr>
+    <tr>
+      <td>Página 1</td>
+      <td>Sempre narrativa. Sempre personagem real. Sempre dois caminhos ou dois momentos. Sem comando mecânico no fechamento.</td>
+    </tr>
+    <tr>
+      <td>Página 2</td>
+      <td>Canvas de 4 a 6 campos. Dúvidas como resistência emocional. Prompt de IA que cria o canvas (não que analisa respostas).</td>
+    </tr>
+    <tr>
+      <td>Referência</td>
+      <td>Todo bloco é comparado com o Bloco-Referência da mesma fase antes de avançar. Sem exceção.</td>
+    </tr>
+    <tr>
+      <td>Proibido</td>
+      <td>Blocos mais longos que os de referência. Linguagem motivacional. "Embelezar" para parecer mais inteligente. Suavizar desconforto para agradar.</td>
+    </tr>
+    <tr>
+      <td>Lucas</td>
+      <td>Coautor e árbitro final. Pontuações dele têm prioridade sobre qualquer decisão do time. Aprovação dele libera para design.</td>
+    </tr>
+  </table>
+</section>
+
+<footer>
+  <div class="footer-text">Vero — Time Editorial v1.0 · 2026</div>
+  <div class="footer-mark">V</div>
+</footer>
+
+</body>
+</html>

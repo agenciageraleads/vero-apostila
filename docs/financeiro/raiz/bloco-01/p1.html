@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 01 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Estilos: fonte de verdade em _estilo/estilo.css -->
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(20%) brightness(0.88);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.narrativa-body strong{font-weight:500;}
+.mid-image{margin:1.8rem 0;height:160px;overflow:hidden;}
+.mid-image img{width:100%;height:100%;object-fit:cover;object-position:center 60%;filter:grayscale(20%) brightness(0.92);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Financeiro · Raiz · <span>Bloco 01</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80" alt="Empresário analisando finanças">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Quando o dinheiro some sem explicação</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Se a empresa está vendendo, por que você não consegue explicar pra onde foi o dinheiro?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+      <p>Ricardo tem uma gráfica há oito anos. Fatura entre R$ 80 mil e R$ 120 mil por mês, dependendo da temporada. No papel, parece que funciona. Na prática, todo mês é a mesma cena: ele olha para o extrato e <strong>pergunta pra si mesmo onde foi parar.</strong></p>
+      <p>Não é que o dinheiro suma com farra. Ele não tem esse perfil. É que o dinheiro circula por tudo ao mesmo tempo — paga fornecedor, paga equipe, paga a parcela do equipamento, paga a conta de luz, cobre o adiantamento que ele precisou dar para fechar aquele pedido grande. <strong>Sai por todos os lados, e quando ele tenta localizar, já foi.</strong></p>
+
+      <div class="mid-image">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Extrato bancário">
+      </div>
+
+      <p>No fim do mês, sobrou R$ 4.200. Ou foi R$ 4.700 — ele não tem certeza, porque algumas coisas ainda estão para fechar. O que ele sabe é que faturou mais de R$ 90 mil e <strong>não consegue juntar o bastante para trocar um equipamento que está ficando para trás.</strong> Já existe uma fila de orçamento esperando, e ele não tem condição de comprar à vista.</p>
+      <p>Quando alguém pergunta se o negócio está indo bem, Ricardo responde que sim. Porque vender, ele vende. O problema é que <strong>"vender bem" e "estar bem financeiramente" viraram dois mundos separados</strong> — e ele não sabe exatamente quando isso aconteceu.</p>
+      <p>O que está acontecendo não é descuido. É que sem saber o que entra, o que sai, o que é da empresa e o que é dele, qualquer número que aparece na conta parece tanto um sinal de saúde quanto uma coincidência. <strong>Não tem como saber.</strong> E sem saber, qualquer decisão que Ricardo toma — comprar, não comprar, contratar, esperar — é um chute com aparência de critério.</p>
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Enquanto o dinheiro não tiver destino claro, o problema não é que ele some — é que você nunca vai saber se o que está sobrando é lucro ou só a sorte do mês.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

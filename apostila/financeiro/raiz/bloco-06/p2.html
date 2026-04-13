@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 06 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+
+/* CANVAS */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.campo-bloco{margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid var(--border);}
+.campo-bloco:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.campo-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.8rem;line-height:1.4;}
+
+/* linha de valor R$ */
+.resposta-row{display:flex;align-items:center;gap:1rem;margin-bottom:0.7rem;}
+.resposta-prefix{font-size:0.85rem;color:var(--ink-light);white-space:nowrap;font-family:'DM Mono',monospace;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;flex:1;}
+
+/* checkboxes */
+.checkbox-col{display:flex;flex-direction:column;gap:0.55rem;margin-top:0.3rem;}
+.checkbox-opt{display:flex;align-items:center;gap:0.55rem;font-size:0.82rem;font-weight:300;color:var(--ink-light);}
+.checkbox-opt .box{width:14px;height:14px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
+
+/* linha aberta */
+.resposta-aberta{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-top:0.6rem;}
+.resposta-aberta + .resposta-aberta{margin-top:0.9rem;}
+
+/* hint segmentado */
+.campo-hint{font-size:0.75rem;font-style:italic;font-weight:300;color:var(--ink-light);margin-top:0.7rem;letter-spacing:0.01em;line-height:1.55;}
+
+/* Campo chave — destaque */
+.campo-bloco--chave{
+  margin-top:2.8rem;
+  margin-bottom:0;
+  padding-bottom:0;
+  border-bottom:none;
+  padding-left:1.2rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Dúvidas */
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Financeiro · Raiz · <span>Bloco 06</span> · Página <span>02</span> / 02</div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que você usa para decidir</h1>
+    <p class="bloco-sub">Quando a informação só existe na sua cabeça.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="campo-bloco">
+      <div class="campo-label">Quanto você faturou no mês passado?</div>
+      <div class="resposta-row">
+        <span class="resposta-prefix">R$</span>
+        <span class="input-line"></span>
+      </div>
+      <div class="checkbox-col">
+        <span class="checkbox-opt"><span class="box"></span> Sei de cabeça, sem consultar nada</span>
+        <span class="checkbox-opt"><span class="box"></span> Precisaria checar o extrato ou o sistema</span>
+        <span class="checkbox-opt"><span class="box"></span> Não sei</span>
+      </div>
+      <p class="campo-hint">vendas + pedidos &nbsp;·&nbsp; notas emitidas + recebimentos &nbsp;·&nbsp; ordens de produção faturadas</p>
+    </div>
+
+    <div class="campo-bloco">
+      <div class="campo-label">Quanto você pagou a fornecedores ou em insumos nesse mesmo mês?</div>
+      <div class="resposta-row">
+        <span class="resposta-prefix">R$</span>
+        <span class="input-line"></span>
+      </div>
+      <div class="checkbox-col">
+        <span class="checkbox-opt"><span class="box"></span> Sei de cabeça</span>
+        <span class="checkbox-opt"><span class="box"></span> Precisaria consultar notas ou extrato</span>
+        <span class="checkbox-opt"><span class="box"></span> Não tenho como saber agora</span>
+      </div>
+      <p class="campo-hint">reposição de estoque + mercadorias &nbsp;·&nbsp; prestadores + materiais de apoio &nbsp;·&nbsp; matéria-prima + insumos diretos</p>
+    </div>
+
+    <div class="campo-bloco">
+      <div class="campo-label">Esse número existe em algum lugar além da sua memória?</div>
+      <div class="checkbox-col">
+        <span class="checkbox-opt"><span class="box"></span> Sim — planilha ou sistema atualizado</span>
+        <span class="checkbox-opt"><span class="box"></span> Sim — caderno, celular ou bloco de notas</span>
+        <span class="checkbox-opt"><span class="box"></span> Não. Fica na cabeça.</span>
+        <span class="checkbox-opt"><span class="box"></span> Não tenho registro nenhum</span>
+      </div>
+      <p class="campo-hint">sistema de caixa ou PDV &nbsp;·&nbsp; plataforma de gestão ou controle próprio &nbsp;·&nbsp; ERP, planilha de produção ou controle manual</p>
+    </div>
+
+    <div class="campo-bloco">
+      <div class="campo-label">Qual foi a última decisão financeira importante que você tomou?</div>
+      <span class="resposta-aberta"></span>
+      <span class="resposta-aberta"></span>
+      <p class="campo-hint">compra de estoque, promoção, prazo ao cliente &nbsp;·&nbsp; contratação, precificação, investimento em equipamento &nbsp;·&nbsp; pedido de insumo, expansão de capacidade, novo contrato</p>
+    </div>
+
+    <div class="campo-bloco">
+      <div class="campo-label">Em que você se baseou para tomar essa decisão?</div>
+      <span class="resposta-aberta"></span>
+      <span class="resposta-aberta"></span>
+      <span class="resposta-aberta"></span>
+      <p class="campo-hint">movimento do mês, estoque visual, feeling de demanda &nbsp;·&nbsp; agenda cheia, percepção de lucro, confiança no cliente &nbsp;·&nbsp; ritmo da produção, volume de pedidos, sensação de capacidade</p>
+    </div>
+
+    <div class="campo-bloco campo-bloco--chave">
+      <div class="campo-label">Se você soubesse com exatidão quanto entrou e quanto saiu no mês passado, essa decisão teria sido a mesma?</div>
+      <div class="checkbox-col">
+        <span class="checkbox-opt"><span class="box"></span> Sim, a decisão seria a mesma</span>
+        <span class="checkbox-opt"><span class="box"></span> Talvez não — mas não tenho como saber</span>
+        <span class="checkbox-opt"><span class="box"></span> Provavelmente não</span>
+      </div>
+      <span class="resposta-aberta"></span>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas eu conheço meu negócio. Sei quando está indo bem."</p>
+      <p class="duvida-a">Conhecer o ritmo não é o mesmo que conhecer o número. O extrato não pergunta como você se sentiu no mês.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Nunca precisei de planilha pra sobreviver até aqui."</p>
+      <p class="duvida-a">Sobreviver sem registro é possível. Decidir bem sem registro, não. A questão não é se chegou até aqui — é o que custou chegar.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Isso é coisa de empresa grande. Minha operação é simples."</p>
+      <p class="duvida-a">Operação simples com número errado na cabeça ainda gera decisão errada. O tamanho não protege.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Você não vai sair daqui com um controle financeiro. Vai sair, provavelmente pela primeira vez, com a consciência exata de que as informações que usa para decidir não existem em lugar nenhum que possa ser verificado. Essa percepção não conforta. Ela expõe.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# Vero Apostila — .gitignore
+
+# Arquivos de sistema
+.DS_Store
+.env.local
+.env.*.local
+.cache/
+.venv/
+venv/
+*.pyc
+__pycache__/
+*.egg-info/
+
+# Documentos originais (não publicar)
+_docs-originais/
+
+# Rascunhos e iterações
+_rascunhos/
+
+# Controle de acesso (privado)
+_client-links.md
+
+# IDE e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+
+# Imagens grandes (se houver backup local)
+_artefatos/*.jpeg
+_artefatos/*.jpg
+!_artefatos/thumbnail-*.jpg
+
+# Build e deploy temporários
+_build/*.log
+.github/workflows/*.log

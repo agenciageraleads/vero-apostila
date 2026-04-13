@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 21 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.canvas-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.canvas-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--ink);}
+.instrucao-section{padding:1.6rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.instrucao-text{font-style:italic;font-size:0.9rem;line-height:1.6;color:var(--ink);}
+.campos-section{padding:2rem 3rem;}
+.pergunta-item{margin-bottom:2rem;padding-bottom:1.6rem;border-bottom:1px solid var(--border);}
+.pergunta-item:last-child{border-bottom:none;}
+.pergunta-label{font-weight:500;font-size:0.9rem;margin-bottom:0.8rem;color:var(--ink);line-height:1.5;}
+.linha-resposta{border:none;border-bottom:1px solid var(--border-dark);width:100%;padding:0.6rem 0;display:block;margin-bottom:0.3rem;}
+.hint{font-style:italic;font-size:0.75rem;color:var(--ink-light);margin-top:0.5rem;line-height:1.5;}
+.duvidas-section{padding:2rem 3rem;border-top:1px solid var(--border);background:var(--surface);}
+.duvidas-title{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1.4rem;}
+.duvida-item{margin-bottom:1.2rem;}
+.duvida-pergunta{font-weight:500;font-size:0.88rem;color:var(--ink);margin-bottom:0.3rem;}
+.duvida-resposta{font-size:0.85rem;line-height:1.6;color:var(--ink);font-weight:300;}
+.resultado-section{padding:2rem 3rem;border-top:1px solid var(--border);background:var(--surface);}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.6rem 0 0.6rem 1.4rem;}
+.resultado-title{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.6rem;}
+.resultado-text{font-size:0.9rem;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Legado</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 21</span> · Página <span>02</span></div>
+    </div>
+  </header>
+
+  <div class="canvas-header">
+    <h1 class="canvas-title">Stress test financeiro</h1>
+  </div>
+
+  <div class="instrucao-section">
+    <p class="instrucao-text">Pense no próximo ciclo ruim. Não no que já passou — no que ainda vai chegar. Preencha com o que existe hoje, não com o que deveria existir.</p>
+  </div>
+
+  <div class="campos-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta-label">Quantos meses o negócio aguenta com receita reduzida em 30% — com caixa e reserva que existem hoje:</p>
+      <span class="linha-resposta">&nbsp;</span>
+      <span class="linha-resposta">&nbsp;</span>
+      <p class="hint">dois meses cobrindo custo fixo sem demitir · três semanas antes de atrasar fornecedor · reserva cobre folha por 45 dias</p>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta-label">O que seria cortado primeiro — e quanto tempo para o corte fazer efeito:</p>
+      <span class="linha-resposta">&nbsp;</span>
+      <span class="linha-resposta">&nbsp;</span>
+      <p class="hint">funcionário com aviso prévio de 30 dias · contrato com multa de rescisão · custo fixo inegociável por 6 meses</p>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta-label">Qual dívida de longo prazo existe e quanto compromete da receita:</p>
+      <span class="linha-resposta">&nbsp;</span>
+      <span class="linha-resposta">&nbsp;</span>
+      <p class="hint">parcela de financiamento consome 12% da receita · leasing de equipamento com 18 meses restantes · antecipação recorrente que virou custo fixo</p>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta-label">O que protege o negócio hoje contra queda prolongada:</p>
+      <span class="linha-resposta">&nbsp;</span>
+      <span class="linha-resposta">&nbsp;</span>
+      <p class="hint">reserva de 2 meses · três contratos recorrentes que cobrem 40% do fixo · nenhuma proteção formal</p>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta-label">O que precisaria existir para o próximo ciclo ruim não depender de heroísmo:</p>
+      <span class="linha-resposta">&nbsp;</span>
+      <span class="linha-resposta">&nbsp;</span>
+      <p class="hint">reserva mínima de 4 meses · teto de comprometimento de receita com dívida · revisão trimestral de exposição · critério de corte preventivo</p>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+    <p class="duvidas-title">Dúvidas comuns</p>
+
+    <div class="duvida-item">
+      <p class="duvida-pergunta">"Pensar em crise quando está indo bem parece pessimismo."</p>
+      <p class="duvida-resposta">Não é pessimismo. É a única hora em que dá para construir proteção. Quando a crise chega, você só tem o que já existia.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-pergunta">"Meu negócio já passou por crises e sobreviveu."</p>
+      <p class="duvida-resposta">Sobreviver não é o critério. O critério é quanto custou — em margem, dívida e desgaste — e se você aguenta o mesmo custo de novo.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-pergunta">"Reserva é luxo para quem já tem margem boa."</p>
+      <p class="duvida-resposta">Reserva não nasce de margem alta. Nasce de decisão de separar antes de gastar.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-title">Resultado esperado</p>
+      <p class="resultado-text">Feito isso, você sabe quanto tempo o negócio sobrevive sem receita normal, o que corta primeiro, o que protege — e o que precisa existir para a próxima crise não depender de você aguentar mais uma vez.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

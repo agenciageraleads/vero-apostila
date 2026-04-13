@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 01 · P2 · Canvas — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Estilos: fonte de verdade em _estilo/estilo.css -->
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;--entrada-bg:#F7FBF4;--saida-emp-bg:#FBF7F4;--saida-pes-bg:#FBF9F4;--total-bg:#F0EBE1;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.canvas-table{width:100%;border-collapse:collapse;font-size:0.85rem;}
+.canvas-table thead tr{background:var(--ink);}
+.canvas-table thead th{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);padding:0.7rem 1rem;text-align:left;font-weight:400;}
+.canvas-table thead th:last-child{text-align:right;}
+.group-header td{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.22em;text-transform:uppercase;padding:0.55rem 1rem 0.3rem;font-weight:500;border-bottom:none;}
+.group-entrada .group-header td{color:#5A8A4A;background:var(--entrada-bg);}
+.group-saida-emp .group-header td{color:#8A5A4A;background:var(--saida-emp-bg);}
+.group-saida-pes .group-header td{color:#8A7A4A;background:var(--saida-pes-bg);}
+.canvas-table tbody tr.data-row td{padding:0.65rem 1rem;border-bottom:1px solid var(--border);font-weight:300;color:var(--ink);}
+.group-entrada .data-row td{background:var(--entrada-bg);}
+.group-saida-emp .data-row td{background:var(--saida-emp-bg);}
+.group-saida-pes .data-row td{background:var(--saida-pes-bg);}
+.data-row td:last-child{text-align:right;font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink-light);min-width:120px;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);min-width:100px;height:1.2rem;}
+.total-row td{padding:0.7rem 1rem;background:var(--total-bg);border-bottom:1px solid var(--border-dark);border-top:2px solid var(--border-dark);}
+.total-row td:first-child{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;color:var(--ink);}
+.total-row td:last-child{text-align:right;font-family:'DM Mono',monospace;font-size:0.85rem;font-weight:500;color:var(--ink);min-width:120px;}
+.sobrou-row td{padding:0.9rem 1rem;background:var(--gold-dim);border-bottom:2px solid var(--gold);border-top:2px solid var(--gold);}
+.sobrou-row td:first-child{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--ink);}
+.sobrou-row td:last-child{text-align:right;font-family:'DM Mono',monospace;font-size:0.9rem;font-weight:500;color:var(--ink);min-width:120px;}
+.pergunta-final{margin-top:1.8rem;padding:1.4rem 1.6rem;background:var(--surface);border:1px solid var(--border-dark);}
+.pergunta-final p{font-family:'Playfair Display',serif;font-size:0.9rem;font-style:italic;color:var(--ink);margin-bottom:1rem;line-height:1.5;}
+.opcoes{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.opcao{display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:300;color:var(--ink);}
+.opcao-circle{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border-dark);flex-shrink:0;}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Financeiro · Raiz · <span>Bloco 01</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Para onde foi o dinheiro deste mês</h1>
+    <p class="bloco-sub">Preencha com os dados reais do último mês.</p>
+  </div>
+
+  <div class="canvas-section">
+    <table class="canvas-table">
+      <thead>
+        <tr>
+          <th>O que aconteceu</th>
+          <th style="text-align:right">Valor (R$)</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="group-header group-entrada"><td colspan="2">↑ Entradas</td></tr>
+        <tr class="data-row group-entrada">
+          <td>Recebimentos do mês</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="data-row group-entrada">
+          <td>Outras entradas</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+
+        <tr class="group-header group-saida-emp"><td colspan="2">↓ Saídas — empresa</td></tr>
+        <tr class="data-row group-saida-emp">
+          <td>Fornecedores e insumos</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="data-row group-saida-emp">
+          <td>Equipe (salários, adiantamentos)</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="data-row group-saida-emp">
+          <td>Impostos e taxas</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="data-row group-saida-emp">
+          <td>Aluguel e infraestrutura</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="data-row group-saida-emp">
+          <td>Parcelas de equipamento / dívida</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="data-row group-saida-emp">
+          <td>Outras saídas empresa</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+
+        <tr class="group-header group-saida-pes"><td colspan="2">↓ Saídas — pessoal</td></tr>
+        <tr class="data-row group-saida-pes">
+          <td>Retirada formal sua</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="data-row group-saida-pes">
+          <td>Transferências para conta pessoal</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="data-row group-saida-pes">
+          <td>Despesas pessoais pagas pela empresa</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="data-row group-saida-pes">
+          <td>Outras saídas pessoais</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+
+        <tr class="total-row">
+          <td>Total entradas</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="total-row">
+          <td>Total saídas empresa</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="total-row">
+          <td>Total saídas pessoais</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+        <tr class="sobrou-row">
+          <td>O que sobrou</td>
+          <td><span class="input-line"></span></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="pergunta-final">
+      <p>O número que sobrou condiz com o que você sentia que sobrava?</p>
+      <div class="opcoes">
+        <div class="opcao"><div class="opcao-circle"></div> Sim, faz sentido</div>
+        <div class="opcao"><div class="opcao-circle"></div> Não, é diferente do que eu esperava</div>
+        <div class="opcao"><div class="opcao-circle"></div> Não sei responder</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas eu controlo isso de cabeça."</p>
+      <p class="duvida-a">Cabeça não registra. Registra o que quis lembrar. O que não está escrito não existiu — financeiramente.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Os números vão mostrar que o negócio não presta."</p>
+      <p class="duvida-a">Podem. Mas se for isso, você precisa saber agora — não quando não houver mais margem para ajustar.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Farei isso quando as coisas acalmarem."</p>
+      <p class="duvida-a">As coisas não acalmam antes do critério. Acalmam depois.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito esse exercício, você para de confundir movimento com resultado. O que vai doer não é o número — é perceber que já sabia que algo estava errado e continuou sem olhar.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

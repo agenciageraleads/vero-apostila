@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 16 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:1.8rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.7rem;line-height:1.4;}
+.pergunta-label--sm{font-size:0.85rem;font-weight:300;color:var(--ink);margin-top:0.9rem;margin-bottom:0.5rem;line-height:1.4;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-bottom:0.5rem;}
+.hint{font-size:0.73rem;font-style:italic;color:var(--ink-light);line-height:1.55;margin-top:0.5rem;}
+.checkbox-row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin:0.6rem 0;}
+.checkbox-opt{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:300;color:var(--ink-light);}
+.checkbox-opt .box{width:13px;height:13px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
+.section-divider{border:none;border-top:1px solid var(--border);margin:1.8rem 0;}
+.pergunta-item--chave{padding-left:1.2rem;border-left:2px solid var(--gold);}
+/* Matriz de projetos */
+.project-table{width:100%;border-collapse:collapse;margin:0.6rem 0 0.5rem;}
+.project-table th{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-light);padding:0.5rem 0.6rem;border-bottom:1px solid var(--border);text-align:left;background:var(--surface);}
+.project-table td{font-size:0.78rem;font-weight:300;padding:0.55rem 0.6rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.project-table .input-cell{border-bottom:1px solid var(--border-dark);min-height:1.15rem;display:block;}
+.project-table tr:last-child td{border-bottom:none;}
+/* Renúncia table */
+.renunciation-table{width:100%;border-collapse:collapse;margin:0.6rem 0;}
+.renunciation-table th{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-light);padding:0.5rem 0.6rem;border-bottom:1px solid var(--border);text-align:left;background:var(--surface);}
+.renunciation-table td{font-size:0.78rem;font-weight:300;padding:0.55rem 0.6rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.renunciation-table .input-cell{border-bottom:1px solid var(--border-dark);min-height:1.15rem;display:block;}
+.renunciation-table tr:last-child td{border-bottom:none;}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Gestão</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 16</span> · Página <span>02</span> / 02</div>
+    </div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Cinco projetos que não avançam</h1>
+    <p class="bloco-sub">Liste tudo que está em andamento ou em consideração agora. Sem filtro.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que está na lista:</div>
+      <table class="project-table">
+        <thead>
+          <tr>
+            <th style="width:30%;">Projeto</th>
+            <th style="width:28%;">O que exige</th>
+            <th style="width:26%;">O que entrega</th>
+            <th style="width:16%;">Prazo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+        </tbody>
+      </table>
+      <p class="hint">nova contratação ou equipamento &nbsp;·&nbsp; expansão de canal ou filial &nbsp;·&nbsp; melhoria de processo ou sistema &nbsp;·&nbsp; novo produto ou serviço &nbsp;·&nbsp; reforma ou reorganização</p>
+    </div>
+
+    <div class="pergunta-item pergunta-item--chave">
+      <div class="pergunta-label">Se só um puder ter atenção real nos próximos 90 dias — qual é, e por quê esse e não os outros?</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que você está renunciando ao escolher esse — e até quando:</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Para cada projeto que vai esperar — quando você vai olhar para ele de novo:</div>
+      <table class="renunciation-table">
+        <thead>
+          <tr><th style="width:65%;">Projeto adiado</th><th>Revisão em</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pergunta-item" style="margin-bottom:0;">
+      <div class="pergunta-label">Existe algum projeto nessa lista que você sabe que não vai avançar mas ainda não tirou?</div>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> Sim — qual:</span>
+      </div>
+      <span class="input-line"></span>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> Não</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Todos são importantes. Não dá para escolher só um."</p>
+      <p class="duvida-a">Se todos são igualmente importantes, nenhum é prioridade. Prioridade não é o que você valoriza mais — é o que você faz primeiro. Quando tudo é prioritário, o que acontece é o que Maurício viveu: cinco frentes abertas, nenhuma avançando.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Posso tocar os outros em paralelo, mesmo que mais devagar."</p>
+      <p class="duvida-a">Pode. Mas "mais devagar" tem um limite. Quando o projeto que mais importa está competindo pela sua atenção com quatro outros, ele não vai mais devagar — vai pela metade. E projeto pela metade, na maioria das vezes, não entrega.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Não quero fechar uma porta que pode ser importante depois."</p>
+      <p class="duvida-a">Documentar e adiar não é fechar porta. É saber que a porta existe e quando você vai olhar para ela de novo. O que fecha porta é deixar projetos em andamento indefinido — porque eles consomem sem entregar.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você tem uma lista com um projeto escolhido e os outros documentados com data de revisão. Não é sobre abrir mão do que importa. É sobre parar de fingir que dá para avançar em tudo ao mesmo tempo — e escolher o que vai ter atenção real antes que a operação pague o preço da dispersão.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

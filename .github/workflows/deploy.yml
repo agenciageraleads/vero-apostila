@@ -1,0 +1,27 @@
+name: Deploy Apostila
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Sync apostila/ to docs/
+        run: python _build/sync_to_docs.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "Vero Build"
+          git config user.email "build@vero-apostila.local"
+          git add docs/
+          git commit -m "chore: sync apostila content [skip ci]" || true
+          git push

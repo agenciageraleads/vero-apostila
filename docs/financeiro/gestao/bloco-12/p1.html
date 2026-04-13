@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 12 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(20%) brightness(0.88);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.narrativa-body strong{font-weight:500;}
+.narrativa-body em{font-style:italic;font-size:0.93rem;}
+.story-divider{margin:2rem 0;border:none;border-top:1px solid var(--border);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Gestão</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 12</span> · Página <span>01</span></div>
+    </div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80" alt="Decisão financeira empresarial">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">dinheiro que esperou a urgência decidir</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Quando você tem capital disponível e mais de uma frente legítima esperando — quem decide onde vai?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p><strong>Rodrigo</strong> tem uma empresa de sinalização viária. Atende prefeituras e construtoras há quatorze anos. Em julho, pela primeira vez em dois anos, sobrou dinheiro no caixa depois de honrar todos os compromissos do mês: R$ 73 mil.</p>
+
+      <p>Havia duas frentes esperando. A frota estava custando caro — dois veículos com manutenção frequente, orçamentos subindo, mecânico já conhecido pelo sobrenome. E faltava um sistema de gestão de contratos: o que usavam era uma planilha que só Rodrigo sabia operar, e isso já tinha criado problema uma vez quando ele viajou e uma informação urgente não estava acessível.</p>
+
+      <p>Os dois eram problemas reais. Os dois tinham justificativa. Juntos, ultrapassavam o disponível sem comprometer a reserva de capital de giro que ele mantinha desde o aperto de 2022.</p>
+
+      <p>Rodrigo ficou duas semanas sem definir. Pesquisou preços. Pediu orçamentos. Não estabeleceu critério. Em setembro, um dos veículos parou definitivamente. A urgência decidiu: trocou a frota, usou R$ 61 mil com entrada e parcelas. O sistema ficou para depois.</p>
+
+      <p>Dois meses depois, perdeu um contrato por não conseguir apresentar histórico organizado de obras anteriores. A informação estava na planilha — dispersa, incompleta, ilegível para qualquer pessoa além dele. O comprador pediu um relatório que não foi possível montar no prazo.</p>
+
+      <p>Rodrigo usou o dinheiro. Resolveu um problema real. O que não fez foi usar o dinheiro para decidir — deixou que a urgência decidisse por ele.</p>
+
+      <hr class="story-divider">
+
+      <p><strong>Beatriz</strong> tem uma empresa de instalação de pisos industriais. Em março, também sobrou dinheiro: R$ 58 mil. Também havia mais de uma frente esperando aquele capital.</p>
+
+      <p>Antes de mover qualquer valor, ela escreveu o que cada frente precisava fazer pelo negócio nos próximos seis meses. A nova ferramenta de corte reduziria o desperdício de material em 14% — retorno estimado em nove meses, com número verificável a cada compra de insumo. A certificação de qualidade que o time comercial pedia abriria novos segmentos de cliente, mas o impacto em receita era incerto e o prazo, longo.</p>
+
+      <p>Ela escolheu a ferramenta. Não porque a certificação era menos importante — era legítima, estava no plano. Porque o retorno de uma tinha critério definido, e o da outra, não. Com R$ 58 mil, ela não tinha como comprometer capital em algo que não conseguia medir.</p>
+
+      <p>A certificação foi adiada com data marcada — não retirada da lista. Ficou esperando a ferramenta liberar margem suficiente para o próximo movimento.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Beatriz também renunciou. A diferença é que ela sabia o que estava renunciando — e até quando.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

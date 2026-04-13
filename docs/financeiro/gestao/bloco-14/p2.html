@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 14 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:1.8rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.7rem;line-height:1.4;}
+.pergunta-label--sm{font-size:0.85rem;font-weight:300;color:var(--ink);margin-top:0.9rem;margin-bottom:0.5rem;line-height:1.4;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-bottom:0.5rem;}
+.hint{font-size:0.73rem;font-style:italic;color:var(--ink-light);line-height:1.55;margin-top:0.5rem;}
+.checkbox-row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin:0.6rem 0;}
+.checkbox-opt{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:300;color:var(--ink-light);}
+.checkbox-opt .box{width:13px;height:13px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
+/* Gap analysis table */
+.gap-table{width:100%;border-collapse:collapse;margin:0.8rem 0 0.5rem;}
+.gap-table th{font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-light);padding:0.5rem 0.7rem;border-bottom:1px solid var(--border);text-align:left;background:var(--surface);}
+.gap-table td{font-size:0.82rem;font-weight:300;padding:0.6rem 0.7rem;border-bottom:1px solid var(--border);vertical-align:middle;}
+.gap-table td:first-child{font-size:0.8rem;font-weight:400;background:var(--surface);width:46%;}
+.gap-table .input-cell{border-bottom:1px solid var(--border-dark);min-height:1.2rem;display:block;}
+.gap-table tr:last-child td{border-bottom:none;}
+.section-divider{border:none;border-top:1px solid var(--border);margin:1.8rem 0;}
+.pergunta-item--chave{padding-left:1.2rem;border-left:2px solid var(--gold);}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+<link rel="stylesheet" href="/assets/css/estilo.css">
+  </head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Gestão</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 14</span> · Página <span>02</span> / 02</div>
+    </div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Crescer antes da margem permitir</h1>
+    <p class="bloco-sub">Pense no crescimento que está planejando ou já iniciou. Responda com os números que tem agora.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Qual é sua margem líquida atual?</div>
+      <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span style="font-size:0.82rem;color:var(--ink-light);font-family:'DM Mono',monospace;">R$</span>
+          <span class="input-line" style="max-width:140px;"></span>
+          <span style="font-size:0.82rem;color:var(--ink-light);">/ mês</span>
+        </div>
+        <span class="checkbox-opt"><span class="box"></span> Não sei calcular agora</span>
+      </div>
+      <p class="hint">faturamento menos todos os custos e despesas, incluindo pró-labore</p>
+      <div class="pergunta-label--sm">O que esse valor financia hoje, sem apertar:</div>
+      <span class="input-line"></span>
+      <p class="hint">custo fixo coberto &nbsp;·&nbsp; reserva mensal &nbsp;·&nbsp; reposição de estoque ou equipamento</p>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que você está planejando crescer ou adicionar nos próximos 90 dias:</div>
+      <table class="gap-table">
+        <thead>
+          <tr><th>O que é</th><th>Custo adicional / mês</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+          <tr><td><span class="input-cell"></span></td><td><span class="input-cell"></span></td></tr>
+        </tbody>
+      </table>
+      <div style="display:flex;align-items:center;gap:0.8rem;margin-top:0.6rem;">
+        <span style="font-size:0.82rem;font-weight:500;">Total adicional por mês:</span>
+        <span style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink-light);">R$</span>
+        <span class="input-line" style="max-width:120px;margin-bottom:0;"></span>
+      </div>
+      <p class="hint" style="margin-top:0.6rem;">novo funcionário ou prestador fixo &nbsp;·&nbsp; espaço maior ou equipamento &nbsp;·&nbsp; canal novo ou linha adicional &nbsp;·&nbsp; operação paralela ou filial</p>
+    </div>
+
+    <div class="pergunta-item pergunta-item--chave">
+      <div class="pergunta-label">A margem atual cobre esse custo adicional?</div>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> Sim, com folga</span>
+        <span class="checkbox-opt"><span class="box"></span> Sim, mas no limite</span>
+        <span class="checkbox-opt"><span class="box"></span> Não cobre</span>
+        <span class="checkbox-opt"><span class="box"></span> Não calculei ainda</span>
+      </div>
+      <div class="pergunta-label--sm">Se não cobre — de onde vem a diferença:</div>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> Receita nova que ainda não chegou</span>
+        <span class="checkbox-opt"><span class="box"></span> Crédito ou financiamento</span>
+        <span class="checkbox-opt"><span class="box"></span> Reserva sendo consumida</span>
+        <span class="checkbox-opt"><span class="box"></span> Ainda não sei</span>
+      </div>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Quando a receita nova precisaria aparecer para o crescimento ser neutro — sem consumir reserva nem contrair dívida?</div>
+      <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;margin-top:0.5rem;">
+        <span style="font-size:0.85rem;font-weight:300;">Em</span>
+        <span class="input-line" style="max-width:80px;margin-bottom:0;"></span>
+        <span style="font-size:0.85rem;font-weight:300;">meses</span>
+        <span class="checkbox-opt"><span class="box"></span> Não calculei</span>
+        <span class="checkbox-opt"><span class="box"></span> Já passou desse prazo</span>
+      </div>
+      <div class="pergunta-label--sm">O que você faz se não aparecer nesse prazo:</div>
+      <span class="input-line"></span>
+      <p class="hint">reduzir o que foi adicionado &nbsp;·&nbsp; renegociar prestação &nbsp;·&nbsp; buscar crédito de curto prazo &nbsp;·&nbsp; aceitar margem menor por mais tempo</p>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Crescimento tem risco. Isso é normal."</p>
+      <p class="duvida-a">Risco é normal. Risco sem número não é coragem — é improviso. Saber que a receita nova precisa aparecer em noventa dias para o crescimento ser sustentável não elimina o risco. Define quando você para de esperar e começa a ajustar.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu esperar a margem cobrir tudo, nunca vou crescer."</p>
+      <p class="duvida-a">Ninguém está dizendo para esperar. Está dizendo para calcular o que o crescimento exige antes de comprometer a margem que sustenta o que já funciona. Crescer com crédito tem custo. Esse custo precisa estar no plano, não aparecer depois.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Já comecei. Não dá para voltar atrás."</p>
+      <p class="duvida-a">Não precisa voltar. Precisa saber onde está o ponto em que o crescimento começa a se pagar — e o que você vai fazer se ele não aparecer no prazo que calculou.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você sabe se o crescimento que está planejando cabe na margem que o negócio gera hoje — ou se está sendo financiado por crédito, reserva ou receita que ainda não existe. Não é sobre parar de crescer. É sobre saber o que o crescimento vai custar antes de ele chegar na conta.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

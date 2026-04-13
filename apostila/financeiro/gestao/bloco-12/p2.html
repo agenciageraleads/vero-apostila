@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 12 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+/* Canvas section */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+/* Comparison table */
+.compare-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;}
+.compare-table th{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);padding:0.6rem 0.8rem;border-bottom:2px solid var(--gold);text-align:left;background:var(--surface);}
+.compare-table th:first-child{width:34%;color:var(--ink-light);}
+.compare-table td{font-size:0.82rem;font-weight:300;padding:0.7rem 0.8rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.compare-table td:first-child{font-size:0.78rem;font-weight:500;color:var(--ink);background:var(--surface);}
+.compare-table .input-cell{border-bottom:1px solid var(--border-dark);min-height:1.4rem;display:block;width:100%;}
+.compare-table tr:last-child td{border-bottom:none;}
+.checkbox-row{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;margin:0.8rem 0 1.4rem;}
+.checkbox-opt{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:300;color:var(--ink-light);}
+.checkbox-opt .box{width:13px;height:13px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
+.hint{font-size:0.73rem;font-style:italic;color:var(--ink-light);line-height:1.55;margin-top:0.5rem;letter-spacing:0.01em;}
+/* Pergunta aberta */
+.pergunta-item{margin-bottom:2rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.8rem;line-height:1.4;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-bottom:0.6rem;}
+.pergunta-item--chave{margin-top:2.4rem;padding-left:1.2rem;border-left:2px solid var(--gold);}
+/* Dúvidas */
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+/* Resultado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Gestão</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 12</span> · Página <span>02</span> / 02</div>
+    </div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Dinheiro que esperou a urgência decidir</h1>
+    <p class="bloco-sub">Pense em duas frentes que estão esperando o mesmo dinheiro, o mesmo tempo ou o mesmo esforço. Responda com o que você já sabe agora.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Frente A</th>
+          <th>Frente B</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>O que é</td>
+          <td><span class="input-cell"></span></td>
+          <td><span class="input-cell"></span></td>
+        </tr>
+        <tr>
+          <td>Quanto precisa</td>
+          <td><span class="input-cell"></span></td>
+          <td><span class="input-cell"></span></td>
+        </tr>
+        <tr>
+          <td>O que promete fazer</td>
+          <td><span class="input-cell"></span></td>
+          <td><span class="input-cell"></span></td>
+        </tr>
+        <tr>
+          <td>Como você mede se funcionou</td>
+          <td><span class="input-cell"></span></td>
+          <td><span class="input-cell"></span></td>
+        </tr>
+        <tr>
+          <td>Em quanto tempo aparece o resultado</td>
+          <td><span class="input-cell"></span></td>
+          <td><span class="input-cell"></span></td>
+        </tr>
+        <tr>
+          <td>O que fica parado se você escolher essa</td>
+          <td><span class="input-cell"></span></td>
+          <td><span class="input-cell"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="checkbox-row">
+      <span class="checkbox-opt"><span class="box"></span> Não consigo comparar assim — não tenho os dados das duas</span>
+    </div>
+    <p class="hint">produto ou equipamento vs contratação &nbsp;·&nbsp; sistema vs certificação &nbsp;·&nbsp; canal novo vs melhoria do atual &nbsp;·&nbsp; investimento defensivo vs investimento ofensivo</p>
+
+    <div class="pergunta-item pergunta-item--chave" style="margin-top:2rem;">
+      <div class="pergunta-label">Se você só puder avançar com uma agora, qual seria — e por quê? (não a justificativa — o critério)</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">O que você está renunciando ao escolher essa — e até quando essa renúncia se sustenta?</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <div class="pergunta-label">Existe algo esperando que a urgência vai decidir se você não decidir primeiro?</div>
+      <div class="checkbox-row">
+        <span class="checkbox-opt"><span class="box"></span> Sim — já sei o que é</span>
+        <span class="checkbox-opt"><span class="box"></span> Talvez</span>
+        <span class="checkbox-opt"><span class="box"></span> Não</span>
+      </div>
+      <span class="input-line"></span>
+      <p class="hint">vencimento de equipamento &nbsp;·&nbsp; prazo de contrato ou proposta &nbsp;·&nbsp; janela com data &nbsp;·&nbsp; fornecedor que vai reajustar</p>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Eu não tenho duas frentes claras. Tenho oito."</p>
+      <p class="duvida-a">Oito frentes não é abundância — é ausência de critério de prioridade. Escolha as duas que mais competem pelo mesmo recurso agora. O exercício não é para resolver tudo. É para ver o que acontece quando você coloca duas coisas lado a lado com os mesmos critérios.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Não dá para comparar coisas tão diferentes."</p>
+      <p class="duvida-a">É exatamente por isso que a maioria não compara — e deixa que a urgência decida. Comparar não significa que uma é melhor que a outra em absoluto. Significa perguntar qual serve melhor ao negócio com o que você tem disponível agora.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas e se eu escolher errado?"</p>
+      <p class="duvida-a">Escolher com critério e errar é diferente de deixar a urgência escolher e não saber o que aconteceu. No primeiro caso, você tem o que aprender. No segundo, você só tem o resultado.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você sabe se tem um critério real para escolher onde colocar o que o negócio tem disponível — ou se espera que a urgência resolva por você. Não é sobre ter a resposta certa. É sobre não deixar que o imprevisto decida o que só você deveria poder decidir.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

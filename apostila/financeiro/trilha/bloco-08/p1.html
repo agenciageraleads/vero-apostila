@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 08 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(20%) brightness(0.88);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.narrativa-body strong{font-weight:500;}
+.story-divider{margin:2rem 0;border:none;border-top:1px solid var(--border);}
+.mid-image{margin:1.8rem 0;height:160px;overflow:hidden;}
+.mid-image img{width:100%;height:100%;object-fit:cover;object-position:center 50%;filter:grayscale(20%) brightness(0.92);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Trilha</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 08</span> · Página <span>01</span></div>
+    </div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80" alt="Estrutura de custos e organização financeira">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">o que a empresa custa antes de vender</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Você sabe quanto custa o seu negócio existir — antes de vender uma única coisa este mês?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p><strong>Renata</strong> tem um ateliê de costura sob encomenda. Três ajudantes, duas máquinas industriais em leasing, aluguel no centro. Quando o movimento está bom, tudo fecha. Quando o mês fica vazio, ela cobra menos pelos pedidos que entram — para não perder o cliente. O aluguel não fica sabendo.</p>
+
+      <p>Setembro de volume baixo — ela sabia que seria assim. Já tinha fechado no negativo em agosto do ano anterior, e em abril antes disso. O padrão se repetia. O que não tinha feito ainda era entender por quê.</p>
+
+      <p>Em setembro entrou pouco serviço. Ela pegou os pedidos que apareceram e cobrou o custo do tecido mais uma margem que parecia razoável. No fim do mês, olhou para a conta e não fechou. Ficou sem entender. Trabalhou o mês inteiro. Os pedidos foram pagos. O dinheiro entrou. Mas a conta ficou negativa.</p>
+
+      <p>Ela não conseguiu apontar onde foi o dinheiro. Sabe que pagou o que devia. Não sabe por que sobrou menos do que deveria.</p>
+
+      <div class="mid-image">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Planilha e controle financeiro">
+      </div>
+
+      <p><strong>Danilo</strong> tem uma distribuidora de alimentos no atacado. Vinte e três anos no mesmo bairro. Em outubro, o volume caiu vinte por cento. Ele abriu a planilha que mantém desde sempre: R$&nbsp;12.400 fixos todo mês — aluguel, folha dos três funcionários, contador, seguro. Cada caixa de produto que sai tem R$&nbsp;38 de custo variável.</p>
+
+      <p>Com o volume menor, ele sabia que precisava vender pelo menos 326 caixas antes de começar a sobrar alguma coisa. Ajustou o que podia — um prestador de serviço, o prazo de uma compra que não era urgente — e fechou o mês no zero. Não lucrou. Mas não se surpreendeu.</p>
+
+      <p>A diferença entre os dois não é tamanho nem setor. Um sabe o que vai pagar este mês independente do que vender. O outro descobre o que custou só depois que o mês fecha.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Renata não tem um problema de precificação. Tem um problema de não saber qual é o seu chão — e de descobrir isso só quando já está abaixo dele.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>
