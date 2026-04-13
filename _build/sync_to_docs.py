@@ -420,8 +420,8 @@ def gerar_bloco_index(pilar: str, fase: str, bloco_num: int) -> str:
     </div>
 
     <div class="bloco-nav">
-        <a href="./p1.html" class="page-btn">Página 1 — Narrativa</a>
-        <a href="./p2.html" class="page-btn">Página 2 — Canvas</a>
+        <a href="{SITE_PREFIX}/{pilar}/{fase}/{bloco_dir}/p1.html" class="page-btn">Página 1 — Narrativa</a>
+        <a href="{SITE_PREFIX}/{pilar}/{fase}/{bloco_dir}/p2.html" class="page-btn">Página 2 — Canvas</a>
     </div>
 </body>
 </html>
