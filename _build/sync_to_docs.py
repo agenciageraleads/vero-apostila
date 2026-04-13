@@ -148,7 +148,7 @@ def gerar_homepage(contagem: Dict[str, int]) -> str:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vero — Apostila de Formação</title>
-    <link rel="stylesheet" href="/assets/css/estilo.css">
+    <link rel="stylesheet" href="{CSS_URL}">
     <style>
         body {{
             padding: 3rem 1rem;
@@ -271,7 +271,7 @@ def gerar_pilar_index(pilar: str) -> str:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{pilar.capitalize()} — Vero Apostila</title>
-    <link rel="stylesheet" href="/assets/css/estilo.css">
+    <link rel="stylesheet" href="{CSS_URL}">
     <style>
         body {{
             padding: 2rem 1rem;
@@ -362,7 +362,7 @@ def gerar_bloco_index(pilar: str, fase: str, bloco_num: int) -> str:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{bloco_dir} — {pilar.capitalize()}</title>
-    <link rel="stylesheet" href="/assets/css/estilo.css">
+    <link rel="stylesheet" href="{CSS_URL}">
     <style>
         body {{
             padding: 2rem 1rem;
