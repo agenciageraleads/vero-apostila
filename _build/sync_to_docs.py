@@ -12,7 +12,7 @@ from typing import Dict, List
 # Configurações
 APOSTILA_DIR = Path(__file__).parent.parent / "apostila"
 DOCS_DIR = Path(__file__).parent.parent / "docs"
-CSS_URL = "/assets/css/estilo.css"
+CSS_URL = "/vero-apostila/assets/css/estilo.css"
 
 PILARES = ["financeiro", "operacao", "vendas", "pessoas"]
 FASES = ["raiz", "trilha", "gestao", "legado"]
