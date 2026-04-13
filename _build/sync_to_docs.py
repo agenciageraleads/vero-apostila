@@ -13,6 +13,7 @@ from typing import Dict, List
 APOSTILA_DIR = Path(__file__).parent.parent / "apostila"
 DOCS_DIR = Path(__file__).parent.parent / "docs"
 CSS_URL = "/vero-apostila/assets/css/estilo.css"
+SITE_PREFIX = "/vero-apostila"
 
 PILARES = ["financeiro", "operacao", "vendas", "pessoas"]
 FASES = ["raiz", "trilha", "gestao", "legado"]
@@ -138,7 +139,7 @@ def gerar_homepage(contagem: Dict[str, int]) -> str:
     <div class="pilar-card">
       <h3>{pilar.capitalize()}</h3>
       <p class="status">{status} {progress} blocos</p>
-      <a href="/{pilar}/" class="btn-pilar">Ver Pilar</a>
+      <a href="{SITE_PREFIX}/{pilar}/" class="btn-pilar">Ver Pilar</a>
     </div>
 """
 
@@ -336,7 +337,7 @@ def gerar_pilar_index(pilar: str) -> str:
 </head>
 <body>
     <div class="breadcrumb">
-        <a href="/">← Voltar para Home</a>
+        <a href="{SITE_PREFIX}/">← Voltar para Home</a>
     </div>
 
     <h1>{pilar.capitalize()}</h1>
@@ -412,9 +413,9 @@ def gerar_bloco_index(pilar: str, fase: str, bloco_num: int) -> str:
 </head>
 <body>
     <div class="breadcrumb">
-        <a href="/">Home</a> /
-        <a href="/{pilar}/">{pilar.capitalize()}</a> /
-        <a href="/{pilar}/{fase}/">{fase.capitalize()}</a> /
+        <a href="{SITE_PREFIX}/">Home</a> /
+        <a href="{SITE_PREFIX}/{pilar}/">{pilar.capitalize()}</a> /
+        <a href="{SITE_PREFIX}/{pilar}/{fase}/">{fase.capitalize()}</a> /
         <span>{bloco_dir}</span>
     </div>
 
