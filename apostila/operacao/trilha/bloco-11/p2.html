@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 11 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+.mes-label{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;
+  font-weight:400;
+  color:var(--ink-light);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  margin-bottom:0.25rem;
+  margin-top:0.6rem;
+}
+.mes-label:first-child{margin-top:0;}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🛤️ Trilha · <span>Bloco 11</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O número que sua operação sustenta de verdade</h1>
+    <p class="bloco-sub">Responda com os números reais — não com os que você gostaria de ter.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">De onde vem o número que você usa quando fecha contrato ou promete prazo?</p>
+      <p class="hint"><em>ex. comércio: volume de pedidos do mês em que a equipe estava completa e o fornecedor não atrasou · ex. serviço: número de atendimentos da semana sem falta e sem imprevisto operacional · ex. indústria: quantidade de peças da rodada em que insumo chegou no prazo e nenhuma máquina parou</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que você entregou nos últimos três meses — escreva o número real de cada mês, não o esperado.</p>
+      <p class="hint"><em>ex. comércio: 310 pedidos entregues · 268 pedidos entregues · 295 pedidos entregues · ex. serviço: 218 atendimentos concluídos · 204 atendimentos concluídos · 231 atendimentos concluídos · ex. indústria: 1.710 peças dentro do prazo · 1.520 peças dentro do prazo · 1.640 peças dentro do prazo</em></p>
+      <p class="mes-label">Mês 1</p>
+      <div class="resposta-linha"></div>
+      <p class="mes-label">Mês 2</p>
+      <div class="resposta-linha"></div>
+      <p class="mes-label">Mês 3</p>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que reduziu a entrega nesses meses — não "situação atípica", mas o que de fato aconteceu.</p>
+      <p class="hint"><em>ex. comércio: fornecedor atrasou reposição de estoque; dois itens saíram em falta; equipe de separação com um a menos por quinze dias · ex. serviço: van parada por três dias; técnico afastado por saúde; chuva reduziu deslocamento em campo · ex. indústria: lote de insumo com defeito retido; operador-chave em treinamento externo; manutenção corretiva de equipamento na linha</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Qual número sua operação entrega de forma consistente — excluindo o melhor e o pior mês dos últimos seis.</p>
+      <p class="hint"><em>ex. comércio: média dos quatro meses intermediários em volume de pedidos entregues · ex. serviço: média dos quatro meses intermediários em atendimentos concluídos · ex. indústria: média dos quatro meses intermediários em peças produzidas dentro do prazo</em></p>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que você teria que recusar ou renegociar se prometesse esse número real aos seus clientes.</p>
+      <p class="hint"><em>ex. comércio: contrato com volume acima da média consistente; cliente que exige entrega em prazo menor do que o processo permite · ex. serviço: escopo novo que exigiria equipe adicional não contratada; cliente que quer exclusividade de agenda em horário já comprometido · ex. indústria: pedido com volume que ultrapassa a capacidade da linha no turno atual; prazo de entrega incompatível com ciclo de produção</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Esse mês foi excepcional por razões que não vão se repetir. Minha capacidade real é maior do que a média está mostrando."</p>
+      <p class="duvida-a">Todo mês tem uma razão. Fornecedor atrasou, técnico ficou doente, chuva atrapalhou, máquina parou. Se você espera o mês sem razão para calcular sua capacidade, vai esperar para sempre. A operação que você tem é a que funciona com imprevistos — não a que funcionaria se tudo fosse diferente.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu prometer o número real, vou parecer incompetente para o cliente."</p>
+      <p class="duvida-a">Você já pareceu. Toda vez que prometeu o número ideal e não entregou. O cliente não cancela porque você prometeu menos — cancela porque você prometeu mais e não cumpriu.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu recusar clientes que não aceitam meu número real, vou perder receita que preciso agora."</p>
+      <p class="duvida-a">Você vai perder alguns. Mas vai entregar para os que ficaram. E quem entrega de forma consistente não precisa repor cliente cancelado todo trimestre.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você tem o número que sua operação entrega de verdade. Esse é o único número que você pode prometer.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

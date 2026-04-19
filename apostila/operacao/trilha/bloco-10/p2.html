@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 10 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🛤️ Trilha · <span>Bloco 10</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O custo que tem dono mas ainda não tem nome</h1>
+    <p class="bloco-sub">Mapeie onde a operação gera custo invisível — não no fornecedor, mas no jeito de trabalhar.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quais custos variáveis aparecem todo mês mas você não consegue explicar de onde vêm? Escreva cada um.</p>
+      <p class="hint"><em>ex. comércio: reposição de produto feita às pressas, frete urgente por ruptura de estoque · ex. serviço: hora extra sem causa clara, retrabalho em entrega já encerrada · ex. indústria: recompra de insumo no meio da produção, material comprado além do necessário "para garantir"</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Em que ponto do processo o material, o tempo ou a mão de obra é acionado sem planejamento prévio?</p>
+      <p class="hint"><em>ex. comércio: pedido de reposição feito só quando o produto acaba, sem antecipação por volume ou data · ex. serviço: equipe alocada no dia da entrega porque a agenda não estava definida antes · ex. indústria: corte ou montagem começam antes da quantidade e especificação estarem fechadas</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que sua operação recompra ou refaz porque não tinha a informação certa antes de começar?</p>
+      <p class="hint"><em>ex. comércio: produto devolvido por troca de tamanho ou cor que poderia ter sido confirmado no pedido · ex. serviço: deslocamento extra porque o escopo não estava claro antes do atendimento · ex. indústria: insumo comprado duas vezes no mesmo ciclo por falta de levantamento inicial</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Onde a sequência do trabalho exige improviso e gera custo no meio — não no início, não no fim?</p>
+      <p class="hint"><em>ex. comércio: troca de fornecedor no meio do pedido porque o habitual não tinha estoque · ex. serviço: substituição de profissional no meio do contrato por falta de escalas definidas · ex. indústria: parada de linha por falta de peça que não estava na lista de conferência</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que precisaria estar definido antes de começar para esse custo não aparecer mais? Escreva como critério, não como intenção.</p>
+      <p class="hint"><em>ex. comércio: nível mínimo de estoque por item antes de acionar reposição · ex. serviço: escopo validado com cliente antes de qualquer mobilização de equipe · ex. indústria: planejamento de quantidade fechado antes do início do corte ou montagem</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Meu custo variável depende do mês — tem mês que é assim mesmo."</p>
+      <p class="duvida-a">Pode depender de variação de volume. Não de variação no jeito de trabalhar. Se o processo muda a cada entrega, o custo vai variar toda vez — independente do que acontece do lado de fora.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Isso é detalhe operacional. Não muda o resultado no fim do mês."</p>
+      <p class="duvida-a">Cada item desse canvas, sozinho, parece pequeno. Somados ao longo de quatro semanas, são o motivo de o lucro ser menor do que o faturamento justificaria. O detalhe operacional é onde o resultado se decide.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Minha equipe já sabe o que fazer. Não precisa de tudo escrito."</p>
+      <p class="duvida-a">Sabe o que fazer quando dá tempo. Quando aperta, improvisa. E o improviso gera o custo que aparece no extrato sem nome. Critério não substitui experiência — impede que a experiência custe mais do que deveria.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Depois deste Canvas, o empresário tem um ponto de operação identificado — não um fornecedor diferente para negociar, não uma pessoa para cobrar. Um ponto no fluxo onde o trabalho começa antes de estar pronto. O próximo passo não é entender melhor. É decidir o que precisa estar definido antes de começar.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,21 +1,21 @@
 # STATUS — Apostila Vero
 
 > Dashboard rapido de todos os blocos. Atualizar a cada aprovacao.
-> Ultima atualizacao: 2026-04-18 (Operacao Raiz — fase completa, Blocos 01-06)
+> Ultima atualizacao: 2026-04-19 (Operacao Trilha — Blocos 07-11 finalizados)
 
 ## Resumo
 
 | Pilar | Total | ⬜ | ✍️ | 🔬 | ✅ | 🎨 | 📄 |
 |-------|-------|---|----|---|----|---|----|
 | Financeiro | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
-| Operacao | 22 | 16 | 0 | 0 | 0 | 0 | 6 |
+| Operacao | 22 | 11 | 0 | 0 | 0 | 0 | 11 |
 | Vendas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
 | Pessoas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL** | **88** | **60** | **0** | **0** | **0** | **0** | **28** |
+| **TOTAL** | **88** | **55** | **0** | **0** | **0** | **0** | **33** |
 
 Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado | 🎨 Em design | 📄 Finalizado
 
-## Proximo bloco: Operacao > Trilha > Bloco 07
+## Proximo bloco: Operacao > Gestao > Bloco 12
 
 ---
 
@@ -58,11 +58,11 @@ Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado |
 | 04 | 🌱 Raiz | Cada pessoa faz do seu jeito | 📄 | 2026-04-18 |
 | 05 | 🌱 Raiz | Areas nao conversam | 📄 | 2026-04-18 |
 | 06 | 🌱 Raiz | Culpa das pessoas = problema de estrutura | 📄 | 2026-04-18 |
-| 07 | 🛤️ Trilha | Fluxo operacional que se repete | ⬜ | - |
-| 08 | 🛤️ Trilha | Padrao minimo nao e engessamento | ⬜ | - |
-| 09 | 🛤️ Trilha | Gargalo e do sistema | ⬜ | - |
-| 10 | 🛤️ Trilha | Custo variavel nasce do jeito de operar | ⬜ | - |
-| 11 | 🛤️ Trilha | Capacidade real vs prometida | ⬜ | - |
+| 07 | 🛤️ Trilha | Fluxo operacional que se repete | 📄 | 2026-04-19 |
+| 08 | 🛤️ Trilha | Padrao minimo nao e engessamento | 📄 | 2026-04-19 |
+| 09 | 🛤️ Trilha | Gargalo e do sistema | 📄 | 2026-04-19 |
+| 10 | 🛤️ Trilha | Custo variavel nasce do jeito de operar | 📄 | 2026-04-19 |
+| 11 | 🛤️ Trilha | Capacidade real vs prometida | 📄 | 2026-04-19 |
 | 12 | 🧠 Gestao | Eficiencia nao e melhorar tudo | ⬜ | - |
 | 13 | 🧠 Gestao | Custo cresce sem gerar valor | ⬜ | - |
 | 14 | 🧠 Gestao | Padronizar, automatizar ou aceitar | ⬜ | - |

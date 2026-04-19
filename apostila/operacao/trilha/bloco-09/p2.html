@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 09 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🛤️ Trilha · <span>Bloco 09</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Onde o fluxo para — e o que estava faltando antes</h1>
+    <p class="bloco-sub">Antes de mapear o processo, faça o teste que Giovana fez: troque a pessoa no pensamento. Se o problema continua — estava no fluxo, não nela.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Pense no ponto que mais trava hoje. Se você colocasse outra pessoa nessa etapa amanhã, sem mudar nada no sistema — o problema continuaria?</p>
+      <p class="hint"><em>ex. comércio: o mesmo pedido chegaria sem a lista confirmada, qualquer um que separasse erraria · ex. serviço: o mesmo cliente mudaria o escopo durante a execução, independente de quem estivesse atendendo · ex. indústria: a mesma especificação chegaria incompleta — quantidade, cor ou medida não confirmada — e quem produzisse encontraria o mesmo obstáculo</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Agora nomeie esse ponto. Qual é a etapa — não a pessoa, não o sintoma? Escreva o nome da etapa do fluxo.</p>
+      <p class="hint"><em>ex. comércio: conferência de estoque antes da separação do pedido · ex. serviço: fechamento de escopo antes do início da execução · ex. indústria: liberação de ordem de produção — confirmação de quantidade, cor e tamanho — antes de entrar na linha</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que a pessoa nessa etapa precisaria ter recebido — antes de chegar nela — para não travar? Ela recebia isso?</p>
+      <p class="hint"><em>ex. comércio: lista de itens confirmada pelo cliente antes de separar · ex. serviço: escopo fechado e aprovado antes de montar cronograma · ex. indústria: especificação técnica completa — medidas, quantidades, referências — antes de iniciar qualquer etapa de produção</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que mudaria no fluxo — não na pessoa — para esse ponto deixar de ser gargalo?</p>
+      <p class="hint"><em>ex. comércio: mover a conferência de estoque para antes da entrada do pedido · ex. serviço: aprovação de escopo como pré-requisito obrigatório para abertura do serviço · ex. indústria: confirmação completa do pedido — especificação e quantidade — antes de liberar qualquer ordem de produção</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Qual critério ou sequência está faltando nesse ponto hoje? O que precisa estar definido para quem chega nele?</p>
+      <p class="hint"><em>ex. comércio: o que é considerado pedido confirmado e pronto para separação · ex. serviço: o que é considerado escopo fechado — e quem tem autoridade para fechar · ex. indústria: o que é considerado pedido apto para produção — quais dados precisam estar presentes antes de qualquer etapa começar</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas já expliquei várias vezes o que precisa chegar nessa etapa."</p>
+      <p class="duvida-a">Explicação não é critério. Se o padrão não está escrito na sequência do fluxo — como exigência, não como orientação —, ele vai depender de memória. Memória varia. Critério não.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Vou mexer no fluxo e tudo vai parar enquanto o time se adapta."</p>
+      <p class="duvida-a">O fluxo já está parando. A diferença é que agora você tem controle sobre quando e por quê. Adaptar um critério novo custa menos do que consertar erro recorrente sem causa mapeada.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Não tenho certeza se o problema está mesmo no fluxo ou na pessoa."</p>
+      <p class="duvida-a">Faça o teste do primeiro campo. Se a troca de pessoa não resolve — e em geral não resolve —, estava no fluxo. A resposta já está no que você escreveu.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Quando o empresário termina este canvas, ele sabe onde o fluxo para de verdade — e o que estava ausente antes desse ponto. Não é sobre quem está errado. É sobre o que o sistema não entregava para quem chegava nele. Esse é o trabalho: mover o critério para antes do problema, não trocar quem está no meio dele.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>
