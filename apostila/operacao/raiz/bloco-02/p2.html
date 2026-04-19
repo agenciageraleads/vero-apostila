@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 02 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🌱 Raiz · <span>Bloco 02</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que sua empresa aprendeu a não saber</h1>
+    <p class="bloco-sub">Responda com o que é real agora — não com o que deveria ser.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Liste as crises que se repetiram nos últimos 90 dias — não as que foram resolvidas, as que voltaram</p>
+      <p class="hint"><em>ex. comércio: ruptura de estoque descoberta só na hora da venda · ex. serviço: cliente sem resposta porque o técnico responsável sumiu · ex. indústria: parada de máquina porque o operador não sabia o que fazer sem o dono</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quem foi chamado para resolver cada uma delas — e por que essa pessoa, e não outra?</p>
+      <p class="hint"><em>ex. comércio: dono porque só ele sabe onde o fornecedor reserva o estoque · ex. serviço: dono porque o contrato é "com ele" · ex. indústria: dono porque a equipe não tem autoridade para parar a linha</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que sua empresa parou de aprender porque você sempre estava disponível para cobrir?</p>
+      <p class="hint"><em>ex. comércio: vendedor nunca aprendeu a verificar estoque antes de prometer prazo · ex. serviço: equipe nunca aprendeu a acionar backup sem autorização · ex. indústria: operadores nunca aprenderam a registrar falha recorrente</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Calcule o custo real de uma dessas urgências — não o que custou resolver, o que custou não ter impedido</p>
+      <p class="hint"><em>ex. comércio: tempo parado de vendedor + frete emergencial + cliente perdido · ex. serviço: hora do sócio + contrato em risco + proposta adiada · ex. indústria: hora parada de produção + retrabalho + entrega atrasada</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Se você ficasse três dias sem aparecer — sem avisar —, o que quebraria primeiro?</p>
+      <p class="hint"><em>ex. comércio: compra de reposição travada porque só o dono assina · ex. serviço: cliente sem retorno porque ninguém tem acesso ao histórico · ex. indústria: decisão de troca de turno não tomada porque não existe critério escrito</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que precisaria existir para que esse quebra não acontecesse — e não existe hoje?</p>
+      <p class="hint"><em>ex. comércio: nível mínimo de estoque com regra de recompra automática · ex. serviço: protocolo de comunicação com cliente em caso de ausência · ex. indústria: critério escrito de parada e retomada de produção</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas se eu não aparecer quando tem problema, minha equipe vai achar que não me importo."</p>
+      <p class="duvida-a">Sua equipe não precisa da sua presença — precisa de critério. Aparecer é o substituto do critério. Enquanto você aparece, o critério nunca precisa ser criado.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Aprendi a resolver rápido. Por que isso seria um problema?"</p>
+      <p class="duvida-a">Porque a empresa aprendeu junto. Aprendeu que não precisa evitar o problema — só esperar você chegar. Velocidade de resolução não é competência organizacional. É dependência disfarçada de eficiência.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas isso vai mudar quando eu contratar mais gente."</p>
+      <p class="duvida-a">A empresa não vai aprender a funcionar sozinha só porque tem mais pessoas. Vai aprender mais formas de te esperar. O que muda não é o tamanho do time — é o que você para de cobrir.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Quando o empresário preenche este canvas, ele para de contar quantas crises resolveu e começa a contar quantas vezes a mesma crise voltou. A pergunta muda: não é mais "por que minha equipe não resolve?" — é "o que ensinei à minha empresa que ela não precisa saber?"</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

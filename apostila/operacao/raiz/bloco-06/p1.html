@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 06 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;line-height:1.5;}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.55;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.mid-break{margin:1.8rem 0;height:1px;background:var(--border);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta{font-size:0.93rem;font-weight:500;color:var(--ink);margin-bottom:0.5rem;line-height:1.45;}
+.hint{font-size:0.74rem;font-weight:300;color:var(--ink-light);margin-bottom:0.9rem;line-height:1.5;letter-spacing:0.01em;}
+.resposta-linha{display:block;border-bottom:1px solid var(--border-dark);height:1.5rem;width:100%;margin-bottom:0.6rem;}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;line-height:1.5;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · <span>🌱 Raiz</span> · Bloco 06 · Página 01</div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80" alt="">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">A culpa sempre chega antes do espelho</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Quantas pessoas você demitiu pelo mesmo motivo — sem perceber que o motivo era o ambiente?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+      <p>Rodrigo demitiu o terceiro funcionário em oito meses na mesma função.</p>
+
+      <p>Desta vez foi Felipe. Antes foi o Thiago. Antes do Thiago, a Camila. Rodrigo explicou para cada um deles, na hora do desligamento, o que tinha dado errado. Atraso. Descuido. Falta de comprometimento. Para cada um, um motivo diferente. Para Rodrigo, uma certeza que se repetia: ele havia contratado mal.</p>
+
+      <p>O novo começou na segunda-feira.</p>
+
+      <p>Rodrigo passou a manhã mostrando como as coisas funcionavam. O depósito, a entrada de pedidos, a sequência de entrega. Mostrou rápido — tinha reunião às onze. Deixou o rapaz com o Augusto, o mais antigo da operação, para terminar de aprender. Augusto também aprendera assim.</p>
+
+      <p>Na quinta-feira, um pedido saiu errado.</p>
+
+      <p>Rodrigo ligou do carro. Perguntou o que havia acontecido. O novo explicou que não sabia que aquele cliente tinha uma regra diferente de embalagem. Ninguém havia dito. Rodrigo desligou sem responder. Ficou um tempo em silêncio olhando para o trânsito.</p>
+
+      <p><em>Esse também não serve</em>, ele pensou.</p>
+
+      <p>Não disse isso para ninguém. Mas a decisão já estava tomada internamente. Era só uma questão de tempo.</p>
+
+      <div class="mid-break"></div>
+
+      <p>O que Rodrigo não conseguia ver — ou não queria — era que o pedido errado não nasceu na mão do novo. Nasceu no mesmo lugar onde nasceram os erros de Felipe, de Thiago, de Camila. Nasceu na ausência de um registro que Rodrigo nunca criou. Numa regra que existia na cabeça dele e em nenhum outro lugar. Numa operação que dependia de quem soubesse adivinhar o que não estava escrito.</p>
+
+      <p>O novo não havia falhado. Havia operado exatamente dentro do ambiente que Rodrigo construiu.</p>
+
+      <p>Isso é o que a transferência de culpa faz: ela mantém o dono no centro da história sem que ele precise aparecer como o problema. É um mecanismo limpo. Cada erro tem um nome, um rosto, um CPF. O ambiente que gerou o erro não tem. O ambiente é invisível. O ambiente é fundo de cena. O ambiente é o que fica quando a pessoa vai embora — e recebe o próximo.</p>
+
+      <p>Rodrigo não era um mau patrão. Pagava em dia. Não gritava. Dizia que tinha portas abertas para conversa. Mas a operação era um sistema oral, transmitido de Augusto para o próximo, de Rodrigo para quem estava na frente, carregado de exceções que ninguém documentou porque todo mundo achava que o outro já sabia.</p>
+
+      <p>Cada novo contratado entrava num labirinto sem mapa.</p>
+
+      <p>E quando se perdiam — quando erravam o caminho que ninguém havia desenhado — Rodrigo anotava mentalmente mais uma prova de que o mercado de trabalho havia piorado.</p>
+
+      <p>O problema é que o labirinto continuava lá.</p>
+
+      <p>Rodrigo poderia contratar mais dez pessoas. Cada uma delas encontraria os mesmos corredores, as mesmas paredes sem sinalização, as mesmas armadilhas que só quem trabalhou ali há anos consegue desviar — não porque aprendeu, mas porque levou tempo suficiente para mapear os erros no próprio corpo.</p>
+
+      <p>A culpa não estava nas pessoas.</p>
+
+      <p>A culpa estava no ambiente que Rodrigo construiu e nunca olhou de frente.</p>
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Enquanto o ambiente for o mesmo, o próximo vai errar. Não porque é incompetente. Porque estava operando numa estrutura feita para errar — e o único que poderia mudar isso é o mesmo que está, neste momento, considerando mais uma demissão.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Escola de Empresários</div>
+    <div class="footer-nav">Canvas → <a href="p2.html">p2.html</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

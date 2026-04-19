@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operação · Raiz · Bloco 05 · P2 — O que o próximo já deveria saber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;line-height:1.5;}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta{font-size:0.93rem;font-weight:500;color:var(--ink);margin-bottom:0.5rem;line-height:1.45;}
+.hint{font-size:0.74rem;font-weight:300;color:var(--ink-light);margin-bottom:0.9rem;line-height:1.5;letter-spacing:0.01em;}
+.resposta-linha{display:block;border-bottom:1px solid var(--border-dark);height:1.5rem;width:100%;margin-bottom:0.6rem;}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;line-height:1.5;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · <span>🌱 Raiz</span> · Bloco 05 · Página 02</div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que o próximo já deveria saber</h1>
+    <p class="bloco-sub">Mapeie onde a informação para antes de chegar em quem precisa dela.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quem faz o primeiro contato com o cliente e o que promete</p>
+      <p class="hint">ex. comércio: vendedor que confirma prazo sem consultar estoque · ex. serviço: consultor que fecha escopo sem ver agenda da equipe · ex. indústria: representante que define data de entrega sem checar produção</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que essa promessa exige de quem vem depois — e se essa pessoa sabe</p>
+      <p class="hint">ex. comércio: separação e embalagem com prazo de 48h que o depósito só descobre na véspera · ex. serviço: configuração técnica que o instalador recebe por WhatsApp uma hora antes · ex. indústria: cor e numeração aprovadas pelo cliente que a costureira descobre na ordem de produção dois dias depois do corte já ter começado</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Onde a informação para ou se perde no meio do processo</p>
+      <p class="hint">ex. entre a venda e o almoxarifado, nada é registrado formalmente · ex. entre o fechamento do contrato e a equipe de campo, o repasse é verbal · ex. entre o pedido e a linha de produção, o único elo é o dono</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Qual área improvisa mais quando não recebe o que precisava</p>
+      <p class="hint">ex. expedição que decide embalagem e endereço por conta própria · ex. técnico que redefine escopo no cliente porque não teve briefing · ex. costureira que escolhe insumo substituto sem autorização porque o original não chegou</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que já deu errado por causa dessa quebra — e quantas vezes</p>
+      <p class="hint">ex. comércio: cliente recebeu produto errado porque produção não sabia da troca confirmada pelo vendedor · ex. serviço: visita técnica cancelada no dia porque a equipe não sabia que o endereço havia mudado · ex. indústria: lote entregue com cor ou tamanho errado porque a especificação foi atualizada depois que o corte já havia começado</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que precisaria existir para que cada área soubesse o que a anterior decidiu</p>
+      <p class="hint">ex. ficha de pedido que acompanha o produto do vendedor até o depósito · ex. protocolo de passagem entre fechamento e execução com campos obrigatórios · ex. ordem de produção que só libera depois de assinada por quem fechou com o cliente</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Eu sempre soube que as áreas não conversavam direito. Mas se o problema é o fluxo, fui eu quem nunca criei um — e é difícil admitir isso sem sentir que estou culpando a mim mesmo por algo que 'sempre funcionou assim'."</p>
+      <p class="duvida-a">Provavelmente funcionou — até o dia em que parou de funcionar e você não soube exatamente onde. Culpa não é o ponto. O ponto é que sem fluxo definido, quando algo quebra, o diagnóstico some junto com o problema.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu criar uma passagem formal entre as áreas, vou gerar atrito. As pessoas vão resistir. Vai parecer que estou desconfiando do trabalho de cada um."</p>
+      <p class="duvida-a">O atrito já existe — só não tem nome. Quando atendimento culpa produção e produção culpa entrega, isso é atrito sem dono e sem saída. Processo não desconfia de ninguém. Ele tira das pessoas a obrigação de adivinhar o que era do outro.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Minha empresa é pequena demais para processo formal. Processo é coisa de empresa grande — aqui a gente se fala, todo mundo sabe o que precisa saber."</p>
+      <p class="duvida-a">Se todo mundo soubesse, o erro não teria chegado no cliente. Processo não é tamanho — é clareza sobre quem faz o quê quando. Quanto menor a empresa, menor a margem para refazer. O informal custa mais caro exatamente onde parece mais barato.</p>
+    </div>
+
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Quando o empresário termina esse canvas, ele tem um mapa de onde a informação quebra — não uma lista de culpados. O próximo passo não é treinar as pessoas. É decidir quem passa o quê, para quem, em qual momento.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Escola de Empresários</div>
+    <div class="footer-nav"><a href="p1.html">← Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

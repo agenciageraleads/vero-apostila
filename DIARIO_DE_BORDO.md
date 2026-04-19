@@ -5,6 +5,94 @@
 
 ---
 
+## Sessao 10 — 2026-04-18
+
+### O que foi feito
+- [x] Fase Raiz completa — Operacao Blocos 02 a 06 (todos os 5 blocos restantes)
+- [x] 20 arquivos criados: p1.md + p2.md + p1.html + p2.html × 5 blocos
+- [x] Workflow completo executado por onda paralela para os 5 blocos
+- [x] STATUS.md atualizado: 28/88 blocos finalizados
+
+### Blocos trabalhados
+| Bloco | Titulo | Personagem | Status |
+|-------|--------|------------|--------|
+| Operacao > Raiz > 02 | Felipe e o incendio que nunca apaga | Felipe | Finalizado |
+| Operacao > Raiz > 03 | O mesmo erro, de novo | Claudinha | Finalizado |
+| Operacao > Raiz > 04 | A tarefa que ninguem ensinou | Gilson | Finalizado |
+| Operacao > Raiz > 05 | O que ninguem passou pra frente | Renata | Finalizado |
+| Operacao > Raiz > 06 | A culpa sempre chega antes do espelho | Rodrigo | Finalizado |
+
+### Decisoes tomadas
+| Decisão | Motivo |
+|---------|--------|
+| P2 duividas reescritas 3x para Blocos 03-06 | Ana sinalizou FAQ/racional em vez de resistencia emocional — padrao corrigido |
+| Bloco 06 duividas reescritas de perguntas para resistencias | Ana identificou formato de coaching, nao Vero — Iris corrigiu |
+| Hints de Bloco 03 Campo 1 e 5 ajustados para servico | Marcos (validador) sinalizou que exemplos eram focados em comercio |
+| Hints de Bloco 05 Campos 2 e 5 ajustados para industria | Carla sinalizou hints genericos; ajustados para confeccao especificamente |
+| P1s reconstruidas do zero (nao persistidas em sessao anterior) | Sessao anterior encerrou antes de gravar — P1s reescritas, validadas por Vera |
+
+### Proximo passo
+Operacao > Trilha > Bloco 07 (Fluxo operacional que se repete)
+
+---
+
+## Sessao 09 — 2026-04-15
+
+### O que foi feito
+- [x] Configuração de modelos por papel: Opus (orquestrador), Sonnet (produção), Haiku (revisão/validação)
+- [x] `~/.claude/settings.json` atualizado com `"model": "claude-opus-4-5"` como padrão global
+- [x] Workflow atualizado: Lucas aprova após Sofia (Passo 09, não Passo 08)
+- [x] Bloco 01 de Operação > Raiz produzido com workflow completo (10 passos)
+- [x] 4 arquivos criados: p1.md + p2.md + p1.html + p2.html
+- [x] STATUS.md atualizado: 23/88 blocos finalizados
+
+### Blocos trabalhados
+| Bloco | Titulo | Status |
+|-------|--------|--------|
+| Operacao > Raiz > 01 | A operacao so funciona quando o dono esta presente | Finalizado |
+
+### Decisoes tomadas
+| Decisão | Motivo |
+|---------|--------|
+| Opus para orquestrador, Sonnet para produção, Haiku para revisão | Otimização de tokens — cada modelo no papel certo |
+| Lucas aprova após Sofia (não antes) | Aprovação final deve incluir design — mudança no workflow |
+| P1 precisou de 2 rodadas com Paulo e 2 com Vera | Primeira versão era pedagógica demais — texto explicava em vez de expor |
+| Hints de indústria ajustados após Carla (validadora) | Hints originais eram administrativos; ajustados para interrupções de fluxo de produção |
+
+### Proximo passo
+**Operacao > Raiz > Bloco 02** — "Apagar incêndio não é azar, é padrão"
+
+### Pendencias
+- Nenhuma pendência aberta
+
+---
+
+## Sessao 08 — 2026-04-13
+
+### O que foi feito
+- [x] Labels explícitas `**Dúvidas comuns:**` e `**Resultado esperado:**` removidas de todos os 22 p2.md (script Python)
+- [x] Labels visíveis removidas dos 3 p2.html do Legado que tinham elementos HTML renderizáveis (Blocos 17, 21, 22)
+- [x] Canvas do Bloco 20 redesenhado — de 5 Q&A soltos para tabela de auditoria (Erro | Tempo até perceber | O que deveria ter bloqueado) + campo de pontos frágeis + lista numerada ① ② ③ de camadas de proteção
+- [x] Canvas do Bloco 22 redesenhado — de 5 Q&A soltos para matriz de dependência 4 colunas (Função financeira | Quem decide hoje | Critério documentado? | O que acontece sem você) + 2 campos narrativos
+- [x] p2.md e p2.html de ambos os blocos atualizados
+- [x] Skill `/vero:start` criada em `~/.claude/skills/vero-start/SKILL.md`
+
+### Decisoes tomadas
+| Decisão | Motivo |
+|---------|--------|
+| Labels de seção removidas dos p2 | Labels "Dúvidas comuns" e "Resultado esperado" explícitas quebravam o fluxo — conteúdo permanece, título sumiu |
+| Canvas Bloco 20: tabela de auditoria | Tema é auditoria de falha sistêmica — tabela de 3 colunas representa melhor a relação erro-tempo-bloqueio do que campos soltos |
+| Canvas Bloco 22: matriz de dependência com checkboxes | Tema é legado de critério — matriz com ☐ Sim ☐ Não por função financeira força diagnóstico real de dependência do dono |
+| Skill `/vero:start` criada | Kickoff de sessão automatizado — lê STATUS.md, último DIÁRIO, mapa do pilar e referência de fase; entrega brief completo sem produzir conteúdo |
+
+### Proximo passo
+**Operacao > Raiz > Bloco 01** — Início do segundo pilar
+
+### Pendencias
+- Lucas revisar os 22 blocos do Financeiro antes de avançar (ou avançar com revisão pendente)
+
+---
+
 ## Sessao 07 — 2026-04-12
 
 ### O que foi feito

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo Validador — Vero Apostila</title>
+    <link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+    <link rel="stylesheet" href="/vero-apostila/validador/validador.css">
+</head>
+<body class="validador-mode">
+    <header class="validador-header">
+        <nav class="validador-nav">
+            <a href="/vero-apostila/" class="btn-voltar">← Voltar para Índice</a>
+            <h1>🔍 Modo Validador</h1>
+            <div class="header-spacer"></div>
+        </nav>
+    </header>
+
+    <div class="validador-container">
+        <!-- ACCORDION LATERAL -->
+        <aside class="acordeao-sidebar">
+            <div class="acordeao-header">
+                <h2>Navegação</h2>
+            </div>
+
+            <div id="acordeao-container" class="acordeao-items">
+                <!-- Será preenchido por JavaScript -->
+            </div>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="validador-main">
+            <div class="bloco-header" id="bloco-header">
+                <h2>Selecione um bloco para começar</h2>
+                <div class="status-bar" id="status-bar"></div>
+            </div>
+
+            <div class="split-screen-container" id="split-screen">
+                <!-- Será preenchido por JavaScript -->
+                <div class="loading">Carregando...</div>
+            </div>
+
+            <div class="validador-actions">
+                <button class="btn-action" id="btn-aprovar">✅ Aprovado</button>
+                <button class="btn-action" id="btn-ajustar">🔄 Ajustar</button>
+                <button class="btn-action" id="btn-rejeitar">🔴 Rejeitar</button>
+                <button class="btn-action" id="btn-salvar">💾 Salvar Status</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/vero-apostila/validador/validador.js"></script>
+</body>
+</html>

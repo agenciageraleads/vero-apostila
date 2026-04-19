@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 01 · P1 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4.5vw,2.8rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+
+.pergunta-section{
+  padding:1.8rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.pergunta-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  line-height:1.55;
+  color:var(--ink);
+  border-left:2px solid var(--gold);
+  padding-left:1.2rem;
+}
+
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{
+  font-size:0.95rem;
+  line-height:1.85;
+  font-weight:300;
+  color:var(--ink);
+  margin-bottom:1.3rem;
+}
+.narrativa-body p:last-child{margin-bottom:0;}
+
+.mid-break{
+  margin:1.8rem 0;
+  height:1px;
+  background:var(--border);
+}
+
+.fechamento-section{
+  padding:2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.fechamento-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.fechamento-text{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🌱 Raiz · <span>Bloco 01</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="Empresário respondendo mensagens fora do trabalho">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Quando você sai, o que para?</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">A operação funciona — ou funciona enquanto você está de olho?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p>Rodrigo tem uma empresa de 14 anos. Onze funcionários. Faturamento estável. Quando ele conta a história pra alguém de fora, parece que as coisas funcionam.</p>
+
+      <p>Na sexta à tarde, ele avisou a equipe que viajaria no fim de semana — aniversário da mãe, três dias fora. Deixou o WhatsApp silenciado, pediu pra não chamarem salvo emergência.</p>
+
+      <p>No sábado de manhã, a mensagem chegou: o fornecedor não tinha confirmado o lote da semana seguinte e ninguém sabia para quem ligar. À tarde, um cliente reclamou de um erro no pedido e a atendente não sabia se devia refazer sem cobrar. De noite, o operador de produção perguntou se podia adiantar um processo que normalmente precisava de aprovação.</p>
+
+      <p>Rodrigo respondeu tudo do celular, entre o jantar e a sobremesa.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Na segunda, quando voltou, duas situações tinham ficado travadas porque os funcionários preferiram esperar. Uma delas envolvia um cliente que não podia esperar — e foi embora.</p>
+
+      <p>Onze anos construindo, e a operação ainda precisava que ele estivesse por perto para não desandar. Não porque a equipe fosse ruim. Não porque o negócio fosse complicado. Mas porque cada decisão de rotina — cada exceção, cada imprevisto, cada dúvida fora do script — tinha um único destino: ele.</p>
+
+      <p>Rodrigo não montou um negócio com dependência estrutural. Ele simplesmente nunca montou um negócio sem ele no centro.</p>
+
+      <p>E o preço disso não é o fim de semana perdido. O preço é que ele não pode tirar uma semana para renegociar com o principal fornecedor. Não pode se afastar por um mês para avaliar se vale abrir outra unidade. Não pode adoecer. Não pode parar de responder — nem por um dia — sem que algo trave, escape ou vá embora.</p>
+
+      <p>Quando ele estava, tudo andava. Quando ele saía, as coisas andavam até o primeiro problema real. E problemas reais aparecem todos os dias.</p>
+
+      <p>Ele não está construindo um negócio. Ele está sendo o negócio — e enquanto for ele quem resolve, tudo que a empresa pode fazer é esperar ele estar disponível.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Enquanto você não souber quais decisões só você toma, não saberá o que sua empresa realmente depende para funcionar sem você.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

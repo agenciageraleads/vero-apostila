@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operação · Raiz · Bloco 04 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.55;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.mid-break{margin:1.8rem 0;height:1px;background:var(--border);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🌱 Raiz · <span>Bloco 04</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80" alt="Time trabalhando de formas diferentes">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">A tarefa que ninguém ensinou</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Quantas formas diferentes de fazer a mesma coisa existem na sua empresa — e o que elas custam?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p>Gilson não pediu para ver o processo. Chegou cedo, era quarta-feira, e foi direto para o fundo do galpão buscar a nota de um cliente.</p>
+
+      <p>Ficou parado no corredor.</p>
+
+      <p>Beatriz estava separando um pedido. Caixas no chão, etiquetas à mão, conferindo item por item em voz alta enquanto marcava num papel dobrado no bolso. O método dela. Tinha feito assim desde o primeiro dia — ninguém ensinou diferente, então ficou assim.</p>
+
+      <p>Do outro lado do galpão, Renan fazia o mesmo pedido de um cliente diferente. Caixas na bancada, sem papel, olhando para a tela do celular onde digitava os itens à medida que separava. Mais rápido. Mais solto. O método dele.</p>
+
+      <p>Gilson conhecia os dois métodos. Tinha visto antes. Nunca tinha dito nada porque os dois entregavam. "Funcionou assim até agora" era o pensamento — não o dito, mas o pensamento.</p>
+
+      <p>O que ele não tinha visto era o que aconteceu em seguida.</p>
+
+      <p>O pedido de Beatriz saiu com um item errado. Ela tinha anotado "cx 6un" e mandado uma caixa de 12. A letra no papel dobrado era ambígua e ela resolveu sozinha, sem perguntar. Custo: devolução, retrabalho, cliente esperando.</p>
+
+      <p>O pedido de Renan saiu incompleto. Tinha dado baixa no celular antes de conferir o físico. Um item ficou na prateleira. Custo: entrega parcial, ligação às 17h, motorista de volta.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Gilson ficou sabendo dos dois no mesmo dia. Tarde da tarde, quando os problemas já tinham chegado pelo telefone.</p>
+
+      <p>Ele não chamou ninguém. Ficou sentado, a nota que tinha ido buscar ainda na mão, e fez a conta rápida de cabeça: duas trocas, um reenvio, duas horas de dois funcionários resolvendo o que já tinha sido feito. E amanhã tudo igual. Beatriz com o papel dobrado, Renan com o celular. Porque ninguém nunca disse como deveria ser.</p>
+
+      <p>Não era culpa da Beatriz. Ela tinha feito o que sabia.</p>
+
+      <p>Não era culpa do Renan. Ele tinha feito o que funcionou.</p>
+
+      <p>O problema estava numa ausência. Em nenhum momento alguém tinha definido como a separação de pedido deveria ser feita naquele galpão. Gilson tinha contratado, mostrado onde ficavam as coisas, e deixado cada um achar o caminho.</p>
+
+      <p>E cada um achou.</p>
+
+      <p>O galpão tinha sete pessoas. Gilson foi pensando, lentamente, que provavelmente tinha sete formas de fazer a mesma tarefa. Talvez mais — algumas tarefas tinham variações que dependiam do dia, do humor, de quem estava disponível para ajudar.</p>
+
+      <p>Sete formas de separar pedido. Sete formas de receber mercadoria. Sete formas de registrar entrada. Nenhuma delas definida por ele. Todas elas funcionando até o dia que não funcionam.</p>
+
+      <p>E quando não funcionam, o custo não aparece com o nome de quem falhou. Aparece como problema do dia, urgência da tarde, retrabalho sem origem. Aparece como uma conta que ele paga sem conseguir apontar de onde veio.</p>
+
+      <p>Gilson saiu do galpão com a nota na mão, sem ter falado com ninguém.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">O dia seguinte seria igual. E ele sabia.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bloco 22 — P2 — Dinheiro como herança</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<title>Bloco 22 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
 .page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
@@ -16,28 +16,43 @@ header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;al
 .doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
 .doc-meta span{color:var(--gold);}
 .phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
-@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
 
-.content{padding:2.5rem 3rem 3rem;}
-.titulo-bloco{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:400;line-height:1.3;margin-bottom:0.3rem;color:var(--ink);}
-.subtitulo-pilar{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:1.8rem;}
-.instrucao-abertura{font-style:italic;font-size:0.85rem;line-height:1.6;color:var(--ink);margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border);}
+/* Dependency matrix */
+.matrix-wrap{margin-bottom:0.6rem;overflow-x:auto;}
+.matrix-table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+.matrix-table th{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;padding:0.5rem 0.7rem;border-bottom:1.5px solid var(--gold);background:var(--surface);text-align:left;white-space:nowrap;}
+.matrix-table td{padding:0.6rem 0.7rem;border-bottom:1px solid var(--border);vertical-align:middle;}
+.matrix-table .row-label{font-size:0.8rem;font-weight:500;color:var(--ink);white-space:nowrap;}
+.matrix-table .fill-cell{border-bottom:1px solid var(--border-dark);min-width:100px;height:1.5rem;display:block;}
+.matrix-table .check-cell{font-size:0.78rem;color:var(--ink);white-space:nowrap;letter-spacing:0.02em;}
+.hint{font-size:0.73rem;font-style:italic;color:var(--ink-light);line-height:1.55;margin-top:0.6rem;}
+
+/* Other fields */
 .pergunta-item{margin-bottom:1.8rem;}
-.pergunta-item label{display:block;font-weight:700;font-size:0.85rem;margin-bottom:0.6rem;color:var(--ink);}
-.pergunta-item .linhas{border:none;border-bottom:1px solid var(--border-dark);width:100%;padding:0.5rem 0;font-family:'DM Sans',sans-serif;font-size:0.82rem;background:transparent;color:var(--ink);margin-bottom:0.25rem;display:block;}
-.pergunta-item .linhas+.linhas{margin-top:0.15rem;}
-.pergunta-item .hint{font-style:italic;font-size:0.72rem;color:var(--ink-light);margin-top:0.4rem;line-height:1.5;}
-.separador{border:none;border-top:1px solid var(--border);margin:2rem 0;}
-.duvidas-section{margin-top:0.5rem;}
-.duvidas-section h3{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;}
-.duvida-item{margin-bottom:1.3rem;}
-.duvida-item .duvida-pergunta{font-weight:700;font-size:0.84rem;margin-bottom:0.3rem;color:var(--ink);}
-.duvida-item .duvida-resposta{font-size:0.82rem;line-height:1.6;color:var(--ink);}
-.resultado{border-left:3px solid var(--gold);padding:1rem 1.4rem;margin-top:2rem;background:var(--gold-dim);}
-.resultado h3{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.6rem;}
-.resultado p{font-size:0.85rem;line-height:1.65;color:var(--ink);}
-.rodape{padding:1.2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
-.rodape-texto{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.7rem;line-height:1.4;}
+.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-bottom:0.5rem;}
+.section-divider{border:none;border-top:1px solid var(--border);margin:1.8rem 0;}
+
+/* Duvidas + resultado */
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 </style>
 </head>
 <body>
@@ -46,91 +61,105 @@ header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;al
   <header>
     <div>
       <div class="logo-name">Vero</div>
-      <div class="logo-sub">Escola de Empresarios</div>
+      <div class="logo-sub">Escola de Empresários</div>
     </div>
-    <div class="doc-meta">Financeiro <span>&middot;</span> Bloco 22 <span>&middot;</span> Pagina 02</div>
-    <div class="phase-badge">Legado</div>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <span class="phase-badge">Legado</span>
+      <div class="doc-meta">Financeiro · <span>Bloco 22</span> · Página <span>02</span> / 02</div>
+    </div>
   </header>
 
-  <div class="content">
+  <div class="bloco-header">
+    <h1 class="bloco-title">Dinheiro como herança</h1>
+    <p class="bloco-sub">Mapeie as decisões financeiras do negócio: quem decide hoje, com qual critério — e o que acontece com cada uma delas quando você não estiver mais no comando.</p>
+  </div>
 
-    <h1 class="titulo-bloco">dinheiro como herança</h1>
-    <div class="subtitulo-pilar">Financeiro &middot; Legado</div>
+  <div class="canvas-section">
 
-    <p class="instrucao-abertura">Pense no dinheiro da sua empresa — não como número, mas como decisão. Quem decide o que ele faz hoje. E o que acontece com essas decisões quando você não estiver mais no comando.</p>
+    <div class="matrix-wrap">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Função financeira</th>
+            <th>Quem decide hoje</th>
+            <th>Critério documentado?</th>
+            <th>O que acontece sem você</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Custo fixo e reserva</td>
+            <td><span class="fill-cell"></span></td>
+            <td class="check-cell">☐ Sim &nbsp; ☐ Não</td>
+            <td><span class="fill-cell"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Onde investir</td>
+            <td><span class="fill-cell"></span></td>
+            <td class="check-cell">☐ Sim &nbsp; ☐ Não</td>
+            <td><span class="fill-cell"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Distribuição e pró-labore</td>
+            <td><span class="fill-cell"></span></td>
+            <td class="check-cell">☐ Sim &nbsp; ☐ Não</td>
+            <td><span class="fill-cell"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Limite de endividamento</td>
+            <td><span class="fill-cell"></span></td>
+            <td class="check-cell">☐ Sim &nbsp; ☐ Não</td>
+            <td><span class="fill-cell"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">comércio: giro e margem por produto · serviço: receita recorrente e inadimplência · indústria: custo de insumo e prazo de entrega</p>
+
+    <hr class="section-divider">
 
     <div class="pergunta-item">
-      <label>Quem saberia quanto a empresa precisa por mês para se manter — custo fixo, variável, reserva, compromissos assumidos:</label>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <p class="hint">custo de reposição sazonal e giro mínimo &middot; valor de contratos recorrentes e folha fixa &middot; volume de insumo por ordem de produção e prazo de entrega</p>
+      <div class="pergunta-label">O que aconteceria com o caixa nos primeiros 90 dias sem você:</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+      <p class="hint">assume com critério e mantém a operação · congela por medo de errar · gasta sem limite porque ninguém sabe o teto</p>
     </div>
 
-    <div class="pergunta-item">
-      <label>Quem saberia onde investir e por qual critério — regra documentada ou decisão de uma pessoa:</label>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <p class="hint">expansão de ponto comercial com payback definido &middot; compra de equipamento com retorno mínimo por ciclo &middot; ampliação de equipe vinculada a contrato fechado</p>
-    </div>
-
-    <div class="pergunta-item">
-      <label>Como o dinheiro é distribuído hoje — e quem define essa distribuição:</label>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <p class="hint">pró-labore, reinvestimento, reserva e retirada extra &middot; percentual fixo por área ou decisão caso a caso &middot; rateio entre sócios com ou sem regra de resultado</p>
-    </div>
-
-    <div class="pergunta-item">
-      <label>O que aconteceria com o caixa nos primeiros 90 dias sem você:</label>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <p class="hint">assume com critério claro e mantém a operação &middot; congela tudo por medo de errar &middot; gasta sem limite porque ninguém sabe o teto</p>
-    </div>
-
-    <div class="pergunta-item">
-      <label>O que você quer que o dinheiro signifique para o negócio depois de você:</label>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <span class="linhas">&nbsp;</span>
-      <p class="hint">instrumento de decisão com regra clara &middot; proteção contra crise com reserva mínima &middot; independência operacional sem depender de uma pessoa</p>
-    </div>
-
-    <hr class="separador">
-
-    <div class="duvidas-section">
-      <h3>Dúvidas comuns</h3>
-
-      <div class="duvida-item">
-        <p class="duvida-pergunta">"Eu construí isso. É justo que eu decida."</p>
-        <p class="duvida-resposta">É justo. Mas justo não é o mesmo que sustentável. Se a decisão depende de você, o que você construiu não sobrevive a você.</p>
-      </div>
-
-      <div class="duvida-item">
-        <p class="duvida-pergunta">"Ninguém vai cuidar do dinheiro como eu cuido."</p>
-        <p class="duvida-resposta">Provavelmente não. Mas cuidar com critério documentado é mais seguro do que cuidar com instinto que vai embora quando você vai.</p>
-      </div>
-
-      <div class="duvida-item">
-        <p class="duvida-pergunta">"Ainda não é a hora de pensar nisso."</p>
-        <p class="duvida-resposta">A hora de pensar é quando você ainda está decidindo. Quando você não estiver, só vai existir o que foi construído antes.</p>
-      </div>
-    </div>
-
-    <div class="resultado">
-      <h3>Resultado esperado</h3>
-      <p>Feito isso, você sabe se o que construiu financeiramente tem chance de continuar sem você — ou se o dinheiro do negócio ainda depende de quem manda, não de como funciona. Legado não é o que você acumulou. É o que continua com critério depois que você saiu.</p>
+    <div class="pergunta-item" style="margin-bottom:0;">
+      <div class="pergunta-label">O que você quer que o dinheiro signifique para o negócio depois de você:</div>
+      <span class="input-line"></span>
+      <span class="input-line"></span>
+      <p class="hint">instrumento de decisão com regra clara · proteção contra crise com reserva mínima · independência operacional</p>
     </div>
 
   </div>
 
-  <div class="rodape">
-    <div class="rodape-texto">Bloco 22 &middot; Financeiro &middot; Legado</div>
-    <div class="rodape-texto">Vero &mdash; Escola de Empresarios</div>
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Eu construí isso. É justo que eu decida."</p>
+      <p class="duvida-a">É justo. Mas justo não é o mesmo que sustentável. Se a decisão depende de você, o que você construiu não sobrevive a você.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Ninguém vai cuidar do dinheiro como eu cuido."</p>
+      <p class="duvida-a">Provavelmente não. Mas cuidar com critério documentado é mais seguro do que cuidar com instinto que vai embora quando você vai.</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Ainda não é a hora de pensar nisso."</p>
+      <p class="duvida-a">A hora de pensar é quando você ainda está decidindo. Quando você não estiver, só vai existir o que foi construído antes.</p>
+    </div>
   </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você sabe se o que construiu financeiramente tem chance de continuar sem você — ou se o dinheiro do negócio ainda depende de quem manda, não de como funciona. Legado não é o que você acumulou. É o que continua com critério depois que você saiu.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
 
 </div>
 </body>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operação · Raiz · Bloco 05 · P1 — O que ninguém passou pra frente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;line-height:1.5;}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.55;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.mid-break{margin:1.8rem 0;height:1px;background:var(--border);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta{font-size:0.93rem;font-weight:500;color:var(--ink);margin-bottom:0.5rem;line-height:1.45;}
+.hint{font-size:0.74rem;font-weight:300;color:var(--ink-light);margin-bottom:0.9rem;line-height:1.5;letter-spacing:0.01em;}
+.resposta-linha{display:block;border-bottom:1px solid var(--border-dark);height:1.5rem;width:100%;margin-bottom:0.6rem;}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;line-height:1.5;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · <span>🌱 Raiz</span> · Bloco 05 · Página 01</div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1511795409834-432f7b1728b2?w=800&q=80" alt="Evento sendo montado, cenário de stress">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que ninguém passou pra frente</h1>
+    <p class="bloco-sub">Operação · Fase Raiz · Bloco 05</p>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Quando o cliente reclama, qual área da sua empresa não sabia o que a outra tinha prometido?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p>A cliente havia confirmado o buffet para duzentas pessoas. Cento e oitenta cadeiras montadas no salão. Dois banheiros químicos no pátio externo. Sinalização na entrada com o nome do aniversariante.</p>
+
+      <p>Renata soube de tudo isso pela própria cliente — na tarde do evento.</p>
+
+      <div class="mid-break"></div>
+
+      <p>O atendimento tinha fechado o contrato três semanas antes. Formulário padrão preenchido, sinal pago, data bloqueada na agenda. O que ficou de fora do formulário: a mesa temática de doces, o tapete vermelho na entrada, o microfone sem fio para o discurso às vinte e uma horas.</p>
+
+      <p>Detalhes combinados por mensagem. Anotados num papel. Não repassados para ninguém.</p>
+
+      <p>A produção começou a montar o evento com o que tinha: o contrato. Só o contrato. Sem saber do tapete, sem saber do microfone, sem saber que a cliente tinha mandado referência de decoração no WhatsApp dois dias depois de assinar.</p>
+
+      <p>Na manhã do evento, a equipe de entrega chegou ao espaço e encontrou a montagem pronta — dentro do que foi pedido no contrato. Quando a cliente chegou duas horas antes para conferir, percebeu que faltava tudo o que havia combinado depois.</p>
+
+      <p>Começou o improviso.</p>
+
+      <p>Renata foi acionada às dezesseis horas. Ligação atrás de ligação. A cliente repetindo o que havia pedido. Renata ligando para a produção tentando entender onde tinha travado. A produção garantindo que montou exatamente o que estava no papel. O atendimento, quando acionado, confirmando que tinha anotado tudo — mas que não sabia que precisava passar pra alguém.</p>
+
+      <p>O tapete foi buscado às pressas numa locadora. O microfone, emprestado de outro evento que acontecia no mesmo dia. A mesa de doces foi montada com o que havia no estoque, sem a identidade visual que a cliente tinha enviado.</p>
+
+      <p>O evento aconteceu. Com atraso de quarenta minutos na abertura e uma cliente que não recomendou ninguém.</p>
+
+      <p>Nos dias seguintes, Renata conversou com cada um. O atendimento não tinha errado — tinha feito o que sempre fazia. A produção não tinha errado — tinha montado o que estava no contrato. A entrega não tinha errado — tinha chegado no horário e executado o que estava pronto.</p>
+
+      <p>O erro estava antes de qualquer um deles.</p>
+
+      <p>Renata nunca tinha definido como a informação deveria circular entre as três pontas. Não havia um canal. Não havia um responsável. Não havia um momento em que o atendimento repassava para a produção tudo o que havia sido combinado — no contrato e fora dele.</p>
+
+      <p>Cada área operava com o que chegava até ela. E o que chegava era sempre incompleto.</p>
+
+      <p>Essa não foi a primeira vez. Renata conseguia lembrar de pelo menos três eventos nos últimos seis meses em que algo parecido havia acontecido. Sempre uma informação que ficou numa conversa de WhatsApp. Sempre uma promessa que o cliente lembrava e a equipe não.</p>
+
+      <p>A decisão de não criar esse fluxo era dela. E ela nunca tinha tomado outra.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Enquanto essa decisão não mudar, o próximo evento começa do mesmo lugar.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Escola de Empresários</div>
+    <div class="footer-nav"><a href="p2.html">Canvas →</a></div>
+    <div class="page-num">01</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 06 · P2 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--border:#E0D9CE;--border-dark:#C8BFB0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;line-height:1.5;}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.55;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--ink);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.mid-break{margin:1.8rem 0;height:1px;background:var(--border);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--ink);}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+.pergunta{font-size:0.93rem;font-weight:500;color:var(--ink);margin-bottom:0.5rem;line-height:1.45;}
+.hint{font-size:0.74rem;font-weight:300;color:var(--ink-light);margin-bottom:0.9rem;line-height:1.5;letter-spacing:0.01em;}
+.resposta-linha{display:block;border-bottom:1px solid var(--border-dark);height:1.5rem;width:100%;margin-bottom:0.6rem;}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;line-height:1.5;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+@media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · <span>🌱 Raiz</span> · Bloco 06 · Página 02</div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O ambiente que você construiu</h1>
+    <p class="bloco-sub">Cada comportamento que você atribuiu à pessoa errada foi produzido em algum momento pelo ambiente que você criou. Mapeie o que você deixou acontecer — não o que eles fizeram.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Comportamento recorrente que mais te irritou nos últimos 6 meses</p>
+      <p class="hint">ex. comércio: atraso no fechamento do caixa · ex. serviço: cliente atendido de forma diferente por cada pessoa · ex. indústria: retrabalho sem registro de causa</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Qual era a instrução clara e documentada para esse comportamento?</p>
+      <p class="hint">ex. comércio: não havia checklist de fechamento · ex. serviço: orientação era verbal e variava por dia · ex. indústria: o padrão existia, mas nunca foi treinado formalmente</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quem deveria ter cobrado esse padrão — e o que faltava para essa pessoa cobrar?</p>
+      <p class="hint">ex. comércio: o gerente cobrava, mas sem critério definido · ex. serviço: a equipe não sabia o que seria cobrado · ex. indústria: a liderança de linha não tinha autoridade formalizada</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que você tolerou por mais tempo do que deveria — e por quê tolerou?</p>
+      <p class="hint">ex. comércio: atraso na conferência porque o movimento era alto · ex. serviço: atendimento inconsistente porque "todo mundo entendia o cliente diferente" · ex. indústria: peça fora do padrão aceita porque o prazo apertava</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Qual decisão estrutural você adiou que teria impedido o problema?</p>
+      <p class="hint">ex. comércio: criar o procedimento de fechamento antes de contratar o terceiro caixa · ex. serviço: definir o protocolo de atendimento antes de aumentar a equipe · ex. indústria: travar o processo de inspeção antes de abrir nova linha de produção</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Que padrão mínimo você ainda não colocou no papel — e que por isso depende de você aparecer?</p>
+      <p class="hint">ex. comércio: critério de aceite de troca ou devolução · ex. serviço: o que define uma entrega concluída para o cliente · ex. indústria: o que qualifica ou desqualifica um lote antes de embalar</p>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+      <span class="resposta-linha"></span>
+    </div>
+
+  </div>
+
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Eu sei que minha estrutura tem problemas — mas as pessoas que contratei também não ajudaram. Não dá pra colocar tudo em mim."</p>
+      <p class="duvida-a">Não dá pra colocar tudo em você — e também não dá pra colocar tudo nelas. O ponto é que o ambiente veio primeiro. Você contratou gente nova dentro de um ambiente que já produzia os erros que você queria eliminar. A estrutura não mudou. O resultado, previsível.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Sempre achei que o problema era de perfil — que a próxima contratação ia ser diferente, mais cuidadosa, mais comprometida. Agora fico me perguntando se estava esperando que uma pessoa consertasse o que o processo nunca teve."</p>
+      <p class="duvida-a">Estava. E isso não é fraqueza — é o que qualquer um faz quando não tem uma estrutura clara para comparar. Sem padrão definido, o critério vira esperança. E esperança não escala.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"O que me trava é o seguinte: e se eu montar a estrutura, definir tudo direitinho — e os erros continuarem? Não sei se consigo encarar o que isso diria sobre mim."</p>
+      <p class="duvida-a">Diria que estrutura resolve o que é estrutural — e que pode ainda haver algo que você ainda não nomeou. Isso não é derrota. É o próximo nível de diagnóstico. O empresário que para aqui porque tem medo da resposta é o que continua culpando gente por mais dez anos.</p>
+    </div>
+
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Quem termina este bloco não termina com uma lista de tarefas. Termina com o peso exato de ter construído o ambiente que criticou — e com a clareza de que a próxima fase começa apenas quando esse peso for assumido sem atenuante.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Escola de Empresários</div>
+    <div class="footer-nav">← Narrativa <a href="p1.html">p1.html</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

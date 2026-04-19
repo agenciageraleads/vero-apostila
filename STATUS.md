@@ -1,21 +1,21 @@
 # STATUS — Apostila Vero
 
 > Dashboard rapido de todos os blocos. Atualizar a cada aprovacao.
-> Ultima atualizacao: 2026-04-12 (Financeiro completo)
+> Ultima atualizacao: 2026-04-18 (Operacao Raiz — fase completa, Blocos 01-06)
 
 ## Resumo
 
 | Pilar | Total | ⬜ | ✍️ | 🔬 | ✅ | 🎨 | 📄 |
 |-------|-------|---|----|---|----|---|----|
 | Financeiro | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
-| Operacao | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
+| Operacao | 22 | 16 | 0 | 0 | 0 | 0 | 6 |
 | Vendas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
 | Pessoas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL** | **88** | **66** | **0** | **0** | **0** | **0** | **22** |
+| **TOTAL** | **88** | **60** | **0** | **0** | **0** | **0** | **28** |
 
 Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado | 🎨 Em design | 📄 Finalizado
 
-## Proximo bloco: Operacao > Raiz > Bloco 01
+## Proximo bloco: Operacao > Trilha > Bloco 07
 
 ---
 
@@ -52,12 +52,12 @@ Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado |
 
 | # | Fase | Bloco | Status | Data |
 |---|------|-------|--------|------|
-| 01 | 🌱 Raiz | Operacao depende do dono | ⬜ | - |
-| 02 | 🌱 Raiz | Apagar incendio e padrao | ⬜ | - |
-| 03 | 🌱 Raiz | Retrabalho e desperdicio | ⬜ | - |
-| 04 | 🌱 Raiz | Cada pessoa faz do seu jeito | ⬜ | - |
-| 05 | 🌱 Raiz | Areas nao conversam | ⬜ | - |
-| 06 | 🌱 Raiz | Culpa das pessoas = problema de estrutura | ⬜ | - |
+| 01 | 🌱 Raiz | Operacao depende do dono | 📄 | 2026-04-15 |
+| 02 | 🌱 Raiz | Apagar incendio e padrao | 📄 | 2026-04-18 |
+| 03 | 🌱 Raiz | Retrabalho e desperdicio | 📄 | 2026-04-18 |
+| 04 | 🌱 Raiz | Cada pessoa faz do seu jeito | 📄 | 2026-04-18 |
+| 05 | 🌱 Raiz | Areas nao conversam | 📄 | 2026-04-18 |
+| 06 | 🌱 Raiz | Culpa das pessoas = problema de estrutura | 📄 | 2026-04-18 |
 | 07 | 🛤️ Trilha | Fluxo operacional que se repete | ⬜ | - |
 | 08 | 🛤️ Trilha | Padrao minimo nao e engessamento | ⬜ | - |
 | 09 | 🛤️ Trilha | Gargalo e do sistema | ⬜ | - |

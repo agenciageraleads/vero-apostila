@@ -20,13 +20,30 @@ header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;al
 .bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;}
 .bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
 .canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+/* Audit table */
+.audit-table-wrap{margin-bottom:0.6rem;overflow-x:auto;}
+.audit-table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+.audit-table th{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;padding:0.5rem 0.7rem;border-bottom:1.5px solid var(--gold);background:var(--surface);text-align:left;white-space:nowrap;}
+.audit-table td{padding:0.75rem 0.7rem;border-bottom:1px solid var(--border);vertical-align:bottom;}
+.audit-table .fill-cell{border-bottom:1px solid var(--border-dark);min-width:120px;height:1.6rem;}
+.hint{font-size:0.73rem;font-style:italic;color:var(--ink-light);line-height:1.55;margin-top:0.6rem;}
+
+/* Fragile + protection sections */
 .pergunta-item{margin-bottom:1.8rem;}
 .pergunta-item:last-child{margin-bottom:0;}
 .pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.7rem;line-height:1.4;}
 .input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-bottom:0.5rem;}
-.hint{font-size:0.73rem;font-style:italic;color:var(--ink-light);line-height:1.55;margin-top:0.5rem;}
 .section-divider{border:none;border-top:1px solid var(--border);margin:1.8rem 0;}
-.pergunta-item--chave{padding-left:1.2rem;border-left:2px solid var(--gold);}
+
+/* Numbered protection list */
+.protect-list{list-style:none;margin:0.4rem 0;}
+.protect-list li{display:flex;align-items:flex-start;gap:0.8rem;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.protect-list li:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.protect-num{font-family:'DM Mono',monospace;font-size:0.85rem;font-weight:500;color:var(--gold);min-width:1.2rem;margin-top:0.05rem;}
+.protect-line{flex:1;border-bottom:1px solid var(--border-dark);height:1.3rem;display:block;}
+
+/* Duvidas + resultado */
 .duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
 .duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
 .duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
@@ -59,45 +76,60 @@ footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space
 
   <div class="bloco-header">
     <h1 class="bloco-title">Sistemas absorvem erro</h1>
-    <p class="bloco-sub">Identifique onde um erro financeiro causaria mais estrago do que deveria — e o que pode existir entre o erro e o impacto.</p>
+    <p class="bloco-sub">Mapeie onde erros financeiros já causaram dano — e o que pode existir entre o erro e o impacto.</p>
   </div>
 
   <div class="canvas-section">
 
-    <div class="pergunta-item">
-      <div class="pergunta-label">Erros financeiros que já aconteceram na operação:</div>
-      <span class="input-line"></span>
-      <span class="input-line"></span>
-      <span class="input-line"></span>
-      <p class="hint">pagamento em duplicidade · cobrança esquecida · nota emitida com valor errado · cálculo de custo com dado desatualizado · depósito na conta errada</p>
+    <div class="audit-table-wrap">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Erro que já aconteceu</th>
+            <th>Tempo até perceber</th>
+            <th>O que deveria ter bloqueado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fill-cell"></span></td>
+            <td><span class="fill-cell"></span></td>
+            <td><span class="fill-cell"></span></td>
+          </tr>
+          <tr>
+            <td><span class="fill-cell"></span></td>
+            <td><span class="fill-cell"></span></td>
+            <td><span class="fill-cell"></span></td>
+          </tr>
+          <tr>
+            <td><span class="fill-cell"></span></td>
+            <td><span class="fill-cell"></span></td>
+            <td><span class="fill-cell"></span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <p class="hint">pagamento duplicado · cobrança esquecida · nota com valor errado · cálculo com dado desatualizado · depósito na conta errada</p>
 
-    <div class="pergunta-item">
-      <div class="pergunta-label">Quanto tempo levou para alguém perceber:</div>
-      <span class="input-line"></span>
-      <span class="input-line"></span>
-      <p class="hint">horas · dias · semanas · só apareceu no fechamento do mês · ninguém percebeu até o cliente reclamar</p>
-    </div>
-
-    <div class="pergunta-item pergunta-item--chave">
-      <div class="pergunta-label">O que o sistema deveria ter bloqueado ou sinalizado:</div>
-      <span class="input-line"></span>
-      <span class="input-line"></span>
-      <p class="hint">dupla conferência para valores acima de X · alerta automático de divergência · conciliação periódica · aprovação de segundo gestor</p>
-    </div>
+    <hr class="section-divider">
 
     <div class="pergunta-item">
       <div class="pergunta-label">Onde um erro hoje quebraria mais do que deveria:</div>
       <span class="input-line"></span>
       <span class="input-line"></span>
-      <p class="hint">pagamento duplicado que compromete capital de giro · venda abaixo do custo que só aparece no fechamento · crédito liberado sem garantia · reajuste aplicado errado em contrato recorrente</p>
+      <p class="hint">capital de giro comprometido · venda abaixo do custo sem saber · crédito liberado sem garantia · reajuste errado em contrato recorrente</p>
     </div>
 
+    <hr class="section-divider">
+
     <div class="pergunta-item" style="margin-bottom:0;">
-      <div class="pergunta-label">O que pode existir como camada de proteção sem depender de atenção humana:</div>
-      <span class="input-line"></span>
-      <span class="input-line"></span>
-      <p class="hint">regra automática de bloqueio por valor · rotina de conferência com frequência fixa · limite de alçada por função · relatório de exceções periódico</p>
+      <div class="pergunta-label">Camadas de proteção — do mais urgente ao que pode esperar:</div>
+      <ul class="protect-list">
+        <li><span class="protect-num">①</span><span class="protect-line"></span></li>
+        <li><span class="protect-num">②</span><span class="protect-line"></span></li>
+        <li><span class="protect-num">③</span><span class="protect-line"></span></li>
+      </ul>
+      <p class="hint" style="margin-top:1rem;">dupla conferência acima de valor X · conciliação periódica com data fixa · limite de alçada por função · relatório de exceções semanal</p>
     </div>
 
   </div>
