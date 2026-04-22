@@ -5,6 +5,73 @@
 
 ---
 
+## Sessao 12 — 2026-04-22
+
+### O que foi feito
+- [x] Fase Gestao completa — Operacao Blocos 12 a 16 (todos os 5 blocos)
+- [x] 20 arquivos criados: p1.md + p2.md + p1.html + p2.html × 5 blocos
+- [x] Workflow completo executado: Marco → Paulo → Marco → Vera → Iris → Ana → Roberto+Carla+Marcos → Sofia
+- [x] STATUS.md atualizado: 38/88 blocos finalizados
+- [x] Commit + push para GitHub Pages
+
+### Blocos trabalhados
+| Bloco | Titulo | Personagem | Status |
+|-------|--------|------------|--------|
+| Operacao > Gestao > 12 | Eficiencia nao e melhorar tudo | Fabio | Finalizado |
+| Operacao > Gestao > 13 | Custo cresce sem gerar valor | Silvana | Finalizado |
+| Operacao > Gestao > 14 | O custo de nao decidir | Andre | Finalizado |
+| Operacao > Gestao > 15 | Qualidade que vale o custo | Luciana | Finalizado |
+| Operacao > Gestao > 16 | Expandir ou aprofundar controle | Rodrigo | Finalizado |
+
+### Decisoes tomadas
+| Decisao | Motivo |
+|---------|--------|
+| Bloco 14 reescrito do zero por Marco | Primeira versao era diagnostico de paralisia (3 caminhos explicativos); Gestao exige dilema com 2 caminhos e preco — Vera rejeitou, Paulo confirmou |
+| Bloco 13 P1 — "crescendo" substituido por "a receita dobrou" | Ana sinalizou vocabulario proibido em contexto ambiguo de promessa |
+| Bloco 14 P2 — Resultado Esperado reescrito com acoes concretas | Ana apontou que "para de consumir energia" era esperanca, nao consequencia observavel |
+| Bloco 16 P1 — 2 frases de renunciad adicionadas | Ana apontou que custos eram descritos racionalmente sem visceridade; frases nomeiam o que Rodrigo abandona em cada caminho |
+| Fase Gestao: Lucas aprova fase inteira (nao bloco a bloco) | Modelo de aprovacao por onda — mais eficiente e coerente com o volume |
+
+### Proximo passo
+Operacao > Legado > Bloco 17 (Operacao sem pessoas-chave)
+
+### Pendencias
+- Nenhuma pendencia aberta
+
+---
+
+## Sessao 11 — 2026-04-19
+
+### O que foi feito
+- [x] Fase Trilha completa — Operacao Blocos 07 a 11 (todos os 5 blocos)
+- [x] 20 arquivos criados: p1.md + p2.md + p1.html + p2.html × 5 blocos
+- [x] Workflow completo executado por onda paralela para os 5 blocos
+- [x] STATUS.md atualizado: 33/88 blocos finalizados
+- [x] Commit + push para GitHub Pages
+
+### Blocos trabalhados
+| Bloco | Titulo | Personagem | Status |
+|-------|--------|------------|--------|
+| Operacao > Trilha > 07 | O pedido que nunca anda sozinho | Beatriz vs Jonas | Finalizado |
+| Operacao > Trilha > 08 | Checklist nao e jaula | Beatriz vs Henrique | Finalizado |
+| Operacao > Trilha > 09 | Quem voce trocou nao era o problema | Renato vs Giovana | Finalizado |
+| Operacao > Trilha > 10 | O custo que ninguem pediu para gerar | Helio vs Renata | Finalizado |
+| Operacao > Trilha > 11 | O numero que voce prometeu | Marcelo vs Renata | Finalizado |
+
+### Decisoes tomadas
+| Decisao | Motivo |
+|---------|--------|
+| Bloco 08 reescrito — Beatriz sem consequencias visiveis | Vera sinalizou falta de antagonismo real; reescrito mostrando Beatriz pagando o preco duas vezes na mesma semana |
+| Hints Bloco 09 ajustados para confeccao e limpeza | 3 validadores sinalizaram hints presos no contexto de grafica (arquivo/validacao tecnica) |
+| Bloco 10 P2 Resultado Esperado reescrito | Repetia revelacao da P1 em vez de apontar acao |
+| Bloco 11 P2 duvidas reescritas em primeira pessoa | Eram contra-argumentos logicos, nao resistencias emocionais |
+| Bloco 07 P2 ordem de campos corrigida | Iniciava com entrada abstrata de fluxo; reordenado para comecar com o que travou da ultima vez |
+
+### Proximo passo
+Operacao > Gestao > Bloco 12
+
+---
+
 ## Sessao 10 — 2026-04-18
 
 ### O que foi feito
