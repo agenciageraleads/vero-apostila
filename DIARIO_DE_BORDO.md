@@ -5,6 +5,41 @@
 
 ---
 
+## Sessao 13 — 2026-04-22
+
+### O que foi feito
+- [x] Fase Legado completa — Operacao Blocos 17 a 22 (todos os 6 blocos)
+- [x] 24 arquivos criados: p1.md + p2.md + p1.html + p2.html × 6 blocos
+- [x] Workflow completo executado: Marco → Paulo → Marco → Vera → Iris → Ana → Roberto+Carla+Marcos → Sofia
+- [x] STATUS.md atualizado: 44/88 blocos finalizados (Pilar Operacao completo)
+- [x] Commit + push para GitHub Pages
+
+### Blocos trabalhados
+| Bloco | Titulo | Personagem | Status |
+|-------|--------|------------|--------|
+| Operacao > Legado > 17 | Operacao sem pessoas-chave | Regis / Dani | Finalizado |
+| Operacao > Legado > 18 | Governanca operacional | Felipe vs Claudio | Finalizado |
+| Operacao > Legado > 19 | Processos absorvem erro | Tatiane | Finalizado |
+| Operacao > Legado > 20 | Eficiencia sem perder identidade | Marcela vs Jonas | Finalizado |
+| Operacao > Legado > 21 | Preparada para ciclos e crises | Heloisa vs Bruno | Finalizado |
+| Operacao > Legado > 22 | Operacao como heranca | Nelson | Finalizado |
+
+### Decisoes tomadas
+| Decisao | Motivo |
+|---------|--------|
+| Paulo cortou explicacoes de metodo em 5 dos 6 blocos | Blocos 18-22 explicavam o que a narrativa ja mostrava — Legado nao prescrevia |
+| Bloco 19 P2 — "P para processo e P para pessoa" corrigido para Proc/Pes | Erro tipografico com simbolo duplicado identificado por Ana |
+| Regra fabricada "45 linhas max" de Ana ignorada | Nao existe no spec — todos os P2s do projeto tem 80-90 linhas e foram aprovados |
+| Pilar Operacao 100% completo | 22/22 blocos finalizados em todas as fases (Raiz, Trilha, Gestao, Legado) |
+
+### Proximo passo
+Vendas > Raiz > Bloco 01 (Venda depende do dono)
+
+### Pendencias
+- Nenhuma pendencia aberta
+
+---
+
 ## Sessao 12 — 2026-04-22
 
 ### O que foi feito

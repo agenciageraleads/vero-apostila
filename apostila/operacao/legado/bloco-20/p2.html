@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 20 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🏛️ Legado · <span>Bloco 20</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que é critério e o que é hábito seu</h1>
+    <p class="bloco-sub">Jonas não abriu mão do que importava — separou o critério da execução. Marcela acreditou que padronizar qualquer coisa significaria perder o que os clientes compravam. Este canvas força essa separação.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quais são os elementos do seu trabalho que você acredita que não podem ser delegados — porque definem o que os clientes compram de você? Não filtre ainda. Escreva o que vier. Você vai analisar depois.</p>
+      <p class="hint"><em>ex. comércio: a curadoria de produtos que entram no mix, a negociação com fornecedores estratégicos, a decisão de precificação em produtos de alta margem · ex. serviço: a definição do escopo inicial com o cliente, a aprovação final da entrega, a decisão sobre quando cobrar por escopo adicional · ex. indústria: a escolha de insumos para pedidos de alto valor, a aprovação de novos fornecedores, a decisão de aceitar encomendas fora do padrão</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Para cada item listado acima: é critério (pode ser descrito como regra de decisão) ou é hábito seu (você decide na hora baseado em sensação ou experiência acumulada)? Critério pode ser escrito. Hábito, por enquanto, só você carrega. Use "C" para critério e "H" para hábito.</p>
+      <p class="hint"><em>ex. critério: "aceito pedido fora do padrão quando a margem for acima de X% e o prazo de entrega for superior a Y dias" — isso pode ser escrito · ex. hábito: "eu sei quando o cliente está insatisfeito pelo tom da mensagem" — isso ainda não tem critério explícito</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Escolha um item marcado como hábito. O que você faria diferente — e por quê — em relação a um colaborador que tomasse essa mesma decisão? Descreva o raciocínio. Se você conseguir escrever o raciocínio, ele pode ser ensinado. Se não conseguir, ainda é hábito — mas agora você sabe onde está o limite.</p>
+      <p class="hint"><em>ex. comércio: "quando o fornecedor propõe desconto acima de 15%, eu sempre confiro o lote antes de fechar porque já tive problema de qualidade nessa faixa" — esse raciocínio pode virar critério · ex. serviço: "quando o cliente pede algo fora do escopo, eu decido na hora se cobra ou absorve" — esse ainda não tem critério explícito</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que, na sua operação, qualquer pessoa bem treinada poderia executar com qualidade — mas que hoje ainda passa por você porque nunca foi documentado? Não é sobre talento da equipe. É sobre o que falta de estrutura para que a execução não precise de você.</p>
+      <p class="hint"><em>ex. comércio: a reposição de produtos de giro alto segue um padrão que você sabe mas não escreveu · ex. serviço: a comunicação de prazo com o cliente segue uma linguagem que você sempre ajusta antes de enviar · ex. indústria: a definição do sequenciamento de produção para a semana segue critérios que o gestor de produção ainda não tem formalizados</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu documentar o critério, o cliente vai achar que não estou mais envolvido."</p>
+      <p class="duvida-a">O cliente compra o resultado com o seu critério — não a sua presença em cada etapa. Jonas tinha dois ateliês com a mesma identidade. Os clientes compravam a linguagem, não a hora do Jonas. Critério documentado não reduz a entrega — ele a torna replicável sem depender de improviso.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Tentei delegar antes e a entrega não ficou no nível. Tive que refazer."</p>
+      <p class="duvida-a">Marcela também. A pergunta não é se a primeira tentativa funcionou. É o que estava faltando para que funcionasse. Delegar sem critério escrito é transferir a tarefa sem transferir o padrão — o resultado vai depender da sorte de quem executa, não da estrutura que você construiu.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Meu mercado é diferente. O que me diferencia é justamente o que não pode ser padronizado."</p>
+      <p class="duvida-a">Tudo que é reconhecível tem padrão — mesmo que você ainda não o tenha nomeado. O que não pode ser padronizado é a improvisação. O critério que você usa para tomar decisões é reconhecível, repetível e, portanto, pode ser escrito. Se não puder, não é diferencial — é dependência.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Ao concluir este canvas, você terá separado o que é critério do que ainda é hábito pessoal — e identificado o que a equipe poderia executar se o critério existisse por escrito. Esse é o mapa do que precisa ser construído para que a identidade da sua operação deixe de morar só em você.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

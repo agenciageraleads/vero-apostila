@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 19 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+.hint-text{
+  display:block;
+  font-family:'DM Mono',monospace;
+  font-size:0.7rem;
+  color:var(--gold);
+  margin-bottom:0.6rem;
+  letter-spacing:0.04em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🏛️ Legado · <span>Bloco 19</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Onde o erro é capturado — e quem captura</h1>
+    <p class="bloco-sub">Os antigos de Tatiane não erravam porque carregavam o critério na cabeça. Os novos erraram porque esse critério nunca foi escrito. Este canvas mapeia onde o seu processo segura o erro — e onde só uma pessoa experiente o percebe a tempo.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Mapeie as etapas principais da sua operação. Para cada uma, indique: o erro é capturado pelo processo (existe um passo de verificação formal) ou depende de alguém experiente perceber? Se a maioria for pessoa, esse é o diagnóstico.</p>
+      <p class="hint"><em>ex. comércio: conferência de pedido antes do envio — processo (checklist físico assinado) · separação de produto por lote — pessoa (o separador experiente reconhece o lote vencido antes de embalar) · ex. serviço: abertura de chamado com dados completos — processo (formulário obrigatório no sistema) · priorização de urgência — pessoa (quem atende o telefone decide na hora) · ex. indústria: controle de qualidade antes de embalar — processo (formulário de inspeção por lote) · ajuste de máquina para material específico — pessoa (o operador sênior sabe qual regulagem usar)</em></p>
+      <p class="pergunta" style="font-weight:400;font-size:0.88rem;">Etapa / Processo ou Pessoa:</p>
+      <span class="hint-text">Proc = processo · Pes = pessoa</span>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quais etapas marcadas como "pessoa" representam risco real se essa pessoa sair ou se afastar por duas semanas? Não liste todas — liste as que, se falharem, chegam até o cliente.</p>
+      <p class="hint"><em>ex. comércio: o separador sênior que reconhece produto próximo do vencimento antes do envio · ex. serviço: o técnico que sabe que aquele cliente específico exige confirmação por e-mail antes de fechar o chamado · ex. indústria: o operador que ajusta a prensa para o turno da tarde porque a máquina aquece e muda o parâmetro</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Para cada etapa de risco listada: o critério que essa pessoa usa existe em algum lugar fora da cabeça dela? Checklist, instrução de trabalho, protocolo, ficha de cliente — qualquer registro que permita a outra pessoa operar com o mesmo critério.</p>
+      <p class="hint"><em>Etapa de risco / Existe registro? (Sim / Não / Parcial)</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Qual o custo real de um erro que passa por uma etapa sem registro e chega ao cliente? Não estime em abstrato. Use um erro que já aconteceu ou que poderia acontecer na próxima semana se a pessoa certa faltasse.</p>
+      <p class="hint"><em>ex. comércio: entrega de produto errado por lote, custo de devolução e reposição urgente · ex. serviço: falha de protocolo em área crítica, perda de contrato · ex. indústria: lote reprovado pelo cliente, retrabalho de turno inteiro e prazo de entrega comprometido</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Não tem como documentar tudo — a operação é muito específica."</p>
+      <p class="duvida-a">Ninguém documenta tudo. O que precisa ser documentado são as etapas onde o erro, se não for percebido por alguém experiente, chega ao cliente. Isso é uma lista pequena — não uma enciclopédia. Tatiane levou quatro meses para reconstruir o que deveria existir. Você pode começar pelas três etapas de maior risco agora.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Os meus profissionais experientes vão ficar — não vejo motivo para preocupação."</p>
+      <p class="duvida-a">Quatro saíram em sequência na empresa de Tatiane. Aposentadoria, mudança de cidade, proposta do concorrente. Nenhuma dessas saídas foi evitável. O que era evitável era a dependência de que ficassem.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu escrever o passo a passo, o novo vai seguir o checklist sem entender o porquê."</p>
+      <p class="duvida-a">O objetivo não é substituir o julgamento — é garantir que o julgamento básico não dependa de anos de empresa. Um novo profissional com checklist erra menos do que um novo profissional sem referência alguma. O critério vem com o tempo. A ausência de checklist não acelera isso — só aumenta o custo dos erros enquanto o tempo passa.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Ao concluir este canvas, você terá nomeado as etapas onde o seu processo depende de conhecimento tácito — e calculado o risco real de perder esse conhecimento sem registro. Esse mapeamento não documenta nada ainda. Ele define o que precisa ser documentado primeiro.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

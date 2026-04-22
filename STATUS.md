@@ -1,21 +1,21 @@
 # STATUS — Apostila Vero
 
 > Dashboard rapido de todos os blocos. Atualizar a cada aprovacao.
-> Ultima atualizacao: 2026-04-22 (Operacao Gestao — Blocos 12-16 finalizados)
+> Ultima atualizacao: 2026-04-22 (Operacao Legado — Blocos 17-22 finalizados)
 
 ## Resumo
 
 | Pilar | Total | ⬜ | ✍️ | 🔬 | ✅ | 🎨 | 📄 |
 |-------|-------|---|----|---|----|---|----|
 | Financeiro | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
-| Operacao | 22 | 6 | 0 | 0 | 0 | 0 | 16 |
+| Operacao | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
 | Vendas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
 | Pessoas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL** | **88** | **50** | **0** | **0** | **0** | **0** | **38** |
+| **TOTAL** | **88** | **44** | **0** | **0** | **0** | **0** | **44** |
 
 Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado | 🎨 Em design | 📄 Finalizado
 
-## Proximo bloco: Operacao > Legado > Bloco 17
+## Proximo bloco: Vendas > Raiz > Bloco 01
 
 ---
 
@@ -68,12 +68,12 @@ Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado |
 | 14 | 🧠 Gestao | Padronizar, automatizar ou aceitar | 📄 | 2026-04-22 |
 | 15 | 🧠 Gestao | Qualidade que vale o custo | 📄 | 2026-04-22 |
 | 16 | 🧠 Gestao | Expandir ou aprofundar controle | 📄 | 2026-04-22 |
-| 17 | 🏛️ Legado | Operacao sem pessoas-chave | ⬜ | - |
-| 18 | 🏛️ Legado | Governanca operacional | ⬜ | - |
-| 19 | 🏛️ Legado | Processos absorvem erro | ⬜ | - |
-| 20 | 🏛️ Legado | Eficiencia sem perder identidade | ⬜ | - |
-| 21 | 🏛️ Legado | Preparada para ciclos e crises | ⬜ | - |
-| 22 | 🏛️ Legado | Operacao como heranca | ⬜ | - |
+| 17 | 🏛️ Legado | Operacao sem pessoas-chave | 📄 | 2026-04-22 |
+| 18 | 🏛️ Legado | Governanca operacional | 📄 | 2026-04-22 |
+| 19 | 🏛️ Legado | Processos absorvem erro | 📄 | 2026-04-22 |
+| 20 | 🏛️ Legado | Eficiencia sem perder identidade | 📄 | 2026-04-22 |
+| 21 | 🏛️ Legado | Preparada para ciclos e crises | 📄 | 2026-04-22 |
+| 22 | 🏛️ Legado | Operacao como heranca | 📄 | 2026-04-22 |
 
 ---
 

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 21 · P1 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4.5vw,2.8rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+
+.pergunta-section{
+  padding:1.8rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.pergunta-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  line-height:1.55;
+  color:var(--ink);
+  border-left:2px solid var(--gold);
+  padding-left:1.2rem;
+}
+
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{
+  font-size:0.95rem;
+  line-height:1.85;
+  font-weight:300;
+  color:var(--ink);
+  margin-bottom:1.3rem;
+}
+.narrativa-body p:last-child{margin-bottom:0;}
+
+.mid-break{
+  margin:1.8rem 0;
+  height:1px;
+  background:var(--border);
+}
+
+.fechamento-section{
+  padding:2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.fechamento-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.fechamento-text{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🏛️ Legado · <span>Bloco 21</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=800&q=80" alt="Preparada para ciclos e crises">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Preparada para ciclos e crises</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Toda operação parece funcionar em tempo bom. O ciclo ruim só revela o que a estrutura sempre foi.</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p>Heloísa e Bruno têm escolas de idiomas na mesma cidade. Concorrentes indiretos — perfis de cliente um pouco diferentes, mas no mesmo mercado. Os dois viram a mesma queda: dezessete meses atrás, entre março e agosto, a demanda caiu trinta e dois por cento. Crise econômica localizada, desemprego subindo, famílias cortando o que não era essencial. O setor inteiro sentiu.</p>
+
+      <p>Em setembro, quando o ciclo começou a se recuperar, Heloísa estava operando. Bruno estava negociando com fornecedor para não fechar.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Bruno tinha uma operação que funcionava bem com volume cheio. Quando o volume caiu, a estrutura de custo não acompanhou — porque nunca foi construída para isso. Tinha dois professores em regime fixo que não podiam ser reduzidos sem rescisão cara. Tinha contrato de locação de sala com multa por redução antecipada. Tinha um sistema de gestão com mensalidade que não escalava para baixo. Cada um desses custos foi decisão razoável em tempo de crescimento. Em tempo de queda, viraram amarras.</p>
+
+      <p>Quando a receita caiu trinta e dois por cento, o custo fixo de Bruno caiu zero.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Heloísa tinha feito escolhas diferentes — não porque antecipou aquela crise específica, mas porque havia passado por uma menor três anos antes e reconstruído a estrutura com outra lógica. Tinha uma professora fixa e quatro em contrato variável por turma. Tinha sala própria e mais uma alugada sob demanda. Tinha negociado com o sistema de gestão uma faixa mínima para períodos de queda documentada.</p>
+
+      <p>Quando a receita caiu trinta e dois por cento, o custo variável de Heloísa acompanhou a curva. O negócio fechou aqueles meses com margem menor — mas positiva.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Em setembro, Heloísa abriu duas turmas novas aproveitando a retomada. Bruno ainda estava resolvendo o passivo acumulado dos cinco meses anteriores. Não conseguiu abrir turma nova naquele trimestre porque o caixa estava comprometido com o que havia ficado em aberto.</p>
+
+      <p>Os dois eram bons empresários. Os dois sofreram o mesmo choque externo. O que diferenciou o resultado não foi a gravidade da crise — foi o que cada operação conseguia sustentar quando o volume que justificava a estrutura desapareceu.</p>
+
+      <div class="mid-break"></div>
+
+      <p>A crise não cria fragilidade. Ela encontra a fragilidade que já estava lá.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Toda operação parece funcionar em tempo bom. O ciclo ruim só revela o que a estrutura sempre foi.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

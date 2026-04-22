@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 17 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🏛️ Legado · <span>Bloco 17</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que a operação sabe que só uma pessoa carrega</h1>
+    <p class="bloco-sub">A saída de Dani não criou o problema — ela revelou o que sempre esteve lá. Este canvas não é sobre risco futuro. É sobre o risco que já existe hoje.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quais funções críticas da sua operação dependem de uma pessoa específica para funcionar bem — não para existir, mas para funcionar sem erro? Liste função e nome. Se você hesitar em escrever o nome, é porque sabe que é verdade.</p>
+      <p class="hint"><em>ex. comércio: controle de estoque por giro de produto (depende do Júnior, que sabe quais fornecedores têm prazo real vs. prazo prometido) · ex. serviço: agenda e priorização de chamados urgentes (depende da Fátima, que conhece o histórico de cada cliente) · ex. indústria: sequenciamento de ordens de produção em período de pico (depende do Clóvis, que sabe o limite real de cada máquina)</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Para cada pessoa listada acima: o que ela sabe que não está escrito em lugar nenhum? Não é o que ela faz. É o que ela sabe que permite que o que ela faz funcione.</p>
+      <p class="hint"><em>ex. comércio: quais clientes aceitam substituição de produto sem consulta prévia · ex. serviço: quais horários de acesso são restritos e por quê · ex. indústria: quais combinações de insumos causam retrabalho em determinado equipamento</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Se essa pessoa saísse amanhã, o que pararia ou erraria na primeira semana? Seja específico. "A operação sofreria" não é resposta. Nomeie o que quebraria, em que ordem, e quem perceberia primeiro.</p>
+      <p class="hint"><em>ex. comércio: os pedidos de reposição automática para dois fornecedores seriam feitos sem considerar o prazo real de entrega · ex. serviço: três clientes com restrição de acesso receberiam técnico no horário errado · ex. indústria: o lote da semana seria sequenciado sem considerar a manutenção programada da prensa</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que precisaria estar documentado para que outra pessoa operasse com critério suficiente — não com perfeição, mas sem comprometer o cliente? Este não é um projeto. É uma lista do que falta. Escreva o que você sabe que deveria existir e não existe.</p>
+      <p class="hint"><em>ex. comércio: histórico de exceções por fornecedor e prazo real praticado · ex. serviço: ficha de restrições e preferências por cliente com data de atualização · ex. indústria: mapa de capacidade real por equipamento com variações sazonais</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas essa pessoa não vai sair. Ela está há anos comigo e não tem motivo para ir."</p>
+      <p class="duvida-a">Dani estava há seis anos. Saiu por uma proposta melhor — sem irregularidade, sem conflito, sem aviso especial. O risco não é a pessoa ser desleal. O risco é a operação não existir sem ela. Esses são problemas diferentes, e só um deles você controla.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Documentar isso vai levar meses. Não tenho tempo para isso agora."</p>
+      <p class="duvida-a">Régis também não tinha. Fez o trabalho depois, sob pressão de reclamações, com custo de imagem e equipe. O tempo existe agora ou é tomado depois. A diferença é que depois você paga mais caro e sem escolher quando.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu documentar tudo, essa pessoa vai achar que vou substituí-la."</p>
+      <p class="duvida-a">Documentar critério não é preparar a saída de ninguém. É transformar o que uma pessoa carrega em patrimônio da empresa — o que protege a empresa e libera a pessoa de ser insubstituível por falta de estrutura, não por mérito.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Ao concluir este canvas, você terá nomeado as dependências pessoais que já existem na sua operação — não as que podem surgir, mas as que estão ativas agora. Esse mapeamento não resolve o problema. Ele torna impossível continuar fingindo que o problema não existe.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

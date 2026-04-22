@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 19 · P1 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4.5vw,2.8rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+
+.pergunta-section{
+  padding:1.8rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.pergunta-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  line-height:1.55;
+  color:var(--ink);
+  border-left:2px solid var(--gold);
+  padding-left:1.2rem;
+}
+
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{
+  font-size:0.95rem;
+  line-height:1.85;
+  font-weight:300;
+  color:var(--ink);
+  margin-bottom:1.3rem;
+}
+.narrativa-body p:last-child{margin-bottom:0;}
+
+.mid-break{
+  margin:1.8rem 0;
+  height:1px;
+  background:var(--border);
+}
+
+.fechamento-section{
+  padding:2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.fechamento-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.fechamento-text{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🏛️ Legado · <span>Bloco 19</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Processos absorvem erro">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Processos absorvem erro</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">O processo não guarda o cuidado de quem já foi — guarda o critério que não deveria depender de quem está.</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p>Tatiane tem uma empresa de serviços de limpeza hospitalar há oito anos. Durante muito tempo, ela acreditou que o diferencial da empresa era a equipe. E não estava errada — a equipe era boa. Quando perguntavam por que os clientes não reclamavam, ela dizia: "porque as minhas pessoas têm cuidado." Era verdade.</p>
+
+      <p>O que ela não enxergava é que "ter cuidado" não é processo. É pessoa.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Durante seis anos, a equipe de execução era basicamente a mesma. Doze pessoas que conheciam cada cliente, sabiam quais superfícies tinham protocolo específico, quais horários eram críticos, quais áreas do hospital exigiam atenção diferenciada. Elas carregavam esse conhecimento sem precisar consultar nada — e raramente erravam.</p>
+
+      <p>No sétimo ano, quatro pessoas saíram em sequência. Aposentadoria de uma, transferência de cidade de outra, duas que foram para concorrentes. Tatiane contratou quatro substitutos. Bons profissionais, sem histórico de problema anterior.</p>
+
+      <p>Em três meses, ela recebeu mais reclamações de clientes do que nos seis anos anteriores somados.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Não era má vontade dos novos. Não era incompetência. Era que os antigos tinham aprendido por osmose — pela convivência com quem já sabia — e tinham criado um padrão que nunca foi escrito. O padrão existia nas mãos deles, não no processo. Quando eles foram, o padrão foi junto.</p>
+
+      <p>Tatiane passou três meses revisando o que havia dado errado em cada reclamação. A resposta era sempre a mesma: o novo profissional não tinha como saber aquilo porque nunca havia sido dito. Ninguém tinha registrado que aquele cliente específico exigia checklist antes de liberar o andar. Ninguém tinha documentado que aquele produto de limpeza não podia ser usado em determinada área. Ninguém tinha descrito o protocolo de comunicação quando havia intercorrência.</p>
+
+      <p>Os antigos sabiam. Os novos não tinham como saber.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Tatiane reconstruiu o manual de operação que deveria existir desde o início. Foi um trabalho de quatro meses, feito com os antigos que ainda podiam ser consultados. Quando terminou, ela não tinha uma equipe melhor do que antes. Tinha uma operação que podia admitir equipe nova sem pagar o preço da falta de memória.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">O processo não guarda o cuidado de quem já foi — guarda o critério que não deveria depender de quem está.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

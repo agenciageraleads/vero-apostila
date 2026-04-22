@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 21 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+.campo-inline{
+  display:flex;
+  align-items:baseline;
+  gap:0.8rem;
+  margin-bottom:0.6rem;
+}
+.campo-label{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;
+  color:var(--ink-light);
+  white-space:nowrap;
+  min-width:260px;
+}
+.campo-linha{
+  flex:1;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🏛️ Legado · <span>Bloco 21</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que a sua operação sustenta quando o volume cai</h1>
+    <p class="bloco-sub">Heloísa e Bruno sofreram o mesmo choque. O que diferenciou o resultado foi o que cada operação conseguia sustentar quando o volume que justificava a estrutura desapareceu. Este canvas faz essa comparação antes da crise chegar.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Liste os principais custos fixos da sua operação — aqueles que não mudam independentemente do volume de receita. Inclua: pessoal com vínculo fixo, contratos de locação, assinaturas e sistemas, obrigações financeiras mensais.</p>
+      <p class="hint"><em>ex. comércio: dois vendedores CLT, aluguel do ponto comercial, sistema de gestão com mensalidade fixa · ex. serviço: quatro profissionais fixos, aluguel de escritório e sala de atendimento, contrato de software de gestão · ex. indústria: operadores de linha fixos, aluguel do galpão, contrato de manutenção preventiva de equipamentos</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="campo-inline">
+        <span class="campo-label">Total de custo fixo mensal estimado: R$</span>
+        <span class="campo-linha"></span>
+      </div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Agora simule: se a receita caísse 30% amanhã e permanecesse assim por cinco meses — qual seria o resultado mensal? Não use projeção otimista. Use os números reais de hoje.</p>
+      <div class="campo-inline">
+        <span class="campo-label">Receita atual: R$</span>
+        <span class="campo-linha"></span>
+      </div>
+      <div class="campo-inline">
+        <span class="campo-label">Receita com queda de 30%: R$</span>
+        <span class="campo-linha"></span>
+      </div>
+      <div class="campo-inline">
+        <span class="campo-label">Custo fixo (não muda): R$</span>
+        <span class="campo-linha"></span>
+      </div>
+      <div class="campo-inline">
+        <span class="campo-label">Custo variável com queda proporcional: R$</span>
+        <span class="campo-linha"></span>
+      </div>
+      <div class="campo-inline">
+        <span class="campo-label">Resultado no cenário de crise: R$</span>
+        <span class="campo-linha"></span>
+      </div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quais custos fixos hoje seriam custos variáveis se a estrutura tivesse sido construída com outra lógica? Não é sobre cortar agora. É sobre nomear o que foi decisão de crescimento que virou amarra em queda.</p>
+      <p class="hint"><em>ex. comércio: os dois vendedores poderiam ser um fixo e um em comissão variável · ex. serviço: a sala extra alugada em contrato anual poderia ser sob demanda · ex. indústria: o turno extra fixo poderia ser acionado por contrato de horas variáveis</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quais processos operacionais, no cenário de 30% a menos de volume, colapsariam — não por falta de dinheiro, mas por falta de estrutura para operar em escala menor?</p>
+      <p class="hint"><em>ex. comércio: o processo de compra pressupõe volume mínimo por pedido — abaixo disso, a margem inverte · ex. serviço: a escala de equipe para contratos ativos não tem versão enxuta — qualquer redução desequilibra a entrega · ex. indústria: a linha de produção foi configurada para lote mínimo que não cabe no cenário de queda</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Não quero pensar em crise agora. A operação está funcionando bem."</p>
+      <p class="duvida-a">Heloísa não antecipou aquela crise específica — ela já tinha passado por uma menor e reconstruído a estrutura com outra lógica. A operação funcionar bem em volume cheio não diz nada sobre o que ela sustenta quando o volume muda. Esse exercício não é pessimismo. É medir o que você nunca mediu porque nunca precisou.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Se a crise vier, eu adapto na hora."</p>
+      <p class="duvida-a">Bruno também acreditava nisso. Adaptar na hora significa tomar decisões sob pressão de caixa negativo, com fornecedores cobrando, sem o espaço necessário para escolher bem. A diferença entre Heloísa e Bruno não foi agilidade em crise — foi o que cada um havia construído antes.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Meu segmento não sofre esse tipo de queda."</p>
+      <p class="duvida-a">Todo segmento tem ciclo. O que varia é a frequência, a profundidade e o que desencadeia. A queda de trinta e dois por cento que Heloísa e Bruno sofreram não estava no plano de nenhum dos dois. Não é sobre prever — é sobre construir uma estrutura que aguenta quando o imprevisto acontece.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Ao concluir este canvas, você terá calculado o resultado real da sua operação em um cenário de queda de 30% — e nomeado quais custos e processos não têm versão enxuta. Esse número não é previsão. É o mapa do que a sua operação é capaz de sustentar quando o volume que a justifica deixar de existir.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

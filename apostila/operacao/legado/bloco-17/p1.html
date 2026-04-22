@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 17 · P1 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4.5vw,2.8rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+
+.pergunta-section{
+  padding:1.8rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.pergunta-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  line-height:1.55;
+  color:var(--ink);
+  border-left:2px solid var(--gold);
+  padding-left:1.2rem;
+}
+
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{
+  font-size:0.95rem;
+  line-height:1.85;
+  font-weight:300;
+  color:var(--ink);
+  margin-bottom:1.3rem;
+}
+.narrativa-body p:last-child{margin-bottom:0;}
+
+.mid-break{
+  margin:1.8rem 0;
+  height:1px;
+  background:var(--border);
+}
+
+.fechamento-section{
+  padding:2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.fechamento-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.fechamento-text{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🏛️ Legado · <span>Bloco 17</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="Operação sem pessoas-chave">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Operação sem pessoas-chave</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">O que revela a saída de quem carregava o sistema na cabeça?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p>Régis tem uma empresa de manutenção predial há onze anos. Quando alguém perguntava como a operação funcionava, ele não sabia explicar com precisão — mas funcionava. As ordens de serviço saíam no prazo, os clientes raramente reclamavam, a equipe resolvia sem precisar de muito.</p>
+
+      <p>O que Régis não sabia é que a operação funcionava por causa de Dani.</p>
+
+      <p>Dani era técnica de campo há seis anos. Ela sabia de memória quais equipamentos de quais clientes tinham histórico de falha, quais fornecedores demoravam mais, quais horários não podiam ter interrupção. Ela não tinha esse conhecimento em nenhum documento. Tinha na cabeça. E resolvia antes que alguém percebesse que havia um problema.</p>
+
+      <p>Em agosto, Dani foi embora. Uma proposta melhor, em outra empresa. Saída profissional, sem nenhuma irregularidade. Régis desejou boa sorte e começou a semana seguinte sem pensar muito nisso.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Na primeira semana, dois chamados foram roteados para o cliente errado. Ninguém sabia que aquele cliente específico tinha restrição de horário de entrada — Dani sabia. Na segunda semana, um equipamento entrou em falha que a equipe poderia ter antecipado — mas o histórico de alerta estava só na memória de quem tinha sumido. No terceiro mês, Régis percebeu que estava respondendo pessoalmente a chamados que antes nunca chegavam até ele.</p>
+
+      <p>Ele ligou para Dani uma vez. Perguntou, com educação, como ela lidava com aquela situação específica de cliente. Ela explicou em dez minutos o que deveria estar documentado há anos. Ele agradeceu, anotou no bloco, e entendeu o que tinha acontecido.</p>
+
+      <p>A saída de Dani não criou o problema. A saída de Dani revelou o que sempre esteve lá: uma operação que funcionava porque uma pessoa carregava o sistema na cabeça.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Não era falha de Dani. Ela fez seu trabalho com mais competência do que o cargo exigia. O problema era que a competência dela substituía uma estrutura que nunca foi construída. Enquanto ela estava, a ausência do processo era invisível. Quando ela foi, o processo inexistente tornou-se o único assunto.</p>
+
+      <p>Régis passou os seis meses seguintes documentando o que deveria ter sido documentado antes. Entrevistou cada técnico, mapeou cada cliente, registrou cada exceção que antes vivia na cabeça de alguém. Foi um trabalho lento, custoso, feito sob pressão de reclamações que não aconteciam quando Dani estava.</p>
+
+      <p>O que ele construiu não era mais frágil do que antes. Era mais visível.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">A pessoa-chave não fragilizou a operação. Ela a sustentou — e a fragilidade ficou escondida enquanto ela aguentou o peso.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

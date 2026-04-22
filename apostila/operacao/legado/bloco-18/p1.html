@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 18 · P1 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4.5vw,2.8rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+
+.pergunta-section{
+  padding:1.8rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.pergunta-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  line-height:1.55;
+  color:var(--ink);
+  border-left:2px solid var(--gold);
+  padding-left:1.2rem;
+}
+
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{
+  font-size:0.95rem;
+  line-height:1.85;
+  font-weight:300;
+  color:var(--ink);
+  margin-bottom:1.3rem;
+}
+.narrativa-body p:last-child{margin-bottom:0;}
+
+.mid-break{
+  margin:1.8rem 0;
+  height:1px;
+  background:var(--border);
+}
+
+.fechamento-section{
+  padding:2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.fechamento-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.fechamento-text{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🏛️ Legado · <span>Bloco 18</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" alt="Governança operacional">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Governança operacional</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Quem não constrói ritmo de revisão não delega a operação — transfere para si mesmo a responsabilidade de notar o que deveria ser notado antes.</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p>Felipe e Cláudio abriram empresas no mesmo ano, no mesmo segmento — distribuição de insumos para alimentação. Porte parecido, equipe parecida, clientes do mesmo perfil. Num almoço de setor, três anos depois, Cláudio perguntou para Felipe quando tinha sido a última vez que ele tinha tirado férias de verdade. Felipe parou para calcular. Não conseguiu lembrar.</p>
+
+      <p>Cláudio tinha voltado de dez dias no litoral duas semanas antes.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Eles não tinham habilidades diferentes. Não tinham equipes com qualificações distintas. A diferença estava em algo que Felipe nunca havia dado nome.</p>
+
+      <p>Cláudio tinha uma reunião toda segunda-feira de manhã, quarenta minutos, com seus dois gestores. Pauta fixa: o que travou na semana anterior, o que está prestes a travar na semana que começa, e um número — o prazo médio de entrega da última semana comparado com a meta. Não era um número sofisticado. Era o único número que importava para a operação deles. Quando subia, alguém investigava antes de o cliente ligar.</p>
+
+      <p>Felipe resolvia os problemas quando apareciam. Era rápido nisso. Bom nisso. Mas para resolver rápido, precisava estar disponível. E para estar disponível, não podia estar fora.</p>
+
+      <div class="mid-break"></div>
+
+      <p>No ano em que Cláudio tirou férias, ele delegou a condução da reunião de segunda para o gestor mais antigo. Passou o critério, não a tarefa. Quando voltou, havia um registro escrito de cada reunião das duas semanas anteriores. Dois problemas tinham sido resolvidos sem ele. Um tinha ficado em aberto esperando sua volta — e era o tipo de problema que devia mesmo esperar.</p>
+
+      <p>Felipe, no mesmo período, atendeu quatorze ligações durante um final de semana tentando tirar dois dias com a família. Não porque a equipe era incompetente. Porque a equipe não tinha ritmo próprio — só tinha reflexo ao problema.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Felipe e Cláudio não tinham aptidões diferentes. Tinham estruturas diferentes. Uma permitia que o tempo do empresário fosse escolhido. A outra fazia com que o tempo fosse tomado.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Quem não constrói ritmo de revisão não delega a operação — transfere para si mesmo a responsabilidade de notar o que deveria ser notado antes.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

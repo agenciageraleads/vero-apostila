@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 22 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+.campo-inline{
+  display:flex;
+  align-items:baseline;
+  gap:0.8rem;
+  margin-bottom:0.6rem;
+}
+.campo-label{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;
+  color:var(--ink-light);
+  white-space:nowrap;
+  min-width:290px;
+}
+.campo-linha{
+  flex:1;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+}
+
+.decisao-item{
+  margin-bottom:1rem;
+}
+.decisao-label{
+  font-size:0.83rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.3rem;
+}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🏛️ Legado · <span>Bloco 22</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que continua funcionando se você sair por 30 dias</h1>
+    <p class="bloco-sub">Nelson, no décimo ano, contou as ligações que recebia que não precisavam ser para ele. O número era alto. Este canvas não é hipotético — é uma medição do que a sua operação já consegue fazer sem você e do que ainda não consegue.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Se você fosse afastado por 30 dias a partir de amanhã — sem comunicação com a equipe — quais processos continuariam funcionando com critério próprio? Não liste o que "provavelmente funcionaria". Liste o que tem estrutura suficiente para funcionar: critério registrado, responsável definido, indicador monitorado.</p>
+      <p class="hint"><em>ex. comércio: reposição de estoque de giro alto (critério de ponto de pedido registrado, comprador designado) · ex. serviço: abertura e fechamento de chamados (fluxo documentado, gestor de campo com autoridade) · ex. indústria: sequenciamento de ordens de produção para pedidos padrão (critério de prioridade registrado, supervisor com autonomia)</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quais processos parariam ou degradariam — não por falta de equipe competente, mas por falta de critério registrado que permita operar sem você? "Dependeria de mim" é uma resposta válida se for verdade.</p>
+      <p class="hint"><em>ex. comércio: a aprovação de desconto acima de 10% — só o dono autoriza, sem critério escrito para o gerente · ex. serviço: a decisão de aceitar contrato fora do escopo padrão — ninguém tem parâmetro para isso além do empresário · ex. indústria: a resposta a fornecedor em negociação — o gestor de compras não sabe o limite de concessão</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Quantas decisões operacionais por semana dependem de você — e quantas delas têm critério que outra pessoa poderia usar para decidir, se esse critério existisse por escrito? Nelson contou as suas. Foram mais do que ele esperava.</p>
+      <div class="campo-inline">
+        <span class="campo-label">Decisões por semana que passam por você:</span>
+        <span class="campo-linha"></span>
+      </div>
+      <div class="campo-inline">
+        <span class="campo-label">Das quais, quantas têm critério registrável:</span>
+        <span class="campo-linha"></span>
+      </div>
+      <div class="campo-inline">
+        <span class="campo-label">Das quais, quantas exigem genuinamente você:</span>
+        <span class="campo-linha"></span>
+      </div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Qual o critério que você usa nas três decisões mais frequentes que dependem de você — e que poderia ser descrito de forma que outra pessoa aplicasse com confiança? Não é sobre transferir responsabilidade. É sobre tornar explícito o que hoje está implícito.</p>
+      <p class="hint"><em>ex. comércio: "aprovo desconto acima de 10% quando o cliente tem histórico de compra acima de R$X nos últimos 12 meses e o produto está com giro abaixo de Y dias" · ex. serviço: "aceito escopo adicional sem cobrar quando o tempo estimado é inferior a Z horas e a relação com o cliente tem menos de dois casos anteriores de escopo expandido" · ex. indústria: "aceito pedido urgente fora do programa quando a capacidade disponível na semana é superior a X% e a margem do pedido cobre o custo de hora extra"</em></p>
+      <div class="decisao-item">
+        <p class="decisao-label">Decisão 1 e critério:</p>
+        <div class="resposta-linha"></div>
+        <div class="resposta-linha"></div>
+      </div>
+      <div class="decisao-item">
+        <p class="decisao-label">Decisão 2 e critério:</p>
+        <div class="resposta-linha"></div>
+        <div class="resposta-linha"></div>
+      </div>
+      <div class="decisao-item">
+        <p class="decisao-label">Decisão 3 e critério:</p>
+        <div class="resposta-linha"></div>
+        <div class="resposta-linha"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Minha equipe não tem maturidade para operar sem mim por 30 dias."</p>
+      <p class="duvida-a">Nelson também achava isso. No décimo primeiro ano, a gestora tomou trinta e sete decisões sem ligar para ele. Teria feito três de forma diferente — nenhuma comprometeu o negócio. Maturidade não é o que a equipe tem antes do critério existir. É o que a equipe desenvolve quando opera com critério registrado e responsabilidade real.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Trinta dias é muito tempo. Nenhum empresário fica trinta dias fora."</p>
+      <p class="duvida-a">Nelson precisou ficar dois meses em recuperação médica. Não foi escolha — foi necessidade. A pergunta não é se você planeja ficar fora por trinta dias. É se a operação conseguiria funcionar com critério se isso acontecesse. Se a resposta for não, o risco não é hipotético.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"O que eu construí é muito específico para ter critério escrito."</p>
+      <p class="duvida-a">Nelson documentou como ele pensava — não o que fazer, mas como decidir. Critério de aceitação de rota, limite de atraso que aciona comunicação, o que é emergência e o que é urgência disfarçada. Se você consegue explicar como decide, o critério pode ser escrito. Se não consegue explicar, o problema não é especificidade — é que a decisão ainda não tem critério, só hábito.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Ao concluir este canvas, você terá medido a distância entre onde a sua operação está e onde uma operação-herança precisaria estar. Essa distância não é falha — é o trabalho que ainda falta. O que diferencia herança de dependência não é a intenção do fundador. É o critério que a operação carrega quando ele não está.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>
