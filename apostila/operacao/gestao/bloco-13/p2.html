@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 13 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+/* Tabela de canvas */
+.canvas-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:0.9rem;
+  font-size:0.84rem;
+}
+.canvas-table th{
+  font-family:'DM Mono',monospace;
+  font-size:0.65rem;
+  font-weight:500;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink-light);
+  padding:0.5rem 0.7rem;
+  border-bottom:1px solid var(--border-dark);
+  text-align:left;
+}
+.canvas-table td{
+  padding:0.55rem 0.7rem;
+  border-bottom:1px solid var(--border);
+  font-weight:300;
+  color:var(--ink);
+  vertical-align:middle;
+}
+.canvas-table td:first-child{font-weight:400;}
+
+/* Checkbox */
+.check-item{
+  display:flex;
+  align-items:flex-start;
+  gap:0.7rem;
+  margin-bottom:0.7rem;
+}
+.check-box{
+  width:1rem;
+  height:1rem;
+  border:1px solid var(--border-dark);
+  flex-shrink:0;
+  margin-top:0.15rem;
+}
+.check-label{
+  font-size:0.88rem;
+  font-weight:300;
+  line-height:1.55;
+  color:var(--ink);
+}
+.field-inline{
+  display:inline-block;
+  border-bottom:1px solid var(--border-dark);
+  width:180px;
+  height:1.2rem;
+  vertical-align:bottom;
+}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🧠 Gestão · <span>Bloco 13</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">O que cresceu e o que isso custa</h1>
+    <p class="bloco-sub">Não é sobre como cortar. É sobre nomear o que não gera valor proporcional e assumir o preço de manter ou de decidir.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que cresceu nos últimos dois ou três anos — escreva cada item:</p>
+      <p class="hint"><em>ex. comércio: funcionário de logística contratado na expansão, software de gestão de estoque que ninguém configurou direito, espaço alugado no segundo ponto · ex. serviço: coordenador de área criado para resolver sobrecarga pontual, plataforma de agendamento que o time não adotou, sala de reunião que virou depósito · ex. indústria: linha de produção terceirizada que ficou ativa após fim do contrato, supervisor de turno cuja função o processo absorveu, sistema de controle de qualidade instalado e não operacionalizado</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Para cada item acima: quanto custa por mês e o que gera de forma mensurável hoje?</p>
+      <table class="canvas-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Custo mensal</th>
+            <th>O que gera hoje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>&nbsp;</td><td>R$&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>R$&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>R$&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>R$&nbsp;</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que você já sabe que não gera valor proporcional — mas ainda não decidiu o que fazer? Escreva sem justificar ainda. Só nomeie.</p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O preço real de manter cada um desses itens — não só o financeiro. O que você deixa de fazer — ou de decidir — por causa desse custo:</p>
+      <p class="hint"><em>ex. comércio: margem que não fecha em meses de queda de giro, capital parado em estrutura que poderia virar estoque ou desconto de prazo · ex. serviço: capacidade de contratar alguém que gera resultado real sendo ocupada por custo fixo sem retorno, decisão de reajuste travada por comprometimento de caixa · ex. indústria: custo de oportunidade de não automatizar etapa porque o orçamento está comprometido com estrutura manual, margem de contribuição que vai para manutenção em vez de produto</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que cortar exige — e de quem. Não o processo. A conversa. A data. A pessoa.</p>
+      <table class="canvas-table">
+        <thead>
+          <tr>
+            <th>O que cortar</th>
+            <th>O que isso exige</th>
+            <th>De quem</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>&nbsp;</td><td>demissão / renegociação / encerramento</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>demissão / renegociação / encerramento</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>demissão / renegociação / encerramento</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+      <p class="pergunta" style="margin-top:1rem;">Há algo que você ainda não nomeou aqui porque não quer encarar?</p>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <span class="check-label">Sim — o que é: <span class="field-inline"></span></span>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <span class="check-label">Não</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas essa pessoa foi fiel ao negócio — não é hora de demitir."</p>
+      <p class="duvida-a">Fidelidade e utilidade são coisas diferentes. Manter alguém para não ter a conversa não é lealdade — é transferência do custo dessa conversa para a margem do negócio. E a margem não tem lealdade a ninguém.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"E se eu cortar e precisar recontatar depois?"</p>
+      <p class="duvida-a">Possível. Mas manter o que não gera valor para não correr esse risco é pagar certeza pelo preço da incerteza. O custo certo, todo mês, para evitar o custo possível, mais tarde.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Ainda não tenho certeza de que não gera valor — pode ser que seja coisa minha."</p>
+      <p class="duvida-a">Se você está respondendo isso, já passou tempo suficiente em dúvida. Certeza não vem com o tempo — vem com o critério. Defina o que considera valor proporcional para esse item. Se não consegue definir, o critério não existe. E sem critério, a estrutura permanece por inércia, não por decisão.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Feito isso, você sabe o que está mantendo por escolha e o que está mantendo para não ter a conversa. Os dois têm preço. A diferença é que um você decidiu pagar. O outro está sendo cobrado em silêncio, todo mês, sem data de vencimento visível.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

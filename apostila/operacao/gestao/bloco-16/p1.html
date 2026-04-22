@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 16 · P1 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4.5vw,2.8rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+
+.pergunta-section{
+  padding:1.8rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.pergunta-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  line-height:1.55;
+  color:var(--ink);
+  border-left:2px solid var(--gold);
+  padding-left:1.2rem;
+}
+
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{
+  font-size:0.95rem;
+  line-height:1.85;
+  font-weight:300;
+  color:var(--ink);
+  margin-bottom:1.3rem;
+}
+.narrativa-body p:last-child{margin-bottom:0;}
+
+.mid-break{
+  margin:1.8rem 0;
+  height:1px;
+  background:var(--border);
+}
+
+.fechamento-section{
+  padding:2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.fechamento-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.fechamento-text{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🧠 Gestão · <span>Bloco 16</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80" alt="Oportunidade de expansão com brechas na operação atual">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Expandir ou aprofundar controle</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">A janela tem prazo. A operação tem brechas. Os dois fatos estão na mesa ao mesmo tempo.</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p>A oportunidade chegou no momento errado — ou no momento certo, dependendo de como Rodrigo decidir encarar.</p>
+
+      <p>Uma segunda unidade. Um contrato grande que exige mais estrutura. Ele havia pensado nisso antes, em abstrato. Agora tem um prazo, um número, uma janela. O que parecia planejamento virou decisão.</p>
+
+      <p>A operação atual funciona. Mas Rodrigo conhece as brechas. Sabe que dois processos-chave dependem de uma pessoa só. Sabe que há custo sem dono — ninguém claramente responsável por ele, ninguém que preste conta quando ele sobe. Sabe que algumas inconsistências que hoje geram reclamação esporádica, em escala maior, gerariam problema sistemático. Nada disso é catástrofe agora. Em escala, o custo muda de natureza.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Há dois caminhos, e os dois têm preço real.</p>
+
+      <p>Expandir agora significa aproveitar a janela. Mais receita, presença maior, posição que pode ser difícil de recuperar se o concorrente avançar primeiro. Significa também levar para o novo contexto os mesmos problemas da operação atual — agora multiplicados. A dependência de pessoa-chave não desaparece com a escala; ela se torna risco maior. A inconsistência que hoje é pontual se torna padrão. O custo sem dono, em estrutura maior, fica mais pesado e mais opaco. Expandir agora é aceitar que o primeiro problema a quebrar vai ser um que Rodrigo já conhece — e que não vai poder dizer que não sabia.</p>
+
+      <p>Aprofundar controle antes de expandir significa resolver as brechas primeiro. Tornar a operação replicável, reduzir as dependências, criar critério para o que hoje funciona por improviso. Significa também que a janela pode fechar. O concorrente pode avançar. A oportunidade que era concreta pode virar memória — e Rodrigo vai ficar com uma operação mais sólida e sem o contrato. Aprofundar é aceitar a perda desta oportunidade em nome de uma que ainda não tem data.</p>
+
+      <p>Rodrigo conhece os dois preços. Sabe o que expandir agora vai custar — e sabe o que esperar pode significar. O que ele ainda não fez foi assumir qualquer um dos dois em voz alta.</p>
+
+      <p>A janela tem prazo. A operação tem brechas. Os dois fatos estão na mesa ao mesmo tempo.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Brechas que hoje são toleráveis mudam de natureza quando a estrutura escala.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 15 · P2 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.bloco-sub{
+  font-size:0.85rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-top:0.5rem;
+  line-height:1.5;
+}
+
+/* Canvas */
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+.pergunta-item{margin-bottom:2.4rem;}
+.pergunta-item:last-child{margin-bottom:0;}
+
+.pergunta{
+  font-size:0.93rem;
+  font-weight:500;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+  line-height:1.45;
+}
+.hint{
+  font-size:0.74rem;
+  font-weight:300;
+  color:var(--ink-light);
+  margin-bottom:0.9rem;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+
+.resposta-linha{
+  display:block;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+  width:100%;
+  margin-bottom:0.6rem;
+}
+.resposta-linha + .resposta-linha{margin-top:0;}
+
+/* Linha com label inline */
+.linha-label{
+  display:flex;
+  align-items:flex-end;
+  gap:0.6rem;
+  margin-bottom:0.8rem;
+}
+.linha-label-text{
+  font-size:0.84rem;
+  font-weight:500;
+  color:var(--ink);
+  white-space:nowrap;
+  padding-bottom:0.15rem;
+}
+.linha-label-field{
+  flex:1;
+  border-bottom:1px solid var(--border-dark);
+  height:1.5rem;
+}
+
+/* Dúvidas emocionais */
+.duvidas-section{
+  padding:2.2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.duvida-item{
+  margin-bottom:1.3rem;
+  padding-bottom:1.3rem;
+  border-bottom:1px solid var(--border);
+}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{
+  font-family:'Playfair Display',serif;
+  font-size:0.88rem;
+  font-style:italic;
+  color:var(--ink);
+  margin-bottom:0.4rem;
+  line-height:1.5;
+}
+.duvida-a{
+  font-size:0.85rem;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink);
+  padding-left:1rem;
+  border-left:2px solid var(--gold);
+}
+
+/* Resultado esperado */
+.resultado-section{padding:2rem 3rem;}
+.resultado-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.resultado-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🧠 Gestão · <span>Bloco 15</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Qualidade que vale o custo</h1>
+    <p class="bloco-sub">Escreva cada padrão de qualidade que você pratica — e então decida o que é inegociável porque o cliente paga por isso, e o que é inegociável porque você exige de si mesmo.</p>
+  </div>
+
+  <div class="canvas-section">
+
+    <div class="pergunta-item">
+      <p class="pergunta">Liste os padrões de qualidade que você mantém hoje na operação. Processo, material, tempo de execução, revisão, apresentação — tudo que faz parte do seu jeito de entregar.</p>
+      <p class="hint"><em>ex. comércio: conferência de produto antes da saída, embalagem própria, prazo de entrega menor que o do mercado · ex. serviço: revisão por mais de uma pessoa, relatório detalhado, resposta em menos de 2h · ex. indústria: tolerância dimensional acima da norma, inspeção 100% antes da expedição, retrabalho interno sem custo para o cliente</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Para cada padrão que você listou: o cliente percebe e paga mais por isso — ou você exige porque é o seu padrão?</p>
+      <p class="hint"><em>ex. comércio: embalagem própria aumenta recompra? ou você faz porque não tolera embalagem genérica · ex. serviço: o relatório detalhado é solicitado ou é o seu critério de entrega mínima · ex. indústria: a tolerância acima da norma está no contrato ou existe porque você não aceita menos</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Qual desses padrões tem custo operacional real? Escreva o padrão e estime o que ele representa em tempo, mão de obra, material ou retrabalho por entrega ou por mês.</p>
+      <p class="hint"><em>ex. comércio: conferência dupla = 20min por pedido, 4h/semana · ex. serviço: revisão em par = 1h por projeto, 8h/mês · ex. indústria: inspeção 100% = R$ 2.800/mês em mão de obra</em></p>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+      <div class="resposta-linha"></div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">Se você reduzisse ao padrão que o cliente efetivamente percebe e valoriza — o que continuaria existindo e o que desapareceria?</p>
+      <p class="hint"><em>ex. comércio: o prazo menor ficaria, a embalagem própria poderia sumir · ex. serviço: a revisão ficaria, o relatório longo viraria resumo · ex. indústria: a inspeção ficaria, a tolerância extra seria revisada por tipo de produto</em></p>
+      <div class="linha-label">
+        <span class="linha-label-text">O que fica:</span>
+        <div class="linha-label-field"></div>
+      </div>
+      <div class="linha-label">
+        <span class="linha-label-text">O que desaparece:</span>
+        <div class="linha-label-field"></div>
+      </div>
+    </div>
+
+    <div class="pergunta-item">
+      <p class="pergunta">O que você está disposto a reduzir — e o que não está, mesmo sabendo o custo que isso representa? Não justifique. Escreva a decisão.</p>
+      <div class="linha-label">
+        <span class="linha-label-text">Reduzo:</span>
+        <div class="linha-label-field"></div>
+      </div>
+      <div class="linha-label">
+        <span class="linha-label-text">Não reduzo, mesmo custando:</span>
+        <div class="linha-label-field"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DÚVIDAS EMOCIONAIS -->
+  <div class="duvidas-section">
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Abrir mão de qualidade vai destruir minha reputação."</p>
+      <p class="duvida-a">Talvez. Se o que você reduzir for justamente o que o cliente percebe. Mas se o que você reduzir for algo que só você enxerga, a reputação não muda — a margem muda. O problema é que você ainda não sabe qual é qual. Esse canvas existe para que você descubra.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas eu não consigo entregar de um jeito que não respeite."</p>
+      <p class="duvida-a">Esse é o ponto. Qualidade como identidade não está em questão. O que está em questão é se todo padrão que você pratica sustenta a reputação que você quer — ou se alguns existem apenas porque você não tolera o contrário. Os dois têm lugar. Mas apenas um deles justifica o custo que está comprimindo a margem.</p>
+    </div>
+
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu mexer nisso, vou perder o que me diferencia."</p>
+      <p class="duvida-a">Pode perder. Ou pode descobrir que o que te diferencia é menor e mais específico do que você imagina — e que proteger isso com precisão é mais eficiente do que proteger tudo de forma indistinta. Você não vai saber sem examinar.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTADO ESPERADO -->
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Ao sair deste bloco, o empresário tem os dois tipos de qualidade separados por escrito: o que o cliente paga e o que ele exige de si mesmo. A decisão de manter, reduzir ou eliminar pode não estar tomada — mas a distinção está feita. Sem ela, qualquer ajuste na operação vai parecer ameaça à identidade. Com ela, o empresário pode escolher o que protege e o que libera — e assumir o preço de cada escolha.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
+</body>
+</html>

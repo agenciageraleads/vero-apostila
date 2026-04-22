@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 12 · P1 — Vero Operação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --bg:#F0EBE1;
+  --surface:#F2EDE4;
+  --ink:#1A1A1A;
+  --ink-light:#909090;
+  --gold:#C9A84C;
+  --border:#E0D9CE;
+  --border-dark:#C8BFB0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+
+header{
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.doc-meta span{color:var(--gold);}
+
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(15%) brightness(0.86);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
+.bloco-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4.5vw,2.8rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+
+.pergunta-section{
+  padding:1.8rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.pergunta-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  line-height:1.55;
+  color:var(--ink);
+  border-left:2px solid var(--gold);
+  padding-left:1.2rem;
+}
+
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--border);}
+.narrativa-body p{
+  font-size:0.95rem;
+  line-height:1.85;
+  font-weight:300;
+  color:var(--ink);
+  margin-bottom:1.3rem;
+}
+.narrativa-body p:last-child{margin-bottom:0;}
+
+.mid-break{
+  margin:1.8rem 0;
+  height:1px;
+  background:var(--border);
+}
+
+.fechamento-section{
+  padding:2rem 3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.fechamento-inner{
+  border-left:3px solid var(--gold);
+  padding:0.4rem 0 0.4rem 1.4rem;
+}
+.fechamento-text{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-style:italic;
+  line-height:1.65;
+  color:var(--ink);
+}
+
+footer{
+  padding:1.3rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
+.footer-nav a{color:var(--gold);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none;}
+  header{position:static;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
+    </div>
+    <div class="doc-meta">Operação · 🧠 Gestão · <span>Bloco 12</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" alt="Foco operacional — escolher onde mudar">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Eficiência não é melhorar tudo</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Quando tudo é prioridade — o que muda de endereço?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+
+      <p>Fábio fez uma lista. Seis pontos onde a operação sangra. Entrada de pedidos que atrasa, estoque sem controle real, agendamento que depende de quem está disponível, comunicação com a equipe que vai e vem por mensagem, entrega que improvisa rota, pós-venda que ninguém faz de verdade. Tudo com nome, tudo com custo visível, tudo acontecendo toda semana.</p>
+
+      <p>Ele sabia o que precisava mudar. Esse não era o problema.</p>
+
+      <p>O problema era que ele queria melhorar tudo ao mesmo tempo. Pareceu razoável: se todos os seis pontos custam hoje, por que priorizar? Por que aceitar que três continuem sangrar enquanto você cuida dos outros três?</p>
+
+      <p>Passou quatro meses nisso. Reuniões com a equipe sobre cada um dos seis pontos. Planilhas de acompanhamento. Conversas sobre novas ferramentas. Em alguns momentos, sensação de que havia movimento. Nos relatórios de fim de mês, a mesma estrutura de antes. Nenhum dos seis pontos tinha mudado de verdade.</p>
+
+      <div class="mid-break"></div>
+
+      <p>Havia um caminho diferente. Escolher um ou dois pontos. Dizer para si e para a equipe: esses dois mudam agora. Os outros quatro continuam como estão, por ora, e isso é uma decisão — não um esquecimento.</p>
+
+      <p>O preço dessa escolha era concreto: os quatro problemas restantes continuariam ativos. Continuariam custando. Fábio saberia o nome de cada um. Saberia onde estavam. E precisaria aceitar que, por enquanto, estava decidindo não resolvê-los.</p>
+
+      <p>O outro caminho — melhorar tudo — também tem preço, mas menos legível. A equipe continua em movimento sem chegar a lugar nenhum. Os processos evoluem pela metade e regridem quando a pressão aumenta. O empresário trabalha mais e os problemas permanecem.</p>
+
+      <p>Fábio continuou com os seis pontos abertos. Não por falta de tempo. Por não querer assumir que, em operação, foco tem um custo — e distribuir atenção entre tudo é uma forma de não decidir nada.</p>
+
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Enquanto tudo é prioridade, nada muda de endereço.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
+</body>
+</html>

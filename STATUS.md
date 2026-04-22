@@ -1,21 +1,21 @@
 # STATUS — Apostila Vero
 
 > Dashboard rapido de todos os blocos. Atualizar a cada aprovacao.
-> Ultima atualizacao: 2026-04-19 (Operacao Trilha — Blocos 07-11 finalizados)
+> Ultima atualizacao: 2026-04-22 (Operacao Gestao — Blocos 12-16 finalizados)
 
 ## Resumo
 
 | Pilar | Total | ⬜ | ✍️ | 🔬 | ✅ | 🎨 | 📄 |
 |-------|-------|---|----|---|----|---|----|
 | Financeiro | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
-| Operacao | 22 | 11 | 0 | 0 | 0 | 0 | 11 |
+| Operacao | 22 | 6 | 0 | 0 | 0 | 0 | 16 |
 | Vendas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
 | Pessoas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL** | **88** | **55** | **0** | **0** | **0** | **0** | **33** |
+| **TOTAL** | **88** | **50** | **0** | **0** | **0** | **0** | **38** |
 
 Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado | 🎨 Em design | 📄 Finalizado
 
-## Proximo bloco: Operacao > Gestao > Bloco 12
+## Proximo bloco: Operacao > Legado > Bloco 17
 
 ---
 
@@ -63,11 +63,11 @@ Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado |
 | 09 | 🛤️ Trilha | Gargalo e do sistema | 📄 | 2026-04-19 |
 | 10 | 🛤️ Trilha | Custo variavel nasce do jeito de operar | 📄 | 2026-04-19 |
 | 11 | 🛤️ Trilha | Capacidade real vs prometida | 📄 | 2026-04-19 |
-| 12 | 🧠 Gestao | Eficiencia nao e melhorar tudo | ⬜ | - |
-| 13 | 🧠 Gestao | Custo cresce sem gerar valor | ⬜ | - |
-| 14 | 🧠 Gestao | Padronizar, automatizar ou aceitar | ⬜ | - |
-| 15 | 🧠 Gestao | Qualidade que vale o custo | ⬜ | - |
-| 16 | 🧠 Gestao | Expandir ou aprofundar controle | ⬜ | - |
+| 12 | 🧠 Gestao | Eficiencia nao e melhorar tudo | 📄 | 2026-04-22 |
+| 13 | 🧠 Gestao | Custo cresce sem gerar valor | 📄 | 2026-04-22 |
+| 14 | 🧠 Gestao | Padronizar, automatizar ou aceitar | 📄 | 2026-04-22 |
+| 15 | 🧠 Gestao | Qualidade que vale o custo | 📄 | 2026-04-22 |
+| 16 | 🧠 Gestao | Expandir ou aprofundar controle | 📄 | 2026-04-22 |
 | 17 | 🏛️ Legado | Operacao sem pessoas-chave | ⬜ | - |
 | 18 | 🏛️ Legado | Governanca operacional | ⬜ | - |
 | 19 | 🏛️ Legado | Processos absorvem erro | ⬜ | - |
