@@ -5,6 +5,36 @@
 
 ---
 
+## Sessao 14 — 2026-04-24
+
+### O que foi feito
+- [x] Bloco 01 de Vendas > Raiz produzido com workflow completo (10 passos)
+- [x] 4 arquivos criados: p1.md + p2.md + p1.html + p2.html
+- [x] Canvas redesenhado (feedback do Lucas): tabela auditoria interativa em vez de 4 perguntas
+- [x] STATUS.md atualizado: 45/88 blocos finalizados (Pilar Vendas iniciado)
+- [x] Commit + push para GitHub Pages
+
+### Blocos trabalhados
+| Bloco | Titulo | Personagem | Status |
+|-------|--------|------------|--------|
+| Vendas > Raiz > 01 | A venda so acontece quando o dono corre atras | Gustavo | Finalizado |
+
+### Decisoes tomadas
+| Decisao | Motivo |
+|---------|--------|
+| Canvas: tabela auditoria 10 vendas | Lucas pediu algo "dinamico, visual, interativo" em vez de 4 perguntas; tabela força preenchimento com dados reais e mostra padrão visualmente |
+| P1 reescrita 2x por Paulo | Primeira versao era explicativa; reescrita para mostrar problema visceralmente (127 leads, 8 contatados) |
+| Validators feedback: Roberto + Carla aprovaram, Marcos sinalizou gap | Marcos (contratos recorrentes) apontou que canvas é melhor para transacoes pontuais, mas problema é universal; bloco aprovado mesmo assim |
+| Sofia: @media print, tabela sem labels visíveis | HTML pronto para imprimir como PDF; sem .campo-num ou rotulos numerados |
+
+### Proximo passo
+Vendas > Raiz > Bloco 02 (Confusao nao converte)
+
+### Pendencias
+- Nenhuma pendencia aberta
+
+---
+
 ## Sessao 13 — 2026-04-22
 
 ### O que foi feito

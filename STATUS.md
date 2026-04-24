@@ -9,13 +9,13 @@
 |-------|-------|---|----|---|----|---|----|
 | Financeiro | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
 | Operacao | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
-| Vendas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
+| Vendas | 22 | 21 | 0 | 0 | 0 | 0 | 1 |
 | Pessoas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL** | **88** | **44** | **0** | **0** | **0** | **0** | **44** |
+| **TOTAL** | **88** | **43** | **0** | **0** | **0** | **0** | **45** |
 
 Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado | 🎨 Em design | 📄 Finalizado
 
-## Proximo bloco: Vendas > Raiz > Bloco 01
+## Proximo bloco: Vendas > Raiz > Bloco 02
 
 ---
 
@@ -81,7 +81,7 @@ Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado |
 
 | # | Fase | Bloco | Status | Data |
 |---|------|-------|--------|------|
-| 01 | 🌱 Raiz | Venda depende do dono | ⬜ | - |
+| 01 | 🌱 Raiz | Venda depende do dono | 📄 | 2026-04-24 |
 | 02 | 🌱 Raiz | Confusao nao converte | ⬜ | - |
 | 03 | 🌱 Raiz | Cliente compra resolucao | ⬜ | - |
 | 04 | 🌱 Raiz | Vender pra todo mundo | ⬜ | - |

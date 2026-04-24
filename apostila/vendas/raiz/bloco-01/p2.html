@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 01 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 20px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 18px; font-weight: bold; margin: 20px 0; color: #000; }
+
+        .instrucao { font-size: 13px; color: #666; margin-bottom: 15px; font-style: italic; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 12px; }
+        table th { background: #f5f5f5; padding: 10px; text-align: left; border: 1px solid #ddd; font-weight: bold; }
+        table td { padding: 8px 10px; border: 1px solid #ddd; height: 30px; }
+
+        .soma-box { margin: 20px 0; padding: 15px; border-left: 3px solid #999; background: #fafafa; font-size: 13px; }
+        .soma-box p { margin-bottom: 8px; }
+
+        .pergunta-chave { font-size: 14px; font-weight: bold; margin: 25px 0 10px 0; color: #000; }
+
+        .duvida-item { margin: 20px 0; font-size: 13px; }
+        .duvida-item strong { display: block; margin-bottom: 5px; color: #333; }
+        .duvida-item p { color: #666; line-height: 1.6; }
+
+        .resultado { margin: 30px 0 0 0; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; line-height: 1.7; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Vendas</div>
+
+        <div class="titulo">Auditoria de Venda — Últimas 10 Vendas</div>
+
+        <div class="instrucao">Preencha cada venda do último mês ou trimestre:</div>
+
+        <table>
+            <tr>
+                <th style="width: 12%;">Data</th>
+                <th style="width: 20%;">Cliente</th>
+                <th style="width: 12%;">Valor</th>
+                <th style="width: 20%;">Como soube?</th>
+                <th style="width: 18%;">Você fez 1º contato?</th>
+                <th style="width: 18%;">Acompanhamentos seus</th>
+            </tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        </table>
+
+        <div class="soma-box">
+            <p><strong>Soma:</strong></p>
+            <p>Quantas você iniciou pessoalmente? ___</p>
+            <p>Quantas você acompanhou até o fim? ___</p>
+            <p>Quantas fecharam SEM seu toque pessoal? ___</p>
+        </div>
+
+        <div class="pergunta-chave">
+            Agora tire a coluna "Acompanhamentos seus" da sua cabeça. Quanto daquelas 10 vendas realmente fecha?
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Mas eu sou bom nisso, as pessoas me procuram."</strong>
+            <p>Se procuram você, por que não procuram a empresa?</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu não acompanhasse, ninguém ia fechar."</strong>
+            <p>Verdade. O que isso significa sobre o seu negócio?</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Meu time é ruim."</strong>
+            <p>Seu time nunca foi treinado em vender porque você nunca precisou deles. Você fez tudo.</p>
+        </div>
+
+        <div class="resultado">
+            <p>Depois deste Canvas, você deixa de chamar "relacionamento" o que é prisão. E vê: enquanto cada venda depender de você correndo atrás, você não tem negócio. Tem um emprego onde você é o único funcionário que importa.</p>
+            <p style="margin-top: 12px;"><strong>Se dói, funcionou.</strong></p>
+        </div>
+    </div>
+</body>
+</html>
