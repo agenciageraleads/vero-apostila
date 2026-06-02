@@ -5,6 +5,39 @@
 
 ---
 
+## Sessao 15 — 2026-06-01
+
+### O que foi feito
+- [x] Fase Raiz completa — Vendas Blocos 02 a 06 (todos os 5 blocos)
+- [x] 20 arquivos criados: p1.md + p2.md + p1.html + p2.html × 5 blocos
+- [x] Workflow completo executado: Marco → Paulo → Marco → Vera → Iris → Ana → Roberto+Carla+Marcos → Sofia
+- [x] STATUS.md atualizado: 50/88 blocos finalizados (Vendas Raiz completa)
+
+### Blocos trabalhados
+| Bloco | Titulo | Personagem | Status |
+|-------|--------|------------|--------|
+| Vendas > Raiz > 02 | O que você vende, ninguém entende | Natália | Finalizado |
+| Vendas > Raiz > 03 | O cliente não comprou o seu esforço | Fábio | Finalizado |
+| Vendas > Raiz > 04 | Vender para todo mundo é não ter cliente certo | Camila | Finalizado |
+| Vendas > Raiz > 05 | O preço que você coloca não é o preço que você cobra | Rafaela | Finalizado |
+| Vendas > Raiz > 06 | Venda sem registro vira loteria | Andréa | Finalizado |
+
+### Decisoes tomadas
+| Decisao | Motivo |
+|---------|--------|
+| Canvas todos diferentes e interativos | Lucas pediu modelos visuais distintos, não Q&A; cada bloco tem formato único: escaner sequencial (02), mapa de inversão 2 colunas (03), grade 2×2 (04), decomposição de preço calculável (05), log de rastro 10 linhas (06) |
+| Paulo removeu linhas defensivas de personagem em Blocos 02 e 03 | Natália "é boa profissional" e Fábio "ninguém domina o processo como ele" suavizavam o desconforto — removidas |
+| Bloco 05 P2 tem hints 3 segmentos na linha de tempo invisível | comércio: prazo de reposição · serviço: deslocamento · indústria: setup e refugo |
+| Todos os 3 validadores aprovaram todos os 5 blocos | Padrões de cada segmento reconhecíveis em cada bloco |
+
+### Proximo passo
+Vendas > Trilha > Bloco 07 (Origem da venda: de onde os clientes vêm)
+
+### Pendencias
+- Nenhuma pendencia aberta
+
+---
+
 ## Sessao 14 — 2026-04-24
 
 ### O que foi feito

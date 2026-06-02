@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 04 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 20px; font-style: italic; }
+
+        .grade-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+
+        .eixo-y {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #aaa;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .grade-interior { flex: 1; }
+
+        .grade-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            border: 1px solid #ccc;
+            height: 168px;
+        }
+
+        .quadrante {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .quad-rotulo {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #555;
+        }
+
+        .quad-desc {
+            font-size: 10px;
+            color: #aaa;
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+
+        .quad-linha { border-bottom: 1px solid #e0e0e0; height: 18px; }
+
+        .quad-ideal { background: #fafafa; }
+        .quad-toleravel { background: #fff; }
+        .quad-rever { background: #fff; }
+        .quad-evitar { background: #f9f9f9; }
+
+        .eixo-x {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #aaa;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        .criterio-box { margin-bottom: 16px; }
+
+        .criterio-label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .criterio-linha { border-bottom: 1px solid #bbb; height: 24px; }
+
+        .duvida-item { margin-bottom: 8px; font-size: 12px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            .grade-grid { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Vendas</div>
+
+        <div class="titulo">Grade de Triagem</div>
+        <div class="subtitulo">Escreva tipos de cliente em cada quadrante, com base nos últimos 12 meses. Não nomes — padrões.</div>
+
+        <div class="grade-wrapper">
+            <div class="eixo-y">Resultado bom &nbsp;↑&nbsp; Resultado ruim</div>
+            <div class="grade-interior">
+                <div class="grade-grid">
+                    <div class="quadrante quad-ideal">
+                        <div class="quad-rotulo">Ideal</div>
+                        <div class="quad-desc">Fácil de servir · resultado bom</div>
+                        <div class="quad-linha"></div>
+                        <div class="quad-linha"></div>
+                        <div class="quad-linha"></div>
+                    </div>
+                    <div class="quadrante quad-toleravel">
+                        <div class="quad-rotulo">Tolerável</div>
+                        <div class="quad-desc">Difícil de servir · resultado bom</div>
+                        <div class="quad-linha"></div>
+                        <div class="quad-linha"></div>
+                        <div class="quad-linha"></div>
+                    </div>
+                    <div class="quadrante quad-rever">
+                        <div class="quad-rotulo">Rever</div>
+                        <div class="quad-desc">Fácil de servir · resultado ruim</div>
+                        <div class="quad-linha"></div>
+                        <div class="quad-linha"></div>
+                        <div class="quad-linha"></div>
+                    </div>
+                    <div class="quadrante quad-evitar">
+                        <div class="quad-rotulo">Evitar</div>
+                        <div class="quad-desc">Difícil de servir · resultado ruim</div>
+                        <div class="quad-linha"></div>
+                        <div class="quad-linha"></div>
+                        <div class="quad-linha"></div>
+                    </div>
+                </div>
+                <div class="eixo-x">← Fácil de servir &nbsp;|&nbsp; Difícil de servir →</div>
+            </div>
+        </div>
+
+        <div class="criterio-box">
+            <div class="criterio-label">Critério a partir de agora — quem entra e quem sai:</div>
+            <div class="criterio-linha"></div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Não posso ser seletivo, preciso de venda."</strong>
+            <span> → Você já está sendo seletivo. Só que está escolhendo os piores.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Cada cliente é diferente."</strong>
+            <span> → Sim. Por isso você precisa de critério para separar os que funcionam dos que drenam.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se eu errar na triagem?"</strong>
+            <span> → Vai errar. Mas vai errar menos do que errando sem nenhum critério.</span>
+        </div>
+
+        <div class="resultado">
+            Depois deste Canvas, o empresário para de aceitar qualquer cliente por medo e começa a escolher com critério. O filtro existe antes da venda, não depois do problema. <strong>Se dói, funcionou.</strong>
+        </div>
+    </div>
+</body>
+</html>

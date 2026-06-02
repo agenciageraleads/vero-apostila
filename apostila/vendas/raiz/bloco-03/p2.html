@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 03 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 18px; font-style: italic; }
+
+        .inversao-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+
+        .inversao-table thead tr th {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 8px 12px;
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+            color: #444;
+        }
+
+        .inversao-table thead tr th.col-momento {
+            width: 22%;
+            background: #f0f0f0;
+        }
+
+        .inversao-table thead tr th.col-voce {
+            width: 39%;
+            border-right: 3px solid #bbb;
+        }
+
+        .inversao-table thead tr th.col-cliente {
+            width: 39%;
+        }
+
+        .inversao-table tbody tr td {
+            border: 1px solid #ddd;
+            vertical-align: top;
+            padding: 0;
+            height: 40px;
+        }
+
+        .inversao-table tbody tr td.momento-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 8px 12px;
+            background: #fafafa;
+            vertical-align: middle;
+            border-right: 1px solid #ddd;
+        }
+
+        .inversao-table tbody tr td.col-voce {
+            border-right: 3px solid #bbb;
+        }
+
+        .pergunta-reflexao {
+            font-size: 13px;
+            font-style: italic;
+            color: #555;
+            margin: 4px 0 14px 0;
+            padding-left: 12px;
+            border-left: 2px solid #ddd;
+        }
+
+        .duvida-item { margin-bottom: 8px; font-size: 12px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            .inversao-table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Vendas</div>
+
+        <div class="titulo">Mapa de Inversão</div>
+        <div class="subtitulo">Para cada momento da venda, escreva o que você costuma dizer — e o que o cliente precisa ouvir. Não corrija. Escreva o que é real.</div>
+
+        <table class="inversao-table">
+            <thead>
+                <tr>
+                    <th class="col-momento">Momento</th>
+                    <th class="col-voce">O que você costuma dizer</th>
+                    <th class="col-cliente">O que o cliente precisa ouvir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="momento-label">Primeiro contato</td>
+                    <td class="col-voce"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="momento-label">Apresentação</td>
+                    <td class="col-voce"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="momento-label">Diferencial</td>
+                    <td class="col-voce"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="momento-label">Objeção de preço</td>
+                    <td class="col-voce"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="momento-label">Fechamento</td>
+                    <td class="col-voce"></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="pergunta-reflexao">Olhe para a coluna da direita. Quanto do que você disse está lá?</div>
+
+        <div class="duvida-item">
+            <strong>"Mas o cliente precisa entender o que vai receber."</strong>
+            <span> → Ele precisa entender o que vai ganhar. São coisas diferentes.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Se eu não explicar o processo, vai parecer que qualquer um faz."</strong>
+            <span> → O cliente não escolhe quem explica melhor. Escolhe quem resolve o que ele precisa.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Preciso mostrar minha expertise."</strong>
+            <span> → Mostre pelo resultado que entrega, não pelo processo que usa.</span>
+        </div>
+
+        <div class="resultado">
+            Depois deste Canvas, o empresário para de falar sobre si e começa a falar sobre o cliente. A conversa de venda muda de tom — não porque aprendeu técnica, mas porque mudou o que coloca no centro. <strong>Se dói, funcionou.</strong>
+        </div>
+    </div>
+</body>
+</html>

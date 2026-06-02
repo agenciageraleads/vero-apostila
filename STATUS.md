@@ -1,7 +1,7 @@
 # STATUS — Apostila Vero
 
 > Dashboard rapido de todos os blocos. Atualizar a cada aprovacao.
-> Ultima atualizacao: 2026-04-22 (Operacao Legado — Blocos 17-22 finalizados)
+> Ultima atualizacao: 2026-06-01 (Vendas Raiz — Blocos 02-06 finalizados)
 
 ## Resumo
 
@@ -9,13 +9,13 @@
 |-------|-------|---|----|---|----|---|----|
 | Financeiro | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
 | Operacao | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
-| Vendas | 22 | 21 | 0 | 0 | 0 | 0 | 1 |
+| Vendas | 22 | 16 | 0 | 0 | 0 | 0 | 6 |
 | Pessoas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL** | **88** | **43** | **0** | **0** | **0** | **0** | **45** |
+| **TOTAL** | **88** | **38** | **0** | **0** | **0** | **0** | **50** |
 
 Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado | 🎨 Em design | 📄 Finalizado
 
-## Proximo bloco: Vendas > Raiz > Bloco 02
+## Proximo bloco: Vendas > Trilha > Bloco 07
 
 ---
 
@@ -82,11 +82,11 @@ Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado |
 | # | Fase | Bloco | Status | Data |
 |---|------|-------|--------|------|
 | 01 | 🌱 Raiz | Venda depende do dono | 📄 | 2026-04-24 |
-| 02 | 🌱 Raiz | Confusao nao converte | ⬜ | - |
-| 03 | 🌱 Raiz | Cliente compra resolucao | ⬜ | - |
-| 04 | 🌱 Raiz | Vender pra todo mundo | ⬜ | - |
-| 05 | 🌱 Raiz | Preco errado mata a venda | ⬜ | - |
-| 06 | 🌱 Raiz | Venda sem registro | ⬜ | - |
+| 02 | 🌱 Raiz | Confusao nao converte | 📄 | 2026-06-01 |
+| 03 | 🌱 Raiz | Cliente compra resolucao | 📄 | 2026-06-01 |
+| 04 | 🌱 Raiz | Vender pra todo mundo | 📄 | 2026-06-01 |
+| 05 | 🌱 Raiz | Preco errado mata a venda | 📄 | 2026-06-01 |
+| 06 | 🌱 Raiz | Venda sem registro | 📄 | 2026-06-01 |
 | 07 | 🛤️ Trilha | Origem da venda | ⬜ | - |
 | 08 | 🛤️ Trilha | Processo de venda que se repete | ⬜ | - |
 | 09 | 🛤️ Trilha | Conversao: onde a venda morre | ⬜ | - |

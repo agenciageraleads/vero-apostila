@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 05 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 20px; font-style: italic; }
+
+        .decomp { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; border: 1px solid #ddd; }
+
+        .decomp-row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 8px 14px;
+            gap: 12px;
+        }
+
+        .decomp-row:last-child { border-bottom: none; }
+
+        .decomp-label {
+            flex: 1;
+            font-size: 12px;
+            color: #444;
+        }
+
+        .decomp-valor {
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            min-width: 110px;
+        }
+
+        .val-linha {
+            display: inline-block;
+            border-bottom: 1px solid #bbb;
+            width: 70px;
+            height: 18px;
+        }
+
+        .decomp-row.total {
+            background: #f5f5f5;
+            border-top: 2px solid #bbb;
+            border-bottom: 2px solid #bbb;
+        }
+
+        .decomp-row.total .decomp-label {
+            font-weight: bold;
+            font-size: 12px;
+            color: #222;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .decomp-row.total .decomp-valor {
+            font-weight: bold;
+            color: #222;
+        }
+
+        .decomp-row.preco-correto {
+            background: #222;
+        }
+
+        .decomp-row.preco-correto .decomp-label {
+            font-weight: bold;
+            font-size: 12px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .decomp-row.preco-correto .decomp-valor {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .decomp-row.preco-correto .val-linha {
+            border-bottom-color: #888;
+        }
+
+        .decomp-row.diferenca {
+            background: #fafafa;
+            border-top: 1px solid #ccc;
+        }
+
+        .ajuste-box { margin-bottom: 16px; }
+
+        .ajuste-label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .ajuste-opcoes { display: flex; gap: 20px; flex-wrap: wrap; }
+
+        .ajuste-opcao {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .check-box {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #aaa;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .duvida-item { margin-bottom: 7px; font-size: 12px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            .decomp { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Vendas</div>
+
+        <div class="titulo">Decomposição de Preço</div>
+        <div class="subtitulo">Escolha um produto ou serviço. Preencha com o valor real — não estimado.</div>
+
+        <div class="decomp">
+            <div class="decomp-row">
+                <span class="decomp-label">Custo direto (material, insumo, mercadoria)</span>
+                <span class="decomp-valor">R$ <span class="val-linha"></span></span>
+            </div>
+            <div class="decomp-row">
+                <span class="decomp-label">Mão de obra (horas × seu valor por hora)</span>
+                <span class="decomp-valor">R$ <span class="val-linha"></span></span>
+            </div>
+            <div class="decomp-row">
+                <span class="decomp-label">Tempo invisível (reunião, ajuste, retrabalho, entrega)
+                    <br><span style="font-size:10px;color:#aaa;">ex. comércio: prazo de reposição · serviço: deslocamento · indústria: setup e refugo</span>
+                </span>
+                <span class="decomp-valor">R$ <span class="val-linha"></span></span>
+            </div>
+            <div class="decomp-row">
+                <span class="decomp-label">Custo fixo proporcional (aluguel, energia, equipamento)</span>
+                <span class="decomp-valor">R$ <span class="val-linha"></span></span>
+            </div>
+            <div class="decomp-row total">
+                <span class="decomp-label">Custo real da venda</span>
+                <span class="decomp-valor">R$ <span class="val-linha"></span></span>
+            </div>
+            <div class="decomp-row">
+                <span class="decomp-label">Margem desejada</span>
+                <span class="decomp-valor"><span class="val-linha"></span> %</span>
+            </div>
+            <div class="decomp-row preco-correto">
+                <span class="decomp-label">Preço correto</span>
+                <span class="decomp-valor">R$ <span class="val-linha"></span></span>
+            </div>
+            <div class="decomp-row">
+                <span class="decomp-label">Preço que você cobra hoje</span>
+                <span class="decomp-valor">R$ <span class="val-linha"></span></span>
+            </div>
+            <div class="decomp-row diferenca">
+                <span class="decomp-label" style="font-weight:bold;">Diferença</span>
+                <span class="decomp-valor">R$ <span class="val-linha"></span> &nbsp;<span style="font-size:11px;color:#888;">☐ a mais &nbsp;☐ a menos</span></span>
+            </div>
+        </div>
+
+        <div class="ajuste-box">
+            <div class="ajuste-label">O que você vai ajustar?</div>
+            <div class="ajuste-opcoes">
+                <span class="ajuste-opcao"><span class="check-box"></span> O preço</span>
+                <span class="ajuste-opcao"><span class="check-box"></span> O custo (onde e como)</span>
+                <span class="ajuste-opcao"><span class="check-box"></span> O processo</span>
+                <span class="ajuste-opcao"><span class="check-box"></span> Os três</span>
+            </div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu subir o preço, perco cliente."</strong>
+            <span> → Talvez. Mas continuar no preço atual garante que você perde dinheiro em cada venda.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Minha mão de obra sou eu mesmo, não tenho esse custo."</strong>
+            <span> → Você tem. Só não colocou no cálculo. Por isso o preço nunca fecha.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"O mercado não aceita preço maior."</strong>
+            <span> → Alguns segmentos aceitam. Outros não. Você precisa saber onde está — e se vale estar.</span>
+        </div>
+
+        <div class="resultado">
+            Depois deste Canvas, o empresário para de copiar preço e começa a calcular. Mesmo que o ajuste doa, ele passa a saber o que é margem real e o que é ilusão de receita. <strong>Se dói, funcionou.</strong>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 02 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 18px; font-style: italic; }
+
+        .fluxo { display: flex; flex-direction: column; gap: 0; }
+
+        .passo { display: flex; gap: 14px; align-items: flex-start; }
+
+        .passo-num {
+            font-family: 'Georgia', serif;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ddd;
+            min-width: 28px;
+            line-height: 1;
+            padding-top: 2px;
+        }
+
+        .passo-corpo { flex: 1; padding-bottom: 4px; }
+
+        .passo-label {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #555;
+            margin-bottom: 3px;
+        }
+
+        .passo-instrucao {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 7px;
+            font-style: italic;
+        }
+
+        .linha { border-bottom: 1px solid #ccc; height: 22px; margin-bottom: 3px; }
+        .linha-curta { border-bottom: 1px solid #ccc; height: 22px; margin-bottom: 3px; }
+
+        .lista-linha { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 4px; font-size: 13px; color: #bbb; }
+        .lista-linha span { border-bottom: 1px solid #ccc; flex: 1; height: 22px; }
+
+        .conector {
+            margin: 4px 0 4px 13px;
+            color: #ccc;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .duvida-item { margin-bottom: 8px; font-size: 12px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        .secao-divider { border: none; border-top: 1px solid #eee; margin: 12px 0; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Vendas</div>
+
+        <div class="titulo">Escaner de Oferta</div>
+        <div class="subtitulo">Siga os 5 passos em ordem. Não pule.</div>
+
+        <div class="fluxo">
+
+            <div class="passo">
+                <div class="passo-num">01</div>
+                <div class="passo-corpo">
+                    <div class="passo-label">Como você explica o que faz</div>
+                    <div class="passo-instrucao">Escreva a fala real, não a versão bonita.</div>
+                    <div class="linha"></div>
+                    <div class="linha"></div>
+                    <div class="linha"></div>
+                </div>
+            </div>
+
+            <div class="conector">↓</div>
+
+            <div class="passo">
+                <div class="passo-num">02</div>
+                <div class="passo-corpo">
+                    <div class="passo-label">Palavras que o cliente provavelmente não entende</div>
+                    <div class="passo-instrucao">Liste os termos técnicos ou internos que aparecem na sua explicação.</div>
+                    <div class="lista-linha">—<span></span></div>
+                    <div class="lista-linha">—<span></span></div>
+                    <div class="lista-linha">—<span></span></div>
+                </div>
+            </div>
+
+            <div class="conector">↓</div>
+
+            <div class="passo">
+                <div class="passo-num">03</div>
+                <div class="passo-corpo">
+                    <div class="passo-label">O que o cliente ganha de concreto</div>
+                    <div class="passo-instrucao">Não o que você faz. O que muda na vida ou no negócio dele depois que contratar você.</div>
+                    <div class="linha"></div>
+                    <div class="linha"></div>
+                </div>
+            </div>
+
+            <div class="conector">↓</div>
+
+            <div class="passo">
+                <div class="passo-num">04</div>
+                <div class="passo-corpo">
+                    <div class="passo-label">Reescreva em uma frase</div>
+                    <div class="passo-instrucao">Use só as palavras do passo anterior. Uma frase. Ponto de vista de quem compra.</div>
+                    <div class="linha"></div>
+                </div>
+            </div>
+
+            <div class="conector">↓</div>
+
+            <div class="passo">
+                <div class="passo-num">05</div>
+                <div class="passo-corpo">
+                    <div class="passo-label">Teste com alguém de fora do seu setor</div>
+                    <div class="passo-instrucao">Mostre a frase do passo 04. Escreva o que essa pessoa entendeu — não o que você quis dizer.</div>
+                    <div class="linha"></div>
+                    <div class="linha"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="secao-divider" style="margin-top: 16px;">
+
+        <div class="duvida-item">
+            <strong>"Mas meus clientes sabem o que eu faço."</strong>
+            <span> → Os que já compraram, sim. Quem está decidindo se compra, ainda não.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Meu trabalho é complexo demais para simplificar."</strong>
+            <span> → Complexidade é interna. O cliente só precisa entender o que muda para ele.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Tenho explicado assim há anos."</strong>
+            <span> → Quantas vendas você perdeu sem saber disso?</span>
+        </div>
+
+        <div class="resultado">
+            Depois deste Canvas, o empresário para de explicar processo e começa a nomear resultado. Se o Passo 05 revelou que a frase ainda confunde, o problema não é o cliente — é a mensagem. <strong>Se dói, funcionou.</strong>
+        </div>
+    </div>
+</body>
+</html>
