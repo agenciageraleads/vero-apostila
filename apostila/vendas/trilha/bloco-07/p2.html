@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 07 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 16px; font-style: italic; }
+
+        .tabela-intro { font-size: 12px; color: #333; margin-bottom: 12px; line-height: 1.6; }
+        .tabela-intro strong { color: #000; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 6px; font-size: 11px; }
+        table th { background: #f5f5f5; padding: 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: #555; }
+        table td { padding: 6px 8px; border: 1px solid #eee; height: 24px; }
+        table td.col-num { text-align: center; color: #999; width: 8%; }
+        table tbody tr:nth-child(even) td { background: #fafafa; }
+
+        .dica { font-size: 10px; color: #888; font-style: italic; margin: 6px 0 20px 0; line-height: 1.6; }
+
+        .resumo { display: flex; flex-direction: column; gap: 9px; margin: 0 0 22px 0; padding-top: 14px; border-top: 1px solid #ddd; }
+        .resumo-item { display: flex; align-items: flex-end; gap: 6px; font-size: 12px; color: #444; }
+        .resumo-linha { display: inline-block; border-bottom: 1px solid #999; width: 46px; height: 18px; }
+
+        .pergunta-item { margin-bottom: 22px; }
+        .pergunta-item:last-child { margin-bottom: 0; }
+        .pergunta-label { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 10px; line-height: 1.5; }
+
+        .resposta-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+        .resposta-prefix { font-size: 12px; color: #666; white-space: nowrap; }
+        .input-line { display: inline-block; border-bottom: 1px solid #999; height: 20px; flex: 1; min-width: 140px; }
+
+        .checkbox-row { display: flex; gap: 16px; align-items: center; margin-top: 6px; flex-wrap: wrap; }
+        .checkbox-opt { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; }
+        .checkbox-opt .box { width: 12px; height: 12px; border: 1px solid #999; display: inline-block; flex-shrink: 0; }
+
+        .resposta-aberta { display: block; border-bottom: 1px solid #999; height: 20px; width: 100%; margin-top: 8px; }
+
+        .pergunta-hint { font-size: 10px; font-style: italic; color: #888; margin-top: 8px; line-height: 1.55; }
+
+        .duvida-item { margin-bottom: 8px; font-size: 12px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 14px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🛤️ Trilha — Vendas</div>
+
+        <div class="titulo">Anote de onde vieram suas últimas dez vendas — uma por uma</div>
+        <div class="subtitulo">Use registros reais: pedidos, notas, conversas. Se precisar adivinhar a origem, escreva "não sei" — isso também é resposta.</div>
+
+        <div class="tabela-intro"><strong>As dez últimas vendas, da mais recente para trás.</strong> Na terceira coluna, escreva o que você (ou alguém da equipe) fez para essa venda existir. Se ninguém fez nada, escreva "apareceu".</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:8%;">Venda</th>
+                    <th style="width:38%;">De onde veio</th>
+                    <th style="width:54%;">O que foi feito para ela acontecer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="col-num">1.</td><td></td><td></td></tr>
+                <tr><td class="col-num">2.</td><td></td><td></td></tr>
+                <tr><td class="col-num">3.</td><td></td><td></td></tr>
+                <tr><td class="col-num">4.</td><td></td><td></td></tr>
+                <tr><td class="col-num">5.</td><td></td><td></td></tr>
+                <tr><td class="col-num">6.</td><td></td><td></td></tr>
+                <tr><td class="col-num">7.</td><td></td><td></td></tr>
+                <tr><td class="col-num">8.</td><td></td><td></td></tr>
+                <tr><td class="col-num">9.</td><td></td><td></td></tr>
+                <tr><td class="col-num">10.</td><td></td><td></td></tr>
+            </tbody>
+        </table>
+
+        <div class="dica">ex. comércio: cliente que entrou depois de ver a vitrine — ninguém fez nada · ex. serviço: contrato fechado por indicação de outro cliente, depois de uma entrega bem-feita · ex. indústria: pedido novo que chegou pela visita do representante feita no mês anterior</div>
+
+        <div class="resumo">
+            <div class="resumo-item">Vendas com origem que você sabe nomear: <div class="resumo-linha"></div> de 10</div>
+            <div class="resumo-item">Vendas em que houve uma ação sua (ou da equipe) antes: <div class="resumo-linha"></div> de 10</div>
+            <div class="resumo-item">Vendas que simplesmente apareceram: <div class="resumo-linha"></div> de 10</div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Qual origem mais se repete — e ela depende de algo que você faz ou de algo que acontece sem você?</div>
+            <div class="resposta-row">
+                <span class="resposta-prefix">Origem mais frequente:</span>
+                <span class="input-line"></span>
+            </div>
+            <div class="checkbox-row">
+                <span class="checkbox-opt"><span class="box"></span> Depende de uma ação minha</span>
+                <span class="checkbox-opt"><span class="box"></span> Acontece por conta própria</span>
+                <span class="checkbox-opt"><span class="box"></span> Não sei dizer</span>
+            </div>
+            <div class="pergunta-hint">parceiro que indica porque você mantém contato · anúncio que você paga e mede · cliente antigo que volta sozinho · ponto de rua que traz quem passa</div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Se essa origem parasse amanhã, quantas das dez vendas restariam — e de onde viriam?</div>
+            <span class="resposta-aberta"></span>
+            <span class="resposta-aberta" style="margin-top:8px;"></span>
+            <div class="pergunta-hint">sem o arquiteto que indica · sem o contrato grande que renova todo ano · sem o representante que cobre a região</div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Das ações que geraram venda na tabela, qual você vai repetir esta semana — de propósito, não por acaso? Escreva a ação, o dia e para quem.</div>
+            <span class="resposta-aberta"></span>
+            <span class="resposta-aberta" style="margin-top:8px;"></span>
+            <div class="pergunta-hint">ligar para quem comprou há mais de seis meses · visitar o parceiro que indicou as duas últimas · retomar os orçamentos parados há mais de quinze dias</div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Minhas vendas vêm de indicação. Não tem o que fazer com isso."</strong>
+            <span> → Indicação tem origem: alguém indicou, depois de alguma coisa. Quem foi e depois do quê — isso se anota. Quem indicou uma vez indica de novo, se você aparecer.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Eu sei de onde vêm minhas vendas. Está tudo na minha cabeça."</strong>
+            <span> → Se está, a tabela leva dez minutos. Se levar mais que isso, estava menos na cabeça do que você achava.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se quase tudo tiver sido sorte?"</strong>
+            <span> → Então agora você sabe. Sorte não se repete por pedido — ação se repete. Melhor descobrir isso em dez linhas do que no meio de um mês fraco.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe quantas das suas últimas dez vendas nasceram de algo que você fez — e quantas só aconteceram. A partir da próxima venda, a pergunta "como você chegou até a gente?" entra no fechamento, e a origem entra na tabela. Quando o mês vier fraco, você vai saber onde mexer — em vez de gastar em três frentes para acertar uma.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 20 — Vendas Legado — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 34px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 6px; color: #000; }
+
+        .instrucao { font-size: 12px; color: #666; margin-bottom: 8px; font-style: italic; line-height: 1.55; }
+
+        .instrucao-forte { font-size: 12px; color: #333; margin-bottom: 14px; line-height: 1.55; }
+
+        .medidor-bloco { margin: 16px 0; padding: 12px 14px; border: 1px solid #e2e2e2; background: #fcfcfc; }
+        .medidor-bloco + .medidor-bloco { margin-top: 12px; }
+
+        .medidor-titulo { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 3px; }
+        .medidor-instrucao { font-size: 10.5px; color: #777; font-style: italic; margin-bottom: 10px; }
+
+        .medidor-escala { position: relative; height: 26px; margin: 4px 4px 2px 4px; }
+        .medidor-escala .linha-base { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #999; }
+        .medidor-escala .tick { position: absolute; top: calc(50% - 7px); width: 1px; height: 14px; background: #999; }
+        .medidor-escala .tick.t0 { left: 0; }
+        .medidor-escala .tick.t25 { left: 25%; }
+        .medidor-escala .tick.t50 { left: 50%; }
+        .medidor-escala .tick.t75 { left: 75%; }
+        .medidor-escala .tick.t100 { left: 100%; }
+
+        .medidor-numeros { display: flex; justify-content: space-between; font-size: 10px; color: #888; margin: 0 4px 10px 4px; }
+
+        .hint-segmentos { font-size: 10.5px; color: #888; font-style: italic; line-height: 1.55; margin: 0 0 14px 0; }
+
+        .campo-linha { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; font-size: 11.5px; color: #333; }
+        .campo-linha .preenchimento { flex: 1; border-bottom: 1px solid #bbb; height: 15px; min-width: 40px; }
+
+        .campo-checkbox { font-size: 11.5px; color: #333; display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+        .campo-checkbox .opcao { white-space: nowrap; }
+
+        .pergunta-chave { font-size: 13px; font-weight: bold; margin: 20px 0 4px 0; color: #000; }
+        .pergunta-sub { font-size: 11.5px; color: #777; font-style: italic; margin-bottom: 10px; }
+
+        .resposta-livre { border-bottom: 1px solid #ccc; height: 18px; margin-bottom: 7px; }
+
+        .soma-box { margin: 16px 0; padding: 12px 14px; border-left: 3px solid #999; background: #fafafa; font-size: 12px; }
+        .soma-box p { margin-bottom: 7px; }
+        .soma-box p:last-child { margin-bottom: 0; }
+
+        .duvida-item { margin: 12px 0; font-size: 12px; }
+        .duvida-item strong { display: block; margin-bottom: 3px; color: #333; }
+        .duvida-item p { color: #666; line-height: 1.55; }
+
+        .resultado { margin: 18px 0 0 0; padding-top: 14px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.6; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 34px 40px; box-shadow: none; page-break-after: always; }
+            .medidor-bloco { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🏛️ Legado — Vendas</div>
+
+        <div class="titulo">Mapa das Três Saídas</div>
+        <div class="instrucao">Custódio só descobriu o tamanho da dependência quando cliente, vendedor e ele mesmo saíram ao mesmo tempo. Você não precisa esperar as três saídas acontecerem juntas para saber quanto sobra. Faça a conta agora, com os números de hoje.</div>
+        <div class="instrucao-forte">Se as três saídas abaixo acontecessem esta semana — não daqui a um ano, esta semana — marque o nível real de dependência hoje, não o que você gostaria que fosse.</div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Seu maior cliente cancela — qual o nível de dependência hoje?</div>
+            <div class="medidor-instrucao">Marque com um X o ponto da escala que representa a dependência real, não a percepção.</div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="campo-linha">O que quebra nos primeiros 30 dias: <div class="preenchimento"></div></div>
+            <div class="campo-checkbox">Proteção documentada existe hoje — não intenção, critério? <span class="opcao">☐ Sim</span><span class="opcao">☐ Não</span></div>
+        </div>
+        <div class="hint-segmentos">ex. comércio: cliente que compra por atacado e sustenta o giro do mês · ex. serviço: contrato mensal recorrente que paga a folha sozinho · ex. indústria: pedido de um cliente-âncora que ocupa a maior parte da linha de produção</div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Seu melhor vendedor sai — qual o nível de dependência hoje?</div>
+            <div class="medidor-instrucao">Marque com um X o ponto da escala que representa a dependência real, não a percepção.</div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="campo-linha">O que quebra nos primeiros 30 dias: <div class="preenchimento"></div></div>
+            <div class="campo-checkbox">Proteção documentada existe hoje — não intenção, critério? <span class="opcao">☐ Sim</span><span class="opcao">☐ Não</span></div>
+        </div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Você para por 90 dias — qual o nível de dependência hoje?</div>
+            <div class="medidor-instrucao">Marque com um X o ponto da escala que representa a dependência real, não a percepção.</div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="campo-linha">O que quebra nos primeiros 30 dias: <div class="preenchimento"></div></div>
+            <div class="campo-checkbox">Proteção documentada existe hoje — não intenção, critério? <span class="opcao">☐ Sim</span><span class="opcao">☐ Não</span></div>
+        </div>
+
+        <div class="pergunta-chave">Quantos dias o caixa sustenta a operação sem repor essa receita — sem cortar equipe, sem atrasar fornecedor?</div>
+        <div class="pergunta-sub">Não estime. Calcule a partir do caixa real de hoje.</div>
+
+        <div class="campo-linha">Dias de sobrevivência sem o maior cliente: <div class="preenchimento"></div></div>
+        <div class="campo-linha">Dias de sobrevivência sem o melhor vendedor faturando: <div class="preenchimento"></div></div>
+        <div class="campo-linha">Dias de sobrevivência com você fora, decidindo tudo por WhatsApp: <div class="preenchimento"></div></div>
+
+        <div class="pergunta-chave">O que, hoje, impede qualquer uma dessas três saídas de virar uma crise — não o que você acha que resolveria, mas o que já está funcionando, documentado, testado?</div>
+        <div class="hint-segmentos" style="margin-bottom:10px;">ex. comércio: mais de um fornecedor habilitado para a mesma linha de produto · ex. serviço: dois atendentes com autonomia para renovar contrato sem passar por você · ex. indústria: processo produtivo registrado que não depende de quem está na linha hoje</div>
+        <div class="resposta-livre"></div>
+        <div class="resposta-livre"></div>
+
+        <div class="soma-box">
+            <p><strong>Das três saídas, qual risco você reduz primeiro — esta semana, não neste ano?</strong></p>
+            <p>Escolha um. Não os três. Escreva o primeiro passo, com prazo.</p>
+            <div class="campo-linha" style="margin-top:8px;">Risco escolhido: <div class="preenchimento"></div></div>
+            <div class="campo-linha">Primeiro passo, com prazo: <div class="preenchimento"></div></div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Meu maior cliente nunca vai sair, a relação é muito boa."</strong>
+            <p>A rede de revendas de Custódio também "nunca ia sair". Relação boa não é proteção — é sorte que ainda não foi testada.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu perder meu melhor vendedor, contrato outro."</strong>
+            <p>Contrata. Mas quanto tempo até esse outro fechar no mesmo volume — e quanto o negócio perde enquanto isso não acontece?</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Eu não posso parar 90 dias, então isso nem se aplica a mim."</strong>
+            <p>Ninguém planeja parar. É exatamente por isso que vale calcular antes de precisar.</p>
+        </div>
+
+        <div class="resultado">
+            Feito esse cálculo, você sabe se o negócio sobrevive a uma saída, a duas, ou só sobrevive enquanto nenhuma delas acontece. Não é sobre nunca perder cliente, vendedor ou tempo — é sobre saber, com número, o que resta quando isso acontecer.
+        </div>
+    </div>
+</body>
+</html>

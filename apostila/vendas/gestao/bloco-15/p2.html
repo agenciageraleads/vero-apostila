@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 15 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 34px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 14px; font-style: italic; }
+
+        .tabela-intro { font-size: 12px; color: #333; margin-bottom: 14px; line-height: 1.6; }
+        .tabela-intro strong { color: #000; }
+
+        /* Roda de horas comerciais */
+        .roda-wrap { display: flex; gap: 26px; align-items: center; margin-bottom: 10px; }
+        .roda-svg-box { flex: 0 0 220px; }
+        .roda-svg-box svg { width: 220px; height: 220px; display: block; }
+        .roda-label-txt { font-size: 12px; font-weight: bold; fill: #000; font-family: 'Georgia', serif; }
+
+        .fatias-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+        .fatia-item { font-size: 10.5px; padding-bottom: 8px; border-bottom: 1px dotted #ddd; }
+        .fatia-label { font-weight: bold; color: #000; margin-bottom: 6px; line-height: 1.4; }
+        .fatia-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .fatia-row .resposta-prefix { font-size: 10.5px; color: #666; white-space: nowrap; }
+        .input-line-sm { display: inline-block; border-bottom: 1px solid #999; height: 13px; width: 34px; }
+        .simnao { color: #888; font-size: 10px; white-space: nowrap; margin-left: auto; }
+
+        .dica { font-size: 10px; color: #888; font-style: italic; margin: 8px 0 16px 0; line-height: 1.55; }
+
+        .instrucao-pintura { font-size: 11.5px; color: #222; background: #f7f7f5; border: 1px solid #ddd; padding: 9px 12px; margin: 4px 0 18px 0; line-height: 1.6; }
+        .instrucao-pintura strong { color: #000; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 6px; font-size: 11px; }
+        table th { background: #f5f5f5; padding: 7px 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: #555; }
+        table td { padding: 5px 8px; border: 1px solid #eee; height: 21px; }
+        table tbody tr:nth-child(even) td { background: #fafafa; }
+
+        .pergunta-item { margin-bottom: 16px; }
+        .pergunta-item:last-child { margin-bottom: 0; }
+        .pergunta-label { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 9px; line-height: 1.5; }
+
+        .resposta-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; flex-wrap: wrap; }
+        .resposta-row:last-child { margin-bottom: 0; }
+        .resposta-prefix { font-size: 12px; color: #666; white-space: nowrap; }
+        .input-line { display: inline-block; border-bottom: 1px solid #999; height: 18px; flex: 1; min-width: 100px; }
+
+        .resposta-aberta { display: block; border-bottom: 1px solid #999; height: 18px; width: 100%; margin-top: 7px; }
+
+        .pergunta-hint { font-size: 10px; font-style: italic; color: #888; margin-top: 7px; line-height: 1.5; }
+
+        .tabela-secundaria { margin: 16px 0 16px 0; }
+        .tabela-secundaria-label { font-size: 12px; font-weight: bold; color: #333; margin-bottom: 7px; }
+
+        .duvida-item { margin-bottom: 7px; font-size: 12px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 34px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+            .roda-wrap { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🧠 Gestão — Vendas</div>
+
+        <div class="titulo">Onde a Semana Comercial Foi Parar</div>
+        <div class="subtitulo">Wagner tem quarenta e três horas registradas e duas vendas para mostrar. Você não precisa de um sócio perguntando para fazer a mesma conta.</div>
+
+        <div class="tabela-intro"><strong>Sua semana comercial tem seis fatias.</strong> Para cada uma, escreva quantas horas ela ocupou nos últimos 5 dias úteis — e marque se ela gerou contato com quem está perto de comprar.</div>
+
+        <div class="roda-wrap">
+            <div class="roda-svg-box">
+                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="200" cy="200" r="150" fill="#ffffff" stroke="#222" stroke-width="1.5"/>
+                    <path d="M200,200 L200,50 A150,150 0 0,1 329.9,125 Z" fill="none" stroke="#222" stroke-width="1"/>
+                    <path d="M200,200 L329.9,125 A150,150 0 0,1 329.9,275 Z" fill="none" stroke="#222" stroke-width="1"/>
+                    <path d="M200,200 L329.9,275 A150,150 0 0,1 200,350 Z" fill="none" stroke="#222" stroke-width="1"/>
+                    <path d="M200,200 L200,350 A150,150 0 0,1 70.1,275 Z" fill="none" stroke="#222" stroke-width="1"/>
+                    <path d="M200,200 L70.1,275 A150,150 0 0,1 70.1,125 Z" fill="none" stroke="#222" stroke-width="1"/>
+                    <path d="M200,200 L70.1,125 A150,150 0 0,1 200,50 Z" fill="none" stroke="#222" stroke-width="1"/>
+
+                    <text class="roda-label-txt" x="247.5" y="112" text-anchor="middle" font-size="15">Prospecção</text>
+                    <text class="roda-label-txt" x="247.5" y="128" text-anchor="middle" font-size="15">fria</text>
+
+                    <text class="roda-label-txt" x="295" y="196" text-anchor="middle" font-size="15">Follow-up</text>
+                    <text class="roda-label-txt" x="295" y="212" text-anchor="middle" font-size="15">de proposta</text>
+
+                    <text class="roda-label-txt" x="247.5" y="278" text-anchor="middle" font-size="15">Atendimento</text>
+                    <text class="roda-label-txt" x="247.5" y="294" text-anchor="middle" font-size="15">a decidido</text>
+
+                    <text class="roda-label-txt" x="152.5" y="278" text-anchor="middle" font-size="15">Manutenção de</text>
+                    <text class="roda-label-txt" x="152.5" y="294" text-anchor="middle" font-size="15">relacionamento</text>
+
+                    <text class="roda-label-txt" x="105" y="196" text-anchor="middle" font-size="15">Evento /</text>
+                    <text class="roda-label-txt" x="105" y="212" text-anchor="middle" font-size="15">networking</text>
+
+                    <text class="roda-label-txt" x="152.5" y="112" text-anchor="middle" font-size="15">Administrativo</text>
+                    <text class="roda-label-txt" x="152.5" y="128" text-anchor="middle" font-size="15">/ interno</text>
+                </svg>
+            </div>
+
+            <div class="fatias-grid">
+                <div class="fatia-item">
+                    <div class="fatia-label">Prospecção fria (contato novo, sem sinal de quem está perto de comprar)</div>
+                    <div class="fatia-row">
+                        <span class="resposta-prefix">Horas:</span>
+                        <span class="input-line-sm"></span>
+                        <span class="simnao">Gerou venda? Sim / Não</span>
+                    </div>
+                </div>
+                <div class="fatia-item">
+                    <div class="fatia-label">Follow-up de proposta que já estava na mesa</div>
+                    <div class="fatia-row">
+                        <span class="resposta-prefix">Horas:</span>
+                        <span class="input-line-sm"></span>
+                        <span class="simnao">Gerou venda? Sim / Não</span>
+                    </div>
+                </div>
+                <div class="fatia-item">
+                    <div class="fatia-label">Atendimento a quem já decidiu comprar</div>
+                    <div class="fatia-row">
+                        <span class="resposta-prefix">Horas:</span>
+                        <span class="input-line-sm"></span>
+                        <span class="simnao">Gerou venda? Sim / Não</span>
+                    </div>
+                </div>
+                <div class="fatia-item">
+                    <div class="fatia-label">Visita ou contato de manutenção de relacionamento (sem pedido em aberto)</div>
+                    <div class="fatia-row">
+                        <span class="resposta-prefix">Horas:</span>
+                        <span class="input-line-sm"></span>
+                        <span class="simnao">Gerou venda? Sim / Não</span>
+                    </div>
+                </div>
+                <div class="fatia-item">
+                    <div class="fatia-label">Evento, networking ou relacionamento institucional</div>
+                    <div class="fatia-row">
+                        <span class="resposta-prefix">Horas:</span>
+                        <span class="input-line-sm"></span>
+                        <span class="simnao">Gerou venda? Sim / Não</span>
+                    </div>
+                </div>
+                <div class="fatia-item">
+                    <div class="fatia-label">Tarefas administrativas e internas (CRM, relatório, alinhamento de equipe)</div>
+                    <div class="fatia-row">
+                        <span class="resposta-prefix">Horas:</span>
+                        <span class="input-line-sm"></span>
+                        <span class="simnao">Gerou venda? Sim / Não</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dica">ex. comércio: atendimento a cliente que já pediu orçamento entra em "atendimento a quem já decidiu" · ex. serviço: reunião de escopo com prospect quente entra em "follow-up" · ex. indústria: visita técnica pedida pelo cliente entra em "atendimento a quem já decidiu"</div>
+
+        <div class="instrucao-pintura"><strong>Na roda impressa, pinte apenas as fatias em que você marcou Sim.</strong> O que ficar sem cor é ocupação — não venda.</div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Feche a conta:</div>
+            <div class="resposta-row">
+                <span class="resposta-prefix">Total de horas comerciais na semana:</span>
+                <span class="input-line"></span>
+            </div>
+            <div class="resposta-row">
+                <span class="resposta-prefix">Total de vendas fechadas na mesma semana:</span>
+                <span class="input-line"></span>
+            </div>
+            <div class="resposta-row">
+                <span class="resposta-prefix">Das fatias pintadas, quantas horas têm prova — não suposição — de que geraram essas vendas:</span>
+                <span class="input-line"></span>
+            </div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Das fatias que ficaram sem cor, quais eram atividade que você faria de novo mesmo sabendo o resultado — e quais eram só hábito ou obrigação social?</div>
+            <div class="pergunta-hint">ex. comércio: visita de cortesia sem pedido em aberto · ex. serviço: reunião de alinhamento que não muda decisão nenhuma · ex. indústria: evento de relacionamento sem pauta comercial definida</div>
+            <span class="resposta-aberta"></span>
+            <span class="resposta-aberta" style="margin-top:8px;"></span>
+        </div>
+
+        <div class="tabela-secundaria">
+            <div class="tabela-secundaria-label">As fatias que saem da roda a partir da próxima semana — nomeadas, com o preço de cortar cada uma:</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:34%;">Fatia cortada</th>
+                        <th style="width:33%;">O que ela custava manter</th>
+                        <th style="width:33%;">O que você arrisca perder ao cortar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">A fatia que fica — mesmo tomando a maior parte da roda — porque já provou gerar venda nos últimos meses:</div>
+            <span class="resposta-aberta"></span>
+            <div class="resposta-row" style="margin-top:9px;">
+                <span class="resposta-prefix">Quantas horas por semana você protege para essa fatia, não importa o que mais apareça:</span>
+                <span class="input-line"></span>
+            </div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu cortar, posso perder uma oportunidade que só ia amadurecer meses depois."</strong>
+            <span> → Pode. Mas hoje você já perde oportunidade — só que sem saber qual fatia é a culpada. Cortar com critério troca uma perda invisível por uma perda nomeada. As duas doem. Só uma te deixa saber o preço que pagou.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Isso vai parecer que estou menos presente para meus clientes."</strong>
+            <span> → Vai. Para quem não estava perto de comprar mesmo. Quem está perto sente o oposto: mais atenção, porque as fatias que sobravam diluídas agora ficam concentradas nele.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se eu descobrir que a maior parte da minha roda não vale o que eu achava?"</strong>
+            <span> → Você vai descobrir. É exatamente para isso que essa roda existe. Continuar sem saber não te poupa do resultado — só atrasa a hora de ver a fatia pintada.</span>
+        </div>
+
+        <div class="resultado">
+            Feito esse corte, você para de medir a semana pelas fatias que preencheu e passa a medir pela que sustenta venda. A roda pode ficar menor. A conta, não.
+        </div>
+    </div>
+</body>
+</html>

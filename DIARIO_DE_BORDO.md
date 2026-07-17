@@ -5,6 +5,56 @@
 
 ---
 
+## Sessao 16 — 2026-07-17
+
+### O que foi feito
+- [x] PILAR VENDAS COMPLETO — 16 blocos restantes produzidos (Trilha 07-11, Gestao 12-16, Legado 17-22)
+- [x] 64 arquivos criados: p1.md + p2.md + p1.html + p2.html × 16 blocos
+- [x] Workflow completo executado via orquestracao paralela (3 ondas sequenciais: Trilha → Gestao → Legado), cada uma com Marco+Iris → Ana → Roberto+Carla+Marcos → Sofia
+- [x] 2 rodadas de correcao de validadores aplicadas: Bloco 14 (Gestao) ajustado por Carla+Marcos (hint de capacidade produtiva e contrato recorrente); Bloco 22 (Legado) ajustado por Marcos (espelho de servico para a crise do "kit fechado")
+- [x] Bloco 08 (Trilha) reambientado por Marco: loja de moveis planejados → manutencao de refrigeracao comercial (evitar repeticao de segmento com Bloco 07)
+- [x] 4 canvas redesenhados por decisao de Lucas apos Ana sinalizar repeticao de formato: Gestao 14 (tabela → funil sequencial), Gestao 15 (tabela → roda de horas), Legado 19 (matriz → roda de decisao), Legado 20 (tabela → medidores de risco); Sofia rediagramou os 4 p2.html correspondentes
+- [x] STATUS.md atualizado: 66/88 blocos finalizados (Pilar Vendas 22/22 completo)
+
+### Blocos trabalhados
+| Bloco | Titulo | Personagens | Status |
+|-------|--------|------------|--------|
+| Vendas > Trilha > 07 | O mes bom que voce nao sabe repetir | Simone, Sergio | Finalizado |
+| Vendas > Trilha > 08 | Toda venda e uma primeira vez | Vicente, Larissa | Finalizado |
+| Vendas > Trilha > 09 | A venda morre calada | Douglas, Priscila | Finalizado |
+| Vendas > Trilha > 10 | A venda que vai embora pela metade | Rosana, Caio | Finalizado |
+| Vendas > Trilha > 11 | Ninguem avisa quando para de comprar | Ivan, Monica | Finalizado |
+| Vendas > Gestao > 12 | Nem toda venda boa e a venda certa | Aline | Finalizado |
+| Vendas > Gestao > 13 | Tem cliente que consome mais do que paga | Edson | Finalizado |
+| Vendas > Gestao > 14 | Nem toda alavanca vale o mesmo preco | Debora | Finalizado |
+| Vendas > Gestao > 15 | Ocupado nao e a mesma coisa que vendendo | Wagner | Finalizado |
+| Vendas > Gestao > 16 | Crescer tem mais de um preco | Juliana | Finalizado |
+| Vendas > Legado > 17 | Vendas que moram no CPF morrem com ele | Osmar, Vilma | Finalizado |
+| Vendas > Legado > 18 | O cliente que foi embora com ele | Zuleica, Edmar | Finalizado |
+| Vendas > Legado > 19 | Quem decide a venda quando voce nao esta no comando | Amaro, Neusa | Finalizado |
+| Vendas > Legado > 20 | O negocio que dependia de nao perder ninguem | Custodio | Finalizado |
+| Vendas > Legado > 21 | O cliente perguntava pelo Edvaldo, nao pela loja | Iolanda, Edvaldo | Finalizado |
+| Vendas > Legado > 22 | Mudou tanto que ninguem reconhece mais o que voce vende | Waldemar | Finalizado |
+
+### Decisoes tomadas
+| Decisao | Motivo |
+|---------|--------|
+| Producao via workflow paralelo em 3 ondas sequenciais | Escala: 16 blocos em uma sessao mantendo os gates completos (Marco→Paulo→Vera→Iris→Ana→3 validadores→Sofia) por bloco |
+| Bloco 08 reambientado de moveis planejados para refrigeracao comercial | Dois blocos consecutivos da Trilha (07 e 08) nasceram no mesmo segmento; Ana sinalizou, Marco reescreveu ambientacao mantendo personagens e estrutura |
+| 9 personagens renomeados por Ana (Vanessa→Aline, Igor→Edson, Regina→Debora, Leandro→Wagner, Cristina→Juliana, Samuel→Osmar, Debora original→Vilma, Juliana original→Zuleica, Eduardo→Edmar, Everton→Amaro, Debora(19)→Neusa, Wagner original→Custodio, Ronaldo→Edvaldo, Adriana→Iolanda, Geraldo→Waldemar) | Nomes colidiam com personagens ja usados em blocos anteriores da apostila — regra de nao-repeticao aplicada em cascata entre as 3 ondas |
+| Bloco 14 (Gestao) e Bloco 22 (Legado) tiveram hints de segmento reescritos apos parecer de validador | Carla+Marcos apontaram falta de espelho de industria/servico no Bloco 14 (capacidade produtiva, contrato recorrente); Marcos apontou falta de espelho de servico no Bloco 22 (crise do "kit fechado" sem equivalente para quem vende tempo) |
+| 4 canvas redesenhados apos aprovacao de Lucas: Gestao 14→funil sequencial, Gestao 15→roda de horas, Legado 19→roda de decisao, Legado 20→medidores de risco | Ana sinalizou que 3 blocos da Gestao (13/14/15) e 5 blocos do Legado (17/18/19/20/22) compartilhavam o mesmo formato de tabela/matriz, violando o criterio "canvas distintos entre si"; Lucas escolheu redesenho em vez de aprovar como estava |
+| Bloco 22 fecha o arco tematico do pilar Vendas | Conecta ao ponto de partida do Bloco 01 da Raiz (venda que dependia do dono → venda que sobrevive a ele) sem citacao explicita |
+
+### Proximo passo
+Pessoas > Raiz > Bloco 01 (Sistema permite comportamento) — inicio do quarto e ultimo pilar
+
+### Pendencias
+- Lucas revisar os 16 blocos da Vendas (Trilha, Gestao, Legado) antes do proximo pilar — aprovacao final ainda nao registrada
+- Nenhuma pendencia estrutural aberta (as 2 pendencias de formato de canvas foram resolvidas nesta sessao)
+
+---
+
 ## Sessao 15 — 2026-06-01
 
 ### O que foi feito

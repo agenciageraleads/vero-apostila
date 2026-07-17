@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 11 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.5; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 32px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 11.5px; color: #888; margin-bottom: 14px; font-style: italic; line-height: 1.5; }
+
+        .secao-titulo { font-size: 12.5px; font-weight: bold; margin: 12px 0 3px 0; color: #000; }
+        .secao-nota { font-size: 10.5px; color: #777; margin-bottom: 5px; }
+
+        /* Perguntas lineares */
+        .pergunta-item { margin-bottom: 10px; }
+        .pergunta { font-size: 12.5px; font-weight: bold; color: #000; margin-bottom: 3px; line-height: 1.4; }
+        .exemplo { font-size: 10.5px; color: #888; font-style: italic; margin: 4px 0 6px 0; line-height: 1.5; }
+        .resposta-linha { border-bottom: 1px solid #ccc; height: 16px; margin-bottom: 4px; }
+
+        /* Tabelas */
+        table { width: 100%; border-collapse: collapse; margin: 4px 0 4px 0; font-size: 10.5px; }
+        table th { background: #f5f5f5; padding: 5px 7px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 9.5px; }
+        table td { padding: 0 7px; border: 1px solid #ddd; height: 18px; }
+        table td.col-sim-nao { text-align: center; font-size: 9.5px; color: #999; white-space: nowrap; }
+
+        .soma-box { margin: 10px 0; padding: 10px 12px; border-left: 3px solid #999; background: #fafafa; font-size: 11.5px; }
+        .soma-box p { margin-bottom: 5px; }
+        .soma-box p:last-child { margin-bottom: 0; }
+
+        .contato-linha { font-size: 11.5px; margin-bottom: 5px; }
+        .contato-linha .campo-preenchimento { display: inline-block; min-width: 160px; border-bottom: 1px solid #ccc; height: 14px; }
+
+        .duvida-item { margin-bottom: 6px; font-size: 11.5px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11.5px; line-height: 1.55; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 32px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🛤️ Trilha — Vendas</div>
+
+        <div class="titulo">Liste quem sumiu sem avisar</div>
+        <div class="subtitulo">Responda com registro, se tiver. Se não tiver, responda de memória — a falta de registro também é uma resposta.</div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">De quanto em quanto tempo o seu cliente normalmente volta?</div>
+            <div class="exemplo">reposição de produto a cada 30–45 dias · renovação de contrato ou novo chamado por ano · pedido novo a cada coleção, safra ou obra</div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="secao-titulo">Quem comprou de você mais de uma vez nos últimos 12 meses — e continua voltando?</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:32%;">Cliente</th>
+                    <th style="width:38%;">O que compra</th>
+                    <th style="width:30%;">Última compra</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+        <div class="exemplo">dono de pet que repõe ração todo mês · empresa que renova a manutenção sem cotar concorrente · lojista que repete o pedido a cada estação</div>
+
+        <div class="secao-titulo">Quem comprou mais de uma vez — e sumiu?</div>
+        <div class="secao-nota">Considere sumido quem passou do dobro do intervalo normal sem voltar.</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:22%;">Cliente que sumiu</th>
+                    <th style="width:18%;">Última compra</th>
+                    <th style="width:34%;">Motivo provável</th>
+                    <th style="width:26%;">Contato feito</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td></td><td></td><td></td><td class="col-sim-nao">☐ Sim &nbsp; ☐ Não</td></tr>
+                <tr><td></td><td></td><td></td><td class="col-sim-nao">☐ Sim &nbsp; ☐ Não</td></tr>
+                <tr><td></td><td></td><td></td><td class="col-sim-nao">☐ Sim &nbsp; ☐ Não</td></tr>
+                <tr><td></td><td></td><td></td><td class="col-sim-nao">☐ Sim &nbsp; ☐ Não</td></tr>
+                <tr><td></td><td></td><td></td><td class="col-sim-nao">☐ Sim &nbsp; ☐ Não</td></tr>
+            </tbody>
+        </table>
+        <div class="exemplo">achou mais barato e não avisou · foi mal atendido e não reclamou · trocou de fornecedor no meio do contrato · esqueceu de você — ou você esqueceu dele</div>
+
+        <div class="soma-box">
+            <p><strong>Agora some:</strong></p>
+            <p>Quantos sumiram sem que você percebesse na época: ______</p>
+            <p>Quantos desses você contatou depois que sumiram: ______</p>
+            <p>Quanto esses clientes compravam por mês, somados: R$ ______</p>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">Escolha três nomes da lista de quem sumiu. Contato até: ____ / ____</div>
+            <div class="exemplo">mensagem avisando que a reposição deve estar chegando · ligação perguntando se a última entrega atendeu · aviso com a data da próxima manutenção prevista</div>
+            <div class="contato-linha">Nome 1: <span class="campo-preenchimento"></span> — o que vou dizer: <span class="campo-preenchimento"></span></div>
+            <div class="contato-linha">Nome 2: <span class="campo-preenchimento"></span> — o que vou dizer: <span class="campo-preenchimento"></span></div>
+            <div class="contato-linha">Nome 3: <span class="campo-preenchimento"></span> — o que vou dizer: <span class="campo-preenchimento"></span></div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Vou parecer desesperado procurando quem sumiu."</strong>
+            <span> → Desesperado é depender só de estranho para o mês fechar. Quem já comprou duas vezes atende sua mensagem. Na pior hipótese, você descobre por que saiu — e isso ninguém conta de graça.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Se eu perguntar, vou ouvir coisa que não quero ouvir."</strong>
+            <span> → Vai. O cliente que sumiu já respondeu com o sumiço — a pergunta só traduz. Ouvir agora custa uma conversa. Não ouvir custa substituir cada um deles pelo preço cheio de atrair um desconhecido.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Não tenho registro nenhum. Nem sei quem comprou duas vezes."</strong>
+            <span> → Comece pelos que a memória alcança. Se até a lista incompleta mostrar gente que sumiu sem você notar, pense no tamanho da lista que você não enxerga.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe quem sustenta o seu faturamento, quem saiu calado e quanto esse silêncio custou. Três contatos feitos até a data que você marcou — e, pela primeira vez, o mês seguinte não começa inteiro do zero: uma parte dele já tem nome.
+        </div>
+    </div>
+</body>
+</html>

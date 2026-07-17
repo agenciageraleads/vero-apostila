@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 21 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.5; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 30px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 11.5px; color: #888; margin-bottom: 16px; font-style: italic; line-height: 1.5; }
+
+        /* Perguntas lineares */
+        .pergunta-item { margin-bottom: 12px; }
+        .pergunta-item:last-child { margin-bottom: 0; }
+        .pergunta { font-size: 12.5px; font-weight: bold; color: #000; margin-bottom: 3px; line-height: 1.4; }
+        .exemplo { font-size: 10px; color: #888; font-style: italic; margin: 4px 0 6px 0; line-height: 1.5; }
+
+        .resposta-linha { border-bottom: 1px solid #ccc; height: 15px; margin-bottom: 4px; }
+
+        .lista-numerada { margin-top: 4px; }
+        .item-numerado { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+        .item-numerado .num { font-size: 11px; color: #999; width: 14px; flex-shrink: 0; }
+        .item-numerado .linha { flex: 1; border-bottom: 1px solid #ccc; height: 15px; }
+
+        .duvidas-titulo { font-size: 12px; font-weight: bold; color: #000; margin: 14px 0 6px 0; padding-top: 12px; border-top: 1px solid #ddd; }
+
+        .duvida-item { margin-bottom: 6px; font-size: 11.5px; }
+        .duvida-item strong { color: #333; display: block; margin-bottom: 1px; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11.5px; line-height: 1.55; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 30px 40px; box-shadow: none; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🏛️ Legado — Vendas</div>
+
+        <div class="titulo">A Linha do Tempo do Seu Jeito de Vender</div>
+        <div class="subtitulo">Edvaldo tinha uma regra que nunca escreveu. Parte dela sobreviveu à saída dele. Parte foi embora junto. Reconstrua, em cinco etapas, o que veio desde o início, o que mudou, e o que hoje só existe porque uma pessoa específica ainda está lá.</div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">O jeito de vender de quem começou</div>
+            <div class="exemplo">Liste de 3 a 5 comportamentos que definiam como a empresa vendia nos primeiros anos — não o discurso oficial, o que de fato acontecia no balcão, na ligação, na visita. Ex. comércio: nunca empurrar item que o cliente não pediu, mesmo perdendo a venda · ex. serviço: ligar de volta em até 24 horas, mesmo sem resposta pronta · ex. indústria: avisar o cliente do atraso assim que percebido, antes de ele perguntar.</div>
+            <div class="lista-numerada">
+                <div class="item-numerado"><span class="num">1.</span><span class="linha"></span></div>
+                <div class="item-numerado"><span class="num">2.</span><span class="linha"></span></div>
+                <div class="item-numerado"><span class="num">3.</span><span class="linha"></span></div>
+            </div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">O que continua, mesmo com gente diferente</div>
+            <div class="exemplo">Desses comportamentos, quais sobrevivem hoje mesmo com vendedores que nunca conheceram quem os criou? Ex. comércio: pergunta o uso antes de indicar o produto · ex. serviço: registra o combinado por escrito antes de começar · ex. indústria: confirma quantidade e prazo com o cliente antes de liberar a ordem.</div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">O que foi embora quando alguém saiu</div>
+            <div class="exemplo">O que mudou de fato quando uma pessoa específica deixou a empresa — não o que deveria ter mudado, o que mudou mesmo com o critério mantido no papel? Ex. comércio: cliente que só confiava naquele vendedor foi atrás dele em outro lugar · ex. serviço: prazo que só aquele técnico conseguia cumprir voltou a atrasar · ex. indústria: fornecedor que negociava direto com aquele comprador endureceu a condição.</div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">O que hoje só existe porque uma pessoa está lá</div>
+            <div class="exemplo">O que na sua forma de vender depende, agora, de alguém específico continuar presente — o que quebra amanhã se essa pessoa avisar que está saindo? Ex. comércio: só um vendedor sabe negociar prazo com o cliente antigo sem perder margem · ex. serviço: só uma pessoa sabe explicar o motivo do preço sem soar defensiva · ex. indústria: só um representante conhece o histórico de reclamação de cada cliente grande.</div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">O que precisa virar critério dito em voz alta</div>
+            <div class="exemplo">Escolha um item do campo anterior. Descreva como ele seria explicado a alguém novo se, a partir de amanhã, a pessoa que sabe disso hoje não estivesse mais disponível para ensinar.</div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="duvidas-titulo">Dúvidas comuns</div>
+
+        <div class="duvida-item">
+            <strong>"Meu jeito de vender é só o jeito que sai natural. Não dá pra ensinar isso."</strong>
+            <span>Edvaldo também achava que era natural. Repetiu a mesma instrução a cada vendedor novo por quase vinte anos sem chamar aquilo de treinamento — e funcionou como treinamento assim mesmo. Natural não é o mesmo que impossível de dizer em voz alta.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Se eu explicar tudo, alguém pode copiar e levar para outro lugar."</strong>
+            <span>Alguém já pode copiar hoje, só de observar o vendedor trabalhando. O que protege o negócio não é guardar segredo — é o critério continuar de pé depois que a pessoa for embora, copiado ou não.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Isso não vai deixar todo mundo igual, sem personalidade?"</strong>
+            <span>Edvaldo tinha piada própria, jeito próprio de cumprimentar cliente. Isso morreu com ele, e não tinha como ser diferente. O que devia sobreviver era só a pergunta antes da oferta — e essa não depende de personalidade nenhuma.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"A gente nunca perdeu ninguém importante. Não preciso pensar nisso agora."</strong>
+            <span>Iolanda também não achava que precisava — até o trimestre em que a carteira caiu 31%. O momento certo de escrever o critério é enquanto a pessoa que sabe ainda está por perto para confirmar se você entendeu certo.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você separa o que é impossível de ensinar — carisma, memória, anos de conversa — do que é só um critério que ninguém nunca disse em voz alta. A segunda parte pode ser escrita hoje. Para a primeira, o prazo já corre desde antes de você perceber.
+        </div>
+    </div>
+</body>
+</html>

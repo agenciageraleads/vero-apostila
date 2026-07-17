@@ -1,7 +1,7 @@
 # STATUS — Apostila Vero
 
 > Dashboard rapido de todos os blocos. Atualizar a cada aprovacao.
-> Ultima atualizacao: 2026-06-01 (Vendas Raiz — Blocos 02-06 finalizados)
+> Ultima atualizacao: 2026-07-17 (Vendas completo — Trilha, Gestao e Legado finalizados)
 
 ## Resumo
 
@@ -9,13 +9,13 @@
 |-------|-------|---|----|---|----|---|----|
 | Financeiro | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
 | Operacao | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
-| Vendas | 22 | 16 | 0 | 0 | 0 | 0 | 6 |
+| Vendas | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
 | Pessoas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL** | **88** | **38** | **0** | **0** | **0** | **0** | **50** |
+| **TOTAL** | **88** | **22** | **0** | **0** | **0** | **0** | **66** |
 
 Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado | 🎨 Em design | 📄 Finalizado
 
-## Proximo bloco: Vendas > Trilha > Bloco 07
+## Proximo bloco: Pessoas > Raiz > Bloco 01
 
 ---
 
@@ -87,22 +87,22 @@ Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado |
 | 04 | 🌱 Raiz | Vender pra todo mundo | 📄 | 2026-06-01 |
 | 05 | 🌱 Raiz | Preco errado mata a venda | 📄 | 2026-06-01 |
 | 06 | 🌱 Raiz | Venda sem registro | 📄 | 2026-06-01 |
-| 07 | 🛤️ Trilha | Origem da venda | ⬜ | - |
-| 08 | 🛤️ Trilha | Processo de venda que se repete | ⬜ | - |
-| 09 | 🛤️ Trilha | Conversao: onde a venda morre | ⬜ | - |
-| 10 | 🛤️ Trilha | Ticket medio | ⬜ | - |
-| 11 | 🛤️ Trilha | Retencao basica | ⬜ | - |
-| 12 | 🧠 Gestao | Onde competir | ⬜ | - |
-| 13 | 🧠 Gestao | Cliente ideal vs problema | ⬜ | - |
-| 14 | 🧠 Gestao | Alavancas reais de crescimento | ⬜ | - |
-| 15 | 🧠 Gestao | Esforco vs resultado | ⬜ | - |
-| 16 | 🧠 Gestao | Expandir ou aprofundar | ⬜ | - |
-| 17 | 🏛️ Legado | Venda pessoal vs institucional | ⬜ | - |
-| 18 | 🏛️ Legado | Propriedade do relacionamento | ⬜ | - |
-| 19 | 🏛️ Legado | Governanca comercial | ⬜ | - |
-| 20 | 🏛️ Legado | Blindagem contra dependencia | ⬜ | - |
-| 21 | 🏛️ Legado | Identidade comercial no tempo | ⬜ | - |
-| 22 | 🏛️ Legado | Adaptacao sem descaracterizacao | ⬜ | - |
+| 07 | 🛤️ Trilha | O mes bom que voce nao sabe repetir | 📄 | 2026-07-17 |
+| 08 | 🛤️ Trilha | Toda venda e uma primeira vez | 📄 | 2026-07-17 |
+| 09 | 🛤️ Trilha | A venda morre calada | 📄 | 2026-07-17 |
+| 10 | 🛤️ Trilha | A venda que vai embora pela metade | 📄 | 2026-07-17 |
+| 11 | 🛤️ Trilha | Ninguem avisa quando para de comprar | 📄 | 2026-07-17 |
+| 12 | 🧠 Gestao | Nem toda venda boa e a venda certa | 📄 | 2026-07-17 |
+| 13 | 🧠 Gestao | Tem cliente que consome mais do que paga | 📄 | 2026-07-17 |
+| 14 | 🧠 Gestao | Nem toda alavanca vale o mesmo preco | 📄 | 2026-07-17 |
+| 15 | 🧠 Gestao | Ocupado nao e a mesma coisa que vendendo | 📄 | 2026-07-17 |
+| 16 | 🧠 Gestao | Crescer tem mais de um preco | 📄 | 2026-07-17 |
+| 17 | 🏛️ Legado | Vendas que moram no CPF morrem com ele | 📄 | 2026-07-17 |
+| 18 | 🏛️ Legado | O cliente que foi embora com ele | 📄 | 2026-07-17 |
+| 19 | 🏛️ Legado | Quem decide a venda quando voce nao esta no comando | 📄 | 2026-07-17 |
+| 20 | 🏛️ Legado | O negocio que dependia de nao perder ninguem | 📄 | 2026-07-17 |
+| 21 | 🏛️ Legado | O cliente perguntava pelo Edvaldo, nao pela loja | 📄 | 2026-07-17 |
+| 22 | 🏛️ Legado | Mudou tanto que ninguem reconhece mais o que voce vende | 📄 | 2026-07-17 |
 
 ---
 
