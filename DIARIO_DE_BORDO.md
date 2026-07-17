@@ -50,8 +50,7 @@
 Pessoas > Raiz > Bloco 01 (Sistema permite comportamento) — inicio do quarto e ultimo pilar
 
 ### Pendencias
-- Lucas revisar os 16 blocos da Vendas (Trilha, Gestao, Legado) antes do proximo pilar — aprovacao final ainda nao registrada
-- Nenhuma pendencia estrutural aberta (as 2 pendencias de formato de canvas foram resolvidas nesta sessao)
+- Nenhuma. Lucas aprovou os 16 blocos da Vendas (Trilha, Gestao, Legado) e autorizou push para o GitHub Pages.
 
 ---
 
