@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 17 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 18px; font-weight: bold; margin: 20px 0 4px 0; color: #000; }
+
+        .instrucao { font-size: 13px; color: #666; margin-bottom: 15px; font-style: italic; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0 10px 0; font-size: 11.5px; }
+        table th { background: #f5f5f5; padding: 9px 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; }
+        table td { padding: 8px; border: 1px solid #ddd; height: 32px; }
+
+        .nota-canvas { font-size: 11px; color: #777; font-style: italic; line-height: 1.6; margin: 8px 0 22px 0; padding-top: 10px; border-top: 1px solid #eee; }
+
+        .resumo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 22px; }
+
+        .resumo-item {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            font-size: 12px;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        .resumo-item span { font-weight: bold; color: #222; }
+
+        .resumo-linha {
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+            height: 18px;
+            min-width: 30px;
+        }
+
+        .pergunta-chave { font-size: 14px; font-weight: bold; margin: 22px 0 10px 0; color: #000; }
+
+        .linha-resposta { border-bottom: 1px solid #ccc; height: 26px; margin-bottom: 20px; }
+
+        .duvida-item { margin: 18px 0; font-size: 13px; }
+        .duvida-item strong { display: block; margin-bottom: 5px; color: #333; }
+        .duvida-item p { color: #666; line-height: 1.6; }
+
+        .resultado { margin: 26px 0 0 0; padding-top: 18px; border-top: 1px solid #ddd; font-size: 13px; line-height: 1.7; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🏛️ Legado — Vendas</div>
+
+        <div class="titulo">Matriz CPF → CNPJ</div>
+
+        <div class="instrucao">Osmar vendia com o nome dele. Vilma vendia assim também — até aprender diferente. Mapeie, etapa por etapa, quem hoje segura a sua venda: você ou a sua empresa.</div>
+
+        <table>
+            <tr>
+                <th style="width: 22%;">Etapa da venda</th>
+                <th style="width: 22%;">Quem faz hoje</th>
+                <th style="width: 30%;">O que acontece se essa pessoa sair</th>
+                <th style="width: 26%;">O que a empresa detém</th>
+            </tr>
+            <tr><td>Primeiro contato e prospecção</td><td></td><td></td><td></td></tr>
+            <tr><td>Diagnóstico e proposta</td><td></td><td></td><td></td></tr>
+            <tr><td>Negociação de preço e condições</td><td></td><td></td><td></td></tr>
+            <tr><td>Fechamento e assinatura</td><td></td><td></td><td></td></tr>
+            <tr><td>Relacionamento pós-venda e renovação</td><td></td><td></td><td></td></tr>
+        </table>
+
+        <div class="nota-canvas">O que a empresa detém não é o cliente — é o registro do que foi negociado. <em>ex. comércio:</em> contrato de fornecimento assinado pela empresa, não recibo pessoal · <em>ex. serviço:</em> escopo e proposta registrados em sistema, não combinados por WhatsApp · <em>ex. indústria:</em> especificação técnica aprovada e documentada, não acertada de boca com o comprador.</div>
+
+        <div class="pergunta-chave">Se você sumisse por 60 dias sem avisar, quantos clientes ligariam para a empresa perguntando o status — e quantos ligariam para o seu celular pessoal?</div>
+
+        <div class="resumo">
+            <div class="resumo-item">Ligariam para a empresa: <div class="resumo-linha"></div></div>
+            <div class="resumo-item">Ligariam para você: <div class="resumo-linha"></div></div>
+        </div>
+
+        <div class="pergunta-chave">Olhando a matriz, qual etapa você vai transferir primeiro — mesmo perdendo parte do controle que tem hoje sobre ela?</div>
+
+        <div class="linha-resposta"></div>
+
+        <div class="duvida-item">
+            <strong>"Se eu tirar meu nome da venda, o cliente vai achar que virou só mais um número."</strong>
+            <p>O cliente não vira número — vira cliente de uma empresa que continua ali mesmo quando você não está. É o oposto de ser descartado: é parar de depender só de você.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Meu time ainda não tem preparo para segurar sozinho o que eu seguro hoje."</strong>
+            <p>Preparo não vem antes da estrutura. Vem depois — quando alguém precisa decidir sem te ligar primeiro.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Documentar tudo parece burocratizar uma relação que sempre foi pessoal."</strong>
+            <p>A relação continua pessoal. O que muda é quem mais consegue continuar a conversa se você sumir.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"E se, ao formalizar, alguém copiar meu jeito de vender e eu virar substituível?"</strong>
+            <p>Ser copiável na forma de vender não é o risco. O risco é ser insubstituível — porque isso significa que a empresa não sobrevive sem você.</p>
+        </div>
+
+        <div class="resultado">
+            <p>Feito isso, você sabe quantas etapas da sua venda ainda moram no seu nome — e quantas já pertencem à empresa. Não é medida de quanto você é necessário. É medida de quanto a empresa consegue vender sem perguntar para você primeiro.</p>
+        </div>
+    </div>
+</body>
+</html>

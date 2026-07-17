@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 16 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 14px; font-style: italic; }
+
+        table.caminhos-table { width: 100%; border-collapse: collapse; margin: 16px 0 6px 0; font-size: 12px; }
+
+        table.caminhos-table th {
+            font-size: 11px;
+            font-weight: bold;
+            padding: 9px 10px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            text-align: left;
+        }
+
+        table.caminhos-table td.rotulo {
+            width: 22%;
+            font-size: 11px;
+            font-weight: bold;
+            color: #555;
+            background: #fafafa;
+            padding: 8px 10px;
+            border: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        table.caminhos-table td.resposta {
+            border: 1px solid #eee;
+            height: 42px;
+            padding: 6px 10px;
+            vertical-align: top;
+        }
+
+        .hint { font-size: 10px; color: #999; font-style: italic; margin: 8px 0 20px 0; line-height: 1.6; }
+
+        .escolha-box { margin: 22px 0; padding: 16px; border-left: 3px solid #999; background: #fafafa; }
+        .escolha-box .pergunta-chave { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 10px; }
+        .escolha-box .opcoes { font-size: 13px; margin-bottom: 14px; }
+        .escolha-box label { font-size: 12px; color: #555; display: block; margin-bottom: 10px; }
+        .escolha-box .linha { display: inline-block; border-bottom: 1px solid #999; min-width: 260px; height: 16px; margin-left: 4px; }
+
+        .compromisso-box { margin: 22px 0; padding-top: 18px; border-top: 1px solid #ddd; font-size: 12px; line-height: 2; color: #333; }
+        .compromisso-box .assinatura { margin-top: 10px; }
+        .compromisso-box .linha-preenchimento { display: inline-block; border-bottom: 1px solid #999; min-width: 160px; height: 14px; margin: 0 4px; }
+
+        .duvida-item { margin-bottom: 10px; font-size: 12px; }
+        .duvida-item strong { color: #333; display: block; margin-bottom: 2px; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 14px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            table.caminhos-table { page-break-inside: avoid; }
+            .escolha-box, .compromisso-box { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🧠 Gestão — Vendas</div>
+
+        <div class="titulo">Expandir ou Aprofundar</div>
+        <div class="subtitulo">Preencha os dois caminhos lado a lado. Sem escolher ainda — só descreva o que cada um exige de verdade.</div>
+
+        <table class="caminhos-table">
+            <tr>
+                <th style="width: 22%;"></th>
+                <th style="width: 39%;">Expandir (cliente novo, mercado novo)</th>
+                <th style="width: 39%;">Aprofundar (mais fundo na carteira atual)</th>
+            </tr>
+            <tr>
+                <td class="rotulo">O que exige agora</td>
+                <td class="resposta"></td>
+                <td class="resposta"></td>
+            </tr>
+            <tr>
+                <td class="rotulo">O que você abre mão para seguir esse caminho</td>
+                <td class="resposta"></td>
+                <td class="resposta"></td>
+            </tr>
+            <tr>
+                <td class="rotulo">Quando começa a aparecer resultado</td>
+                <td class="resposta"></td>
+                <td class="resposta"></td>
+            </tr>
+            <tr>
+                <td class="rotulo">Maior risco se der errado</td>
+                <td class="resposta"></td>
+                <td class="resposta"></td>
+            </tr>
+        </table>
+
+        <div class="hint">ex. comércio: abrir uma segunda loja em bairro novo · ex. serviço: fechar contrato em cidade onde você não tem equipe própria · ex. indústria: aceitar cliente que exige volume acima da capacidade atual sem investir em linha nova</div>
+
+        <div class="escolha-box">
+            <div class="pergunta-chave">Qual caminho você escolhe para os próximos 90 dias:</div>
+            <div class="opcoes">[ ] Expandir &nbsp;&nbsp;&nbsp;&nbsp; [ ] Aprofundar</div>
+
+            <label>O que você está renunciando ao escolher esse: <span class="linha"></span></label>
+            <label>Até quando você dá para esse caminho mostrar resultado, antes de reavaliar: <span class="linha"></span></label>
+        </div>
+
+        <div class="escolha-box">
+            <div class="pergunta-chave">O que você para de fazer a partir de agora, porque escolheu esse caminho e não o outro:</div>
+            <div class="hint" style="margin: 0 0 12px 0;">ex. comércio: parar de responder orçamento de bairro novo enquanto não fechar a segunda linha na carteira atual · ex. serviço: parar de aceitar contrato fora da região sem estrutura montada · ex. indústria: parar de tentar atender cliente grande fora da capacidade sem decidir investir primeiro</div>
+            <label>&nbsp;<span class="linha" style="min-width: 100%; display: block; margin: 6px 0;"></span></label>
+            <label>&nbsp;<span class="linha" style="min-width: 100%; display: block; margin: 6px 0;"></span></label>
+        </div>
+
+        <div class="compromisso-box">
+            <strong>Compromisso:</strong><br>
+            Eu, <span class="linha-preenchimento"></span>, escolho o caminho de <span class="linha-preenchimento"></span> pelos próximos 90 dias. Sei o que estou deixando de lado e aceito o preço disso.
+            <div class="assinatura">Assinatura: <span class="linha-preenchimento"></span> &nbsp;&nbsp;&nbsp;&nbsp; Data: ____/____/____</div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"E se eu escolher aprofundar e a oportunidade nova esfriar de vez?"</strong>
+            <span>Ela já está esfriando enquanto você não responde. Aprofundar não é recusar — é adiar com prazo marcado.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se eu escolher expandir e minha base atual perceber que sumi?"</strong>
+            <span>Vai perceber. A pergunta não é se isso acontece — é se você topa pagar esse preço.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Dá para fazer as duas coisas, só que mais devagar?"</strong>
+            <span>Dá. E as duas vão andar pela metade — devagar o suficiente para nenhuma virar resultado.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se eu assinar isso e escolher o caminho errado?"</strong>
+            <span>Não existe caminho sem risco. Existe caminho sem nome, que cobra o preço dos dois e não entrega nenhum.</span>
+        </div>
+
+        <div class="resultado">
+            Depois disso, você tem um caminho com prazo — não dois pela metade. Você para de responder devagar para quem espera lá fora e de deixar em cima da mesa o que quem já compra de você toparia comprar a mais. Em 90 dias, você sabe se o caminho escolhido merece continuar ou se é hora de assumir o preço do outro.
+        </div>
+    </div>
+</body>
+</html>

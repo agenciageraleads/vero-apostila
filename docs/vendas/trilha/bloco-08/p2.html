@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 08 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 6px; font-style: italic; }
+
+        .pergunta-item { margin: 18px 0; padding-top: 16px; border-top: 1px solid #eee; }
+        .pergunta-item:first-of-type { border-top: none; padding-top: 4px; }
+
+        .pergunta { font-size: 13px; font-weight: bold; color: #000; line-height: 1.5; margin-bottom: 5px; }
+        .hint { font-size: 10.5px; font-style: italic; color: #888; line-height: 1.5; margin-bottom: 10px; }
+
+        .resposta-linha { display: block; border-bottom: 1px solid #ccc; height: 18px; margin-bottom: 6px; }
+
+        .subcampo { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 8px; font-size: 12px; color: #333; }
+        .subcampo .subcampo-label { white-space: nowrap; flex-shrink: 0; }
+        .subcampo .resposta-linha { flex: 1; margin-bottom: 0; min-width: 40px; }
+
+        .subcampo-bloco { margin-bottom: 10px; }
+        .subcampo-bloco .subcampo-label { font-size: 12px; color: #333; display: block; margin-bottom: 4px; }
+        .subcampo-bloco .resposta-linha { margin-bottom: 0; }
+
+        .duvida-item { margin-bottom: 9px; font-size: 12px; }
+        .duvida-item strong { display: block; margin-bottom: 3px; color: #333; }
+        .duvida-item p { color: #666; line-height: 1.6; }
+
+        .resultado { margin-top: 14px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            .pergunta-item { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🛤️ Trilha — Vendas</div>
+
+        <div class="titulo">Desenhe o caminho que a sua venda percorre hoje</div>
+        <div class="subtitulo">Responda com o que acontece de verdade — não com o que deveria acontecer.</div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">Quais etapas uma venda atravessa na sua empresa, do primeiro contato até o dinheiro entrar? Escreva na ordem em que acontecem hoje — incluindo as que só existem na sua cabeça.</p>
+            <p class="hint">ex. comércio: cliente entra, pede preço, reserva e paga · ex. serviço: pedido de proposta, reunião, proposta enviada, retorno, contrato · ex. indústria: cotação, amostra, aprovação, ordem de produção, faturamento</p>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">Quanto tempo cada etapa leva hoje — na prática, não no combinado?</p>
+            <p class="hint">ex. comércio: orçamento que sai na hora ou leva uma semana, dependendo do dia · ex. serviço: proposta que espera a agenda do dono abrir · ex. indústria: amostra que depende de a produção ter folga</p>
+            <div class="subcampo">
+                <span class="subcampo-label">A etapa mais rápida leva:</span>
+                <div class="resposta-linha"></div>
+            </div>
+            <div class="subcampo">
+                <span class="subcampo-label">A etapa mais demorada leva:</span>
+                <div class="resposta-linha"></div>
+            </div>
+            <div class="subcampo-bloco">
+                <span class="subcampo-label">A que mais varia de um cliente para outro:</span>
+                <div class="resposta-linha"></div>
+            </div>
+        </div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">Em qual etapa os clientes mais somem — ou a venda mais demora sem ninguém perceber?</p>
+            <p class="hint">ex. comércio: cliente que pede o preço e não volta, e ninguém liga · ex. serviço: proposta enviada que ninguém acompanha depois · ex. indústria: cotação aprovada esperando confirmação de prazo que não chega</p>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">O que você faz "dependendo do cliente" — e que já virou regra sem ninguém decidir?</p>
+            <p class="hint">ex. comércio: desconto oferecido sempre que o cliente some · ex. serviço: visita pulada quando o cliente diz que tem pressa · ex. indústria: pedido aceito sem sinal porque o cliente é conhecido</p>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">Qual é o jeito normal a partir de agora? Escreva a ordem fixa das etapas, o tempo máximo de cada uma e o que acontece quando o cliente para de responder.</p>
+            <p class="hint">ex. comércio: orçamento entregue em 48 horas com data combinada para resposta · ex. serviço: contato no terceiro dia de silêncio, sem desconto na abertura · ex. indústria: proposta sem retorno em 15 dias sai da lista — contada, não esquecida</p>
+            <div class="subcampo-bloco">
+                <span class="subcampo-label">Ordem das etapas:</span>
+                <div class="resposta-linha"></div>
+            </div>
+            <div class="subcampo-bloco">
+                <span class="subcampo-label">Tempo máximo por etapa:</span>
+                <div class="resposta-linha"></div>
+            </div>
+            <div class="subcampo-bloco">
+                <span class="subcampo-label">Quando o cliente não responde em ______ dias:</span>
+                <div class="resposta-linha"></div>
+            </div>
+            <div class="subcampo-bloco">
+                <span class="subcampo-label">Uma venda é dada como perdida quando:</span>
+                <div class="resposta-linha"></div>
+            </div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Minha venda não tem etapas. Cada cliente é um caso."</strong>
+            <p>O cliente muda. O caminho que a venda percorre dentro da sua empresa, não. Se cada caso percorre um caminho diferente, o caminho não existe — existe improviso com nome de flexibilidade.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu seguir sempre a mesma sequência, vou ficar engessado e perder venda."</strong>
+            <p>Você já perde venda hoje. Só não sabe em qual etapa. Sequência não engessa a conversa — engessa o esquecimento.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Eu vendo no improviso há anos e fecho negócio."</strong>
+            <p>Fecha quando você está na conversa. A pergunta é o que acontece com a venda que você não toca — e quantas morreram esperando alguém lembrar delas.</p>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe qual caminho a sua venda percorre, onde ela costuma morrer e o que virou exceção sem ninguém decidir. Na próxima venda que travar, você vai saber em qual etapa travou — antes de precisar de desconto para descobrir.
+        </div>
+    </div>
+</body>
+</html>

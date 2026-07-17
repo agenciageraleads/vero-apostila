@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 13 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.5; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 32px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 11.5px; color: #888; margin-bottom: 14px; font-style: italic; line-height: 1.5; }
+
+        .secao-titulo { font-size: 12.5px; font-weight: bold; margin: 12px 0 3px 0; color: #000; }
+        .secao-nota { font-size: 10.5px; color: #777; margin-bottom: 5px; }
+
+        /* Perguntas lineares */
+        .pergunta-item { margin-bottom: 10px; }
+        .pergunta { font-size: 12.5px; font-weight: bold; color: #000; margin-bottom: 3px; line-height: 1.4; }
+        .exemplo { font-size: 10.5px; color: #888; font-style: italic; margin: 4px 0 6px 0; line-height: 1.5; }
+        .resposta-linha { border-bottom: 1px solid #ccc; height: 16px; margin-bottom: 4px; }
+
+        /* Tabelas */
+        table { width: 100%; border-collapse: collapse; margin: 4px 0 4px 0; font-size: 10.5px; }
+        table th { background: #f5f5f5; padding: 5px 7px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 9.5px; }
+        table td { padding: 0 7px; border: 1px solid #ddd; height: 18px; }
+        table td.col-sim-nao { text-align: center; font-size: 9.5px; color: #999; white-space: nowrap; }
+
+        .soma-box { margin: 10px 0; padding: 10px 12px; border-left: 3px solid #999; background: #fafafa; font-size: 11.5px; }
+        .soma-box p { margin-bottom: 5px; }
+        .soma-box p:last-child { margin-bottom: 0; }
+
+        .contato-linha { font-size: 11.5px; margin-bottom: 5px; }
+        .contato-linha .campo-preenchimento { display: inline-block; min-width: 160px; border-bottom: 1px solid #ccc; height: 14px; }
+
+        .duvida-item { margin-bottom: 6px; font-size: 11.5px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11.5px; line-height: 1.55; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 32px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🧠 Gestão — Vendas</div>
+
+        <div class="titulo">Separe quem sustenta de quem drena</div>
+        <div class="subtitulo">Liste os clientes que mais aparecem no seu mês — na correria, na cobrança, na renegociação. Sem filtro, mesmo os que dá vergonha admitir que ainda estão na carteira.</div>
+
+        <div class="secao-titulo">A carteira, linha por linha:</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:22%;">Cliente</th>
+                    <th style="width:16%;">Fatura no mês</th>
+                    <th style="width:16%;">Margem real</th>
+                    <th style="width:26%;">Tempo consumido (ligação, correção, negociação)</th>
+                    <th style="width:20%;">Desgaste (baixo / médio / alto)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+        <div class="exemplo">ex. comércio: cliente que compra alto volume mas renegocia prazo a cada entrega · ex. serviço: contrato que exige reunião extra toda semana sem repactuar valor · ex. indústria: pedido recorrente com margem baixa que trava a linha por prioridade de entrega</div>
+
+        <div class="secao-titulo">Agora marque cada linha da tabela:</div>
+        <div class="soma-box">
+            <p><strong>Sustenta</strong> — margem real cobre o esforço, desgaste baixo ou médio, mesmo faturando menos: ______</p>
+            <p><strong>Drena</strong> — desgaste alto ou margem apertada, mesmo faturando mais: ______</p>
+        </div>
+
+        <div class="secao-titulo">Quem sai da carteira — e como:</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:26%;">Cliente</th>
+                    <th style="width:54%;">Ação (reduzir crédito / recusar condição especial / encerrar atendimento)</th>
+                    <th style="width:20%;">Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+        <div class="exemplo">ex. comércio: recusar prazo estendido a partir do próximo pedido · ex. serviço: renegociar valor de contrato ou encerrar até o fim do trimestre · ex. indústria: reduzir prioridade de entrega para pedido com margem abaixo do mínimo</div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">O que você abre mão ao cortar esses nomes:</div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">Existe algum nome nessa lista que você sabe que drena, mas mantém porque tem medo de admitir que errou ao aceitar esse cliente?</div>
+            <div class="contato-linha">☐ Sim — qual: <span class="campo-preenchimento"></span> &nbsp;&nbsp; ☐ Não</div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu cortar, esse volume não volta tão cedo."</strong>
+            <span> → Pode não voltar. Mas contando o tempo, o desgaste e a margem que esse cliente já consome, parte desse volume muitas vezes já está sendo vendida no prejuízo — só não aparecia separado no relatório.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Ele é cliente desde o início. Cortar parece traição."</strong>
+            <span> → Tempo de relação não paga conta. Se a relação só se sustenta porque você absorve o custo dela, o problema não é o cliente — é o critério que nunca existiu.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se o cliente que eu cortar for justamente o que segura o mês numa época fraca?"</strong>
+            <span> → Então ele não é cliente problema — é cliente difícil que sustenta. A filtragem não é sobre quem exige mais. É sobre quem exige mais e não sustenta o que exige.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Meu time vai achar que estou perdendo cliente por implicância."</strong>
+            <span> → Vai, até ver a planilha preenchida. Depois, geralmente pergunta por que isso não foi feito antes.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe quantos dos seus clientes sustentam o negócio e quantos só ocupam espaço na carteira fingindo que sustentam. Alguns nomes vão sair. O faturamento cai antes de estabilizar — mas o tempo, a margem e o desgaste que sobram vão para quem realmente paga a conta.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 19 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 32px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 16px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 11px; color: #888; margin-bottom: 10px; font-style: italic; line-height: 1.5; }
+
+        /* ---------- Roda de decisão ---------- */
+        .roda-wrap { position: relative; width: 100%; height: 500px; margin: 26px 0 14px 0; }
+
+        .roda-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .roda-svg line { stroke: #bbb; stroke-width: 1; stroke-dasharray: 2 3; }
+
+        .roda-centro {
+            position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+            width: 152px; height: 152px; border-radius: 50%;
+            border: 2px solid #333; background: #fafafa;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 12px;
+        }
+        .roda-centro-txt { font-size: 9.5px; line-height: 1.4; color: #222; }
+        .roda-centro-txt .pergunta { font-weight: bold; display: block; margin-bottom: 8px; }
+        .roda-centro-linha { display: block; border-bottom: 1px solid #999; height: 14px; width: 100%; }
+
+        .roda-item {
+            position: absolute; width: 176px; transform: translate(-50%, -50%);
+            border: 1px solid #ccc; border-radius: 6px; padding: 8px 9px;
+            background: white;
+        }
+        .roda-item-titulo { font-size: 10px; font-weight: bold; color: #000; line-height: 1.35; margin-bottom: 6px; min-height: 26px; }
+        .roda-item-campo { font-size: 8.5px; color: #555; margin-bottom: 3px; }
+        .roda-item-linha { display: block; border-bottom: 1px solid #ccc; height: 11px; width: 100%; margin-bottom: 5px; }
+        .roda-item-check { font-size: 8.5px; color: #555; margin-bottom: 5px; }
+
+        .roda-p1 { left: 50%; top: 15%; }
+        .roda-p2 { left: 86.1%; top: 39.2%; }
+        .roda-p3 { left: 72.3%; top: 78.3%; }
+        .roda-p4 { left: 27.7%; top: 78.3%; }
+        .roda-p5 { left: 13.9%; top: 39.2%; }
+
+        .dica { font-size: 10px; color: #888; font-style: italic; margin: 0 0 14px 0; line-height: 1.5; }
+
+        .pergunta-item { margin-bottom: 14px; }
+        .pergunta-item:last-of-type { margin-bottom: 10px; }
+        .pergunta-label { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 7px; line-height: 1.45; }
+
+        .resposta-aberta { display: block; border-bottom: 1px solid #999; height: 16px; width: 100%; margin-top: 3px; }
+
+        .pergunta-hint { font-size: 9.5px; font-style: italic; color: #888; margin-top: 6px; line-height: 1.45; }
+
+        .duvida-item { margin-bottom: 8px; font-size: 11px; }
+        .duvida-item strong { color: #333; display: block; margin-bottom: 2px; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.6; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 32px 40px; box-shadow: none; page-break-after: always; }
+            .roda-wrap { page-break-inside: avoid; }
+            .roda-item { page-break-inside: avoid; }
+            .pergunta-item { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🏛️ Legado — Vendas</div>
+
+        <div class="titulo">Roda de Decisão Comercial</div>
+        <div class="subtitulo">Amaro decide cada negociação porque ninguém mais tem critério para decidir. Neusa documentou o critério antes de precisar se ausentar. Mapeie qual das duas descreve o comando comercial da sua empresa.</div>
+
+        <div class="roda-wrap">
+            <svg class="roda-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <line x1="50" y1="50" x2="50" y2="15"></line>
+                <line x1="50" y1="50" x2="86.1" y2="39.2"></line>
+                <line x1="50" y1="50" x2="72.3" y2="78.3"></line>
+                <line x1="50" y1="50" x2="27.7" y2="78.3"></line>
+                <line x1="50" y1="50" x2="13.9" y2="39.2"></line>
+            </svg>
+
+            <div class="roda-centro">
+                <div class="roda-centro-txt">
+                    <span class="pergunta">De quantos desses cinco pontos você ainda é o único caminho até a decisão?</span>
+                    <span class="roda-centro-linha"></span>
+                </div>
+            </div>
+
+            <div class="roda-item roda-p1">
+                <div class="roda-item-titulo">Desconto acima da tabela padrão</div>
+                <div class="roda-item-campo">Quem decide hoje:</div>
+                <span class="roda-item-linha"></span>
+                <div class="roda-item-check">Critério documentado? ☐ Sim · ☐ Não</div>
+                <div class="roda-item-campo">O que acontece sem o dono:</div>
+                <span class="roda-item-linha"></span>
+            </div>
+
+            <div class="roda-item roda-p2">
+                <div class="roda-item-titulo">Prazo de pagamento diferente do praticado</div>
+                <div class="roda-item-campo">Quem decide hoje:</div>
+                <span class="roda-item-linha"></span>
+                <div class="roda-item-check">Critério documentado? ☐ Sim · ☐ Não</div>
+                <div class="roda-item-campo">O que acontece sem o dono:</div>
+                <span class="roda-item-linha"></span>
+            </div>
+
+            <div class="roda-item roda-p3">
+                <div class="roda-item-titulo">Prioridade de atendimento em alta demanda</div>
+                <div class="roda-item-campo">Quem decide hoje:</div>
+                <span class="roda-item-linha"></span>
+                <div class="roda-item-check">Critério documentado? ☐ Sim · ☐ Não</div>
+                <div class="roda-item-campo">O que acontece sem o dono:</div>
+                <span class="roda-item-linha"></span>
+            </div>
+
+            <div class="roda-item roda-p4">
+                <div class="roda-item-titulo">Condição contratual fora do padrão para cliente grande</div>
+                <div class="roda-item-campo">Quem decide hoje:</div>
+                <span class="roda-item-linha"></span>
+                <div class="roda-item-check">Critério documentado? ☐ Sim · ☐ Não</div>
+                <div class="roda-item-campo">O que acontece sem o dono:</div>
+                <span class="roda-item-linha"></span>
+            </div>
+
+            <div class="roda-item roda-p5">
+                <div class="roda-item-titulo">Renegociação de contrato já em andamento</div>
+                <div class="roda-item-campo">Quem decide hoje:</div>
+                <span class="roda-item-linha"></span>
+                <div class="roda-item-check">Critério documentado? ☐ Sim · ☐ Não</div>
+                <div class="roda-item-campo">O que acontece sem o dono:</div>
+                <span class="roda-item-linha"></span>
+            </div>
+        </div>
+
+        <div class="dica">ex. comércio: desconto por volume de compra na ponta · ex. serviço: reajuste de escopo dentro de um contrato mensal vigente · ex. indústria: alteração de prazo de entrega por atraso de insumo do fornecedor</div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">O que aconteceria com as negociações em andamento nos próximos 90 dias sem você:</div>
+            <span class="resposta-aberta"></span>
+            <div class="pergunta-hint">a equipe decide dentro do critério e a venda segue · a proposta trava esperando sua volta · alguém decide sem critério e a margem paga a conta</div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">O que você quer que a venda signifique para o negócio depois de você:</div>
+            <span class="resposta-aberta"></span>
+            <div class="pergunta-hint">critério que qualquer vendedor aplica do mesmo jeito · margem protegida mesmo sob pressão do cliente · negociação que não depende de quem está na sala</div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Ninguém negocia do jeito que eu negocio."</strong>
+            <span>Ninguém precisa. Precisa negociar dentro do critério que você definiu — não copiar o seu instinto, que não é transferível.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Se eu documentar o limite, minha equipe vai usar até o teto sempre."</strong>
+            <span>Sem limite documentado, alguns já usam o teto que quiserem e outros travam esperando você. O teto exposto não cria abuso — expõe o abuso que já existe.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Cada negociação é diferente, não dá para engessar isso."</strong>
+            <span>Cada negociação tem detalhes diferentes. O critério de até onde ceder não muda por cliente — muda a habilidade de quem aplica.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe se a venda da sua empresa decide sozinha ou só espera por você. Legado comercial não é a carteira de clientes que você deixa. É o critério que continua fechando negócio quando ninguém está te procurando para aprovar.
+        </div>
+    </div>
+</body>
+</html>
