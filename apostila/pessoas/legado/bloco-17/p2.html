@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 17 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 14px; font-style: italic; line-height: 1.6; }
+
+        .vinculo-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 11px; }
+
+        .vinculo-table thead tr th {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 7px 8px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #555;
+            text-align: left;
+        }
+
+        .vinculo-table tbody tr td {
+            border: 1px solid #eee;
+            height: 24px;
+            padding: 0 8px;
+        }
+
+        .vinculo-table tbody tr:nth-child(even) td {
+            background: #fafafa;
+        }
+
+        .hint { font-size: 10px; color: #999; font-style: italic; margin: 8px 0 18px 0; line-height: 1.6; }
+
+        .resumo { margin: 18px 0; padding: 14px 16px; border-left: 3px solid #999; background: #fafafa; }
+        .resumo-item { display: flex; align-items: flex-end; gap: 8px; font-size: 12px; color: #555; margin-bottom: 10px; }
+        .resumo-item:last-child { margin-bottom: 0; }
+        .resumo-linha { flex: 1; border-bottom: 1px solid #ccc; height: 18px; min-width: 30px; }
+
+        .acao-box { margin: 20px 0; }
+        .acao-box .pergunta-chave { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 10px; }
+        .acao-box .linha-preenchimento { display: block; border-bottom: 1px solid #999; height: 20px; margin-bottom: 10px; }
+
+        .duvida-item { margin-bottom: 10px; font-size: 12px; }
+        .duvida-item strong { display: block; margin-bottom: 2px; color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 14px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            .vinculo-table { page-break-inside: avoid; }
+            .resumo, .acao-box { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🏛️ Legado — Pessoas</div>
+
+        <div class="titulo">As Decisões Que Só Existem na Cabeça de Alguém</div>
+        <div class="subtitulo">Nilton carregava na cabeça o critério de liderança da matriz inteira — e a saúde da família dele quase mostrou isso do jeito mais caro. Mapeie agora as decisões do dia a dia da sua equipe, antes que a saída de alguém te avise de quantas delas nunca chegaram a sair de uma única pessoa.</div>
+
+        <table class="vinculo-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Decisão do dia a dia</th>
+                    <th style="width: 25%;">Quem decide isso hoje</th>
+                    <th style="width: 27%;">O que acontece se essa pessoa sair amanhã</th>
+                    <th style="width: 23%;">O que a empresa detém</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+
+        <div class="hint">ex. comércio: cobrir falta de atendente de última hora — quem decide é sempre o gerente mais antigo, e não existe critério escrito de até onde ele pode ir sozinho · ex. serviço: liberar folga de emergência de um técnico — hoje só o sócio autoriza, e ninguém mais sabe o limite dele · ex. indústria: resolver atrito entre dois operadores de turno — o supervisor da linha resolve de cabeça, sem nenhum registro do que já foi decidido antes</div>
+
+        <div class="resumo">
+            <div class="resumo-item">Total de decisões mapeadas: <div class="resumo-linha"></div></div>
+            <div class="resumo-item">Quantas têm critério registrado, visível pra mais de uma pessoa: <div class="resumo-linha"></div></div>
+        </div>
+
+        <div class="acao-box">
+            <div class="pergunta-chave">Para cada decisão sem critério, o que muda essa semana — quem passa a decidir junto, até onde vai sozinho, quando sobe pra você:</div>
+            <div class="linha-preenchimento"></div>
+            <div class="linha-preenchimento"></div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu escrever isso tudo, minha equipe vai achar que não confio mais em ninguém."</strong>
+            <span> → Confiança não é deixar a decisão solta. É garantir que ela não vá embora junto com a pessoa.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"O Nilton da minha empresa merece ter liberdade, não regra escrita."</strong>
+            <span> → Ele continua decidindo do jeito dele. O critério só garante que outra pessoa também saiba decidir do mesmo jeito.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Isso é coisa de empresa grande, com RH estruturado."</strong>
+            <span> → Empresa pequena é a que mais perde quando quem decide sai — porque não tem ninguém atrás pra segurar.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se eu escrever o critério e descobrir que dependo de uma pessoa só em quase tudo?"</strong>
+            <span> → Melhor descobrir isso agora, com essa pessoa ainda por perto, do que no dia em que ela não estiver.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe quantas decisões da sua equipe ainda moram só na cabeça de alguém — e quais já pertencem à empresa. Se a lista de risco for maior do que você esperava, é a liderança da loja avisando que ainda depende de uma pessoa continuar por perto.
+        </div>
+    </div>
+</body>
+</html>

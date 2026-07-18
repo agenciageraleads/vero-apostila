@@ -1,7 +1,7 @@
 # STATUS — Apostila Vero
 
 > Dashboard rapido de todos os blocos. Atualizar a cada aprovacao.
-> Ultima atualizacao: 2026-07-17 (Vendas completo — Trilha, Gestao e Legado finalizados)
+> Ultima atualizacao: 2026-07-18 (APOSTILA COMPLETA — Pessoas finalizado, 88/88 blocos)
 
 ## Resumo
 
@@ -10,12 +10,14 @@
 | Financeiro | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
 | Operacao | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
 | Vendas | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
-| Pessoas | 22 | 22 | 0 | 0 | 0 | 0 | 0 |
-| **TOTAL** | **88** | **22** | **0** | **0** | **0** | **0** | **66** |
+| Pessoas | 22 | 0 | 0 | 0 | 0 | 0 | 22 |
+| **TOTAL** | **88** | **0** | **0** | **0** | **0** | **0** | **88** |
 
 Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado | 🎨 Em design | 📄 Finalizado
 
-## Proximo bloco: Pessoas > Raiz > Bloco 01
+## APOSTILA VERO COMPLETA — 88/88 blocos finalizados (2026-07-18)
+
+Proximo passo: revisao geral / preparacao para producao editorial (impressao, PDF final, ou definicao de proxima etapa do projeto).
 
 ---
 
@@ -110,25 +112,25 @@ Legenda: ⬜ Nao iniciado | ✍️ Em redacao | 🔬 Em critica | ✅ Aprovado |
 
 | # | Fase | Bloco | Status | Data |
 |---|------|-------|--------|------|
-| 01 | 🌱 Raiz | Sistema permite comportamento | ⬜ | - |
-| 02 | 🌱 Raiz | Contratar por desespero | ⬜ | - |
-| 03 | 🌱 Raiz | Expectativa nao explicitada | ⬜ | - |
-| 04 | 🌱 Raiz | Confianca sem criterio | ⬜ | - |
-| 05 | 🌱 Raiz | Ocupacao nao e entrega | ⬜ | - |
-| 06 | 🌱 Raiz | Comprometimento e sintoma | ⬜ | - |
-| 07 | 🛤️ Trilha | Papel claro reduz conflito | ⬜ | - |
-| 08 | 🛤️ Trilha | Combinado nao documentado | ⬜ | - |
-| 09 | 🛤️ Trilha | Feedback e ajuste de rota | ⬜ | - |
-| 10 | 🛤️ Trilha | Rotina cria previsibilidade | ⬜ | - |
-| 11 | 🛤️ Trilha | Avaliar comportamento | ⬜ | - |
-| 12 | 🧠 Gestao | Centralizar trava o time | ⬜ | - |
-| 13 | 🧠 Gestao | Lideranca e responsabilidade | ⬜ | - |
-| 14 | 🧠 Gestao | Desenvolver lideres | ⬜ | - |
-| 15 | 🧠 Gestao | Gente certa, lugar errado | ⬜ | - |
-| 16 | 🧠 Gestao | Resolver sozinho nao e lideranca | ⬜ | - |
-| 17 | 🏛️ Legado | Lideranca sem fundador | ⬜ | - |
-| 18 | 🏛️ Legado | Governanca de pessoas | ⬜ | - |
-| 19 | 🏛️ Legado | Cultura independente de pessoas-chave | ⬜ | - |
-| 20 | 🏛️ Legado | Sistemas absorvem erro | ⬜ | - |
-| 21 | 🏛️ Legado | Sucessao e poder | ⬜ | - |
-| 22 | 🏛️ Legado | Pessoas como heranca | ⬜ | - |
+| 01 | 🌱 Raiz | Ninguem combinou, mas todo mundo faz assim | 📄 | 2026-07-18 |
+| 02 | 🌱 Raiz | Quando contratar rapido sai mais caro que ficar sem ninguem | 📄 | 2026-07-18 |
+| 03 | 🌱 Raiz | Quando o obvio so existe na sua cabeca | 📄 | 2026-07-18 |
+| 04 | 🌱 Raiz | Quando cada um decide do seu jeito | 📄 | 2026-07-18 |
+| 05 | 🌱 Raiz | A serra nao parou, o pedido nao saiu | 📄 | 2026-07-18 |
+| 06 | 🌱 Raiz | Quando o problema troca de nome mas nunca muda | 📄 | 2026-07-18 |
+| 07 | 🛤️ Trilha | Quando a tarefa nao tem dono | 📄 | 2026-07-18 |
+| 08 | 🛤️ Trilha | O combinado que so um dos dois lembra | 📄 | 2026-07-18 |
+| 09 | 🛤️ Trilha | Bronca nao e correcao | 📄 | 2026-07-18 |
+| 10 | 🛤️ Trilha | Segunda-feira, se der tempo | 📄 | 2026-07-18 |
+| 11 | 🛤️ Trilha | Prometeu nao e entregou | 📄 | 2026-07-18 |
+| 12 | 🧠 Gestao | Enquanto voce decide tudo, ninguem decide nada | 📄 | 2026-07-18 |
+| 13 | 🧠 Gestao | O cargo e do Edgar. Quem decide e a Ivete. | 📄 | 2026-07-18 |
+| 14 | 🧠 Gestao | Quem resolve hoje nao vira lider amanha | 📄 | 2026-07-18 |
+| 15 | 🧠 Gestao | Promovi quem vendia mais. Perdi quem vendia mais. | 📄 | 2026-07-18 |
+| 16 | 🧠 Gestao | O telefone que so toca pra voce | 📄 | 2026-07-18 |
+| 17 | 🏛️ Legado | Quem decide quando ninguem pode te perguntar | 📄 | 2026-07-18 |
+| 18 | 🏛️ Legado | As decisoes que so saiam com o seu sim | 📄 | 2026-07-18 |
+| 19 | 🏛️ Legado | A cultura que foi embora com eles (Bloco-Referencia Congelado) | 📄 | 2026-07-18 |
+| 20 | 🏛️ Legado | Quando o erro do motorista deixou de ser sobre o motorista | 📄 | 2026-07-18 |
+| 21 | 🏛️ Legado | A loja que ainda obedecia ao antigo dono | 📄 | 2026-07-18 |
+| 22 | 🏛️ Legado | O que fica quando o forno esfria | 📄 | 2026-07-18 |

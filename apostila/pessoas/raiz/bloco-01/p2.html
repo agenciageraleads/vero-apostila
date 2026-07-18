@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 01 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 14px; font-style: italic; line-height: 1.5; }
+
+        .pergunta-item { margin: 16px 0; padding-top: 14px; border-top: 1px solid #eee; }
+        .pergunta-item:first-of-type { border-top: none; padding-top: 2px; }
+
+        .pergunta { font-size: 13px; font-weight: bold; color: #000; line-height: 1.5; margin-bottom: 5px; }
+        .hint { font-size: 10.5px; font-style: italic; color: #888; line-height: 1.5; margin-top: 8px; margin-bottom: 4px; }
+
+        .resposta-linha { display: block; border-bottom: 1px solid #ccc; height: 18px; margin-bottom: 6px; }
+
+        table.lista-table { width: 100%; border-collapse: collapse; margin: 10px 0 4px 0; font-size: 11.5px; }
+
+        table.lista-table th {
+            font-size: 10.5px;
+            font-weight: bold;
+            padding: 8px 9px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            text-align: left;
+        }
+
+        table.lista-table td.num {
+            width: 6%;
+            font-weight: bold;
+            color: #999;
+            background: #fafafa;
+            border: 1px solid #eee;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        table.lista-table td.resposta {
+            border: 1px solid #eee;
+            height: 30px;
+            padding: 6px 9px;
+            vertical-align: top;
+        }
+
+        table.quadrante-table { width: 100%; border-collapse: collapse; margin: 10px 0 4px 0; font-size: 11.5px; }
+
+        table.quadrante-table th {
+            font-size: 10.5px;
+            font-weight: bold;
+            padding: 9px 10px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            text-align: left;
+        }
+
+        table.quadrante-table td.rotulo {
+            width: 20%;
+            font-size: 10.5px;
+            font-weight: bold;
+            color: #555;
+            background: #fafafa;
+            padding: 8px 10px;
+            border: 1px solid #eee;
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        table.quadrante-table td.resposta {
+            border: 1px solid #eee;
+            height: 46px;
+            padding: 6px 10px;
+            vertical-align: top;
+        }
+
+        table.quadrante-table td.alerta {
+            border: 1px solid #999;
+            background: #f5f5f5;
+        }
+
+        .alerta-label { font-size: 10px; font-weight: bold; letter-spacing: 0.5px; color: #333; display: block; margin-bottom: 6px; }
+
+        .alerta-box { margin: 12px 0; padding: 12px 14px; border-left: 3px solid #999; background: #fafafa; font-size: 12px; line-height: 1.65; color: #333; }
+
+        .duvida-item { margin-bottom: 9px; font-size: 12px; }
+        .duvida-item strong { display: block; margin-bottom: 3px; color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 14px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            .pergunta-item { page-break-inside: avoid; }
+            table.lista-table, table.quadrante-table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Pessoas</div>
+
+        <div class="titulo">Mapa de Tolerância</div>
+        <div class="subtitulo">Liste comportamentos que você já deixou passar mais de uma vez — na loja, na obra, no escritório, onde for. Sem embelezar. Para cada um, escreva também a regra que deveria existir.</div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">Comportamento tolerado e regra que deveria existir</p>
+            <table class="lista-table">
+                <tr>
+                    <th style="width: 6%;">Nº</th>
+                    <th style="width: 47%;">Comportamento</th>
+                    <th style="width: 47%;">Regra que deveria existir</th>
+                </tr>
+                <tr><td class="num">1</td><td class="resposta"></td><td class="resposta"></td></tr>
+                <tr><td class="num">2</td><td class="resposta"></td><td class="resposta"></td></tr>
+                <tr><td class="num">3</td><td class="resposta"></td><td class="resposta"></td></tr>
+                <tr><td class="num">4</td><td class="resposta"></td><td class="resposta"></td></tr>
+                <tr><td class="num">5</td><td class="resposta"></td><td class="resposta"></td></tr>
+            </table>
+            <p class="hint">ex. comércio: caixa fechado sem conferência em dupla · ex. serviço: checklist de execução (posto, plantão ou visita) assinado sem conferência · ex. indústria: turno que libera produção sem checagem de qualidade</p>
+        </div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">Agora posicione cada número acima no quadrante. Frequência: com que rapidez isso se repete. Gravidade: o tamanho do estrago se ninguém corrigir.</p>
+            <table class="quadrante-table">
+                <tr>
+                    <th style="width: 20%;"></th>
+                    <th style="width: 40%;">Raro</th>
+                    <th style="width: 40%;">Frequente</th>
+                </tr>
+                <tr>
+                    <td class="rotulo">Grave</td>
+                    <td class="resposta"></td>
+                    <td class="resposta alerta"><span class="alerta-label">⚠ ALERTA MÁXIMO</span></td>
+                </tr>
+                <tr>
+                    <td class="rotulo">Leve</td>
+                    <td class="resposta"></td>
+                    <td class="resposta"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="alerta-box">
+            Volte no quadrante superior direito — frequente e grave. Cada número que está ali é comportamento que virou rotina sem nunca ter sido corrigido. Isso não é atraso de correção — é o tempo que você já usou treinando alguém a fazer diferente do que você diz que espera.
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu cobrar agora, vou parecer que estou perseguindo quem já trabalha comigo há anos."</strong>
+            <span>Você não perseguiu ninguém enquanto deixou passar. Só está atrasado, não injusto.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Talvez o problema seja só essa pessoa."</strong>
+            <span>Se mais de uma pessoa já repete o mesmo comportamento, o problema não é a pessoa. É o que você deixou valer.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Isso vai criar clima ruim com o time."</strong>
+            <span>O clima já está ruim — pra quem segue a regra certa e vê o outro não seguir e nada acontecer.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Eu não tenho tempo pra ficar corrigindo isso todo dia."</strong>
+            <span>Corrigir uma vez, com prazo e critério, custa menos tempo do que corrigir a mesma coisa pra sempre.</span>
+        </div>
+
+        <div class="resultado">
+            Depois disso, você para de chamar de "jeito da casa" o que é regra que você nunca cobrou. Sabe, item por item, o que está tolerando, com que frequência e quão grave é — e decide, com prazo, o que muda a partir de hoje, começando pelo quadrante de alerta máximo.
+        </div>
+    </div>
+</body>
+</html>

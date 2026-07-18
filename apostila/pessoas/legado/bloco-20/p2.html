@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 20 — Pessoas Legado — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 34px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 6px; color: #000; }
+
+        .instrucao { font-size: 12px; color: #666; margin-bottom: 8px; font-style: italic; line-height: 1.55; }
+
+        .instrucao-forte { font-size: 12px; color: #333; margin-bottom: 14px; line-height: 1.55; }
+
+        .medidor-bloco { margin: 16px 0; padding: 12px 14px; border: 1px solid #e2e2e2; background: #fcfcfc; }
+        .medidor-bloco + .medidor-bloco { margin-top: 12px; }
+
+        .medidor-titulo { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 3px; }
+        .medidor-instrucao { font-size: 10.5px; color: #777; font-style: italic; margin-bottom: 10px; }
+
+        .medidor-escala { position: relative; height: 26px; margin: 4px 4px 2px 4px; }
+        .medidor-escala .linha-base { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #999; }
+        .medidor-escala .tick { position: absolute; top: calc(50% - 7px); width: 1px; height: 14px; background: #999; }
+        .medidor-escala .tick.t0 { left: 0; }
+        .medidor-escala .tick.t25 { left: 25%; }
+        .medidor-escala .tick.t50 { left: 50%; }
+        .medidor-escala .tick.t75 { left: 75%; }
+        .medidor-escala .tick.t100 { left: 100%; }
+
+        .medidor-numeros { display: flex; justify-content: space-between; font-size: 10px; color: #888; margin: 0 4px 10px 4px; }
+
+        .hint-segmentos { font-size: 10.5px; color: #888; font-style: italic; line-height: 1.55; margin: 0 0 14px 0; }
+
+        .campo-linha { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; font-size: 11.5px; color: #333; }
+        .campo-linha .preenchimento { flex: 1; border-bottom: 1px solid #bbb; height: 15px; min-width: 40px; }
+
+        .pergunta-chave { font-size: 13px; font-weight: bold; margin: 20px 0 4px 0; color: #000; }
+        .pergunta-sub { font-size: 11.5px; color: #777; font-style: italic; margin-bottom: 10px; }
+
+        .soma-box { margin: 16px 0; padding: 12px 14px; border-left: 3px solid #999; background: #fafafa; font-size: 12px; }
+        .soma-box p { margin-bottom: 7px; }
+        .soma-box p:last-child { margin-bottom: 0; }
+
+        .duvida-item { margin: 12px 0; font-size: 12px; }
+        .duvida-item strong { display: block; margin-bottom: 3px; color: #333; }
+        .duvida-item p { color: #666; line-height: 1.55; }
+
+        .resultado { margin: 18px 0 0 0; padding-top: 14px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.6; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 34px 40px; box-shadow: none; page-break-after: always; }
+            .medidor-bloco { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🏛️ Legado — Pessoas</div>
+
+        <div class="titulo">Quanto Peso o Seu Negócio Aguenta Quando Alguém Erra</div>
+        <div class="instrucao">Josué nunca errou — mas o que ele sabia fazer só existia na cabeça dele. Robson errou, e não tinha rede embaixo. Meça agora quanto da sua operação tem essa mesma rede — ou não tem nenhuma.</div>
+        <div class="instrucao-forte">Para cada medidor abaixo, marque com um X o ponto da escala que representa a proteção real hoje — não a que devia existir, não a que você gostaria de ter.</div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Erro de troca ou documentação — qual a proteção real hoje?</div>
+            <div class="medidor-instrucao">0% = ninguém pega, 100% = a empresa pega sozinha, sem depender de pessoa específica.</div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="campo-linha">Cenário já vivido ou temido (pedido, nota, etiqueta, contrato trocado): <div class="preenchimento"></div></div>
+            <div class="campo-linha">O que quebra hoje, sem ninguém pegar antes: <div class="preenchimento"></div></div>
+            <div class="campo-linha">Proteção que existe hoje, na prática: <div class="preenchimento"></div></div>
+        </div>
+        <div class="hint-segmentos">ex. comércio: conferência de nota fiscal na saída do caixa depende de o caixa lembrar sozinho · ex. serviço: checklist de abertura do posto de trabalho depende de a encarregada conferir tudo de cabeça, sem registro · ex. indústria: dupla checagem de lote antes do embarque depende do encarregado mais antigo estar presente</div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Erro de prazo ou rota — qual a proteção real hoje?</div>
+            <div class="medidor-instrucao">0% = ninguém pega, 100% = a empresa pega sozinha, sem depender de pessoa específica.</div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="campo-linha">Cenário já vivido ou temido (atraso não avisado, endereço errado, compromisso perdido): <div class="preenchimento"></div></div>
+            <div class="campo-linha">O que quebra hoje, sem ninguém pegar antes: <div class="preenchimento"></div></div>
+            <div class="campo-linha">Proteção que existe hoje, na prática: <div class="preenchimento"></div></div>
+        </div>
+        <div class="hint-segmentos">ex. comércio: entrega marcada errada no sistema só é notada se o vendedor específico revisar a agenda · ex. serviço: chave ou senha de acesso do endereço do cliente só é encontrada se a mesma pessoa da equipe estiver disponível para lembrar onde guardou · ex. indústria: ordem de produção com prazo trocado só é vista se o mesmo supervisor de sempre passar no chão de fábrica</div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Erro de comunicação com quem depende de você — qual a proteção real hoje?</div>
+            <div class="medidor-instrucao">0% = ninguém pega, 100% = a empresa pega sozinha, sem depender de pessoa específica.</div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="campo-linha">Cenário já vivido ou temido (informação errada repassada, promessa não registrada, combinado que só ficou na cabeça de alguém): <div class="preenchimento"></div></div>
+            <div class="campo-linha">O que quebra hoje, sem ninguém pegar antes: <div class="preenchimento"></div></div>
+            <div class="campo-linha">Proteção que existe hoje, na prática: <div class="preenchimento"></div></div>
+        </div>
+        <div class="hint-segmentos">ex. comércio: condição especial dada de boca é lembrada só por quem vendeu · ex. serviço: prazo prometido ao cliente existe só na mensagem pessoal de quem atendeu · ex. indústria: alteração de especificação combinada por telefone nunca chega a quem executa</div>
+
+        <div class="soma-box">
+            <p><strong>Média dos três marcadores:</strong></p>
+            <div class="campo-linha" style="margin-top:8px;">Soma das três proteções reais ÷ 3: <div class="preenchimento"></div>%</div>
+            <p style="margin-top:10px;">Abaixo de 50%, sua empresa está a um erro comum — não um erro raro, um erro comum — de uma crise que não devia ter virado crise.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu documentar isso, viro um chefe que não confia em ninguém."</strong>
+            <p>Josué também nunca foi desconfiado por conferir duas vezes. O problema não é checar — é a checagem morar só numa pessoa.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Minha equipe é pequena, todo mundo já sabe o que fazer."</strong>
+            <p>Robson também "sabia" o que fazer — do jeito que aprendeu em outro lugar. O que falta não é competência. É combinado.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Isso é paranoia por um erro que talvez nunca aconteça."</strong>
+            <p>Não é sobre o erro acontecer. É sobre o que sobra quando ele acontecer — porque em algum momento, com alguém, ele vai acontecer.</p>
+        </div>
+
+        <div class="resultado">
+            Ao terminar, você sabe em quantos pontos da sua operação um erro comum ainda depende de uma pessoa não faltar, não esquecer, não sair de licença. Se a média ficou baixa, não é a sua equipe que falhou até hoje. É a sorte que não errou ainda.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 07 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 14px; font-style: italic; line-height: 1.5; }
+
+        .tabela-intro { font-size: 12px; color: #333; margin-bottom: 10px; line-height: 1.6; }
+        .tabela-intro strong { color: #000; }
+
+        table.lista-table { width: 100%; border-collapse: collapse; margin-bottom: 6px; font-size: 11px; }
+        table.lista-table th { background: #f5f5f5; padding: 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: #555; }
+        table.lista-table td { padding: 6px 8px; border: 1px solid #eee; height: 22px; }
+        table.lista-table tbody tr:nth-child(even) td { background: #fafafa; }
+
+        .hint { font-size: 10.5px; font-style: italic; color: #888; margin: 6px 0 18px 0; line-height: 1.55; }
+
+        .pergunta-item { margin: 16px 0; padding-top: 14px; border-top: 1px solid #eee; }
+        .pergunta-item:first-of-type { border-top: none; padding-top: 2px; }
+
+        .pergunta { font-size: 13px; font-weight: bold; color: #000; line-height: 1.5; margin-bottom: 5px; }
+
+        .resposta-linha { display: block; border-bottom: 1px solid #ccc; height: 18px; margin-bottom: 6px; }
+
+        table.quadrante-table { width: 100%; border-collapse: collapse; margin: 10px 0 4px 0; font-size: 11.5px; }
+
+        table.quadrante-table th {
+            font-size: 10.5px;
+            font-weight: bold;
+            padding: 9px 10px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            text-align: left;
+        }
+
+        table.quadrante-table td.rotulo {
+            width: 20%;
+            font-size: 10.5px;
+            font-weight: bold;
+            color: #555;
+            background: #fafafa;
+            padding: 8px 10px;
+            border: 1px solid #eee;
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        table.quadrante-table td.resposta {
+            border: 1px solid #eee;
+            height: 44px;
+            padding: 6px 10px;
+            vertical-align: top;
+        }
+
+        .resumo { display: flex; flex-direction: column; gap: 9px; margin: 14px 0 0 0; padding-top: 12px; border-top: 1px solid #ddd; }
+        .resumo-item { display: flex; align-items: flex-end; gap: 6px; font-size: 12px; color: #444; flex-wrap: wrap; }
+        .resumo-linha { display: inline-block; border-bottom: 1px solid #999; width: 40px; height: 16px; }
+
+        .duvida-item { margin-bottom: 9px; font-size: 12px; }
+        .duvida-item strong { display: block; margin-bottom: 3px; color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 14px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            table.lista-table { page-break-inside: avoid; }
+            .pergunta-item { page-break-inside: avoid; }
+            table.quadrante-table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🛤️ Trilha — Pessoas</div>
+
+        <div class="titulo">Plote onde cada pessoa da equipe está hoje</div>
+        <div class="subtitulo">Não onde deveria estar. Onde está de verdade — comece por você.</div>
+
+        <div class="tabela-intro"><strong>Liste as pessoas</strong> que hoje dividem tarefas "no olho" — sem responsabilidade única definida.</div>
+
+        <table class="lista-table">
+            <thead>
+                <tr>
+                    <th style="width:26%;">Pessoa</th>
+                    <th style="width:42%;">Responsabilidade principal</th>
+                    <th style="width:32%;">Pra quem reporta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+
+        <div class="hint">ex. comércio: vendedora do balcão — repõe prateleira e fecha caixa no fim do turno, reporta à gerente da loja · ex. serviço: coordenador que atende contratos em prédios diferentes — resolve reposição de material no dia, reporta ao gestor de contas · ex. indústria: líder de turno — para a linha por defeito visível, reporta ao supervisor de produção</div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">Agora plote cada pessoa acima no quadrante abaixo — onde ela está de verdade hoje, não onde deveria estar.</p>
+            <table class="quadrante-table">
+                <tr>
+                    <th style="width: 20%;"></th>
+                    <th style="width: 40%;">Decide sozinho</th>
+                    <th style="width: 40%;">Precisa de aprovação</th>
+                </tr>
+                <tr>
+                    <td class="rotulo">Papel claro</td>
+                    <td class="resposta"></td>
+                    <td class="resposta"></td>
+                </tr>
+                <tr>
+                    <td class="rotulo">Papel indefinido</td>
+                    <td class="resposta"></td>
+                    <td class="resposta"></td>
+                </tr>
+            </table>
+            <div class="hint">ex. comércio: vendedora do balcão decide desconto até 10% sozinha — papel claro, decide sozinho · ex. serviço: assistente que fala com o cliente sem saber até onde pode prometer prazo — papel indefinido, precisa de aprovação · ex. indústria: líder de turno que para a linha sem checar com ninguém, mas ninguém mais sabe se essa é função dele — decide sozinho, papel indefinido</div>
+        </div>
+
+        <div class="resumo">
+            <div class="resumo-item">Releia quem caiu em "decide sozinho". Quantas dessas pessoas, na prática, ainda esperam você confirmar antes de agir — mesmo estando no quadrante certo no papel? Decisões que já são da pessoa, na prática: <div class="resumo-linha"></div> de <div class="resumo-linha" style="width:26px;"></div></div>
+        </div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">Se uma pessoa do quadrante "papel claro" faltar amanhã de manhã, quem assume o que era dela — e essa pessoa já sabe disso?</p>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <p class="pergunta">Alguém caiu em "papel indefinido" porque divide a mesma responsabilidade com outra pessoa, sem nome único? Escreva a tarefa e as duas pessoas envolvidas.</p>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu definir isso, viro o chefe que fica cobrando toda hora."</strong>
+            <span>Cobrar sem critério é chato. Cobrar com papel definido é justo — todo mundo sabe o que é dele antes de errar.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Minha equipe é pequena, todo mundo faz um pouco de tudo."</strong>
+            <span>Time pequeno é onde a sobreposição mais dói. Ninguém tem gente sobrando pra cobrir o que devia ser de outro.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Vou nomear a pessoa errada pra decidir algo."</strong>
+            <span>Vai, às vezes. Errar com papel definido tem conserto rápido. Errar sem papel nenhum, ninguém sabe nem quem tem que consertar.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Isso engessa quem gosta de resolver o que aparece."</strong>
+            <span>Não impede ninguém de ajudar. Impede que "ajudar" vire desculpa pra ninguém ser responsável primeiro.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, cada decisão do dia a dia tem um nome ao lado — não dois, não nenhum. Quando algo sai errado, você sabe com quem conversar, sem reconstruir quem achou que era função de quem. Papel claro não elimina imprevisto. Elimina a discussão sobre de quem era a tarefa.
+        </div>
+    </div>
+</body>
+</html>

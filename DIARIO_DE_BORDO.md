@@ -5,6 +5,62 @@
 
 ---
 
+## Sessao 17 — 2026-07-18
+
+### O que foi feito
+- [x] APOSTILA VERO COMPLETA — pilar Pessoas finalizado (22 blocos: Raiz 01-06, Trilha 07-11, Gestao 12-16, Legado 17-22)
+- [x] 88 arquivos criados: p1.md + p2.md + p1.html + p2.html × 22 blocos
+- [x] Workflow completo executado via orquestracao paralela em 4 ondas sequenciais (Raiz → Trilha → Gestao → Legado), cada uma com Marco+Iris → Ana → Roberto+Carla+Marcos → Sofia
+- [x] Bloco 19 (Legado) usa o texto do Bloco-Referencia Congelado n. 4 do metodo (adaptado ao template padrao, conteudo preservado integralmente — nao foi gerado conteudo novo)
+- [x] 4 rodadas de correcao de validadores aplicadas ao longo das ondas (Raiz Bloco 01, Trilha Bloco 10, Gestao Blocos 15+16, Legado Bloco 20)
+- [x] 12 canvas redesenhados por decisao de Lucas apos Ana sinalizar repeticao de formato em 3 das 4 ondas (Raiz: 4/6 blocos em tabela linear; Trilha: 5/5; Gestao: 3/5) — Raiz Blocos 01/04/05/06, Trilha Blocos 07/08/09/10/11, Gestao Blocos 13/14/15 redesenhados para quadrante 2x2, roda/circulo, framework sequencial, medidor/escala, linha do tempo e matriz limpa, sem repetir formato dentro da mesma onda
+- [x] BUG DE DESIGN corrigido: Bloco 05 (Raiz) tinha paleta bege/dourada inventada (#C9A84C e tons de creme) em p1.html e p2.html, unica ocorrencia fora do padrao preto/branco/cinza em toda a apostila (88 blocos). Lucas identificou visualmente ("a pagina ficou diferente"); ambos os arquivos foram regravados do zero seguindo o template correto
+- [x] Varredura de cores hex confirmada limpa nos 88 arquivos HTML da apostila apos a correcao
+- [x] STATUS.md atualizado: 88/88 blocos finalizados — APOSTILA COMPLETA
+
+### Blocos trabalhados
+| Bloco | Titulo | Personagens | Status |
+|-------|--------|------------|--------|
+| Pessoas > Raiz > 01 | Ninguem combinou, mas todo mundo faz assim | Eduardo, Robson, Josiane | Finalizado |
+| Pessoas > Raiz > 02 | Quando contratar rapido sai mais caro que ficar sem ninguem | Cristiane | Finalizado |
+| Pessoas > Raiz > 03 | Quando o obvio so existe na sua cabeca | Leonardo, Adriano | Finalizado |
+| Pessoas > Raiz > 04 | Quando cada um decide do seu jeito | Rosangela | Finalizado |
+| Pessoas > Raiz > 05 | A serra nao parou, o pedido nao saiu | Nivaldo | Finalizado |
+| Pessoas > Raiz > 06 | Quando o problema troca de nome mas nunca muda | Nadia, Eliete, Marisa, Cintia | Finalizado |
+| Pessoas > Trilha > 07 | Quando a tarefa nao tem dono | Tadeu, Marcia, Graziela | Finalizado |
+| Pessoas > Trilha > 08 | O combinado que so um dos dois lembra | Adriano, Cristina, Eliane | Finalizado |
+| Pessoas > Trilha > 09 | Bronca nao e correcao | Wellington, Eliana | Finalizado |
+| Pessoas > Trilha > 10 | Segunda-feira, se der tempo | Vania, Diego | Finalizado |
+| Pessoas > Trilha > 11 | Prometeu nao e entregou | Fabricio, Adriana, Everton, Wellington | Finalizado |
+| Pessoas > Gestao > 12 | Enquanto voce decide tudo, ninguem decide nada | Marlene | Finalizado |
+| Pessoas > Gestao > 13 | O cargo e do Edgar. Quem decide e a Ivete. | Anisio, Edgar, Ivete | Finalizado |
+| Pessoas > Gestao > 14 | Quem resolve hoje nao vira lider amanha | Rejane | Finalizado |
+| Pessoas > Gestao > 15 | Promovi quem vendia mais. Perdi quem vendia mais. | Leandro, Fagner | Finalizado |
+| Pessoas > Gestao > 16 | O telefone que so toca pra voce | Celina | Finalizado |
+| Pessoas > Legado > 17 | Quem decide quando ninguem pode te perguntar | Aparecida, Nilton, Neide | Finalizado |
+| Pessoas > Legado > 18 | As decisoes que so saiam com o seu sim | Sidnei, Cassia | Finalizado |
+| Pessoas > Legado > 19 | A cultura que foi embora com eles | (Bloco-Referencia Congelado — sem protagonista) | Finalizado |
+| Pessoas > Legado > 20 | Quando o erro do motorista deixou de ser sobre o motorista | Elton, Josue, Nilton | Finalizado |
+| Pessoas > Legado > 21 | A loja que ainda obedecia ao antigo dono | Waldir, Marisa | Finalizado |
+| Pessoas > Legado > 22 | O que fica quando o forno esfria | Aurelio, Joao | Finalizado |
+
+### Decisoes tomadas
+| Decisao | Motivo |
+|---------|--------|
+| Bloco 19 (Legado) reutiliza o texto do Bloco-Referencia Congelado n. 4 sem gerar conteudo novo | O tema, essencia, foco e "aqui nasce" do bloco no mapa oficial coincidem exatamente com a referencia frozen desde a fundacao do projeto — adaptar em vez de reescrever preserva a regua absoluta do metodo |
+| 12 canvas redesenhados (Raiz 01/04/05/06, Trilha 07/08/09/10/11, Gestao 13/14/15) apos aprovacao de Lucas | Ana sinalizou repeticao de formato de tabela linear em 3 das 4 ondas — mais extenso que o caso similar em Vendas (4 blocos). Lucas optou por redesenhar tudo sinalizado, nao o minimo |
+| Bug de paleta de cores no Bloco 05 (Raiz) corrigido por identificacao visual de Lucas, nao por processo automatizado | O bloco tinha sido sinalizado para redesenho de canvas por repeticao de formato, mas a instrucao de Sofia manter "consistencia com o p1.html do mesmo bloco" fez o redesenho herdar a paleta ja quebrada em vez de corrigi-la — o p1.html nunca tinha sido auditado porque a pendencia da Ana era sobre formato de canvas (P2), nao sobre cor. Leseson: verificacao de paleta deve ser explicita em auditorias futuras, nao assumida |
+| Onda Legado nao teve pendencia estrutural de canvas | Diversificacao de formato foi planejada proativamente na escrita (materiz/quadrante/linear-congelado/medidor/linha-do-tempo/auditoria), aprendizado direto da experiencia de Vendas |
+
+### Proximo passo
+Apostila completa (88/88 blocos). Proxima etapa a definir com Lucas: revisao geral de leitura, preparacao de PDF final para impressao, ou nova fase do projeto Vero.
+
+### Pendencias
+- Nenhuma pendencia de conteudo ou design conhecida apos a correcao do Bloco 05 e a varredura de cores em todo o pilar Pessoas.
+- Aprovacao final de Lucas sobre os 22 blocos de Pessoas ainda nao registrada nesta entrada.
+
+---
+
 ## Sessao 16 — 2026-07-17
 
 ### O que foi feito

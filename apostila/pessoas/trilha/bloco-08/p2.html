@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 08 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 32px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 16px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 11.5px; color: #888; margin-bottom: 18px; font-style: italic; line-height: 1.5; }
+
+        /* ---------- Linha do tempo do combinado ---------- */
+        .combinado-bloco { margin-bottom: 16px; }
+        .combinado-bloco:last-of-type { margin-bottom: 18px; }
+
+        .combinado-titulo { font-size: 12.5px; font-weight: bold; color: #000; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid #ddd; }
+
+        .timeline-row { display: flex; align-items: stretch; gap: 0; }
+
+        .timeline-etapa { flex: 1 1 0; min-width: 0; border: 1px solid #ccc; border-radius: 4px; background: #fafafa; padding: 8px 9px; }
+
+        .timeline-etapa-titulo { font-size: 9.5px; font-weight: bold; color: #000; line-height: 1.3; min-height: 24px; margin-bottom: 5px; }
+        .timeline-etapa-sub { font-size: 8px; color: #888; font-style: italic; line-height: 1.35; margin-bottom: 7px; min-height: 20px; }
+
+        .timeline-linha { display: block; border-bottom: 1px solid #999; height: 13px; width: 100%; }
+
+        .timeline-seta { flex: 0 0 18px; display: flex; align-items: center; justify-content: center; }
+        .timeline-seta::after {
+            content: "";
+            width: 0; height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 7px solid #999;
+        }
+
+        .timeline-exemplo { font-size: 9px; color: #888; font-style: italic; margin-top: 6px; line-height: 1.5; }
+
+        .pergunta-item { margin-bottom: 12px; }
+        .pergunta-item:last-of-type { margin-bottom: 12px; }
+        .pergunta-label { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 7px; line-height: 1.45; }
+
+        .resposta-aberta { display: block; border-bottom: 1px solid #999; height: 16px; width: 100%; margin-top: 3px; }
+
+        .pergunta-hint { font-size: 9.5px; font-style: italic; color: #888; margin-top: 6px; line-height: 1.45; }
+
+        .duvida-item { margin-bottom: 7px; font-size: 11px; }
+        .duvida-item strong { color: #333; display: block; margin-bottom: 2px; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.6; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 32px 40px; box-shadow: none; page-break-after: always; }
+            .combinado-bloco { page-break-inside: avoid; }
+            .timeline-row { page-break-inside: avoid; }
+            .pergunta-item { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🛤️ Trilha — Pessoas</div>
+
+        <div class="titulo">Escreva os combinados que hoje só existem na palavra de vocês dois</div>
+        <div class="subtitulo">Escolha 2 a 3 combinados que hoje moram só na lembrança de quem participou — sobre função, horário, responsabilidade, folga. Não é preço fechado com cliente. É o que foi acertado entre pessoas. Para cada um, reconstrua a linha do tempo abaixo.</div>
+
+        <div class="combinado-bloco">
+            <div class="combinado-titulo">Combinado 1</div>
+            <div class="timeline-row">
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">O que foi dito</div>
+                    <div class="timeline-etapa-sub">as palavras exatas, quem falou, quando</div>
+                    <span class="timeline-linha"></span>
+                </div>
+                <div class="timeline-seta"></div>
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">O que ficou subentendido</div>
+                    <div class="timeline-etapa-sub">o que cada lado assumiu sem confirmar com o outro</div>
+                    <span class="timeline-linha"></span>
+                </div>
+                <div class="timeline-seta"></div>
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">Quando quebrou</div>
+                    <div class="timeline-etapa-sub">a cena em que as duas versões bateram de frente</div>
+                    <span class="timeline-linha"></span>
+                </div>
+                <div class="timeline-seta"></div>
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">O que devia ter sido escrito</div>
+                    <div class="timeline-etapa-sub">a linha que faltou, e onde ela devia estar guardada</div>
+                    <span class="timeline-linha"></span>
+                </div>
+            </div>
+            <div class="timeline-exemplo">ex. comércio: "você assume a loja enquanto eu viajo" dito no corredor do estoque → virou função permanente na cabeça de quem ficou → quebrou quando o dono apresentou outra pessoa pra "botar ordem" → devia ter sido mensagem no grupo, com prazo e pedido de "combinado" de resposta</div>
+        </div>
+
+        <div class="combinado-bloco">
+            <div class="combinado-titulo">Combinado 2</div>
+            <div class="timeline-row">
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">O que foi dito</div>
+                    <div class="timeline-etapa-sub">as palavras exatas, quem falou, quando</div>
+                    <span class="timeline-linha"></span>
+                </div>
+                <div class="timeline-seta"></div>
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">O que ficou subentendido</div>
+                    <div class="timeline-etapa-sub">o que cada lado assumiu sem confirmar com o outro</div>
+                    <span class="timeline-linha"></span>
+                </div>
+                <div class="timeline-seta"></div>
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">Quando quebrou</div>
+                    <div class="timeline-etapa-sub">a cena em que as duas versões bateram de frente</div>
+                    <span class="timeline-linha"></span>
+                </div>
+                <div class="timeline-seta"></div>
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">O que devia ter sido escrito</div>
+                    <div class="timeline-etapa-sub">a linha que faltou, e onde ela devia estar guardada</div>
+                    <span class="timeline-linha"></span>
+                </div>
+            </div>
+            <div class="timeline-exemplo">ex. serviço: troca de plantão combinada por mensagem de voz, sem confirmação de volta → o colega entendeu que a troca valia só daquela semana → quebrou quando o cliente cobrou a presença de quem "devia" estar de plantão → devia ter sido mensagem de texto com as duas datas e um "ok" por escrito</div>
+        </div>
+
+        <div class="combinado-bloco">
+            <div class="combinado-titulo">Combinado 3</div>
+            <div class="timeline-row">
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">O que foi dito</div>
+                    <div class="timeline-etapa-sub">as palavras exatas, quem falou, quando</div>
+                    <span class="timeline-linha"></span>
+                </div>
+                <div class="timeline-seta"></div>
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">O que ficou subentendido</div>
+                    <div class="timeline-etapa-sub">o que cada lado assumiu sem confirmar com o outro</div>
+                    <span class="timeline-linha"></span>
+                </div>
+                <div class="timeline-seta"></div>
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">Quando quebrou</div>
+                    <div class="timeline-etapa-sub">a cena em que as duas versões bateram de frente</div>
+                    <span class="timeline-linha"></span>
+                </div>
+                <div class="timeline-seta"></div>
+                <div class="timeline-etapa">
+                    <div class="timeline-etapa-titulo">O que devia ter sido escrito</div>
+                    <div class="timeline-etapa-sub">a linha que faltou, e onde ela devia estar guardada</div>
+                    <span class="timeline-linha"></span>
+                </div>
+            </div>
+            <div class="timeline-exemplo">ex. indústria: substituição de turno combinada verbalmente com o líder de linha → o substituto entendeu que também assumia a aprovação de horas extras → quebrou quando o RH cobrou uma autorização que ninguém tinha dado por escrito → devia ter sido registro no quadro de turno, assinado pelos dois</div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Dos três, qual vai gerar o maior problema se cada lado continuar contando a sua versão — e qual você vai documentar esta semana, em quantas linhas, pra quem, até quando?</div>
+            <span class="resposta-aberta"></span>
+            <div class="pergunta-hint">mensagem no grupo da equipe com data e pedido de "combinado" de resposta · uma linha por função combinada, guardada num lugar fixo · registro assinado nos combinados do mês</div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Documentar combinado com o time? Vou parecer que não confio em ninguém."</strong>
+            <span> → Confiança não muda porque existe registro. Muda no dia em que duas pessoas contam a mesma conversa de dois jeitos diferentes.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Já converso com a equipe, todo mundo sabe o que foi combinado."</strong>
+            <span> → Sabe — até o dia em que duas pessoas lembram a mesma fala de formas diferentes, e nenhuma das duas está mentindo.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Isso não vira uma empresa cheia de papel pra tudo?"</strong>
+            <span> → Não. Vira uma linha por combinado que muda função, horário ou responsabilidade. O resto continua sendo conversa.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se a pessoa se sentir cobrada por eu registrar o combinado?"</strong>
+            <span> → Quem pretende cumprir não se incomoda com o registro. Quem se incomoda, geralmente, já sabia que ia lembrar diferente.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe onde cada combinado quebrou — e o que teria segurado a versão certa no lugar da lembrança de cada um. Da próxima vez que uma função, uma folga ou uma responsabilidade for combinada de boca, a data e a confirmação entram junto. Quando alguém disser "não foi isso que a gente combinou", você vai ter como responder — em vez de duas lembranças brigando sozinhas.
+        </div>
+    </div>
+</body>
+</html>

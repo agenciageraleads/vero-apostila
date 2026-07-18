@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 19 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 34px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 16px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 11px; color: #888; margin-bottom: 16px; font-style: italic; line-height: 1.55; }
+
+        .pergunta-item { margin-bottom: 12px; }
+        .pergunta-item:last-of-type { margin-bottom: 10px; }
+        .pergunta-label { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 5px; line-height: 1.4; }
+        .pergunta-hint { font-size: 9.5px; font-style: italic; color: #888; margin-bottom: 6px; line-height: 1.4; }
+
+        .resposta-linha { display: block; border-bottom: 1px solid #999; height: 14px; width: 100%; margin-bottom: 4px; }
+
+        .duvida-item { margin-bottom: 8px; font-size: 11px; }
+        .duvida-item strong { color: #333; display: block; margin-bottom: 2px; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.6; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 34px 40px; box-shadow: none; page-break-after: always; }
+            .pergunta-item { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🏛️ Legado — Pessoas</div>
+
+        <div class="titulo">O que fica quando as pessoas-chave saem</div>
+        <div class="subtitulo">A empresa do exemplo não perdeu talento quando o gerente, a coordenadora e o líder informal saíram. Perdeu referência. Este canvas mapeia o que hoje só existe na cabeça de alguém — antes que essa pessoa seja a próxima a sair.</div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">O que hoje só existe na cabeça de alguém — práticas que funcionam porque essa pessoa "sabe como é", não porque estão registradas em algum lugar:</div>
+            <div class="pergunta-hint">ex. comércio: só o gerente da loja sabe negociar desconto com fornecedor sem perder margem · ex. serviço: só a coordenadora sabe decidir quando um cliente difícil pode ser dispensado · ex. indústria: só o líder de turno sabe quando parar a linha antes de virar retrabalho</div>
+            <span class="resposta-linha"></span>
+            <span class="resposta-linha"></span>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">O que começa a quebrar quando essa pessoa não está — decisões que travam, conflitos que escalam até alguém de fora resolver:</div>
+            <span class="resposta-linha"></span>
+            <span class="resposta-linha"></span>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Qual critério precisa existir e hoje não existe — um critério concreto, não uma regra genérica:</div>
+            <div class="pergunta-hint">ex. comércio: limite de desconto por faixa de pedido, documentado, válido para qualquer pessoa do balcão · ex. serviço: condição objetiva para dispensar um cliente, sem depender do humor de quem atende naquele dia · ex. indústria: sinal claro que autoriza parar a linha, o mesmo para o líder titular e para quem o substitui</div>
+            <span class="resposta-linha"></span>
+            <span class="resposta-linha"></span>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Onde a decisão deixa de ser pessoal — decisões que hoje dependem do julgamento de quem está por perto e precisam virar critério institucional:</div>
+            <span class="resposta-linha"></span>
+            <span class="resposta-linha"></span>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">O que precisa continuar mesmo com pessoas novas — os comportamentos não negociáveis da empresa, os que não mudam quando muda quem está no cargo:</div>
+            <div class="pergunta-hint">ex. comércio: nenhuma venda fecha sem nota fiscal, não importa quem está no caixa · ex. serviço: todo cliente recebe retorno em até 24 horas, não importa quem está de plantão · ex. indústria: nenhum lote sai sem checagem de qualidade assinada, não importa quem está na linha</div>
+            <span class="resposta-linha"></span>
+            <span class="resposta-linha"></span>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Isso não vai engessar a cultura?"</strong>
+            <span> → Não. Vai impedir que ela desapareça com as pessoas certas.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Cada líder não deveria ter seu estilo?"</strong>
+            <span> → Sim. Desde que o critério seja o mesmo. Estilo sem critério vira ruído.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se o sistema ficar pior que a pessoa?"</strong>
+            <span> → No curto prazo, pode acontecer. No longo prazo, sistema melhora. Dependência não.</span>
+        </div>
+
+        <div class="resultado">
+            A empresa depende menos de nomes, sustenta critérios no tempo, atravessa trocas sem perder identidade. Cultura forte não é a que emociona. É a que permanece quando ninguém está olhando.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 03 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 20px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 18px; font-weight: bold; margin: 20px 0 8px 0; color: #000; }
+
+        .instrucao { font-size: 13px; color: #666; margin-bottom: 20px; font-style: italic; line-height: 1.6; }
+
+        .secao-titulo { font-size: 13px; font-weight: bold; margin: 16px 0 5px 0; color: #000; }
+
+        .exemplo { font-size: 11px; color: #888; font-style: italic; margin: 6px 0 10px 0; line-height: 1.5; }
+
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 11.5px; }
+        table th { background: #f5f5f5; padding: 8px 9px; text-align: left; border: 1px solid #ddd; font-weight: bold; }
+        table td { padding: 10px 9px; border: 1px solid #ddd; height: 60px; vertical-align: top; }
+        table td.rotulo-linha { font-weight: bold; background: #fafafa; width: 24%; vertical-align: top; }
+
+        .pergunta-item { margin: 20px 0; }
+        .pergunta { font-size: 13.5px; font-weight: bold; color: #000; margin-bottom: 4px; }
+        .nota { font-size: 11.5px; color: #777; font-style: italic; margin-bottom: 10px; line-height: 1.5; }
+        .resposta-linha { border-bottom: 1px solid #ccc; height: 20px; margin-bottom: 6px; }
+
+        .duvida-item { margin: 18px 0; font-size: 13px; line-height: 1.6; }
+        .duvida-item strong { display: block; margin-bottom: 4px; color: #333; }
+        .duvida-item p { color: #666; }
+
+        .resultado { margin: 30px 0 0 0; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; line-height: 1.7; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Pessoas</div>
+
+        <div class="titulo">Três Vezes Que Você Achou Que Tinha Sido Claro</div>
+
+        <div class="instrucao">Escolha 3 pedidos recentes que saíram diferentes do que você esperava. Preencha o quadro para cada um, sem embelezar.</div>
+
+        <div class="secao-titulo">Situação (o que você pediu)</div>
+        <div class="exemplo">ex. comércio: fechar o caixa e conferir o estoque antes de ir embora · ex. serviço: revisar a ordem de serviço antes de entregar ao cliente · ex. indústria: separar o lote certo para o turno da tarde</div>
+
+        <table>
+            <tr>
+                <th style="width: 28%;"></th>
+                <th style="width: 24%;">Situação 1</th>
+                <th style="width: 24%;">Situação 2</th>
+                <th style="width: 24%;">Situação 3</th>
+            </tr>
+            <tr>
+                <td class="rotulo-linha">O que você esperava que acontecesse</td>
+                <td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td class="rotulo-linha">O que você disse — as palavras, não a intenção</td>
+                <td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td class="rotulo-linha">O que a pessoa entendeu — pelo que ela fez, não pelo que ela diz que entendeu</td>
+                <td></td><td></td><td></td>
+            </tr>
+        </table>
+
+        <div class="pergunta-item">
+            <div class="pergunta">O que se repete nas três?</div>
+            <div class="nota">(a mesma palavra vaga, o mesmo prazo que você nunca disse, o mesmo "ela devia saber")</div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Mas isso é óbvio, não preciso explicar tudo."</strong>
+            <p>Óbvio pra quem. Não pra quem está do outro lado ouvindo pela primeira vez.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu explicar demais, vou parecer que não confio na equipe."</strong>
+            <p>Confiança não substitui combinado. As duas coisas resolvem problemas diferentes.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Vou descobrir que o erro era meu, não do time."</strong>
+            <p>Vai. E vai continuar contratando gente "sem atenção" até perceber isso.</p>
+        </div>
+
+        <div class="resultado">
+            Depois disso, você para de chamar de incompetência o que é falta de combinado. Da próxima vez que pedir algo, vai saber exatamente o que disse — e não vai mais poder dizer que era óbvio.
+        </div>
+    </div>
+</body>
+</html>

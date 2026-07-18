@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 06 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 34px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 10px; border-bottom: 2px solid #999; padding-bottom: 4px; }
+
+        .titulo { font-size: 16px; font-weight: bold; margin-bottom: 4px; color: #000; }
+
+        .instrucao { font-size: 11.5px; color: #666; margin-bottom: 11px; font-style: italic; line-height: 1.45; }
+
+        .medidor-bloco { margin: 6px 0; padding: 7px 12px; border: 1px solid #e2e2e2; background: #fcfcfc; }
+        .medidor-bloco + .medidor-bloco { margin-top: 6px; }
+
+        .caso-label { font-size: 9.5px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.6px; color: #999; margin-bottom: 4px; }
+
+        .campo-linha-label { font-size: 10px; color: #777; margin-bottom: 2px; }
+        .campo-linha-preench { border-bottom: 1px solid #bbb; height: 12px; margin-bottom: 5px; }
+        .campo-linha-hint { font-size: 9.5px; color: #888; font-style: italic; line-height: 1.4; margin-bottom: 5px; }
+
+        .medidor-titulo { font-size: 11.5px; font-weight: bold; color: #000; margin-bottom: 4px; }
+
+        .medidor-escala { position: relative; height: 16px; margin: 2px 4px 1px 4px; }
+        .medidor-escala .linha-base { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #999; }
+        .medidor-escala .tick { position: absolute; top: calc(50% - 5px); width: 1px; height: 10px; background: #999; }
+        .medidor-escala .tick.t0 { left: 0; }
+        .medidor-escala .tick.t25 { left: 25%; }
+        .medidor-escala .tick.t50 { left: 50%; }
+        .medidor-escala .tick.t75 { left: 75%; }
+        .medidor-escala .tick.t100 { left: 100%; }
+
+        .medidor-numeros { display: flex; justify-content: space-between; align-items: baseline; font-size: 9px; color: #888; margin: 0 4px 6px 4px; }
+        .medidor-numeros .polo { font-size: 9px; font-weight: bold; letter-spacing: 0.5px; color: #555; text-transform: uppercase; }
+
+        .medidor-subcampos { display: flex; gap: 10px; margin-top: 2px; }
+        .subcampo { flex: 1; }
+        .subcampo-label { font-size: 9px; color: #777; line-height: 1.3; margin-bottom: 2px; }
+        .subcampo-linha { border-bottom: 1px solid #bbb; height: 12px; }
+        .subcampo-hint { font-size: 8.5px; color: #888; font-style: italic; line-height: 1.3; }
+
+        .soma-box { margin: 9px 0; padding: 7px 12px; border-left: 3px solid #999; background: #fafafa; font-size: 11px; }
+        .soma-box p { margin-bottom: 4px; }
+        .soma-box p:last-child { margin-bottom: 0; }
+        .soma-box .resposta-inline { display: inline-block; border-bottom: 1px solid #999; width: 60px; height: 12px; margin-left: 4px; vertical-align: middle; }
+
+        .duvida-item { margin: 6px 0; font-size: 11px; }
+        .duvida-item strong { display: block; margin-bottom: 2px; color: #333; }
+        .duvida-item p { color: #666; line-height: 1.4; }
+
+        .resultado { margin: 10px 0 0 0; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.5; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 34px 40px; box-shadow: none; page-break-after: always; }
+            .medidor-bloco { page-break-inside: avoid; }
+            .duvida-item { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Pessoas</div>
+
+        <div class="titulo">Diagnóstico: O Que Você Tem Chamado de Falta de Comprometimento</div>
+
+        <div class="instrucao">Preencha até três comportamentos que você observou nos últimos seis meses — podem ser de pessoas diferentes. Para cada um, marque o medidor antes de escrever o resto.</div>
+
+        <div class="medidor-bloco">
+            <div class="caso-label">Exemplo</div>
+
+            <div class="campo-linha-label">Comportamento observado</div>
+            <div class="campo-linha-hint">ex. comércio: vendedor não fecha caixa direito · ex. serviço: profissional erra agenda ou atrasa entrega · ex. indústria: operador pula etapa do processo</div>
+
+            <div class="medidor-titulo">Quanto disso é atitude, quanto é estrutura? <span style="font-weight:normal;font-style:italic;color:#888;font-size:9.5px;">(circule antes de ler o resto)</span></div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span class="polo">Atitude</span><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span><span class="polo">Estrutura</span></div>
+
+            <div class="medidor-subcampos">
+                <div class="subcampo">
+                    <div class="subcampo-label">O que você já tentou por causa disso</div>
+                    <div class="subcampo-hint">ex. advertência, corte de comissão, conversa de "precisa se comprometer mais", demissão</div>
+                </div>
+                <div class="subcampo">
+                    <div class="subcampo-label">Causa estrutural provável</div>
+                    <div class="subcampo-hint">ex. ninguém definiu quem confere o quê, prazo não está escrito em lugar nenhum, duas pessoas acham que a tarefa é da outra</div>
+                </div>
+                <div class="subcampo">
+                    <div class="subcampo-label">O que nunca foi testado</div>
+                    <div class="subcampo-hint">ex. escrever o combinado, testar com a próxima pessoa antes de repetir a mesma cobrança</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="medidor-bloco">
+            <div class="caso-label">Caso 1</div>
+
+            <div class="campo-linha-label">Comportamento observado</div>
+            <div class="campo-linha-preench"></div>
+
+            <div class="medidor-titulo">Quanto disso é atitude, quanto é estrutura?</div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span class="polo">Atitude</span><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span><span class="polo">Estrutura</span></div>
+
+            <div class="medidor-subcampos">
+                <div class="subcampo">
+                    <div class="subcampo-label">O que você já tentou por causa disso</div>
+                    <div class="subcampo-linha"></div>
+                </div>
+                <div class="subcampo">
+                    <div class="subcampo-label">Causa estrutural provável</div>
+                    <div class="subcampo-linha"></div>
+                </div>
+                <div class="subcampo">
+                    <div class="subcampo-label">O que nunca foi testado</div>
+                    <div class="subcampo-linha"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="medidor-bloco">
+            <div class="caso-label">Caso 2</div>
+
+            <div class="campo-linha-label">Comportamento observado</div>
+            <div class="campo-linha-preench"></div>
+
+            <div class="medidor-titulo">Quanto disso é atitude, quanto é estrutura?</div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span class="polo">Atitude</span><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span><span class="polo">Estrutura</span></div>
+
+            <div class="medidor-subcampos">
+                <div class="subcampo">
+                    <div class="subcampo-label">O que você já tentou por causa disso</div>
+                    <div class="subcampo-linha"></div>
+                </div>
+                <div class="subcampo">
+                    <div class="subcampo-label">Causa estrutural provável</div>
+                    <div class="subcampo-linha"></div>
+                </div>
+                <div class="subcampo">
+                    <div class="subcampo-label">O que nunca foi testado</div>
+                    <div class="subcampo-linha"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="medidor-bloco">
+            <div class="caso-label">Caso 3</div>
+
+            <div class="campo-linha-label">Comportamento observado</div>
+            <div class="campo-linha-preench"></div>
+
+            <div class="medidor-titulo">Quanto disso é atitude, quanto é estrutura?</div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span class="polo">Atitude</span><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span><span class="polo">Estrutura</span></div>
+
+            <div class="medidor-subcampos">
+                <div class="subcampo">
+                    <div class="subcampo-label">O que você já tentou por causa disso</div>
+                    <div class="subcampo-linha"></div>
+                </div>
+                <div class="subcampo">
+                    <div class="subcampo-label">Causa estrutural provável</div>
+                    <div class="subcampo-linha"></div>
+                </div>
+                <div class="subcampo">
+                    <div class="subcampo-label">O que nunca foi testado</div>
+                    <div class="subcampo-linha"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="soma-box">
+            <p>Agora olhe só para os três ponteiros que você marcou.</p>
+            <p>Quantos pararam do lado de estrutura, mesmo depois de você ter tratado o caso como falta de atitude?<span class="resposta-inline"></span></p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Mas essa pessoa realmente não se importa."</strong>
+            <p>Talvez. Mas você já pensou isso sobre outras duas antes dela.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu criar regra para tudo, viro chefe controlador."</strong>
+            <p>Regra não é controle. É o que evita você repetir a mesma demissão duas vezes no ano.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"E se eu descobrir que o problema sempre fui eu?"</strong>
+            <p>Não é sobre culpa sua. É sobre o que nunca foi definido — inclusive por você.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Vou parecer fraco cobrando estrutura em vez de atitude."</strong>
+            <p>Cobrar estrutura é mais difícil que cobrar atitude. Atitude você aponta o dedo. Estrutura você constrói.</p>
+        </div>
+
+        <div class="resultado">
+            <p>Depois disso, você para de reescrever a mesma avaliação de demissão com nome diferente. Se a causa estrutural se repetir na próxima pessoa, você vai saber exatamente onde olhar antes de demitir de novo.</p>
+        </div>
+    </div>
+</body>
+</html>

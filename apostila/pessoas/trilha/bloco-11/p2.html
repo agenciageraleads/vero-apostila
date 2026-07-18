@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 11 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.5; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 30px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 12px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 11.5px; color: #888; margin-bottom: 10px; font-style: italic; line-height: 1.5; }
+
+        .instrucao { font-size: 11.5px; color: #333; margin-bottom: 12px; line-height: 1.55; }
+        .instrucao strong { color: #000; }
+
+        .matriz-bloco { margin-bottom: 10px; }
+        .matriz-bloco:last-of-type { margin-bottom: 8px; }
+
+        .pessoa-linha { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 4px; }
+        .campo-preenchimento { display: inline-block; min-width: 200px; border-bottom: 1px solid #ccc; height: 13px; }
+        .campo-mini { display: inline-block; min-width: 26px; border-bottom: 1px solid #999; height: 13px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 0 0 4px 0; font-size: 10.5px; }
+        table th { background: #f5f5f5; padding: 4px 7px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 9px; text-transform: uppercase; letter-spacing: 0.3px; color: #555; }
+        table td { padding: 3px 7px; border: 1px solid #ddd; height: 17px; }
+        table td.col-veredito { text-align: center; font-size: 8.5px; color: #888; white-space: nowrap; }
+
+        .total-linha { font-size: 10.5px; color: #444; margin: 0 0 12px 0; }
+
+        .dica { font-size: 10px; color: #888; font-style: italic; margin: 4px 0 14px 0; line-height: 1.55; }
+
+        .pergunta-item { margin-bottom: 10px; }
+        .pergunta { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 5px; line-height: 1.45; }
+        .resposta-linha { border-bottom: 1px solid #999; height: 16px; }
+
+        .duvida-item { margin-bottom: 6px; font-size: 11.5px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11.5px; line-height: 1.6; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 30px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+            .matriz-bloco { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🛤️ Trilha — Pessoas</div>
+
+        <div class="titulo">Escreva o que cada um disse que faria — e o que realmente saiu</div>
+        <div class="subtitulo">Use fatos, não sua opinião sobre a pessoa. Se não lembrar o que foi combinado, escreva "não anotei" — isso também é resposta.</div>
+
+        <div class="instrucao"><strong>Escolha três pessoas da equipe</strong> — as que mais recebem tarefas de confiança, ou as que mais geram dúvida. Para cada uma, monte a matriz com os três últimos compromissos claros que ela assumiu (prazo, entrega, responsabilidade). Uma linha, um compromisso, um veredito — marque o que bateu e o que não bateu.</div>
+
+        <div class="matriz-bloco">
+            <div class="pessoa-linha">Pessoa 1: <span class="campo-preenchimento"></span></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:37%;">O que disse que faria</th>
+                        <th style="width:37%;">O que de fato fez</th>
+                        <th style="width:26%;">Veredito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td></td><td class="col-veredito">☐ consistente · ☐ inconsistente</td></tr>
+                    <tr><td></td><td></td><td class="col-veredito">☐ consistente · ☐ inconsistente</td></tr>
+                    <tr><td></td><td></td><td class="col-veredito">☐ consistente · ☐ inconsistente</td></tr>
+                </tbody>
+            </table>
+            <div class="total-linha">Total: <span class="campo-mini"></span> ☑ de 3</div>
+        </div>
+
+        <div class="matriz-bloco">
+            <div class="pessoa-linha">Pessoa 2: <span class="campo-preenchimento"></span></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:37%;">O que disse que faria</th>
+                        <th style="width:37%;">O que de fato fez</th>
+                        <th style="width:26%;">Veredito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td></td><td class="col-veredito">☐ consistente · ☐ inconsistente</td></tr>
+                    <tr><td></td><td></td><td class="col-veredito">☐ consistente · ☐ inconsistente</td></tr>
+                    <tr><td></td><td></td><td class="col-veredito">☐ consistente · ☐ inconsistente</td></tr>
+                </tbody>
+            </table>
+            <div class="total-linha">Total: <span class="campo-mini"></span> ☑ de 3</div>
+        </div>
+
+        <div class="matriz-bloco">
+            <div class="pessoa-linha">Pessoa 3: <span class="campo-preenchimento"></span></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:37%;">O que disse que faria</th>
+                        <th style="width:37%;">O que de fato fez</th>
+                        <th style="width:26%;">Veredito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td></td><td class="col-veredito">☐ consistente · ☐ inconsistente</td></tr>
+                    <tr><td></td><td></td><td class="col-veredito">☐ consistente · ☐ inconsistente</td></tr>
+                    <tr><td></td><td></td><td class="col-veredito">☐ consistente · ☐ inconsistente</td></tr>
+                </tbody>
+            </table>
+            <div class="total-linha">Total: <span class="campo-mini"></span> ☑ de 3</div>
+        </div>
+
+        <div class="dica">ex. comércio: disse que repunha a prateleira todo fim de tarde → repôs três das últimas cinco vezes, sem avisar quando não deu — ☒ inconsistente · ex. serviço: disse que entregava o relatório na sexta → entregou na terça seguinte, sem avisar antes do prazo vencer — ☒ inconsistente · ex. indústria: disse que dava conta do prazo apertado → entregou dentro do prometido, sem retrabalho — ☑ consistente</div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">Quem tem a maior distância entre o que fala e o que entrega — e que tarefa importante essa pessoa está recebendo hoje por causa da fala, não da entrega?</div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">Quem entrega mais do que fala — e o que essa pessoa não está recebendo porque nunca se ofereceu em voz alta?</div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Mas ele sempre se mostra tão disposto."</strong>
+            <span> → Disposição que não vira entrega é fala. Você está avaliando o tom de voz, não o que saiu.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Se eu parar de confiar na palavra, viro do tipo que só cobra."</strong>
+            <span> → Cobrar o combinado não é desconfiar da pessoa. É levar a sério o que ela mesma disse.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se eu descobrir que confiei na pessoa errada esse tempo todo?"</strong>
+            <span> → Melhor descobrir numa matriz de três linhas do que numa entrega que já foi parar no cliente.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você para de decidir quem recebe a próxima tarefa importante pelo que a pessoa diz na reunião — e passa a decidir pelo que ela já mostrou que faz. Critério justo não é dar a mesma confiança para todo mundo. É dar a próxima responsabilidade a quem a entrega já provou merecer.
+        </div>
+    </div>
+</body>
+</html>

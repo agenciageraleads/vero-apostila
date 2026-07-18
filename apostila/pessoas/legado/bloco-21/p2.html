@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 21 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.5; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 32px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 11.5px; color: #888; margin-bottom: 14px; font-style: italic; line-height: 1.5; }
+
+        .secao-titulo { font-size: 12.5px; font-weight: bold; margin: 14px 0 5px 0; color: #000; }
+
+        table { width: 100%; border-collapse: collapse; margin: 4px 0 4px 0; font-size: 10.5px; }
+        table th { background: #f5f5f5; padding: 6px 7px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.3px; color: #555; }
+        table td { padding: 0 7px; border: 1px solid #eee; height: 22px; }
+        table tbody tr:nth-child(even) td { background: #fafafa; }
+
+        .exemplo { font-size: 10px; color: #888; font-style: italic; margin: 6px 0 4px 0; line-height: 1.55; }
+
+        .pergunta-item { margin: 14px 0; }
+        .pergunta-item:last-of-type { margin-bottom: 0; }
+        .pergunta { font-size: 12.5px; font-weight: bold; color: #000; margin-bottom: 4px; line-height: 1.4; }
+        .resposta-linha { border-bottom: 1px solid #ccc; height: 16px; margin-bottom: 4px; }
+
+        .campo-linha { font-size: 11.5px; margin-bottom: 6px; }
+        .campo-linha .preenchimento { display: inline-block; min-width: 140px; border-bottom: 1px solid #999; height: 14px; margin-left: 4px; }
+        .campo-linha.curto .preenchimento { min-width: 70px; }
+
+        .duvidas-titulo { font-size: 12px; font-weight: bold; color: #000; margin: 16px 0 6px 0; padding-top: 12px; border-top: 1px solid #ddd; }
+
+        .duvida-item { margin-bottom: 6px; font-size: 11.5px; }
+        .duvida-item strong { color: #333; display: block; margin-bottom: 1px; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11.5px; line-height: 1.55; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 32px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+            .pergunta-item { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="badge">🏛️ Legado — Pessoas</div>
+
+        <div class="titulo">Quem Sua Equipe Ainda Liga Primeiro</div>
+        <div class="subtitulo">Marisa só descobriu o tamanho do que não tinha sido passado quando o pai ficou onze dias fora do alcance. Este canvas separa o que já é seu de verdade do que ainda está preso à cabeça de quem saiu — ou está prestes a sair — do comando.</div>
+
+        <div class="secao-titulo">Para cada área de decisão abaixo, marque o que aconteceu com ela na sucessão:</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:22%;">Área de decisão</th>
+                    <th style="width:26%;">O que foi passado formalmente (documento, acesso, assinatura)</th>
+                    <th style="width:26%;">O que ficou implícito (todo mundo segue, ninguém escreveu)</th>
+                    <th style="width:26%;">O que só o antecessor sabe fazer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+        <div class="exemplo">ex. comércio: desconto fora de tabela pra cliente antigo — quem aprova hoje, quem sempre soube quando "podia abrir a mão" · ex. serviço: renegociação de contrato com cliente insatisfeito — quem assina hoje, quem sabia até onde ceder sem perder a conta · ex. indústria: liberação de pedido fora do prazo padrão de produção — quem autoriza no sistema, quem sabia avaliar o risco de atraso pelo fornecedor</div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">Nas últimas quatro semanas, quantas decisões voltaram pra quem já não está mais formalmente no comando — antes de serem fechadas por quem assumiu?</div>
+            <div class="campo-linha curto">Número de vezes:<span class="preenchimento"></span></div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">Quem, na prática, ainda pergunta antes de aceitar uma ordem de quem assumiu — nome ou função, e com que frequência:</div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">Se quem saiu do comando sumisse amanhã — viagem, doença, licença — o que travaria na empresa por depender só do jeito dele de resolver?</div>
+            <div class="exemplo">ex. comércio: negociação de prazo com o fornecedor principal, porque só o fundador tem a relação pessoal com quem decide lá do outro lado · ex. serviço: leitura de quando um cliente está prestes a cancelar, porque só quem fundou reconhece os sinais antes da reclamação formal · ex. indústria: decisão de parar uma linha por suspeita de defeito, porque só o fundador confia no próprio critério sem esperar laudo</div>
+            <div class="resposta-linha"></div>
+            <div class="resposta-linha"></div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta">O que precisa virar critério escrito nas próximas semanas — e até quando isso fica só combinado de boca:</div>
+            <div class="campo-linha">O que vira critério:<span class="preenchimento" style="min-width: 260px;"></span></div>
+            <div class="campo-linha">Até quando fica informal:<span class="preenchimento" style="min-width: 200px;"></span></div>
+        </div>
+
+        <div class="duvidas-titulo">Dúvidas comuns</div>
+
+        <div class="duvida-item">
+            <strong>"Se eu formalizar tudo agora, vou parecer que não confiei em mim mesmo até hoje."</strong>
+            <span>Não confiar é continuar deixando decisão importante depender de quem já não está mais no comando.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Meu funcionário mais antigo vai se sentir traído se eu tirar dele um favor que sempre teve."</strong>
+            <span>O favor pode continuar existindo. Só não pode continuar sendo dele decidir sozinho quando vale.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Vou parecer que estou desconfiando de quem eu mesmo escolhi pra assumir."</strong>
+            <span>O contrário: deixar tudo informal é que garante que a confiança nunca vai ser testada de verdade.</span>
+        </div>
+
+        <div class="resultado">
+            Ao terminar este canvas, você sabe exatamente quais decisões ainda dependem de alguém que já deveria ter saído da frente — e quais já podem ser tomadas sem confirmação. Se a coluna do que "só o antecessor sabe fazer" ficar mais cheia que a do que foi formalizado, a sucessão ainda não aconteceu. Só a assinatura mudou de mão.
+        </div>
+    </div>
+</body>
+</html>
