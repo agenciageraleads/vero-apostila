@@ -22,7 +22,11 @@
 
 ### Idade e ritmo
 
-O vídeo mais antigo da aba /videos é `gyqlfRiyXoQ` — *"A verdade por trás da fortuna de Robinson Shiba (China in Box)"*. A data aproximada retornada pelo YouTube é **agosto/2019**, o que dá ao canal **~7 anos**. ⚠️ *Data aproximada — ver seção "Limitações" no fim deste arquivo.*
+**Data exata de criação do canal: 23/07/2019** — obtida do feed RSS oficial do YouTube (`feeds/videos.xml?channel_id=UCM3vJxmuJJkk1r0yzFI9eZg`, campo `<published>2019-07-23T02:44:30+00:00</published>`). O canal tem, portanto, **7 anos e 8 dias** na data desta coleta.
+
+O vídeo mais antigo ainda listado na aba /videos é `gyqlfRiyXoQ` — *"A verdade por trás da fortuna de Robinson Shiba (China in Box)"*.
+
+> **7 anos e 2.181 vídeos longos.** Qualquer leitura deste relatório que ignore esse número vai atribuir a resultados a truques de título ou thumbnail o que é, em boa parte, **acúmulo**.
 
 **Frequência atual (verificada por calibração de datas exatas):**
 
