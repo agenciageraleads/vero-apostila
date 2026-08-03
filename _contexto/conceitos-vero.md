@@ -80,7 +80,9 @@ treinamentos, palestras      a fase do empresário       porta de entrada       
 - **Imersão Vero = produto principal.** A porta de entrada paga do método.
 - **Método Vero aplicado nos 4 níveis = a continuidade.** Execução guiada/acompanhamento personalizado pelo nível de maturidade (D-010). É onde mora a receita recorrente.
 - **Treinamentos modulares (ex.: Reforma Tributária) = complementos e canais extras.** Táticas de aquisição e receita paralela — nunca o centro.
-- **Certificação = congelada no roadmap.** Não se comunica nem se constrói agora; será o horizonte natural de quem conclui a execução guiada. A frase "Status não se compra. Status se comprova." permanece reservada a essa camada.
+- **A entrega da consultoria é em turmas por nível (D-014).** A escola não é produto separado do serviço: as turmas dos 4 níveis SÃO o mecanismo de acompanhamento, com a apostila 88/88 como motor (sala invertida). É o que dá escala à execução guiada.
+- **Certificação de aluno = congelada no roadmap.** Não se comunica nem se constrói agora. "Status não se compra. Status se comprova." fica realocada como **curadoria de prestadores do hub** (D-014) — governa quem entra para prestar serviço no ecossistema, quando o hub existir.
+- **Nuance da Análise (D-013 + D-014):** não é pedágio para consumir conteúdo ou treinamentos — mas é obrigatória para alocação de nível na Imersão e na consultoria (aplicação com seleção, não inscrição).
 
 ---
 

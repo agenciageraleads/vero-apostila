@@ -286,7 +286,8 @@ Vero - Escola de Empresarios/
 ## Como Iniciar uma Sessao
 
 1. Ler este CLAUDE.md (automatico)
-2. Ler `STATUS.md` para saber onde paramos
+2. **Ler `ROADMAP.md`** — documento central: sprint atual, horizontes e pendencias
+3. Ler `STATUS.md` para saber onde paramos (apostila)
 3. Ler `DIARIO_DE_BORDO.md` para contexto da ultima sessao
 4. Ler o mapa do pilar atual em `_mapas/`
 5. Ler `_contexto/blocos-referencia.md` (referencia da fase)
@@ -296,8 +297,6 @@ Vero - Escola de Empresarios/
 
 ## Status Atual do Projeto
 
-**Fase**: Organizacao do workspace (pre-producao)
-**Proximo passo**: Comecar escrita — Financeiro > Raiz > Bloco 01
-**Blocos finalizados**: 0
-
-> Consulte STATUS.md para detalhes.
+**Fase**: Centro integrado em construcao — apostila COMPLETA (88/88), funil e canal em implantacao
+**Sprint atual e proximos passos**: ver **`ROADMAP.md`** (documento central de execucao)
+**Decisoes vigentes**: D-001 a D-014 em `_contexto/decisoes.md` · norte conceitual em `_contexto/conceitos-vero.md`

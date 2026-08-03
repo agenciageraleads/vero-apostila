@@ -102,6 +102,42 @@
 **Decisao**: A Vero e uma **escola com dois bracos**: Vero Formacao (conteudo aberto, treinamentos modulares, Imersao Vero) e Vero Consultoria (Metodo Vero aplicado nos 4 niveis — execucao guiada/acompanhamento). Jornada oficial: conteudo aberto (aquisicao) → **Analise de Maturidade** (qualificador obrigatorio — impede matricula em nivel errado, nos dois sentidos) → **Imersao Vero** (produto principal, porta de entrada paga) → **Metodo Vero aplicado por nivel** (continuidade/receita recorrente). Treinamentos modulares sao complementos e canais extras, nunca o centro. **Certificacao: congelada no roadmap** — nao se comunica nem se constroi agora; horizonte de quem conclui a execucao guiada.
 **Motivo**: Havia candidatos demais a produto principal e cada frente puxava para um lado. Consolidado em `_contexto/conceitos-vero.md` (documento-norte).
 
+### D-014: Vero deixa de ser certificacao e passa a ser centro integrado de formacao e servicos
+> *Nota de reconciliacao (02/08): registrada em sessao paralela como "D-010"; renumerada para D-014 por colisao com a D-010 ja existente. Conteudo integralmente preservado. Convergente com D-010–D-013; nuances reconciliadas em `conceitos-vero.md`: (a) certificacao de ALUNO segue congelada — "status se comprova" governa a curadoria de PRESTADORES do hub quando o hub existir; (b) a Analise de Maturidade nao e pedagio de entrada do ecossistema, mas segue obrigatoria para alocacao de nivel na consultoria.*
+
+**Data**: 2026-08-02
+**Decisao**: A Vero deixa de se organizar como **sistema de certificacao** e passa a operar como
+**centro integrado de formacao e servicos**. Cinco mudancas estruturais:
+
+1. **A certificacao deixa de ser o produto e vira mecanismo de curadoria.** "Status nao se compra.
+   Status se comprova." passa a governar **quem entra como prestador** no hub, nao quem entra
+   como aluno. O rigor nao e abandonado — e realocado.
+2. **O Diagnostico deixa de ser pedagio obrigatorio de entrada** e vira instrumento comercial e
+   de alocacao de nivel (aplicacao com selecao, nao inscricao).
+3. **As turmas dos niveis SAO o metodo de acompanhamento da consultoria.** A escola nao e produto
+   separado do servico — e o mecanismo de entrega do servico em escala. A apostila 88/88 deixa de
+   ser material de apoio e vira o motor da entrega (sala invertida).
+4. **Arquitetura de marca monolitica.** Tudo e "Vero XXX". A Proativo se funde a Vero (prazo e
+   forma societaria a definir por Lucas e Ernane).
+5. **Sai a saida compulsoria** do v1.0 ("ou evolui, ou perde o status e sai do sistema"). Ela
+   destroi LTV de quem ja confia na marca.
+
+**Motivo**: Os documentos v1.0 (`DOCUMENTO FUNDADOR` e `MODELO DE NEGOCIO`) foram escritos antes
+de existir a visao de ecossistema. Eles prendem a Vero a duas linhas de receita, exigem diagnostico
+obrigatorio como unica porta e blindam-se contra revisao. Sao incompativeis com formacao continuada,
+treinamentos modulares e hub de negocios. A D-009 ja havia aberto a porta publica; a D-010 e a
+consequencia estrutural dela.
+
+**Base**: modelagem de cinco referencias de mercado (G4, Escola Conquer, AUVP, Seja AP/Marcos Freitas,
+EAG) documentada em `_estrategia/centro-integrado/MODELAGEM-COMPARADA.md`. Achado central: nenhuma
+delas monetiza principalmente educacao — a educacao qualifica, o servico recorrente sustenta.
+
+**Substitui**: `DOCUMENTO FUNDADOR DA VERO` v1.0 e `MODELO DE NEGOCIO VERO` v1.0
+(originais preservados em `_docs-originais/`). Versoes v2.0 em `_contexto/`.
+
+**Ajuste ao v1.0 aprovado por Lucas**: a Condicao de Fundador passa de **50% para 30%**, e deixa de
+ser desconto puro — vira permuta por case documentado, depoimento e direito de uso do resultado.
+
 ---
 
 ## Template para Novas Decisoes
