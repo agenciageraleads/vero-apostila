@@ -6,38 +6,53 @@
 <title>Bloco 07 · P2 — Vero</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+:root {
+  --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+  --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+  --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+  --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+  --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+  --white:      #FFFFFF;   /* fundo principal da página — mantém */
+  --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+  --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+  --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+  --line:       #E3DECF;   /* bordas simples de tabela/grade */
+  --red:        #C0392B;   /* se houver categoria de risco/saída */
+  --red-bg:     #FBEDEA;
+  --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+  --green-bg:   #EAF3EC;
+}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+body{background:var(--panel);color:var(--body);font-family:'DM Sans',sans-serif;}
 .page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
-header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
-.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
-.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
-.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
-.doc-meta span{color:var(--gold);}
-.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+header{border-bottom:1px solid var(--line);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy);}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold-dk);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;}
+.doc-meta span{color:var(--gold-dk);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold-dk);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
 
-.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--border);}
-.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);}
-.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--ink-light);margin-top:0.5rem;}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--line);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--navy);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--mute);margin-top:0.5rem;}
 
 /* CANVAS — perguntas */
-.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--border);}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--line);}
 .pergunta-item{margin-bottom:2rem;}
 .pergunta-item:last-child{margin-bottom:0;}
-.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--ink);margin-bottom:0.8rem;line-height:1.4;}
+.pergunta-label{font-size:0.92rem;font-weight:500;color:var(--navy);margin-bottom:0.8rem;line-height:1.4;}
 .resposta-row{display:flex;align-items:center;gap:1.2rem;margin-bottom:0.5rem;}
-.resposta-prefix{font-size:0.85rem;color:var(--ink-light);white-space:nowrap;font-family:'DM Mono',monospace;}
-.input-line{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;flex:1;}
+.resposta-prefix{font-size:0.85rem;color:var(--mute);white-space:nowrap;font-family:'DM Mono',monospace;}
+.input-line{display:block;border-bottom:1px solid var(--line);height:1.4rem;flex:1;}
 .checkbox-row{display:flex;gap:1.5rem;align-items:center;margin-top:0.6rem;flex-wrap:wrap;}
-.checkbox-opt{display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:300;color:var(--ink-light);}
-.checkbox-opt .box{width:14px;height:14px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
-.checkbox-inline{display:flex;align-items:center;gap:0.55rem;font-size:0.82rem;font-weight:300;color:var(--ink-light);margin-left:1rem;}
-.checkbox-inline .box{width:14px;height:14px;border:1px solid var(--border-dark);display:inline-block;flex-shrink:0;}
-.resposta-aberta{display:block;border-bottom:1px solid var(--border-dark);height:1.4rem;width:100%;margin-top:0.5rem;}
+.checkbox-opt{display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:300;color:var(--mute);}
+.checkbox-opt .box{width:14px;height:14px;border:1px solid var(--line);display:inline-block;flex-shrink:0;}
+.checkbox-inline{display:flex;align-items:center;gap:0.55rem;font-size:0.82rem;font-weight:300;color:var(--mute);margin-left:1rem;}
+.checkbox-inline .box{width:14px;height:14px;border:1px solid var(--line);display:inline-block;flex-shrink:0;}
+.resposta-aberta{display:block;border-bottom:1px solid var(--line);height:1.4rem;width:100%;margin-top:0.5rem;}
 .resposta-aberta + .resposta-aberta{margin-top:0.9rem;}
-.pergunta-hint{font-size:0.75rem;font-style:italic;font-weight:300;color:var(--ink-light);margin-top:0.7rem;letter-spacing:0.01em;line-height:1.55;}
-.pergunta-label--sub{font-size:0.88rem;font-weight:400;color:var(--ink);margin-top:1.1rem;margin-bottom:0.6rem;line-height:1.4;font-style:italic;}
+.pergunta-hint{font-size:0.75rem;font-style:italic;font-weight:300;color:var(--mute);margin-top:0.7rem;letter-spacing:0.01em;line-height:1.55;}
+.pergunta-label--sub{font-size:0.88rem;font-weight:400;color:var(--navy);margin-top:1.1rem;margin-bottom:0.6rem;line-height:1.4;font-style:italic;}
 
 /* Pergunta-chave — destaque com borda lateral dourada */
 .pergunta-item--chave{
@@ -47,22 +62,22 @@ header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;al
 }
 
 /* Dúvidas comuns */
-.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
-.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--line);background:var(--panel);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--line);}
 .duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
-.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--ink);margin-bottom:0.4rem;}
-.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--ink);padding-left:1rem;border-left:2px solid var(--gold);}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--navy);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--body);padding-left:1rem;border-left:2px solid var(--gold);}
 
 /* Resultado esperado */
 .resultado-section{padding:2rem 3rem;}
 .resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
-.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--ink);}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--navy);}
 
-footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
-.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
-.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--ink-light);text-transform:uppercase;}
-.footer-nav a{color:var(--gold);text-decoration:none;}
-.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--mute);text-transform:uppercase;}
+.footer-nav a{color:var(--gold-dk);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--mute);border:1px solid var(--line);padding:0.25rem 0.6rem;}
 @media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 </style>
 <link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
