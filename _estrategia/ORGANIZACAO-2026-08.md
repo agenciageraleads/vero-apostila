@@ -49,7 +49,7 @@ Definir o desenho mínimo vendável: o que é a execução guiada em cada nível
 - ~350 arquivos pendentes commitados em grupos lógicos (posicionamento, identidade visual, imersões, estratégia)
 - `main` local × remota reconciliadas; tudo sincronizado com o GitHub
 - PR #1 (mega prompt) e branch `autopsia-sardinha` integrados à `main`
-- Branch órfã detectada: `claude/vero-express-diagnostic-eDHFt` — avaliar e apagar se obsoleta
+- Branch `claude/vero-express-diagnostic-eDHFt` avaliada: contém o **Diagnóstico Express Vero** (HTML interativo + versão imprimível + docs) — **protótipo direto da Análise de Maturidade Operacional (P2)**. Mantida para servir de base ao P2; integrar na próxima sessão
 
 ## PRÓXIMA SESSÃO COMEÇA POR
 
