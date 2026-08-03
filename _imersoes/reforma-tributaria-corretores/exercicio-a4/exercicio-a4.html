@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raio-X do Corretor Pós-Reforma — Vero</title>
+  <style>
+    :root {
+      --navy:#052B5A; --gold:#DEBB5F; --gold-dk:#B08D2E; --cream:#F2E4B6;
+      --panel:#F5F1E6; --red:#C0392B; --red-bg:#FBEDEA; --green:#2E7D46; --grn-bg:#EAF3EC;
+      --body:#3D4658; --mute:#8A91A0; --line:#D8D0C0;
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:Arial,Helvetica,sans-serif; background:#ddd5c3; color:var(--body);
+      -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .page { width:210mm; height:297mm; background:white; margin:20px auto; padding:11mm 12mm 9mm;
+      position:relative; overflow:hidden; display:flex; flex-direction:column; }
+    @media print { @page { size:A4 portrait; margin:0; } body { background:white; } .page { margin:0; } }
+
+    /* HEADER */
+    .pg-header { display:flex; align-items:center; justify-content:space-between;
+      padding-bottom:3mm; border-bottom:0.4mm solid var(--line); margin-bottom:4mm; flex:0 0 auto; }
+    .vero-mark { display:flex; align-items:center; gap:5px; }
+    .vero-sq { width:20px; height:20px; background:var(--navy); display:flex; align-items:center; justify-content:center; }
+    .vero-sq svg { width:12px; height:12px; }
+    .vero-name { font-family:Georgia,serif; font-size:14px; font-weight:bold; font-style:italic; color:var(--navy); }
+    .pg-tag { font-size:8px; font-weight:bold; color:var(--gold-dk); letter-spacing:2px; text-transform:uppercase; }
+    .pg-side { font-size:8px; font-weight:bold; color:var(--mute); letter-spacing:1.5px; text-transform:uppercase; background:var(--panel); padding:2px 7px; }
+
+    /* TITLE */
+    .titleblock { border-left:3px solid var(--gold); padding-left:9px; margin-bottom:5mm; flex:0 0 auto; }
+    .big-title { font-family:Georgia,serif; font-size:21px; font-weight:bold; color:var(--navy); line-height:1.1; }
+    .sub { font-size:10px; color:var(--mute); margin-top:1.2mm; line-height:1.4; }
+    .sub strong { color:var(--gold-dk); }
+
+    /* CANVAS 2x2 */
+    .canvas2 { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+      gap:5mm; flex:1 1 auto; min-height:0; margin-bottom:5mm; }
+    .block { border:0.4mm solid var(--line); border-left:2.8mm solid var(--gold);
+      padding:4mm 5mm 4mm; display:flex; flex-direction:column; min-height:0; }
+    .block-num { font-size:8.5px; font-weight:bold; color:var(--gold-dk); letter-spacing:1.3px; text-transform:uppercase; }
+    .block h3 { font-family:Georgia,serif; font-size:14px; font-weight:bold; color:var(--navy); margin:1mm 0 3.5mm; line-height:1.1; }
+    .field { font-size:10px; color:var(--body); margin-bottom:3mm; line-height:1.5; }
+    .field:last-child { margin-bottom:0; }
+    .field .q { font-weight:bold; color:var(--navy); }
+    .optrow { line-height:2.1; }
+    .optstack .opt { display:block; margin:0 0 2.2mm; white-space:normal; }
+    .chk2col { display:grid; grid-template-columns:1fr 1fr; gap:2.2mm 5mm; }
+    .chk2col .opt { margin-right:0; white-space:normal; }
+    .opt { display:inline-block; margin-right:11px; white-space:nowrap; }
+    .box { display:inline-block; width:3.3mm; height:3.3mm; border:0.5mm solid var(--navy); vertical-align:-0.3mm; margin-right:1.4mm; }
+    .fill { border-bottom:0.4mm solid var(--navy); display:inline-block; min-width:26mm; height:4.5mm; vertical-align:bottom; }
+    .grow { flex:1 1 auto; min-height:5mm; }
+    .lines-sm { background-image:repeating-linear-gradient(to bottom, transparent 0, transparent calc(6.5mm - 0.3mm), var(--line) calc(6.5mm - 0.3mm), var(--line) 6.5mm); background-size:100% 6.5mm; }
+
+    .punch { background:var(--red-bg); border-left:2.4mm solid var(--red); padding:2.8mm 3.5mm; margin-top:auto; }
+    .punch .plabel { font-size:7.5px; font-weight:bold; color:var(--red); letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:1.2mm; }
+    .punch .pq { font-family:Georgia,serif; font-size:11.5px; font-weight:bold; color:var(--navy); line-height:1.3; }
+
+    /* SCORE — faixa enxuta */
+    .score { border:0.4mm solid var(--line); border-top:2.4mm solid var(--navy); padding:3mm 5mm 3.2mm;
+      flex:0 0 auto; }
+    .score-head { display:flex; align-items:baseline; gap:8px; margin-bottom:2.4mm; }
+    .score-head h3 { font-family:Georgia,serif; font-size:13px; font-weight:bold; color:var(--navy); }
+    .score-head .lead { font-size:9px; color:var(--mute); }
+    .score-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.6mm 8mm; margin-bottom:3mm; }
+    .score-item { font-size:9.5px; color:var(--body); line-height:1.3; }
+    .bands { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; }
+    .band { padding:1.8mm 3mm; display:flex; align-items:baseline; gap:3mm; }
+    .band .n { font-family:Georgia,serif; font-size:14px; font-weight:bold; flex:0 0 auto; }
+    .band .m { font-size:8.5px; line-height:1.25; }
+    .band.b1 { background:var(--grn-bg); border-left:1.8mm solid var(--green); } .band.b1 .n { color:var(--green); }
+    .band.b2 { background:var(--panel); border-left:1.8mm solid var(--gold-dk); } .band.b2 .n { color:var(--gold-dk); }
+    .band.b3 { background:var(--red-bg); border-left:1.8mm solid var(--red); } .band.b3 .n { color:var(--red); }
+
+    .pg-footer { display:flex; justify-content:space-between; align-items:center; margin-top:3.5mm; flex:0 0 auto; }
+    .pg-footer span { font-size:7.5px; color:var(--mute); letter-spacing:0.8px; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="pg-header">
+    <div class="vero-mark">
+      <div class="vero-sq"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4L10 16L18 4" stroke="#DEBB5F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="vero-name">vero</span>
+    </div>
+    <span class="pg-tag">Raio-X do Corretor Pós-Reforma · Corretores de Imóveis</span>
+    <span class="pg-side">5 minutos</span>
+  </div>
+
+  <div class="titleblock">
+    <div class="big-title">Raio-X do Corretor Pós-Reforma</div>
+    <div class="sub">O diagnóstico do Carlos terminou. <strong>Começa o seu.</strong> Responda com honestidade — ninguém vai ver. O objetivo não é acertar; é enxergar.</div>
+  </div>
+
+  <div class="canvas2">
+
+    <!-- 1 -->
+    <div class="block">
+      <span class="block-num">1 · Minha realidade hoje</span>
+      <h3>Quem eu sou e como trabalho</h3>
+      <div class="field"><span class="q">Como eu opero:</span></div>
+      <div class="field optrow">
+        <span class="opt"><span class="box"></span>Autônomo</span>
+        <span class="opt"><span class="box"></span>Simples</span>
+        <span class="opt"><span class="box"></span>PJ Presumido</span>
+        <span class="opt"><span class="box"></span>Não sei</span>
+      </div>
+      <div class="field"><span class="q">Comissão média por mês:</span> <span class="fill" style="min-width:42mm;"></span></div>
+      <div class="field"><span class="q">Carteira de aluguel:</span> <span class="fill" style="min-width:20mm;"></span> imóveis</div>
+      <div class="field"><span class="q">Tenho empresa aberta (CNPJ)?</span> &nbsp;<span class="opt"><span class="box"></span>Sim</span><span class="opt"><span class="box"></span>Não</span></div>
+      <div class="punch">
+        <span class="plabel">A pergunta que ninguém faz</span>
+        <span class="pq">Quantos meses eu viveria sem vender um único imóvel? <span class="fill" style="min-width:18mm;"></span></span>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="block">
+      <span class="block-num">2 · Onde a reforma bate primeiro</span>
+      <h3>Não a reforma — o meu bolso</h3>
+      <div class="field"><span class="q">Marque onde a reforma toca o SEU dinheiro:</span></div>
+      <div class="field optstack">
+        <span class="opt"><span class="box"></span>Minha comissão — o imposto do serviço sobe</span>
+        <span class="opt"><span class="box"></span>Os aluguéis que eu administro</span>
+        <span class="opt"><span class="box"></span>O que eu retiro da empresa (se tenho CNPJ)</span>
+        <span class="opt"><span class="box"></span>Quanto sobra no meu fim de mês</span>
+      </div>
+      <div class="field" style="margin-top:1.5mm;"><span class="q">A que mais vai pesar pra mim — e por quê:</span></div>
+      <div class="grow lines-sm"></div>
+    </div>
+
+    <!-- 3 -->
+    <div class="block">
+      <span class="block-num">3 · O que ainda está no improviso</span>
+      <h3>O que não posso descobrir tarde</h3>
+      <div class="field"><span class="q">Marque o que ainda está solto na minha operação:</span></div>
+      <div class="field chk2col">
+        <span class="opt"><span class="box"></span>Meu regime</span>
+        <span class="opt"><span class="box"></span>Meus contratos</span>
+        <span class="opt"><span class="box"></span>Sistema de nota</span>
+        <span class="opt"><span class="box"></span>CIB da carteira</span>
+        <span class="opt"><span class="box"></span>Caixa / reserva</span>
+      </div>
+      <div class="field" style="margin-top:2mm;"><span class="q">O mais urgente — e meu próximo passo:</span></div>
+      <div class="grow lines-sm" style="margin:1mm 0 3.5mm;"></div>
+      <div class="punch" style="margin-top:0;">
+        <span class="plabel">Teste de verdade</span>
+        <span class="pq">Se o contador ligasse agora pedindo qual regime manter — eu saberia? &nbsp;<span class="opt"><span class="box"></span>Sim</span><span class="opt"><span class="box"></span>Não</span></span>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="block">
+      <span class="block-num">4 · Minha primeira decisão</span>
+      <h3>Uma ação — com pessoa e data</h3>
+      <div class="field"><span class="q">O que vou fazer:</span></div>
+      <div class="grow lines-sm" style="margin-bottom:3.5mm;"></div>
+      <div class="field"><span class="q">Quem vou acionar:</span> <span class="fill" style="min-width:34mm;"></span></div>
+      <div class="field"><span class="q">Até quando:</span> <span class="fill" style="min-width:40mm;"></span></div>
+    </div>
+
+  </div>
+
+  <div class="score">
+    <div class="score-head">
+      <h3>O meu raio-x</h3>
+      <span class="lead">Marque quantas afirmações são verdadeiras hoje:</span>
+    </div>
+    <div class="score-grid">
+      <div class="score-item"><span class="box"></span>Não sei meu regime ideal.</div>
+      <div class="score-item"><span class="box"></span>Nunca simulei quanto vou pagar.</div>
+      <div class="score-item"><span class="box"></span>Nunca revisei meus contratos.</div>
+      <div class="score-item"><span class="box"></span>Nunca falei disso com meu contador.</div>
+      <div class="score-item"><span class="box"></span>Não sei quanto custa manter minha vida.</div>
+      <div class="score-item"><span class="box"></span>Não tenho reserva.</div>
+    </div>
+    <div class="bands">
+      <div class="band b1"><span class="n">0–1</span><span class="m">Você já começou. Mantenha o critério.</span></div>
+      <div class="band b2"><span class="n">2–4</span><span class="m">A reforma vai cobrar decisões suas.</span></div>
+      <div class="band b3"><span class="n">5–6</span><span class="m">O problema não é a reforma. É a falta de preparação.</span></div>
+    </div>
+  </div>
+
+  <div class="pg-footer">
+    <span>Uma escola para empresários de verdade. · Quem executa, permanece.</span>
+    <span>vero — Escola de Empresários · junho de 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
