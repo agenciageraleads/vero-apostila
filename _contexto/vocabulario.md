@@ -67,12 +67,19 @@ Estas palavras/expressoes NAO podem aparecer em nenhum bloco da apostila:
 
 Podem ser usadas como referencia de tom, nunca como slogan repetitivo:
 
+- "Vero. Uma escola para empresarios de verdade." (assinatura-mestra da marca)
+- "Formacao de verdade acontece na pratica"
 - "Quem executa, permanece"
-- "Status nao se compra. Status se comprova."
 - "Formacao sem criterio gera ilusao"
 - "Criterio sem execucao nao se sustenta"
 - "Empresa madura e aquela que se sustenta sem heroismo"
 - "A Vero nao forma empresarios no sentido tradicional. A Vero elimina improviso."
+
+### Dispositivo verbal da marca: "de verdade"
+"Vero" significa *verdadeiro* em italiano. O "de verdade" e o carimbo verbal da marca e pode ser aplicado por contexto: formacao de verdade, exemplos de verdade, problemas de verdade. Ver tabela completa em D-009 (`decisoes.md`). Usar com disciplina — o carimbo so funciona se a entrega sustentar a palavra.
+
+### Uso restrito
+- "Status nao se compra. Status se comprova." — **nao e mais slogan publico** (D-009, 2026-07-18). Uso permitido apenas em material da camada avancada de certificacao, onde a comprovacao por execucao e literal.
 
 ---
 

@@ -7,18 +7,26 @@
 
 ## Quem e a Vero
 
-A Vero e um sistema de formacao, validacao e certificacao operacional de empresarios.
+A Vero e uma escola de formacao pratica de empresarios, com camada avancada de validacao e certificacao operacional.
 
 **Nao e** curso, mentoria, comunidade ou autoajuda.
 **E** uma escola que elimina improviso e forma empresarios que operam com criterio sustentavel.
 
+### Assinatura-Mestra da Marca
+
+**Vero. Uma escola para empresarios de verdade.**
+
+- "Vero" significa *verdadeiro* em italiano — o nome ja diz o metodo
+- O "de verdade" e o dispositivo verbal da marca: formacao de verdade, exemplos de verdade, problemas de verdade
+- Sistema completo de aplicacao por contexto: ver D-009 em `_contexto/decisoes.md`
+
 ### Principio Central (Inegociavel)
 
-**Status nao se compra. Status se comprova.**
+**Execucao, mao na massa, exemplos reais.** Formacao de verdade acontece na pratica — nao no discurso.
 
-- Pagamento garante acesso
-- Execucao sustentada garante reconhecimento
-- Sem execucao, nao ha status — independentemente de esforco, intencao ou historia
+- A promessa publica e formacao pratica, nao status
+- A certificacao existe como camada avancada; la vale a regra interna: **"Status nao se compra. Status se comprova."** — pagamento garante acesso, execucao sustentada garante reconhecimento
+- A frase antiga NAO e mais slogan publico (decisao D-009, 2026-07-18)
 
 ---
 
@@ -166,10 +174,12 @@ Nenhuma fase e melhor que outra. Cada fase cobra um preco diferente.
 - Renuncia, Dispensabilidade, Maturidade operacional
 
 ### Frases Vero
+- "Vero. Uma escola para empresarios de verdade." (assinatura-mestra)
+- "Formacao de verdade acontece na pratica"
 - "Quem executa, permanece"
-- "Status nao se compra"
 - "Formacao sem criterio gera ilusao"
 - "Empresa madura e aquela que se sustenta sem heroismo"
+- "Status nao se compra. Status se comprova." (USO RESTRITO: apenas camada avancada de certificacao — ver D-009)
 
 ---
 

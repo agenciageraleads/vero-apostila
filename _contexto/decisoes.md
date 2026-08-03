@@ -57,6 +57,39 @@
 
 ---
 
+## Decisoes de Marca e Posicionamento
+
+### D-009: Nova assinatura-mestra — "Vero. Uma escola para empresarios de verdade."
+**Data**: 2026-07-18
+**Decisao**: A assinatura publica da Vero passa a ser **"Vero. Uma escola para empresarios de verdade."**, com o "de verdade" como dispositivo verbal recorrente (alusao ao significado do nome: *vero* = verdadeiro, em italiano). A frase "Status nao se compra. Status se comprova." deixa de ser slogan publico e passa a ser **regra interna da camada avancada de certificacao**, onde a comprovacao por execucao continua literal.
+**Motivo**: A Vero esta ampliando o rumo para formacao educacional (treinamentos modulares, imersoes, circuito de turismo) — porta de entrada aberta, sem tribunal de status. O principio permanece intacto: execucao, mao na massa, exemplos reais, conexao com o publico. O que muda e o mecanismo da promessa publica: de "status que se comprova" para "formacao de verdade". A certificacao continua existindo como camada avancada, e la a frase antiga segue valendo.
+
+**Sistema verbal "de verdade" (aplicacao por contexto):**
+| Contexto | Linha |
+|----------|-------|
+| Assinatura-mestra | Vero. Uma escola para empresarios de verdade. |
+| Metodo | Formacao de verdade acontece na pratica. |
+| Imersoes (porta de entrada) | Problemas de verdade, do seu negocio. |
+| Apostila / conteudo | Exemplos de verdade, de empresas como a sua. |
+| Camada avancada (certificacao) | Aqui, "de verdade" se comprova. (frase antiga vive aqui) |
+| Storytelling institucional | Vero, do italiano: verdadeiro. O nome ja diz o metodo. |
+
+---
+
+### D-010: Oferta central — execucao guiada, nao validacao
+**Data**: 2026-08-02
+**Decisao**: O enquadramento "a Vero vende validacao" esta aposentado. A oferta central da Vero e **execucao guiada atraves de consultoria personalizada para cada nivel de maturidade do empresario** (Raiz/Trilha/Gestao/Legado). A certificacao/validacao permanece como camada avancada (coerente com D-009), mas nao e o mecanismo comercial principal.
+**Motivo**: Decisao de Lucas ao revisar a estrategia do canal YouTube (02/08). O que o empresario compra e acompanhamento na execucao — o conteudo aberto gera demanda por essa execucao guiada, nao por um selo.
+
+---
+
+### D-011: Canal YouTube — cadencia, conteudo aberto e funil
+**Data**: 2026-08-02
+**Decisao**: (1) Cadencia de **1 video longo por semana** (15–25 min), gravacao em lote de 1 manha/mes, compromisso de sustentacao por anos — permanencia acima de pico. (2) **Blocos completos da apostila (narrativa + canvas) sao publicados de graca** no canal: o conteudo aberto e o motor de demanda pela consultoria (D-010). (3) O CTA dos videos aponta para a **Analise de Maturidade Operacional** — formulario que devolve ao empresario a fase dele e qualifica a conversa de consultoria; sem escassez artificial, sem venda direta no video. (4) Sem avatar de IA e sem voz sintetica — rosto e voz sao de Lucas/Ernane, inegociavel por coerencia com "de verdade".
+**Motivo**: Fundamentado na autopsia do canal Investidor Sardinha (dados verificados em `_estrategia/canal-youtube-vero/autopsia/`): o motor e mediana sustentada e nao viral; os dois maiores videos do canal analisado sao aulas pagas liberadas; o CTA que qualifica supera o que vende. Guia de producao: `_estrategia/canal-youtube-vero/guia-producao-canal.md`.
+
+---
+
 ## Template para Novas Decisoes
 
 ```
