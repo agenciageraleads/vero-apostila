@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circuito Vero de Turismo — Goiás</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#052B5A; --navy-deep:#192C4C; --gold:#DEBB5F; --cream:#F2E4B6;
+    --white:#FFFFFF; --panel:#F5F1E6; --panel-cool:#F2F4F7;
+    --body:#3D4658; --mute:#8A91A0; --line:#E3DECF;
+    --red:#C0392B; --red-bg:#FBEDEA; --green:#2E7D46; --green-bg:#EAF3EC;
+    --gold-dk:#B08D2E;
+    --serif:'Playfair Display', Georgia, serif;
+    --sans:'DM Sans', Arial, sans-serif;
+    --mono:'DM Mono', 'Courier New', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#D8DCE3;font-family:var(--sans);color:var(--body);}
+
+  .slide{
+    width:1280px;height:720px;margin:28px auto;background:var(--white);
+    position:relative;overflow:hidden;box-shadow:0 6px 24px rgba(5,43,90,.18);
+    padding:64px 72px;display:flex;flex-direction:column;
+  }
+  @media print{
+    body{background:none;}
+    .slide{margin:0;box-shadow:none;page-break-after:always;}
+    @page{size:1280px 720px;margin:0;}
+  }
+
+  .kicker{font-family:var(--mono);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:14px;}
+  h1{font-family:var(--serif);font-weight:600;color:var(--navy);}
+  h2{font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.15;color:var(--navy);margin-bottom:26px;}
+  .lead{font-size:20px;line-height:1.55;max-width:920px;}
+  .gold-rule{width:64px;height:4px;background:var(--gold);margin:18px 0 26px;}
+
+  .foot{position:absolute;left:72px;right:72px;bottom:26px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);}
+  .foot .v{color:var(--gold-dk);font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;}
+
+  .card{background:var(--panel);border-left:4px solid var(--gold);padding:20px 24px;}
+  .card h3{font-family:var(--sans);font-weight:700;font-size:16px;color:var(--navy);margin-bottom:8px;}
+  .card p{font-size:15px;line-height:1.5;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+
+  .navy-tile{background:var(--navy);color:var(--cream);padding:22px 26px;}
+  .navy-tile h3{color:var(--gold);font-family:var(--sans);font-weight:700;font-size:16px;margin-bottom:8px;}
+  .navy-tile p{font-size:15px;line-height:1.5;color:var(--cream);}
+
+  .quote{font-family:var(--serif);font-style:italic;color:var(--navy);}
+
+  table.tbl{width:100%;border-collapse:collapse;font-size:15px;}
+  table.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk);text-align:left;padding:10px 14px;border-bottom:2px solid var(--gold);}
+  table.tbl td{padding:12px 14px;border-bottom:1px solid var(--line);line-height:1.45;vertical-align:top;}
+  table.tbl td:first-child{color:var(--navy);font-weight:700;white-space:nowrap;}
+
+  .step{display:flex;gap:18px;align-items:flex-start;margin-bottom:16px;}
+  .step .n{font-family:var(--serif);font-size:26px;color:var(--gold-dk);min-width:44px;font-weight:600;}
+  .step .t b{color:var(--navy);display:block;font-size:17px;margin-bottom:2px;}
+  .step .t p{font-size:15px;line-height:1.45;}
+
+  .tag{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--line);background:var(--panel-cool);color:var(--navy);padding:6px 12px;margin:0 8px 10px 0;}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 — CAPA -->
+<section class="slide" style="background:var(--navy-deep);justify-content:center;">
+  <div style="position:absolute;top:0;left:0;right:0;height:6px;background:var(--gold);"></div>
+  <div style="font-family:var(--serif);font-style:italic;font-size:88px;color:var(--gold);line-height:1;">V</div>
+  <div style="height:26px;"></div>
+  <div class="kicker" style="color:var(--gold);">Proposta ao poder público · Goiás</div>
+  <h1 style="font-size:60px;line-height:1.1;color:var(--white);max-width:900px;">Circuito Vero<br>de Turismo</h1>
+  <div class="gold-rule"></div>
+  <p style="font-size:22px;color:var(--cream);max-width:760px;line-height:1.5;">
+    Formação empresarial gratuita para quem sustenta o turismo
+    nas cidades do interior de Goiás.
+  </p>
+  <div style="position:absolute;left:72px;bottom:40px;font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);">
+    Vero — Escola de Empresários &nbsp;·&nbsp; 2026
+  </div>
+</section>
+
+<!-- SLIDE 2 — O PONTO DE PARTIDA -->
+<section class="slide">
+  <div class="kicker">O ponto de partida</div>
+  <h2>O turismo do interior é feito<br>por pequenos empresários.</h2>
+  <p class="lead">
+    A pousada, o restaurante, o guia, o balneário, a loja que atende o visitante.
+    O turista chega — e encontra uma rede de negócios que opera no improviso.
+  </p>
+  <div style="height:34px;"></div>
+  <div class="grid2" style="max-width:1000px;">
+    <div class="card" style="border-left-color:var(--red);background:var(--red-bg);">
+      <h3>O que não falta</h3>
+      <p>Esforço. O dono abre cedo, fecha tarde, atravessa a temporada no fôlego. Trabalho não é o problema.</p>
+    </div>
+    <div class="card">
+      <h3>O que falta</h3>
+      <p>Previsibilidade e critério. Caixa que atravessa a baixa temporada, padrão de atendimento, preço com método, operação que não depende só do dono.</p>
+    </div>
+  </div>
+  <div style="height:30px;"></div>
+  <p class="quote" style="font-size:22px;">A cidade investe para atrair o turista.<br>Quem recebe o turista fica por conta própria.</p>
+  <div class="foot"><span>Circuito Vero de Turismo — Goiás</span><span class="v">vero</span><span>02</span></div>
+</section>
+
+<!-- SLIDE 3 — A PROPOSTA -->
+<section class="slide">
+  <div class="kicker">A proposta</div>
+  <h2>Um circuito de imersões gratuitas,<br>cidade por cidade.</h2>
+  <div class="grid3">
+    <div class="navy-tile">
+      <h3>1 dia de imersão</h3>
+      <p>Geralmente sábado. O empresário entra de manhã e sai no fim do dia com um plano preenchido para o próprio negócio.</p>
+    </div>
+    <div class="navy-tile">
+      <h3>Gratuito para o empresário</h3>
+      <p>Custeado por verba pública — emenda parlamentar ou orçamento municipal. Fomento com entregável concreto.</p>
+    </div>
+    <div class="navy-tile">
+      <h3>Método, não palestra</h3>
+      <p>Método Vero: diagnóstico, conteúdo aplicável e material físico de uso diário. Sem motivacional, sem teoria solta.</p>
+    </div>
+  </div>
+  <div style="height:34px;"></div>
+  <div class="card" style="max-width:1000px;">
+    <h3>Nicho: turismo</h3>
+    <p>Todo o conteúdo é adaptado à realidade de quem vive de visitante: sazonalidade, temporada, fluxo irregular, dependência do clima e do calendário. Não é treinamento genérico com exemplo emprestado.</p>
+  </div>
+  <div class="foot"><span>Circuito Vero de Turismo — Goiás</span><span class="v">vero</span><span>03</span></div>
+</section>
+
+<!-- SLIDE 4 — QUEM SENTA NA CADEIRA -->
+<section class="slide">
+  <div class="kicker">Público-alvo</div>
+  <h2>Quem senta na cadeira.</h2>
+  <div class="grid3">
+    <div class="card"><h3>Hospedagem</h3><p>Hotéis, pousadas, chalés, campings.</p></div>
+    <div class="card"><h3>Alimentação</h3><p>Restaurantes, bares, lanchonetes, operações de temporada.</p></div>
+    <div class="card"><h3>Receptivo</h3><p>Guias turísticos, agências locais, transporte de visitantes.</p></div>
+    <div class="card"><h3>Atrativos</h3><p>Cachoeiras, balneários, fazendas de turismo rural e de experiência.</p></div>
+    <div class="card"><h3>Comércio turístico</h3><p>Artesanato, conveniência, polos de moda que recebem excursões de compras.</p></div>
+    <div class="card"><h3>Eventos & temporada</h3><p>Negócios sazonais: praias de rio, festivais, alta estação.</p></div>
+  </div>
+  <div style="height:28px;"></div>
+  <div>
+    <span class="tag">águas e lagos</span><span class="tag">praias de rio · temporada</span><span class="tag">cachoeiras e chapadas</span><span class="tag">cidades históricas</span><span class="tag">turismo de compras / moda</span><span class="tag">turismo rural</span>
+  </div>
+  <p style="font-size:15px;color:var(--mute);margin-top:10px;">Cada vocação turística de Goiás tem a sua temporada — e o mesmo problema de base: atravessar a baixa sem desmontar o negócio.</p>
+  <div class="foot"><span>Circuito Vero de Turismo — Goiás</span><span class="v">vero</span><span>04</span></div>
+</section>
+
+<!-- SLIDE 5 — O DIA -->
+<section class="slide">
+  <div class="kicker">O formato</div>
+  <h2>Um sábado que muda a segunda-feira.</h2>
+  <table class="tbl" style="max-width:1080px;">
+    <tr><th style="width:170px;">Bloco</th><th>O que acontece</th></tr>
+    <tr><td>Manhã · 1</td><td><b style="color:var(--navy);">Diagnóstico.</b> Onde o negócio está: improviso ou previsibilidade. Cada empresário se localiza nos 4 níveis de maturidade do método Vero.</td></tr>
+    <tr><td>Manhã · 2</td><td><b style="color:var(--navy);">Financeiro no turismo.</b> Separar empresa e vida pessoal. Caixa de temporada: guardar na alta para atravessar a baixa.</td></tr>
+    <tr><td>Tarde · 1</td><td><b style="color:var(--navy);">Vendas e operação.</b> Padrão mínimo de atendimento, preço com critério, operação que funciona quando o dono não está.</td></tr>
+    <tr><td>Tarde · 2</td><td><b style="color:var(--navy);">Mãos na massa.</b> Canvas preenchido pelo próprio empresário, para o próprio negócio. Sai da sala com o plano no papel.</td></tr>
+  </table>
+  <div style="height:26px;"></div>
+  <div class="card" style="max-width:1080px;">
+    <h3>Material que fica</h3>
+    <p>Cada participante leva o material Vero impresso — narrativas e canvas de preenchimento físico, para usar no dia a dia. Não é apostila de palestra que vai para a gaveta: é ferramenta de trabalho.</p>
+  </div>
+  <div class="foot"><span>Circuito Vero de Turismo — Goiás</span><span class="v">vero</span><span>05</span></div>
+</section>
+
+<!-- SLIDE 6 — O QUE A CIDADE GANHA -->
+<section class="slide">
+  <div class="kicker">Retorno público</div>
+  <h2>O que a cidade ganha.</h2>
+  <div class="grid2" style="max-width:1080px;">
+    <div class="card"><h3>Base empresarial qualificada</h3><p>O dinheiro público que atrai o turista passa a encontrar negócios preparados para recebê-lo.</p></div>
+    <div class="card"><h3>Turista que volta</h3><p>Serviço com padrão gera experiência melhor. Experiência melhor gera retorno e recomendação — o marketing mais barato que existe.</p></div>
+    <div class="card"><h3>Emprego que se sustenta</h3><p>Negócio que atravessa a baixa temporada não demite a cada ciclo. Emprego estável no interior é resultado de empresa estável.</p></div>
+    <div class="card"><h3>Prestação de contas simples</h3><p>Lista de presença, material entregue, registro fotográfico e diagnóstico aplicado. Ação de fomento com entregável físico e verificável.</p></div>
+  </div>
+  <div style="height:28px;"></div>
+  <p class="quote" style="font-size:22px;">Fomentar empreendedorismo não é dar palestra.<br>É deixar método na mão de quem opera.</p>
+  <div class="foot"><span>Circuito Vero de Turismo — Goiás</span><span class="v">vero</span><span>06</span></div>
+</section>
+
+<!-- SLIDE 7 — CUSTEIO -->
+<section class="slide">
+  <div class="kicker">Modelo de custeio</div>
+  <h2>Quem paga — e por que faz sentido.</h2>
+  <table class="tbl" style="max-width:1080px;">
+    <tr><th style="width:230px;">Fonte</th><th>Caminho</th></tr>
+    <tr><td>Emenda parlamentar</td><td>Deputado estadual ou federal destina emenda de fomento ao turismo e ao empreendedorismo para o município. Ação com nome, data, cidade e entregável — fácil de mostrar.</td></tr>
+    <tr><td>Orçamento municipal</td><td>Prefeitura contrata via secretaria de Turismo, Desenvolvimento Econômico ou Cultura. Investimento na base econômica da própria cidade.</td></tr>
+    <tr><td>Parcerias institucionais</td><td>Goiás Turismo, Sebrae-GO, sistema Fecomércio, associações comerciais e CDLs — apoio, mobilização e contrapartida local.</td></tr>
+  </table>
+  <div style="height:26px;"></div>
+  <div class="grid2" style="max-width:1080px;">
+    <div class="navy-tile"><h3>Para o empresário: custo zero</h3><p>Quem mais precisa é quem menos pode pagar. O circuito remove a barreira de entrada.</p></div>
+    <div class="navy-tile"><h3>Para o público: custo definido</h3><p>Valor fechado por cidade — condução, material impresso e estrutura. Sem mensalidade, sem cauda de contrato.</p></div>
+  </div>
+  <div class="foot"><span>Circuito Vero de Turismo — Goiás</span><span class="v">vero</span><span>07</span></div>
+</section>
+
+<!-- SLIDE 8 — EXPANSÃO -->
+<section class="slide">
+  <div class="kicker">Expansão</div>
+  <h2>De baixo para cima —<br>como o próprio método ensina.</h2>
+  <div style="max-width:980px;">
+    <div class="step"><div class="n">F1</div><div class="t"><b>Piloto — cidades menores</b><p>3 a 5 cidades turísticas menos frequentadas. Validar formato, material e custo. Começamos onde ninguém chega, não onde todos já estão.</p></div></div>
+    <div class="step"><div class="n">F2</div><div class="t"><b>Circuitos regionais</b><p>Roteiros completos por vocação: águas, rios de temporada, chapadas, cidades históricas, polos de compras.</p></div></div>
+    <div class="step"><div class="n">F3</div><div class="t"><b>Estado inteiro</b><p>Cidades-polo e capilaridade estadual, com equipe multidisciplinar formada para conduzir múltiplas frentes.</p></div></div>
+    <div class="step"><div class="n">→</div><div class="t"><b>Horizonte: Ministério do Turismo</b><p>O circuito comprovado em Goiás como referência de política nacional de qualificação do pequeno empresário do turismo.</p></div></div>
+  </div>
+  <div style="height:10px;"></div>
+  <p class="quote" style="font-size:20px;">Ninguém pula fase. O piloto comprova, o circuito escala.<br>O ministério é consequência — não promessa.</p>
+  <div class="foot"><span>Circuito Vero de Turismo — Goiás</span><span class="v">vero</span><span>08</span></div>
+</section>
+
+<!-- SLIDE 9 — QUEM É A VERO -->
+<section class="slide">
+  <div class="kicker">Quem conduz</div>
+  <h2>Vero — Escola de Empresários.</h2>
+  <p class="lead">
+    A Vero é uma escola de formação e validação operacional de empresários.
+    Não é curso motivacional, não é mentoria, não é autoajuda.
+    É método: 4 níveis de maturidade, 4 pilares de gestão, material próprio
+    construído para quem opera — não para quem assiste.
+  </p>
+  <div style="height:30px;"></div>
+  <div class="grid2" style="max-width:1000px;">
+    <div class="card"><h3>Posicionamento</h3><p class="quote" style="font-size:18px;">"Uma escola para empresários de verdade."</p><p style="margin-top:8px;">Quem executa, permanece. O método cobra execução — do aluno e de quem ensina.</p></div>
+    <div class="card"><h3>Condução presencial</h3><p>Imersões conduzidas pelos sócios <b style="color:var(--navy);">Lucas e Ernane</b>, com material didático próprio da escola nos pilares Financeiro, Vendas, Operação e Pessoas.</p></div>
+  </div>
+  <div class="foot"><span>Circuito Vero de Turismo — Goiás</span><span class="v">vero</span><span>09</span></div>
+</section>
+
+<!-- SLIDE 10 — PRÓXIMOS PASSOS / FECHO -->
+<section class="slide" style="background:var(--navy-deep);">
+  <div style="position:absolute;top:0;left:0;right:0;height:6px;background:var(--gold);"></div>
+  <div class="kicker" style="color:var(--gold);">Próximos passos</div>
+  <h2 style="color:var(--white);">Começar pequeno.<br>Comprovar. Expandir.</h2>
+  <div style="max-width:900px;color:var(--cream);">
+    <div class="step"><div class="n" style="color:var(--gold);">01</div><div class="t"><b style="color:var(--white);">Definir a cidade-piloto</b><p style="color:var(--cream);">Junto com prefeitura ou gabinete parlamentar interessado.</p></div></div>
+    <div class="step"><div class="n" style="color:var(--gold);">02</div><div class="t"><b style="color:var(--white);">Fechar data e mobilização</b><p style="color:var(--cream);">Sábado de imersão + convocação dos empresários locais via secretaria e associações.</p></div></div>
+    <div class="step"><div class="n" style="color:var(--gold);">03</div><div class="t"><b style="color:var(--white);">Realizar, registrar, prestar contas</b><p style="color:var(--cream);">Imersão entregue, material na mão do empresário, relatório para o financiador.</p></div></div>
+  </div>
+  <div style="position:absolute;left:72px;bottom:56px;">
+    <div style="font-family:var(--serif);font-style:italic;font-size:44px;color:var(--gold);line-height:1;">vero</div>
+    <div style="height:12px;"></div>
+    <div style="font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);">Escola de Empresários · Goiás · 2026</div>
+  </div>
+</section>
+
+</body>
+</html>

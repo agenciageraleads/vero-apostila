@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Circuito Vero de Turismo — One-pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#052B5A; --navy-deep:#192C4C; --gold:#DEBB5F; --cream:#F2E4B6;
+    --panel:#F5F1E6; --body:#3D4658; --mute:#8A91A0; --line:#E3DECF; --gold-dk:#B08D2E;
+    --serif:'Playfair Display', Georgia, serif;
+    --sans:'DM Sans', Arial, sans-serif;
+    --mono:'DM Mono', 'Courier New', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  @page{size:A4 portrait;margin:0;}
+  html,body{background:#fff;}
+  body{font-family:var(--sans);color:var(--body);width:210mm;height:297mm;padding:14mm 16mm 12mm;display:flex;flex-direction:column;}
+
+  .top{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--gold);padding-bottom:5mm;}
+  .kicker{font-family:var(--mono);font-size:8.5pt;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:2mm;}
+  h1{font-family:var(--serif);font-weight:600;font-size:23pt;line-height:1.08;color:var(--navy);}
+  .vmark{font-family:var(--serif);font-style:italic;font-weight:600;font-size:30pt;color:var(--navy);line-height:1;padding:2mm 3.5mm;border:2px solid var(--gold);}
+
+  .lead{font-size:10.5pt;line-height:1.5;margin:5mm 0;}
+  .lead b{color:var(--navy);}
+
+  h2{font-family:var(--mono);font-size:8.5pt;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dk);margin:4mm 0 2.5mm;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:3mm;}
+  .grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3mm;}
+  .card{background:var(--panel);border-left:3px solid var(--gold);padding:2.8mm 3.2mm;}
+  .card b{display:block;color:var(--navy);font-size:9.5pt;margin-bottom:1mm;}
+  .card p{font-size:8.8pt;line-height:1.4;}
+
+  .fases{display:flex;align-items:stretch;gap:2.5mm;}
+  .fase{flex:1;border:1px solid var(--line);padding:2.5mm 3mm;}
+  .fase .n{font-family:var(--serif);font-size:11pt;color:var(--gold-dk);font-weight:600;}
+  .fase b{display:block;color:var(--navy);font-size:8.8pt;margin:.5mm 0;}
+  .fase p{font-size:8pt;line-height:1.35;}
+
+  table{width:100%;border-collapse:collapse;font-size:9pt;}
+  td{padding:1.8mm 2.5mm;border-bottom:1px solid var(--line);line-height:1.4;vertical-align:top;}
+  td:first-child{color:var(--navy);font-weight:700;white-space:nowrap;width:34mm;}
+
+  .navy-band{background:var(--navy-deep);color:var(--cream);padding:4mm 5mm;margin-top:auto;display:flex;justify-content:space-between;align-items:center;border-top:3px solid var(--gold);}
+  .navy-band .tagline{font-family:var(--serif);font-style:italic;font-size:12.5pt;color:#fff;}
+  .navy-band .tagline span{color:var(--gold);}
+  .navy-band .contato{font-family:var(--mono);font-size:8pt;letter-spacing:.12em;text-transform:uppercase;text-align:right;color:var(--cream);line-height:1.7;}
+</style>
+</head>
+<body>
+
+  <div class="top">
+    <div>
+      <div class="kicker">Proposta ao poder público · Goiás · 2026</div>
+      <h1>Circuito Vero de Turismo</h1>
+      <p style="font-size:10pt;color:var(--mute);margin-top:1.5mm;">Formação empresarial gratuita para quem sustenta o turismo no interior de Goiás.</p>
+    </div>
+    <div class="vmark">V</div>
+  </div>
+
+  <p class="lead">
+    O turismo do interior é feito por pequenos empresários — a pousada, o restaurante, o guia, o balneário.
+    A cidade investe para atrair o turista; quem recebe o turista fica por conta própria.
+    O Circuito Vero leva <b>método de gestão</b> até esses empresários: <b>imersão de 1 dia (sábado), gratuita
+    para o participante e custeada por verba pública</b>, com material físico que fica com cada um.
+  </p>
+
+  <h2>Como funciona</h2>
+  <div class="grid4">
+    <div class="card"><b>1 dia de imersão</b><p>Manhã: diagnóstico e financeiro de temporada. Tarde: vendas, operação e plano preenchido.</p></div>
+    <div class="card"><b>Custo zero p/ empresário</b><p>Emenda parlamentar ou orçamento municipal. Quem mais precisa é quem menos pode pagar.</p></div>
+    <div class="card"><b>Método, não palestra</b><p>Material Vero impresso, de uso diário. Sem motivacional, sem teoria solta.</p></div>
+    <div class="card"><b>Nicho: turismo</b><p>Sazonalidade, temporada, fluxo irregular — conteúdo adaptado à vocação de cada cidade.</p></div>
+  </div>
+
+  <h2>Quem senta na cadeira</h2>
+  <p style="font-size:9.5pt;line-height:1.5;">Hospedagem · alimentação · guias e receptivo · atrativos (cachoeiras, balneários, turismo rural) ·
+  comércio turístico e polos de moda · operações de temporada (praias de rio, lagos, festivais).</p>
+
+  <h2>O que a cidade ganha</h2>
+  <table>
+    <tr><td>Base qualificada</td><td>O investimento público que atrai o turista passa a encontrar negócios preparados para recebê-lo.</td></tr>
+    <tr><td>Turista que volta</td><td>Serviço com padrão gera experiência melhor — retorno e recomendação.</td></tr>
+    <tr><td>Emprego estável</td><td>Negócio que atravessa a baixa temporada não demite a cada ciclo.</td></tr>
+    <tr><td>Prestação de contas</td><td>Lista de presença, material entregue, registro fotográfico, diagnóstico aplicado — entregável físico e verificável.</td></tr>
+  </table>
+
+  <h2>Expansão — de baixo para cima</h2>
+  <div class="fases">
+    <div class="fase"><span class="n">F1</span><b>Piloto</b><p>3–5 cidades menores. Validar formato, material e custo.</p></div>
+    <div class="fase"><span class="n">F2</span><b>Circuitos regionais</b><p>Roteiros por vocação: águas, rios, chapadas, moda, história.</p></div>
+    <div class="fase"><span class="n">F3</span><b>Estado</b><p>Cidades-polo e capilaridade com equipe multidisciplinar.</p></div>
+    <div class="fase"><span class="n">→</span><b>Ministério do Turismo</b><p>O circuito comprovado como referência de política nacional.</p></div>
+  </div>
+  <p style="font-size:9pt;font-family:var(--serif);font-style:italic;color:var(--navy);margin-top:2.5mm;">Ninguém pula fase. O piloto comprova, o circuito escala — o ministério é consequência, não promessa.</p>
+
+  <div class="navy-band">
+    <div class="tagline">Vero. <span>Uma escola para empresários de verdade.</span></div>
+    <div class="contato">
+      Lucas Borges · Ernane [sobrenome]<br>
+      [telefone] · [e-mail]
+    </div>
+  </div>
+
+</body>
+</html>
