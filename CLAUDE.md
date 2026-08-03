@@ -7,10 +7,17 @@
 
 ## Quem e a Vero
 
-A Vero e uma escola de formacao pratica de empresarios, com camada avancada de validacao e certificacao operacional.
+A Vero e uma **escola de empresarios com dois bracos** (D-013):
+- **Vero Formacao** — conteudo aberto (canal, blocos), treinamentos modulares e a **Imersao Vero** (produto principal, porta de entrada paga)
+- **Vero Consultoria** — Metodo Vero aplicado nos 4 niveis: execucao guiada/acompanhamento por nivel de maturidade (continuidade)
+
+Jornada oficial: conteudo aberto (aquisicao) → **Analise de Maturidade** (qualificador — ninguem entra em nivel errado) → Imersao Vero → Metodo aplicado por nivel.
+Marca unica: **Vero** (Proativo aposentada, D-012). Certificacao: congelada no roadmap.
 
 **Nao e** curso, mentoria, comunidade ou autoajuda.
 **E** uma escola que elimina improviso e forma empresarios que operam com criterio sustentavel.
+
+> Documento-norte completo dos conceitos: `_contexto/conceitos-vero.md`
 
 ### Assinatura-Mestra da Marca
 

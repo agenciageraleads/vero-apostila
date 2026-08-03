@@ -1,5 +1,7 @@
 # Pendências Estratégicas — Vero
 
+> ⚠️ **Atualização 02/08/2026**: as pendências **#1 (Proativo×Vero)** e parte da **#7 (apostila como produto)** foram RESOLVIDAS pelas decisões D-010 a D-013 — marca única Vero, Imersão como produto principal, blocos abertos no canal, consultoria por nível como continuidade. Ver `_contexto/conceitos-vero.md`. A pendência #2 (pricing) está encaminhada pela prioridade P3 da `ORGANIZACAO-2026-08.md`.
+
 > Itens levantados na reunião de **08/06/2026** (Lucas + Ernane) que **decidimos NÃO resolver agora**.
 > Documentados aqui para retomar depois que o primeiro movimento (treinamentos modulares) estiver rodando.
 > Não mexer no foco atual: **apresentação Reforma Tributária para corretores — 24/06/2026.**

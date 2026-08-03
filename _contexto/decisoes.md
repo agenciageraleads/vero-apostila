@@ -90,6 +90,20 @@
 
 ---
 
+### D-012: Marca unica — tudo e Vero, Proativo aposentada
+**Data**: 2026-08-02
+**Decisao**: A consultoria por nivel e produto **Vero**. A Proativo deixa de existir como marca comercial — o hands-on personalizado que ela representava vive dentro do braco Vero Consultoria. Resolve a contradicao entre a reuniao de 08/06 (Proativo = consultoria) e a D-010 (Vero vende consultoria).
+**Motivo**: Uma marca so, mensagem limpa, funil sem passagem de bastao. Decisao de Lucas em 02/08.
+
+---
+
+### D-013: Arquitetura da oferta — escola com dois bracos, Imersao como produto principal
+**Data**: 2026-08-02
+**Decisao**: A Vero e uma **escola com dois bracos**: Vero Formacao (conteudo aberto, treinamentos modulares, Imersao Vero) e Vero Consultoria (Metodo Vero aplicado nos 4 niveis — execucao guiada/acompanhamento). Jornada oficial: conteudo aberto (aquisicao) → **Analise de Maturidade** (qualificador obrigatorio — impede matricula em nivel errado, nos dois sentidos) → **Imersao Vero** (produto principal, porta de entrada paga) → **Metodo Vero aplicado por nivel** (continuidade/receita recorrente). Treinamentos modulares sao complementos e canais extras, nunca o centro. **Certificacao: congelada no roadmap** — nao se comunica nem se constroi agora; horizonte de quem conclui a execucao guiada.
+**Motivo**: Havia candidatos demais a produto principal e cada frente puxava para um lado. Consolidado em `_contexto/conceitos-vero.md` (documento-norte).
+
+---
+
 ## Template para Novas Decisoes
 
 ```
