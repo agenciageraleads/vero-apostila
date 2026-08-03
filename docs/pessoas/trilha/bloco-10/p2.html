@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 10 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 34px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 6px; color: #000; }
+
+        .instrucao { font-size: 12px; color: #666; margin-bottom: 14px; font-style: italic; line-height: 1.5; }
+
+        .pergunta-chave { font-size: 13px; font-weight: bold; margin: 14px 0 8px 0; color: #000; line-height: 1.45; }
+        .pergunta-sub { font-size: 11.5px; color: #777; font-style: italic; margin: -6px 0 10px 0; }
+
+        .campo-linha { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; font-size: 12px; color: #333; }
+        .campo-linha .preenchimento { flex: 1; border-bottom: 1px solid #bbb; height: 15px; min-width: 40px; }
+
+        .resposta-livre { border-bottom: 1px solid #ccc; height: 16px; margin-bottom: 6px; }
+
+        .medidor-bloco { margin: 14px 0 10px 0; padding: 11px 14px; border: 1px solid #e2e2e2; background: #fcfcfc; }
+
+        .medidor-titulo { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 3px; line-height: 1.35; }
+        .medidor-instrucao { font-size: 10.5px; color: #777; font-style: italic; margin-bottom: 9px; }
+
+        .semana-barra { display: flex; border: 1px solid #ccc; margin-bottom: 9px; }
+        .dia-cel { flex: 1; text-align: center; padding: 6px 3px 8px 3px; border-right: 1px solid #e5e5e5; }
+        .dia-cel:last-child { border-right: none; }
+        .dia-label { font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.5px; color: #555; font-weight: bold; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #ddd; }
+        .dia-opcoes { display: flex; flex-direction: column; gap: 5px; font-size: 9.5px; color: #333; align-items: flex-start; margin: 0 auto; width: fit-content; }
+        .dia-opcoes span { white-space: nowrap; }
+
+        .hint-segmentos { font-size: 10.5px; color: #888; font-style: italic; line-height: 1.48; margin: 0 0 4px 0; }
+
+        .campo-checkbox { font-size: 11.5px; color: #333; display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+        .campo-checkbox .opcao { white-space: nowrap; }
+
+        .soma-box { margin: 12px 0; padding: 9px 14px; border-left: 3px solid #999; background: #fafafa; font-size: 12px; }
+        .soma-box .campo-linha { margin-bottom: 0; }
+        .soma-box .campo-linha + .campo-linha { margin-top: 6px; }
+
+        .duvida-item { margin: 9px 0; font-size: 12px; }
+        .duvida-item strong { display: block; margin-bottom: 2px; color: #333; }
+        .duvida-item p { color: #666; line-height: 1.48; }
+
+        .resultado { margin: 14px 0 0 0; padding-top: 11px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.5; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 34px 40px; box-shadow: none; page-break-after: always; }
+            .medidor-bloco { page-break-inside: avoid; }
+            .semana-barra { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🛤️ Trilha — Pessoas</div>
+
+        <div class="titulo">Escreva a rotina que hoje só acontece "quando dá"</div>
+        <div class="instrucao">Preencha com o que existe de fato hoje — não com o que você gostaria que existisse.</div>
+
+        <div class="pergunta-chave">Qual rotina de alinhamento com o time — reunião, checkpoint, conversa de início ou fim de semana — você vai testar a partir de agora? Escreva o nome dela e o dia e horário que você está assumindo como fixo.</div>
+        <div class="campo-linha">Rotina: <div class="preenchimento"></div></div>
+        <div class="campo-linha">Dia e horário fixo: <div class="preenchimento"></div></div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Essa semana, marque todo dia se a rotina aconteceu no horário combinado ou quebrou.</div>
+            <div class="medidor-instrucao">Marque com um X a opção real de cada dia — não a que você gostaria de marcar.</div>
+
+            <div class="semana-barra">
+                <div class="dia-cel">
+                    <div class="dia-label">Seg</div>
+                    <div class="dia-opcoes"><span>☐ Cumpriu</span><span>☐ Quebrou</span></div>
+                </div>
+                <div class="dia-cel">
+                    <div class="dia-label">Ter</div>
+                    <div class="dia-opcoes"><span>☐ Cumpriu</span><span>☐ Quebrou</span></div>
+                </div>
+                <div class="dia-cel">
+                    <div class="dia-label">Qua</div>
+                    <div class="dia-opcoes"><span>☐ Cumpriu</span><span>☐ Quebrou</span></div>
+                </div>
+                <div class="dia-cel">
+                    <div class="dia-label">Qui</div>
+                    <div class="dia-opcoes"><span>☐ Cumpriu</span><span>☐ Quebrou</span></div>
+                </div>
+                <div class="dia-cel">
+                    <div class="dia-label">Sex</div>
+                    <div class="dia-opcoes"><span>☐ Cumpriu</span><span>☐ Quebrou</span></div>
+                </div>
+                <div class="dia-cel">
+                    <div class="dia-label">Sáb</div>
+                    <div class="dia-opcoes"><span>☐ Cumpriu</span><span>☐ Quebrou</span></div>
+                </div>
+                <div class="dia-cel">
+                    <div class="dia-label">Dom</div>
+                    <div class="dia-opcoes"><span>☐ Cumpriu</span><span>☐ Quebrou</span></div>
+                </div>
+            </div>
+
+            <div class="campo-linha">O que quebra quando não acontece: <div class="preenchimento"></div></div>
+        </div>
+        <div class="hint-segmentos">ex. comércio: conferência de caixa no fechamento de sábado — sem ela, diferença some da memória de todo mundo em dois dias · ex. serviço: checagem por telefone com cada supervisora de site toda segunda — sem ela, cada unidade decide prazo e responsável por conta própria, sem saber o que as outras já resolveram · ex. indústria: passagem de turno às 6h — sem ela, o turno seguinte não sabe em que ponto a produção parou · ex. e-commerce: checagem diária de pedidos parados antes do corte da transportadora — sem ela, o prazo estoura e vira chargeback antes que alguém perceba</div>
+
+        <div class="soma-box">
+            <div class="campo-linha">No fim da semana, some os dias. Cumpriu: <div class="preenchimento" style="max-width:60px; flex:none;"></div> de 7</div>
+            <div class="campo-linha">Quebrou: <div class="preenchimento" style="max-width:60px; flex:none;"></div> de 7</div>
+        </div>
+
+        <div class="pergunta-chave">Se essa rotina sumisse de vez essa semana, o que quebra primeiro — e quem vai descobrir por fora, tarde demais para consertar antes de doer?</div>
+        <div class="resposta-livre"></div>
+        <div class="resposta-livre"></div>
+        <div class="hint-segmentos">ex. comércio: reposição combinada de boca, sem hora fixa — falta aparece na prateleira vazia, não antes · ex. serviço: checagem por telefone com as supervisoras de site que só acontece "se der" — atraso aparece na reclamação do cliente, não antes · ex. indústria: checagem entre turnos sem hora certa — defeito aparece no lote pronto, não na virada do turno · ex. e-commerce: acompanhamento de estoque com fornecedor sem hora fixa — ruptura aparece no pedido cancelado por falta, não antes</div>
+
+        <div class="pergunta-chave" style="margin-top:14px;">Essa rotina vai ter dia e horário fixo daqui pra frente — mesmo em semana ruim, mesmo com você sem paciência? Escreva o que você aceita cortar (tempo, pauta, conversa) antes de aceitar cortar a rotina inteira.</div>
+        <div class="resposta-livre"></div>
+        <div class="resposta-livre"></div>
+
+        <div class="duvida-item">
+            <strong>"Se eu marcar horário fixo, viro refém da agenda."</strong>
+            <p>Você já é refém — só que da agenda de quem grita mais alto naquele dia.</p>
+        </div>
+        <div class="duvida-item">
+            <strong>"Minha equipe é pequena, a gente já conversa o dia inteiro."</strong>
+            <p>Conversar o dia inteiro não é a mesma coisa que ter um momento em que a dúvida tem certeza de ser ouvida.</p>
+        </div>
+        <div class="duvida-item">
+            <strong>"Já tentei reunião fixa antes e não emplacou."</strong>
+            <p>Reunião que emplaca é a que sobrevive à sua correria — não a que só acontece quando está tudo tranquilo.</p>
+        </div>
+        <div class="duvida-item">
+            <strong>"E se não tiver assunto nenhum numa semana?"</strong>
+            <p>Então dura cinco minutos. O que importa não é ter assunto. É o time saber que, se precisar, aquele horário está garantido.</p>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe quais rotinas do seu time hoje dependem do seu humor — e quais têm hora certa, aconteça o que acontecer naquela semana. Rotina fixa não cria clima bom nem anima ninguém. Cria o único combinado que continua de pé quando a semana aperta: o time sabe quando vai ser ouvido, e o que fica pendente tem prazo certo para ser resolvido — não vira decisão de corredor.
+        </div>
+    </div>
+</body>
+</html>

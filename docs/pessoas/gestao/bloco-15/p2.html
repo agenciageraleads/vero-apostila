@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 15 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 18px; font-weight: bold; margin: 20px 0 4px 0; color: #000; }
+
+        .instrucao { font-size: 13px; color: #666; margin-bottom: 15px; font-style: italic; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0 10px 0; font-size: 11.5px; }
+        table th { background: #f5f5f5; padding: 9px 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; }
+        table td { padding: 8px; border: 1px solid #ddd; height: 32px; }
+        table td.check { text-align: center; font-size: 13px; color: #999; }
+
+        .nota-canvas { font-size: 11px; color: #777; font-style: italic; line-height: 1.6; margin: 8px 0 22px 0; padding-top: 10px; border-top: 1px solid #eee; }
+
+        .pergunta-chave { font-size: 14px; font-weight: bold; margin: 22px 0 10px 0; color: #000; }
+
+        .linha-resposta { border-bottom: 1px solid #ccc; height: 26px; margin-bottom: 14px; }
+
+        .duvida-item { margin: 18px 0; font-size: 13px; }
+        .duvida-item strong { display: block; margin-bottom: 5px; color: #333; }
+        .duvida-item p { color: #666; line-height: 1.6; }
+
+        .resultado { margin: 26px 0 0 0; padding-top: 18px; border-top: 1px solid #ddd; font-size: 13px; line-height: 1.7; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🧠 Gestão — Pessoas</div>
+
+        <div class="titulo">O cargo certo não é sempre o cargo que ela já tem</div>
+
+        <div class="instrucao">Elton não é o problema de Nivaldo. É a prova de que competência boa, no papel errado, também dá errado. Liste as pessoas que hoje ocupam papéis centrais na sua operação e marque onde função atual e função ideal não são a mesma coisa.</div>
+
+        <table>
+            <tr>
+                <th style="width: 20%;">Nome</th>
+                <th style="width: 26%;">Competência demonstrada</th>
+                <th style="width: 20%;">Função atual</th>
+                <th style="width: 20%;">Função ideal</th>
+                <th style="width: 14%;">Desalinhado</th>
+            </tr>
+            <tr><td></td><td></td><td></td><td></td><td class="check">☐</td></tr>
+            <tr><td></td><td></td><td></td><td></td><td class="check">☐</td></tr>
+            <tr><td></td><td></td><td></td><td></td><td class="check">☐</td></tr>
+            <tr><td></td><td></td><td></td><td></td><td class="check">☐</td></tr>
+        </table>
+
+        <div class="nota-canvas"><em>ex. comércio:</em> vende sozinho o que dois balconistas vendem juntos · <em>ex. serviço:</em> resolve em campo o que mais ninguém na equipe resolve · <em>ex. indústria:</em> mantém a linha rodando sem parar · <em>ex. e-commerce:</em> resolve sozinho os chargebacks que travariam o time inteiro — isso é competência demonstrada, não cargo.</div>
+
+        <div class="pergunta-chave">Quem ficou marcado ☒ — a pessoa certa, na função errada. Para cada uma, liste as opções reais que você tem hoje, não a ideal:</div>
+
+        <div class="linha-resposta"></div>
+        <div class="linha-resposta"></div>
+
+        <div class="pergunta-chave">A escolha para cada nome — mudar de função, redesenhar o que o cargo cobra dela, ou manter como está por enquanto, sabendo o preço:</div>
+
+        <div class="linha-resposta"></div>
+        <div class="linha-resposta"></div>
+
+        <div class="pergunta-chave">O que se perde em cada escolha — o que ela perde, o que você perde, o que a operação perde enquanto isso não muda:</div>
+
+        <div class="linha-resposta"></div>
+        <div class="linha-resposta"></div>
+
+        <div class="nota-canvas"><em>ex. comércio:</em> perder o melhor vendedor de balcão enquanto ele aprende a liderar o turno · <em>ex. serviço:</em> perder o técnico mais rápido em campo enquanto ele aprende a gerir a equipe · <em>ex. indústria:</em> perder a melhor cortadeira da linha enquanto ela aprende a gerir turno — produção cai, gestão ainda não rende · <em>ex. e-commerce:</em> perder a melhor atendente de chat enquanto ela aprende a liderar o time — tempo de resposta sobe, gestão ainda não rende.</div>
+
+        <div class="duvida-item">
+            <strong>"E se eu tirar ela do cargo e ela for embora magoada?"</strong>
+            <p>Ela pode ir embora dos dois jeitos — magoada agora, ou desgastada depois, quando o cargo errado cobrar um preço que nenhum dos dois vai conseguir sustentar.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Fui eu que promovi. Voltar atrás não é admitir que errei?"</strong>
+            <p>É admitir que o critério de promoção estava errado, não a pessoa. Continuar por orgulho custa mais caro do que corrigir cedo.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"E se a pessoa certa pro cargo não existir dentro da equipe?"</strong>
+            <p>Então o cargo fica em aberto até existir — o que ainda é mais barato do que manter alguém nele só porque já está lá.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Meu time vai achar que desempenho antigo não garante nada."</strong>
+            <p>Não garante mesmo. E é isso que você precisa que fique claro: o cargo se ganha pela função que ele exige agora, não pela que alguém já exerceu bem antes.</p>
+        </div>
+
+        <div class="resultado">
+            <p>Feito isso, você para de cobrar de alguém um resultado que o cargo dela nunca foi desenhado pra entregar — e passa a decidir onde cada pessoa rende o que já demonstrou saber fazer.</p>
+        </div>
+    </div>
+</body>
+</html>

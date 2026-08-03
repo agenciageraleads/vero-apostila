@@ -84,9 +84,11 @@ Deck editável usa Georgia+Arial (abrem em qualquer máquina). Web/peças fixas 
 ---
 
 ## Frases-assinatura Vero
-- "Status não se compra. Status se comprova."
+- **"Vero. Uma escola para empresários de verdade."** (assinatura-mestra — *vero* = verdadeiro, em italiano)
+- "Formação de verdade acontece na prática."
 - "Quem executa, permanece."
 - "Formação sem critério gera ilusão."
+- "Status não se compra. Status se comprova." — **uso restrito à camada avançada de certificação** (D-009)
 
 ## Vocabulário
 - **Proibido:** crescer (promessa), solução, sucesso (outcome), "você consegue", motivacional, coach.

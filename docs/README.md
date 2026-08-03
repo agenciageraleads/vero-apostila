@@ -52,8 +52,9 @@ Não há ordem de leitura obrigatória dentro de cada pilar. Você pode pular en
 
 ## Princípios Vero
 
-- **Status não se compra.** Status se comprova.
-- **Formação sem critério gera ilusão.** Execução sustentada comprova status.
+- **Vero. Uma escola para empresários de verdade.** *Vero* significa *verdadeiro* — o nome já diz o método.
+- **Formação de verdade acontece na prática.** Execução, mão na massa, exemplos reais.
+- **Formação sem critério gera ilusão.** Critério sem execução não se sustenta.
 - **Quem executa, permanece.** Quem não executa, desaparece.
 
 ---

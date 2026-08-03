@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 02 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 22px; font-style: italic; }
+
+        .pergunta-item { margin-bottom: 20px; }
+        .pergunta-item:last-child { margin-bottom: 0; }
+        .pergunta-label { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 10px; line-height: 1.5; }
+
+        .resposta-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+        .resposta-row:last-child { margin-bottom: 0; }
+        .resposta-prefix { font-size: 12px; color: #666; white-space: nowrap; }
+        .input-line { display: inline-block; border-bottom: 1px solid #999; height: 20px; flex: 1; min-width: 140px; }
+        .input-line.curta { flex: none; width: 70px; min-width: 0; }
+
+        .resposta-aberta { display: block; border-bottom: 1px solid #999; height: 20px; width: 100%; margin-top: 8px; }
+
+        .checkbox-list { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+        .checkbox-opt { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #444; }
+        .checkbox-opt .box { width: 12px; height: 12px; border: 1px solid #999; display: inline-block; flex-shrink: 0; }
+
+        .pergunta-hint { font-size: 10px; font-style: italic; color: #888; margin-top: 8px; line-height: 1.55; }
+
+        .duvidas { margin-top: 24px; padding-top: 16px; border-top: 1px solid #ddd; }
+        .duvida-item { margin-bottom: 10px; font-size: 12px; }
+        .duvida-item:last-child { margin-bottom: 0; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 18px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Pessoas</div>
+
+        <div class="titulo">Checklist: o custo da contratação por desespero</div>
+        <div class="subtitulo">Preencha com a última vez que você contratou correndo.</div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">A vaga que você preencheu com pressa</div>
+            <div class="resposta-row">
+                <span class="resposta-prefix">Cargo:</span>
+                <span class="input-line"></span>
+            </div>
+            <div class="resposta-row">
+                <span class="resposta-prefix">Motivo da urgência:</span>
+                <span class="input-line"></span>
+            </div>
+            <div class="resposta-row">
+                <span class="resposta-prefix">Dias que você esperou antes de contratar:</span>
+                <span class="input-line curta"></span>
+            </div>
+            <div class="pergunta-hint">ex. comércio: vendedor pro caixa que ficou vazio · ex. serviço: técnico pra cobrir equipe reduzida · ex. indústria: operador pra linha que não podia parar · ex. e-commerce: operador de estoque pra dar conta do pico de pedidos</div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Sinais de desespero presentes nessa contratação — marque o que aconteceu</div>
+            <div class="checkbox-list">
+                <span class="checkbox-opt"><span class="box"></span> Não conferi referência de trabalho anterior</span>
+                <span class="checkbox-opt"><span class="box"></span> Não testei a pessoa na função antes de colocar pra valer</span>
+                <span class="checkbox-opt"><span class="box"></span> Contratei quem estava disponível, não quem sabia fazer</span>
+                <span class="checkbox-opt"><span class="box"></span> Pulei uma etapa que eu costumo fazer</span>
+                <span class="checkbox-opt"><span class="box"></span> Prometi treinar "depois", na correria</span>
+            </div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">O que deu errado depois — o que quebrou, quem reclamou</div>
+            <span class="resposta-aberta"></span>
+            <span class="resposta-aberta" style="margin-top:8px;"></span>
+            <div class="pergunta-hint">ex. comércio: caixa errado, cliente insatisfeito · ex. serviço: atendimento mal feito, contrato em risco · ex. indústria: lote com defeito, retrabalho · ex. e-commerce: pedido errado, chargeback aberto</div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">O custo que você nunca colocou no papel — marque o que essa contratação te custou</div>
+            <div class="checkbox-list">
+                <span class="checkbox-opt"><span class="box"></span> Horas treinando a mesma função de novo</span>
+                <span class="checkbox-opt"><span class="box"></span> Hora extra da equipe cobrindo o erro</span>
+                <span class="checkbox-opt"><span class="box"></span> Desconto ou prejuízo pra segurar o cliente</span>
+                <span class="checkbox-opt"><span class="box"></span> Tempo até desligar e abrir a vaga outra vez</span>
+            </div>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Quantas pessoas já passaram por essa mesma vaga nos últimos 12 meses</div>
+            <div class="resposta-row">
+                <span class="resposta-prefix">Número:</span>
+                <span class="input-line curta"></span>
+            </div>
+        </div>
+
+        <div class="duvidas">
+            <div class="duvida-item">
+                <strong>"Mas eu não tinha escolha, a vaga não podia ficar aberta."</strong>
+                <span> → A vaga vazia dói na hora. A contratação errada dói depois — e custa mais.</span>
+            </div>
+            <div class="duvida-item">
+                <strong>"Contratei rápido porque confiava na indicação."</strong>
+                <span> → Indicação não é referência. É só alguém que conhece alguém.</span>
+            </div>
+            <div class="duvida-item">
+                <strong>"Se eu esperar mais, perco a pessoa boa pra outra empresa."</strong>
+                <span> → Você já está perdendo. Só que pra própria pressa, não pra concorrência.</span>
+            </div>
+            <div class="duvida-item">
+                <strong>"Da próxima vez eu treino direito, agora não dava."</strong>
+                <span> → "Da próxima vez" foi a mesma frase da vez passada.</span>
+            </div>
+        </div>
+
+        <div class="resultado">
+            Depois disso, você para de chamar de azar o que é padrão repetido. Se contratar rápido continuar sendo seu único critério, essa vaga vai continuar girando — e você vai continuar pagando a mesma conta, com nome diferente.
+        </div>
+    </div>
+</body>
+</html>

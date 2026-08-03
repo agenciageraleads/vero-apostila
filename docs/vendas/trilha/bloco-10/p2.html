@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 10 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 18px; font-weight: bold; margin: 14px 0 4px 0; color: #000; }
+
+        .instrucao { font-size: 12px; color: #666; margin-bottom: 16px; font-style: italic; }
+
+        .secao-titulo { font-size: 13px; font-weight: bold; margin: 18px 0 8px 0; color: #000; }
+
+        table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 11px; }
+        table th { background: #f5f5f5; padding: 7px 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 10.5px; }
+        table td { padding: 0 8px; border: 1px solid #ddd; height: 22px; }
+
+        .exemplo { font-size: 10.5px; color: #888; font-style: italic; margin: 6px 0 4px 0; line-height: 1.5; }
+
+        .soma-box { margin: 16px 0; padding: 12px 15px; border-left: 3px solid #999; background: #fafafa; font-size: 12px; }
+        .soma-box p { margin-bottom: 6px; }
+        .soma-box p:last-child { margin-bottom: 0; color: #666; font-style: italic; }
+
+        .pergunta-chave { font-size: 13px; font-weight: bold; margin: 18px 0 4px 0; color: #000; }
+        .pergunta-sub { font-size: 11.5px; color: #666; margin-bottom: 6px; }
+
+        .resposta-linha { border-bottom: 1px solid #ccc; height: 16px; margin-bottom: 4px; }
+
+        .duvida-item { margin-bottom: 7px; font-size: 12px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🛤️ Trilha — Vendas</div>
+
+        <div class="titulo">Coloque as dez lado a lado</div>
+        <div class="instrucao">Pegue as vendas do mês passado. As 5 maiores e as 5 menores — consultando o registro, não a memória.</div>
+
+        <div class="secao-titulo">As 5 maiores vendas do mês</div>
+        <table>
+            <tr>
+                <th style="width: 40%;">O que foi vendido</th>
+                <th style="width: 18%;">Valor</th>
+                <th style="width: 42%;">O que foi junto</th>
+            </tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+        </table>
+        <div class="exemplo">item principal com os complementos que o acompanham · contrato que fechou o problema inteiro, não uma visita · pedido que aproveitou o lote cheio com acabamento incluído · carrinho fechado com o combo sugerido no checkout, não só o item avulso</div>
+
+        <div class="secao-titulo">As 5 menores vendas do mesmo mês</div>
+        <table>
+            <tr>
+                <th style="width: 40%;">O que foi vendido</th>
+                <th style="width: 18%;">Valor</th>
+                <th style="width: 42%;">O que ficou de fora</th>
+            </tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+            <tr><td></td><td>R$</td><td></td></tr>
+        </table>
+        <div class="exemplo">produto avulso sem os itens que sempre vão junto · atendimento pontual de um cliente com demanda todo mês · pedido na quantidade mínima de quem compra sempre · checkout finalizado com um único item, sem o upsell do carrinho</div>
+
+        <div class="soma-box">
+            <p><strong>Agora divida.</strong></p>
+            <p>Soma das 5 maiores: R$ _____________</p>
+            <p>Soma das 5 menores: R$ _____________</p>
+            <p>Quantas vendas pequenas você precisa fazer para igualar uma grande: _______</p>
+            <p>Cada venda pequena custou o mesmo atendimento, o mesmo tempo e a mesma estrutura que uma grande.</p>
+        </div>
+
+        <div class="pergunta-chave">O que as maiores tinham a mais?</div>
+        <div class="pergunta-sub">Escreva o que se repete nelas — não o valor, o padrão.</div>
+        <div class="exemplo">o cliente contou para que ia usar e levou o conjunto · o combinado cobriu o problema inteiro, não um pedaço · o pedido saiu no volume que a produção já estava montada para entregar · o cliente completou o carrinho até o frete grátis e levou o combo junto</div>
+        <div class="resposta-linha"></div>
+        <div class="resposta-linha"></div>
+
+        <div class="pergunta-chave">O que as menores deixaram na mesa?</div>
+        <div class="pergunta-sub">Escreva o que cada cliente provavelmente precisava — e não levou com você.</div>
+        <div class="exemplo">a tinta saiu sem rolo, fita e lixa · o serviço saiu avulso quando a demanda era mensal · o pedido saiu no mínimo quando a máquina já estava preparada para mais · o pedido saiu sem o frete grátis, quando faltava pouco pra completar o carrinho</div>
+        <div class="resposta-linha"></div>
+        <div class="resposta-linha"></div>
+        <div class="resposta-linha"></div>
+
+        <div class="pergunta-chave">Qual pergunta teria mudado as cinco pequenas?</div>
+        <div class="pergunta-sub">Escreva uma só — a que passa a ser feita em toda venda a partir de amanhã.</div>
+        <div class="exemplo">"o que vai ser feito com isso?" · "isso resolve só esta vez ou acontece todo mês?" · "quer fechar o lote inteiro enquanto a produção está montada?" · "quer aproveitar e completar o frete grátis com mais um item?"</div>
+        <div class="resposta-linha"></div>
+
+        <div class="duvida-item">
+            <strong>"Oferecer mais parece empurrar venda."</strong>
+            <span> → Empurrar é vender o que o cliente não precisa. Completar é perguntar o que ele vai comprar de qualquer jeito — e decidir se compra com você ou com o concorrente.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Meu cliente já acha caro. Não vai levar mais nada."</strong>
+            <span> → Quem discute o preço do item principal quase nunca discute o do complemento. O rolo, a revisão, o acabamento — isso ele leva sem reclamar. Só que hoje leva em outro lugar.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Se o cliente precisasse de mais, ele pedia."</strong>
+            <span> → O cliente não conhece o seu estoque, o seu escopo nem a sua capacidade. Quem sabe o que falta na compra é quem vende — não quem compra.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe o que separa as suas vendas grandes das pequenas — e qual pergunta deixou de ser feita nas pequenas. Antes de gastar um real atraindo gente nova, existe dinheiro parado na frente do seu balcão. Em trinta dias, refaça as duas listas: se as cinco menores continuarem do mesmo tamanho, a pergunta não está sendo feita.
+        </div>
+    </div>
+</body>
+</html>

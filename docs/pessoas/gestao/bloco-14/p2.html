@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 14 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 8px; font-style: italic; }
+        .funil-intro { font-size: 11.5px; color: #555; margin-bottom: 18px; line-height: 1.6; }
+
+        /* Funil sequencial */
+        .funil { margin: 4px 0 22px 0; }
+
+        .funil-etapa { border: 1px solid #ddd; border-radius: 4px; background: #fafafa; padding: 12px 18px; margin: 0 auto; }
+        .funil-etapa-titulo { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 4px; }
+        .funil-etapa-desc { font-size: 10.5px; color: #666; line-height: 1.5; margin-bottom: 8px; }
+
+        .funil-linhas { }
+        .funil-linha { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+        .funil-linha:last-child { margin-bottom: 0; }
+        .funil-num { font-size: 10px; color: #999; width: 12px; flex-shrink: 0; }
+        .funil-input { flex: 1; border-bottom: 1px solid #999; height: 15px; }
+
+        .funil-dica { font-size: 9.5px; color: #888; font-style: italic; margin-top: 8px; line-height: 1.5; }
+
+        .funil-conector { height: 14px; margin: 0 auto; background: #ebebeb; }
+
+        .funil-etapa-final { border: 1.5px solid #000; background: #fff; padding: 14px 16px; text-align: center; }
+        .funil-etapa-final .funil-etapa-titulo { text-align: center; margin-bottom: 10px; }
+        .funil-linha-final { font-size: 11.5px; font-weight: bold; color: #000; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .funil-linha-final:last-child { margin-bottom: 0; }
+        .funil-linha-final .input-line { flex: 1; max-width: 220px; border-bottom: 1px solid #333; height: 18px; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 6px; font-size: 11px; }
+        table th { background: #f5f5f5; padding: 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: #555; }
+        table td { padding: 6px 8px; border: 1px solid #eee; height: 22px; }
+        table tbody tr:nth-child(even) td { background: #fafafa; }
+
+        .pergunta-item { margin-bottom: 14px; }
+        .pergunta-item:last-child { margin-bottom: 0; }
+        .pergunta-label { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 8px; line-height: 1.5; }
+
+        .resposta-aberta { display: block; border-bottom: 1px solid #999; height: 18px; width: 100%; margin-top: 2px; margin-bottom: 4px; }
+        .exemplo { font-size: 10px; color: #888; font-style: italic; margin-top: 6px; line-height: 1.5; }
+
+        .duvida-item { margin-bottom: 8px; font-size: 12px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 14px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+            .funil-etapa, .funil-etapa-final { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🧠 Gestão — Pessoas</div>
+
+        <div class="titulo">Quem você não forma, cobra de você depois</div>
+        <div class="subtitulo">Sueli não tem um problema de gente boa. Tem um funil de liderança que nunca decidiu abrir — e continua sendo a única pessoa que decide tudo.</div>
+        <div class="funil-intro">Este é o funil. Ele começa largo, com todo mundo que já se destaca. Termina estreito, com uma ou duas pessoas — as únicas que vão sair daqui sabendo que, nos próximos seis meses, decidem sozinhas.</div>
+
+        <div class="funil">
+
+            <div class="funil-etapa" style="width:100%;">
+                <div class="funil-etapa-titulo">Topo do funil — todo mundo que já assume mais do que o cargo pede</div>
+                <div class="funil-etapa-desc">Liste até quatro nomes: quem já resolve algo sozinho, sem estar decidido oficialmente, mesmo sem o cargo pedir isso.</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:30%;">Nome</th>
+                            <th style="width:70%;">O que já resolve sozinho, sem te chamar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td></td><td></td></tr>
+                        <tr><td></td><td></td></tr>
+                        <tr><td></td><td></td></tr>
+                        <tr><td></td><td></td></tr>
+                    </tbody>
+                </table>
+                <div class="funil-dica">ex. comércio (equipe pequena): vendedora que já fecha reposição de estoque sem perguntar · ex. serviço (equipe dispersa entre unidades): coordenadora que resolve reclamação numa unidade onde você não está · ex. indústria (turnos numerosos): encarregado que já para a linha por qualidade, sem esperar autorização · ex. e-commerce (equipe remota): atendente que já resolve chargeback sozinha, sem escalar pra você</div>
+            </div>
+
+            <div class="funil-conector" style="width:100%; clip-path: polygon(0 0, 100% 0, 91% 100%, 9% 100%);"></div>
+
+            <div class="funil-etapa" style="width:82%;">
+                <div class="funil-etapa-titulo">Filtro 1 — potencial real</div>
+                <div class="funil-etapa-desc">O que você já viu essa pessoa fazer sob pressão, sem ninguém mandar. (Não é "eu confio nela".)</div>
+                <span class="resposta-aberta"></span>
+            </div>
+
+            <div class="funil-conector" style="width:82%; clip-path: polygon(0 0, 100% 0, 89% 100%, 11% 100%);"></div>
+
+            <div class="funil-etapa" style="width:64%;">
+                <div class="funil-etapa-titulo">Filtro 2 — disponibilidade real</div>
+                <div class="funil-etapa-desc">Tempo e cabeça livre para aprender errando nos próximos seis meses — não só vontade declarada.</div>
+                <span class="resposta-aberta"></span>
+            </div>
+
+            <div class="funil-conector" style="width:64%; clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);"></div>
+
+            <div class="funil-etapa" style="width:46%;">
+                <div class="funil-etapa-titulo">Filtro 3 — resultado atual</div>
+                <div class="funil-etapa-desc">O que essa pessoa entrega hoje sozinha, comparado ao que o cargo de liderança vai exigir dela.</div>
+                <span class="resposta-aberta"></span>
+            </div>
+
+            <div class="funil-conector" style="width:46%; clip-path: polygon(0 0, 100% 0, 78% 100%, 22% 100%);"></div>
+
+            <div class="funil-etapa funil-etapa-final" style="width:36%;">
+                <div class="funil-etapa-titulo">Base do funil — quem decide sozinho nos próximos seis meses</div>
+                <div class="funil-linha-final" style="margin-bottom:10px;">Nome(s): <span class="input-line"></span></div>
+                <div class="funil-linha-final">Por quê: <span class="input-line"></span></div>
+            </div>
+
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">O que sai do funil — o compromisso que você assume, não a pessoa que você escolheu. O que você vai entregar de verdade a essa pessoa nos próximos seis meses — decisões que ela vai tomar sozinha, erros que você vai sustentar sem corrigir por trás, o que você vai parar de fazer para abrir espaço:</div>
+            <span class="resposta-aberta"></span>
+            <span class="resposta-aberta"></span>
+            <div class="exemplo">ex. comércio: deixar ela negociar prazo com fornecedor sozinha, mesmo que erre no primeiro pedido · ex. serviço: deixar ela advertir alguém do próprio time sem sua aprovação prévia · ex. indústria: deixar ela decidir parar a produção por qualidade, mesmo que atrase entrega · ex. e-commerce: deixar ela decidir o reembolso de um chargeback sozinha, mesmo que erre no valor</div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"E se eu escolher errado e essa pessoa não der conta?"</strong>
+            <span> → Vai ter um jeito de descobrir sem apostar tudo de uma vez: deixando ela decidir algo pequeno primeiro. Escolher errado nos primeiros seis meses custa menos do que nunca ter escolhido ninguém.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Não tenho tempo pra ensinar agora, tenho fogo pra apagar todo dia."</strong>
+            <span> → Você já gasta esse tempo — só que apagando o incêndio, não ensinando ninguém a apagar. É o mesmo tempo, gasto de um jeito que nunca acaba.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Se eu deixar essa pessoa decidir, e ela decidir diferente de mim?"</strong>
+            <span> → Vai decidir. Algumas vezes vai errar. Sustentar isso é o preço de ter alguém que resolve quando você não está — e continuar decidindo tudo sozinha é o preço de nunca ter ninguém.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"O resto da equipe vai perguntar por que essa pessoa foi escolhida e não outra."</strong>
+            <span> → Vai perguntar. Melhor explicar o critério agora do que explicar, daqui a um ano, por que nunca formou ninguém.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sai com um funil real — não uma lista de gente que "parece boa" — e um nome com data marcada para começar a decidir sozinho. A urgência não diminui essa semana. O que muda é que, pela primeira vez em anos, alguém além de você está aprendendo a resolver o que hoje só você resolve.
+        </div>
+    </div>
+</body>
+</html>

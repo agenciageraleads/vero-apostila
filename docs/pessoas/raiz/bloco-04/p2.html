@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 04 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 28px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 12px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin: 0 0 5px 0; color: #000; }
+
+        .instrucao { font-size: 12px; color: #666; margin-bottom: 10px; font-style: italic; }
+
+        .roda-intro { font-size: 11.5px; color: #333; margin-bottom: 10px; line-height: 1.5; }
+        .roda-intro strong { color: #000; }
+
+        .roda-svg-box { text-align: center; margin: 0 0 8px 0; }
+        .roda-svg-box svg { width: 178px; height: 178px; display: inline-block; }
+        .roda-label-txt { font-size: 13px; font-weight: bold; fill: #000; font-family: 'Georgia', serif; }
+
+        .pontos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; margin-bottom: 8px; }
+        .ponto-item { font-size: 10.5px; padding: 6px 0; border-bottom: 1px dotted #ccc; }
+        .ponto-item:nth-last-child(-n+2) { border-bottom: none; }
+        .ponto-label { font-weight: bold; color: #000; font-size: 11px; margin-bottom: 2px; line-height: 1.3; display: block; }
+        .ponto-exemplo { font-size: 9px; color: #888; font-style: italic; line-height: 1.35; display: block; margin-bottom: 4px; }
+        .ponto-check { font-size: 9.8px; color: #555; margin-bottom: 4px; }
+
+        .ponto-item .resposta-row { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; flex-wrap: wrap; }
+        .ponto-item .resposta-row:last-child { margin-bottom: 0; }
+        .ponto-item .resposta-prefix { font-size: 9.3px; color: #666; white-space: nowrap; }
+        .ponto-item .input-line { display: inline-block; border-bottom: 1px solid #999; height: 12px; flex: 1; min-width: 40px; }
+
+        .centro-pergunta { font-size: 12px; font-weight: bold; margin: 8px 0 0 0; padding-top: 9px; border-top: 1px solid #ddd; color: #000; line-height: 1.4; }
+        .centro-resposta { display: block; border-bottom: 1px solid #999; height: 16px; width: 100%; margin-top: 7px; }
+
+        .duvida-item { margin: 7px 0; font-size: 11px; }
+        .duvida-item strong { display: block; margin-bottom: 2px; color: #333; font-style: italic; }
+        .duvida-item p { color: #666; line-height: 1.4; }
+
+        .resultado { margin: 10px 0 0 0; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.5; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 28px 40px; box-shadow: none; page-break-after: always; }
+            .pontos-grid { page-break-inside: avoid; }
+            .roda-svg-box { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Pessoas</div>
+
+        <div class="titulo">Decisões no Feeling x Regra que Falta</div>
+
+        <div class="instrucao">Preencha com decisões reais do último mês — sem embelezar.</div>
+
+        <div class="roda-intro"><strong>Roda de decisões no feeling.</strong> Distribua as cinco decisões abaixo ao redor de um círculo, uma em cada ponto — como raios que saem do centro. Em cada ponto, marque se já existe regra, registre como foi decidida da última vez e escreva a regra mínima que ainda falta.</div>
+
+        <div class="roda-svg-box">
+            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="200" cy="200" r="150" fill="#ffffff" stroke="#222" stroke-width="1.5"/>
+                <path d="M200,200 L200,50 A150,150 0 0,1 342.7,153.7 Z" fill="none" stroke="#222" stroke-width="1"/>
+                <path d="M200,200 L342.7,153.7 A150,150 0 0,1 288.2,321.4 Z" fill="none" stroke="#222" stroke-width="1"/>
+                <path d="M200,200 L288.2,321.4 A150,150 0 0,1 111.8,321.4 Z" fill="none" stroke="#222" stroke-width="1"/>
+                <path d="M200,200 L111.8,321.4 A150,150 0 0,1 57.3,153.7 Z" fill="none" stroke="#222" stroke-width="1"/>
+                <path d="M200,200 L57.3,153.7 A150,150 0 0,1 200,50 Z" fill="none" stroke="#222" stroke-width="1"/>
+
+                <text class="roda-label-txt" x="255.8" y="115" text-anchor="middle">Desconto /</text>
+                <text class="roda-label-txt" x="255.8" y="130" text-anchor="middle">negociação</text>
+
+                <text class="roda-label-txt" x="290.4" y="222" text-anchor="middle">Troca /</text>
+                <text class="roda-label-txt" x="290.4" y="237" text-anchor="middle">exceção</text>
+
+                <text class="roda-label-txt" x="200" y="288" text-anchor="middle">Falta ou</text>
+                <text class="roda-label-txt" x="200" y="303" text-anchor="middle">troca de turno</text>
+
+                <text class="roda-label-txt" x="109.7" y="222" text-anchor="middle">Reclamação</text>
+                <text class="roda-label-txt" x="109.7" y="237" text-anchor="middle">na hora</text>
+
+                <text class="roda-label-txt" x="144.2" y="115" text-anchor="middle">Uso de caixa</text>
+                <text class="roda-label-txt" x="144.2" y="130" text-anchor="middle">ou verba</text>
+            </svg>
+        </div>
+
+        <div class="pontos-grid">
+            <div class="ponto-item">
+                <span class="ponto-label">Desconto ou negociação de preço</span>
+                <span class="ponto-exemplo">ex. comércio – desconto pro cliente conhecido · ex. serviço – prazo maior pro cliente atrasado · ex. indústria – prioridade numa entrega urgente · ex. e-commerce – cupom de frete grátis fora da campanha programada</span>
+                <div class="ponto-check">☐ Tem regra · ☐ Não tem regra</div>
+                <div class="resposta-row"><span class="resposta-prefix">Como foi decidido da última vez:</span><span class="input-line"></span></div>
+                <div class="resposta-row"><span class="resposta-prefix">Regra mínima que falta escrever:</span><span class="input-line"></span></div>
+            </div>
+
+            <div class="ponto-item">
+                <span class="ponto-label">Troca, devolução ou exceção</span>
+                <span class="ponto-exemplo">ex. comércio – aceitar troca sem nota · ex. serviço – refazer sem cobrar de novo · ex. indústria – trocar lote com defeito · ex. e-commerce – reembolsar sem exigir devolução pra evitar chargeback</span>
+                <div class="ponto-check">☐ Tem regra · ☐ Não tem regra</div>
+                <div class="resposta-row"><span class="resposta-prefix">Como foi decidida da última vez:</span><span class="input-line"></span></div>
+                <div class="resposta-row"><span class="resposta-prefix">Regra mínima que falta escrever:</span><span class="input-line"></span></div>
+            </div>
+
+            <div class="ponto-item">
+                <span class="ponto-label">Falta, troca de turno ou de tarefa</span>
+                <span class="ponto-exemplo">ex. comércio – quem cobre o fim de semana · ex. serviço – quem assume a visita do colega · ex. indústria – quem cobre a linha parada · ex. e-commerce – quem assume o chat de atendimento fora do horário</span>
+                <div class="ponto-check">☐ Tem regra · ☐ Não tem regra</div>
+                <div class="resposta-row"><span class="resposta-prefix">Como foi decidida da última vez:</span><span class="input-line"></span></div>
+                <div class="resposta-row"><span class="resposta-prefix">Regra mínima que falta escrever:</span><span class="input-line"></span></div>
+            </div>
+
+            <div class="ponto-item">
+                <span class="ponto-label">Reclamação de cliente na hora</span>
+                <span class="ponto-exemplo">ex. comércio – cliente insatisfeito no balcão · ex. serviço – cliente reclama do prazo · ex. indústria – cliente reclama da qualidade do lote · ex. e-commerce – cliente ameaça avaliação negativa no marketplace por atraso</span>
+                <div class="ponto-check">☐ Tem regra · ☐ Não tem regra</div>
+                <div class="resposta-row"><span class="resposta-prefix">Como foi decidida da última vez:</span><span class="input-line"></span></div>
+                <div class="resposta-row"><span class="resposta-prefix">Regra mínima que falta escrever:</span><span class="input-line"></span></div>
+            </div>
+
+            <div class="ponto-item">
+                <span class="ponto-label">Uso de caixa, verba ou recurso da empresa</span>
+                <span class="ponto-exemplo">ex. comércio – sangria de caixa · ex. serviço – reembolso de despesa de visita · ex. indústria – compra emergencial de insumo · ex. e-commerce – aumentar verba de anúncio no meio da campanha</span>
+                <div class="ponto-check">☐ Tem regra · ☐ Não tem regra</div>
+                <div class="resposta-row"><span class="resposta-prefix">Como foi decidida da última vez:</span><span class="input-line"></span></div>
+                <div class="resposta-row"><span class="resposta-prefix">Regra mínima que falta escrever:</span><span class="input-line"></span></div>
+            </div>
+        </div>
+
+        <div class="centro-pergunta">
+            No centro da roda: agora observe a roda inteira. Em quantos desses cinco pontos duas pessoas do seu time responderiam diferente se a mesma situação acontecesse hoje, ao mesmo tempo, em cantos opostos do negócio?
+            <span class="centro-resposta"></span>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Mas se eu escrever regra pra tudo, viro microgerente."</strong>
+            <p>Regra não é vigiar cada decisão. É definir o limite antes que a decisão aconteça sem você.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Meu time é experiente, sabe o que fazer."</strong>
+            <p>Sabe o que faria. Não sabe o que você decidiria — porque você nunca disse.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Isso vai travar o atendimento, vai ficar tudo mais devagar."</strong>
+            <p>Decisão sem critério já trava. Só que trava na hora do conflito, não antes dele.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"E se a regra que eu escrever estiver errada?"</strong>
+            <p>Regra errada se corrige depois. Regra que não existe só se descobre quando já custou caro.</p>
+        </div>
+
+        <div class="resultado">
+            <p>Depois disso, duas pessoas do seu time decidem a mesma situação do mesmo jeito — não porque combinaram entre si, mas porque existe um critério escrito maior que a vontade de cada uma na hora. Se ainda decidirem diferente, o problema deixou de ser confiança. Passou a ser a regra que ainda falta escrever.</p>
+        </div>
+    </div>
+</body>
+</html>

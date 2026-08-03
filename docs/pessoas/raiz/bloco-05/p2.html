@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 05 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 28px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 12px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin: 0 0 5px 0; color: #000; }
+
+        .instrucao { font-size: 12px; color: #666; margin-bottom: 10px; font-style: italic; }
+
+        .hint-intro { font-size: 10.5px; color: #888; font-style: italic; line-height: 1.5; margin-bottom: 14px; padding-left: 10px; border-left: 2px solid #ccc; }
+
+        .pedido-prioritario { margin-bottom: 16px; }
+        .pedido-label { font-size: 11.5px; font-weight: bold; color: #000; margin-bottom: 6px; line-height: 1.4; }
+        .resposta-linha { display: block; border-bottom: 1px solid #999; height: 16px; width: 100%; }
+
+        .sequencia { display: flex; flex-direction: column; }
+
+        .etapa-card { border: 1px solid #ddd; border-radius: 3px; background: #fafafa; padding: 9px 14px; }
+        .etapa-titulo { font-size: 11.5px; font-weight: bold; color: #000; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #ddd; }
+
+        .etapa-campo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 5px; }
+        .campo-label { font-size: 9.5px; font-weight: bold; color: #666; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; flex-shrink: 0; width: 88px; }
+        .campo-linha { flex: 1; border-bottom: 1px solid #999; height: 13px; }
+
+        .etapa-checks { margin-top: 6px; padding-top: 6px; border-top: 1px dashed #ccc; }
+        .check-grupo { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-bottom: 4px; font-size: 9.8px; }
+        .check-grupo:last-child { margin-bottom: 0; }
+        .check-label { color: #333; font-weight: bold; }
+        .check-opcao { color: #555; font-weight: normal; white-space: nowrap; }
+        .check-grupo.trava .check-label { color: #000; }
+
+        .conector { display: flex; justify-content: center; margin: 2px 0; }
+        .conector-linha { width: 1px; height: 10px; background: #bbb; }
+
+        .etapa-final { border: 1.5px solid #000; background: #fff; }
+        .soma-item { font-size: 11px; color: #333; line-height: 1.6; margin-bottom: 4px; }
+        .soma-item:last-of-type { margin-bottom: 4px; }
+        .soma-linha { display: inline-block; min-width: 36px; border-bottom: 1px solid #999; height: 12px; vertical-align: middle; }
+        .soma-item-full { font-size: 11px; color: #333; line-height: 1.5; margin-top: 4px; }
+        .soma-linha-longa { display: block; border-bottom: 1px solid #999; height: 15px; width: 100%; margin-top: 5px; }
+
+        .duvida-item { margin: 7px 0; font-size: 11px; }
+        .duvida-item strong { display: block; margin-bottom: 2px; color: #333; font-style: italic; }
+        .duvida-item p { color: #666; line-height: 1.4; }
+
+        .resultado { margin: 10px 0 0 0; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.5; color: #333; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 28px 40px; box-shadow: none; page-break-after: always; }
+            .etapa-card { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🌱 Raiz — Pessoas</div>
+
+        <div class="titulo">O que foi feito x o que saiu pronto</div>
+
+        <div class="instrucao">Escolha uma semana comum — nem a melhor, nem a pior. Siga o fluxo dia a dia e marque, em cada etapa, o que realmente saiu dali.</div>
+
+        <div class="hint-intro">Exemplos do que costuma entrar como "ocupação disfarçada": reorganizar prateleira sem cliente esperando · responder mensagem antiga sem follow-up de proposta aberta · adiantar peça sem pedido confirmado · mexer na vitrine do site sem carrinho abandonado pra recuperar — no comércio, no serviço, na indústria e no e-commerce, o disfarce muda de forma, mas é o mesmo.</div>
+
+        <div class="pedido-prioritario">
+            <div class="pedido-label">Antes de começar, escreva qual foi o pedido, contrato ou atendimento prioritário da semana:</div>
+            <span class="resposta-linha"></span>
+        </div>
+
+        <div class="sequencia">
+
+            <div class="etapa-card">
+                <div class="etapa-titulo">Etapa 1 · Segunda</div>
+                <div class="etapa-campo"><span class="campo-label">Tarefa realizada</span><span class="campo-linha"></span></div>
+                <div class="etapa-campo"><span class="campo-label">Quem fez</span><span class="campo-linha"></span></div>
+                <div class="etapa-checks">
+                    <div class="check-grupo">
+                        <span class="check-label">Resultado</span>
+                        <span class="check-opcao">( ) Entrega real</span>
+                        <span class="check-opcao">( ) Ocupação disfarçada</span>
+                    </div>
+                    <div class="check-grupo">
+                        <span class="check-label">Era a prioridade combinada da semana?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                    <div class="check-grupo trava">
+                        <span class="check-label">🔻 Foi aqui que a prioridade travou?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conector"><div class="conector-linha"></div></div>
+
+            <div class="etapa-card">
+                <div class="etapa-titulo">Etapa 2 · Terça</div>
+                <div class="etapa-campo"><span class="campo-label">Tarefa realizada</span><span class="campo-linha"></span></div>
+                <div class="etapa-campo"><span class="campo-label">Quem fez</span><span class="campo-linha"></span></div>
+                <div class="etapa-checks">
+                    <div class="check-grupo">
+                        <span class="check-label">Resultado</span>
+                        <span class="check-opcao">( ) Entrega real</span>
+                        <span class="check-opcao">( ) Ocupação disfarçada</span>
+                    </div>
+                    <div class="check-grupo">
+                        <span class="check-label">Era a prioridade combinada da semana?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                    <div class="check-grupo trava">
+                        <span class="check-label">🔻 Foi aqui que a prioridade travou?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conector"><div class="conector-linha"></div></div>
+
+            <div class="etapa-card">
+                <div class="etapa-titulo">Etapa 3 · Quarta</div>
+                <div class="etapa-campo"><span class="campo-label">Tarefa realizada</span><span class="campo-linha"></span></div>
+                <div class="etapa-campo"><span class="campo-label">Quem fez</span><span class="campo-linha"></span></div>
+                <div class="etapa-checks">
+                    <div class="check-grupo">
+                        <span class="check-label">Resultado</span>
+                        <span class="check-opcao">( ) Entrega real</span>
+                        <span class="check-opcao">( ) Ocupação disfarçada</span>
+                    </div>
+                    <div class="check-grupo">
+                        <span class="check-label">Era a prioridade combinada da semana?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                    <div class="check-grupo trava">
+                        <span class="check-label">🔻 Foi aqui que a prioridade travou?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conector"><div class="conector-linha"></div></div>
+
+            <div class="etapa-card">
+                <div class="etapa-titulo">Etapa 4 · Quinta</div>
+                <div class="etapa-campo"><span class="campo-label">Tarefa realizada</span><span class="campo-linha"></span></div>
+                <div class="etapa-campo"><span class="campo-label">Quem fez</span><span class="campo-linha"></span></div>
+                <div class="etapa-checks">
+                    <div class="check-grupo">
+                        <span class="check-label">Resultado</span>
+                        <span class="check-opcao">( ) Entrega real</span>
+                        <span class="check-opcao">( ) Ocupação disfarçada</span>
+                    </div>
+                    <div class="check-grupo">
+                        <span class="check-label">Era a prioridade combinada da semana?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                    <div class="check-grupo trava">
+                        <span class="check-label">🔻 Foi aqui que a prioridade travou?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conector"><div class="conector-linha"></div></div>
+
+            <div class="etapa-card">
+                <div class="etapa-titulo">Etapa 5 · Sexta</div>
+                <div class="etapa-campo"><span class="campo-label">Tarefa realizada</span><span class="campo-linha"></span></div>
+                <div class="etapa-campo"><span class="campo-label">Quem fez</span><span class="campo-linha"></span></div>
+                <div class="etapa-checks">
+                    <div class="check-grupo">
+                        <span class="check-label">Resultado</span>
+                        <span class="check-opcao">( ) Entrega real</span>
+                        <span class="check-opcao">( ) Ocupação disfarçada</span>
+                    </div>
+                    <div class="check-grupo">
+                        <span class="check-label">Era a prioridade combinada da semana?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                    <div class="check-grupo trava">
+                        <span class="check-label">🔻 Foi aqui que a prioridade travou?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conector"><div class="conector-linha"></div></div>
+
+            <div class="etapa-card">
+                <div class="etapa-titulo">Etapa 6 · Sábado</div>
+                <div class="etapa-campo"><span class="campo-label">Tarefa realizada</span><span class="campo-linha"></span></div>
+                <div class="etapa-campo"><span class="campo-label">Quem fez</span><span class="campo-linha"></span></div>
+                <div class="etapa-checks">
+                    <div class="check-grupo">
+                        <span class="check-label">Resultado</span>
+                        <span class="check-opcao">( ) Entrega real</span>
+                        <span class="check-opcao">( ) Ocupação disfarçada</span>
+                    </div>
+                    <div class="check-grupo">
+                        <span class="check-label">Era a prioridade combinada da semana?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                    <div class="check-grupo trava">
+                        <span class="check-label">🔻 Foi aqui que a prioridade travou?</span>
+                        <span class="check-opcao">( ) Sim</span>
+                        <span class="check-opcao">( ) Não</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conector"><div class="conector-linha"></div></div>
+
+            <div class="etapa-card etapa-final">
+                <div class="etapa-titulo">Soma da semana</div>
+                <p class="soma-item">Quantas etapas terminaram em entrega real? <span class="soma-linha"></span></p>
+                <p class="soma-item">Quantas foram ocupação disfarçada? <span class="soma-linha"></span></p>
+                <p class="soma-item-full">Em qual etapa a prioridade travou, e o que tomou o lugar dela?</p>
+                <span class="soma-linha-longa"></span>
+            </div>
+
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Mas a equipe não ficou parada o dia inteiro."</strong>
+            <p>Não ficar parado nunca foi a pergunta. A pergunta é o que saiu pronto.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu cobrar isso, vai parecer que não confio no time."</strong>
+            <p>Confiança não é aceitar qualquer coisa que pareça trabalho. É combinar, antes, o que conta como entrega.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Minha equipe é pequena, todo mundo faz um pouco de tudo — não dá pra separar assim."</strong>
+            <p>Equipe pequena tem menos gente pra esconder ocupação. É mais fácil ver, não mais difícil.</p>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Meu time é grande e cada um fica numa ponta diferente, eu não consigo acompanhar tarefa por tarefa."</strong>
+            <p>Você não precisa acompanhar tudo. Precisa que cada um responda, no fim da semana, a mesma pergunta: o que isso virou?</p>
+        </div>
+
+        <div class="resultado">
+            <p>Depois disso, você para de aceitar "trabalhamos o dia inteiro" como resposta. Passa a perguntar o que saiu pronto. Se a resposta for pouca coisa, o problema nunca foi preguiça — foi a régua que você usava pra medir trabalho.</p>
+        </div>
+    </div>
+</body>
+</html>

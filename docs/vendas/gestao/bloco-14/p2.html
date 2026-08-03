@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 14 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 18px; font-style: italic; }
+
+        /* Funil sequencial */
+        .funil { margin: 4px 0 22px 0; }
+
+        .funil-etapa { border: 1px solid #ddd; border-radius: 4px; background: #fafafa; padding: 12px 18px; margin: 0 auto; }
+        .funil-etapa-titulo { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 4px; }
+        .funil-etapa-desc { font-size: 10.5px; color: #666; line-height: 1.5; margin-bottom: 8px; }
+
+        .funil-linhas { }
+        .funil-linha { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+        .funil-linha:last-child { margin-bottom: 0; }
+        .funil-num { font-size: 10px; color: #999; width: 12px; flex-shrink: 0; }
+        .funil-input { flex: 1; border-bottom: 1px solid #999; height: 15px; }
+
+        .funil-dica { font-size: 9.5px; color: #888; font-style: italic; margin-top: 8px; line-height: 1.5; }
+
+        .funil-conector { height: 14px; margin: 0 auto; background: #ebebeb; }
+
+        .funil-etapa-final { border: 1.5px solid #000; background: #fff; padding: 14px 16px; text-align: center; }
+        .funil-etapa-final .funil-etapa-titulo { text-align: center; }
+        .funil-linha-final { font-size: 12.5px; font-weight: bold; color: #000; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .funil-linha-final .input-line { flex: 1; max-width: 220px; border-bottom: 1px solid #333; height: 18px; }
+
+        .pergunta-item { margin-bottom: 14px; }
+        .pergunta-item:last-child { margin-bottom: 0; }
+        .pergunta-label { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 8px; line-height: 1.5; }
+
+        .resposta-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+        .resposta-prefix { font-size: 12px; color: #666; white-space: nowrap; }
+        .input-line { display: inline-block; border-bottom: 1px solid #999; height: 20px; flex: 1; min-width: 140px; }
+
+        .resposta-aberta { display: block; border-bottom: 1px solid #999; height: 18px; width: 100%; margin-top: 2px; }
+
+        .tabela-secundaria { margin: 20px 0 20px 0; }
+        .tabela-secundaria-label { font-size: 12px; font-weight: bold; color: #333; margin-bottom: 8px; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 6px; font-size: 11px; }
+        table th { background: #f5f5f5; padding: 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: #555; }
+        table td { padding: 6px 8px; border: 1px solid #eee; height: 22px; }
+        table tbody tr:nth-child(even) td { background: #fafafa; }
+
+        .duvida-item { margin-bottom: 8px; font-size: 12px; }
+        .duvida-item strong { color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 14px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            table { page-break-inside: avoid; }
+            .funil-etapa, .funil-etapa-final { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🧠 Gestão — Vendas</div>
+
+        <div class="titulo">Funil de Alavancas Comerciais</div>
+        <div class="subtitulo">Da lista de cinco à escolhida — filtro em cascata, sem negociar com o que não passa.</div>
+
+        <div class="funil">
+
+            <div class="funil-etapa" style="width:100%;">
+                <div class="funil-etapa-titulo">Etapa 1 — As 5 alavancas em cima da mesa</div>
+                <div class="funil-etapa-desc">Liste as iniciativas comerciais que estão na sua cabeça ou já em conversa — sem filtrar pela que parece mais óbvia.</div>
+                <div class="funil-linhas">
+                    <div class="funil-linha"><span class="funil-num">1.</span><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-num">2.</span><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-num">3.</span><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-num">4.</span><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-num">5.</span><span class="funil-input"></span></div>
+                </div>
+                <div class="funil-dica">ex. comércio: abrir canal de revenda em nova região · aprofundar carteira atual com programa de indicação · ex. serviço: fechar contrato anual com cliente-âncora ampliando escopo de postos · investir em aquisição digital para conta nova · ex. indústria: investir em capacidade (turno extra, máquina, terceirização) · negociar exclusividade com fornecedor-chave · ex. e-commerce: reduzir CAC testando novo mix de criativos e canais de tráfego · renegociar tabela de frete com transportadora para melhorar conversão no carrinho</div>
+            </div>
+
+            <div class="funil-conector" style="width:100%; clip-path: polygon(0 0, 100% 0, 93% 100%, 7% 100%);"></div>
+
+            <div class="funil-etapa" style="width:86%;">
+                <div class="funil-etapa-titulo">Etapa 2 — Filtro: impacto real esperado</div>
+                <div class="funil-etapa-desc">Para cada uma das 5, escreva o impacto real esperado nos próximos 90 dias. Risque as que não têm impacto nenhum — só barulho.</div>
+                <div class="funil-linhas">
+                    <div class="funil-linha"><span class="funil-num">1.</span><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-num">2.</span><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-num">3.</span><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-num">4.</span><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-num">5.</span><span class="funil-input"></span></div>
+                </div>
+            </div>
+
+            <div class="funil-conector" style="width:86%; clip-path: polygon(0 0, 100% 0, 89.5% 100%, 10.5% 100%);"></div>
+
+            <div class="funil-etapa" style="width:68%;">
+                <div class="funil-etapa-titulo">Etapa 3 — Filtro: esforço sustentável em 90 dias</div>
+                <div class="funil-etapa-desc">Das que sobraram, quais têm esforço (tempo, dinheiro, gente) que você sustenta até o fim, sem abandonar no meio do caminho? Risque as que não têm.</div>
+                <div class="funil-linhas">
+                    <div class="funil-linha"><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-input"></span></div>
+                </div>
+            </div>
+
+            <div class="funil-conector" style="width:68%; clip-path: polygon(0 0, 100% 0, 86.75% 100%, 13.25% 100%);"></div>
+
+            <div class="funil-etapa" style="width:50%;">
+                <div class="funil-etapa-titulo">Etapa 4 — Filtro: estrutura hoje</div>
+                <div class="funil-etapa-desc">Das que sobraram, para qual você já tem estrutura hoje — sem depender de contratação, treinamento ou fôlego que ainda não existe? Risque a que não tem.</div>
+                <div class="funil-linhas">
+                    <div class="funil-linha"><span class="funil-input"></span></div>
+                    <div class="funil-linha"><span class="funil-input"></span></div>
+                </div>
+            </div>
+
+            <div class="funil-conector" style="width:50%; clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%);"></div>
+
+            <div class="funil-etapa funil-etapa-final" style="width:32%;">
+                <div class="funil-etapa-titulo">Etapa 5 — A escolhida</div>
+                <div class="funil-linha-final">Sobreviveu: <span class="input-line"></span></div>
+            </div>
+
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Por que essa e não as outras?</div>
+            <span class="resposta-aberta"></span>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">O que você está deixando de fora ao escolher essa — nomeado, não só sentido:</div>
+            <span class="resposta-aberta"></span>
+        </div>
+
+        <div class="pergunta-item">
+            <div class="pergunta-label">Até quando essa ausência é sustentável?</div>
+            <span class="resposta-aberta"></span>
+        </div>
+
+        <div class="tabela-secundaria">
+            <div class="tabela-secundaria-label">Para as que ficaram de fora — quando você olha para elas de novo?</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:65%;">Iniciativa adiada</th>
+                        <th style="width:35%;">Revisão em</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Mas eu preciso testar várias para saber qual funciona."</strong>
+            <span> → Testar várias ao mesmo tempo não é teste — é dispersão com nome bonito. Teste de verdade tem uma variável por vez, tempo suficiente para dar resultado e alguém dedicado a acompanhar. Cinco iniciativas com um terço de atenção cada não geram cinco resultados parciais. Geram nenhum.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Se eu escolher uma, posso estar deixando a melhor de fora."</strong>
+            <span> → Pode. Mas hoje você já está deixando as cinco de fora — só que sem admitir. Escolher uma com esforço real tem mais chance de gerar impacto do que cinco com esforço nenhum.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"As outras não vão esperar a concorrência sentir isso primeiro."</strong>
+            <span> → Talvez não esperem. Mas a alavanca que você puxa pela metade também não chega antes — só demora mais para você perceber que não chegou.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe qual iniciativa concentra o esforço comercial dos próximos 90 dias e o que aceitou deixar de fora para isso valer. O resultado não aparece porque você teve mais ideias. Aparece porque parou de puxar todas ao mesmo tempo.
+        </div>
+    </div>
+</body>
+</html>

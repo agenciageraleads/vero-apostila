@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 13 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.5; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 26px 38px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 9px; border-bottom: 2px solid #999; padding-bottom: 4px; }
+
+        .titulo { font-size: 15.5px; font-weight: bold; margin-bottom: 3px; color: #000; }
+        .subtitulo { font-size: 10.5px; color: #888; margin-bottom: 6px; font-style: italic; line-height: 1.4; }
+
+        .instrucao-forte { font-size: 10.5px; color: #333; margin-bottom: 8px; line-height: 1.4; }
+
+        /* Medidor / escala */
+        .medidor-bloco { margin: 7px 0; padding: 7px 12px; border: 1px solid #e2e2e2; background: #fcfcfc; }
+        .medidor-bloco + .medidor-bloco { margin-top: 6px; }
+
+        .medidor-titulo { font-size: 11px; font-weight: bold; color: #000; margin-bottom: 4px; }
+
+        .campo-linha-dupla { display: flex; align-items: baseline; gap: 6px; font-size: 10px; color: #333; margin-bottom: 5px; flex-wrap: wrap; }
+        .campo-linha-dupla .rotulo { white-space: nowrap; }
+        .campo-linha-dupla .preenchimento { flex: 1; border-bottom: 1px solid #bbb; height: 12px; min-width: 40px; }
+        .campo-linha-dupla .preenchimento.curto { flex: 0 1 90px; }
+
+        .medidor-extremos { display: flex; justify-content: space-between; font-size: 9px; color: #666; margin: 4px 4px 0 4px; }
+
+        .medidor-escala { position: relative; height: 18px; margin: 2px 4px 1px 4px; }
+        .medidor-escala .linha-base { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #999; }
+        .medidor-escala .tick { position: absolute; top: calc(50% - 5px); width: 1px; height: 10px; background: #999; }
+        .medidor-escala .tick.t0 { left: 0; }
+        .medidor-escala .tick.t25 { left: 25%; }
+        .medidor-escala .tick.t50 { left: 50%; }
+        .medidor-escala .tick.t75 { left: 75%; }
+        .medidor-escala .tick.t100 { left: 100%; }
+
+        .medidor-numeros { display: flex; justify-content: space-between; font-size: 8.5px; color: #999; margin: 0 4px 4px 4px; }
+
+        .medidor-instrucao-x { font-size: 9px; color: #999; font-style: italic; text-align: center; margin-bottom: 4px; }
+
+        .decisoes-par { display: flex; gap: 14px; }
+        .decisoes-par .decisao { flex: 1; font-size: 9.5px; color: #333; }
+        .decisoes-par .decisao .rotulo-decisao { display: block; color: #777; font-style: italic; margin-bottom: 2px; line-height: 1.3; }
+        .decisoes-par .decisao .linha { border-bottom: 1px solid #ccc; height: 12px; }
+
+        .hint-segmentos { font-size: 9px; color: #888; font-style: italic; line-height: 1.4; margin: 4px 0 8px 0; }
+
+        .pergunta-chave { font-size: 11px; font-weight: bold; margin: 8px 0 3px 0; color: #000; line-height: 1.3; }
+
+        .contato-linha { font-size: 10px; margin-bottom: 3px; color: #333; }
+        .contato-linha .campo-preenchimento { display: inline-block; min-width: 200px; border-bottom: 1px solid #ccc; height: 12px; }
+
+        .resposta-linha { border-bottom: 1px solid #ccc; height: 12px; margin-bottom: 3px; }
+
+        .duvida-item { margin-bottom: 4px; font-size: 10px; }
+        .duvida-item strong { display: block; margin-bottom: 2px; color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 6px; padding-top: 6px; border-top: 1px solid #ddd; font-size: 10px; line-height: 1.45; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 26px 38px; box-shadow: none; page-break-after: always; }
+            .medidor-bloco { page-break-inside: avoid; }
+            .duvida-item { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🧠 Gestão — Pessoas</div>
+
+        <div class="titulo">Antes de trocar o crachá de lugar</div>
+        <div class="subtitulo">Ademir não tem um problema com o Edgar. Tem um cargo de líder e uma pessoa que decide na prática — e nunca colocou os dois lado a lado pra ver se são a mesma.</div>
+        <div class="instrucao-forte">Liste quem, hoje, responde por resultado na sua operação — com cargo de líder ou sem ele. Para cada pessoa, marque na régua o quanto ela decide sozinha e o quanto ainda sobe até você — depois escreva a decisão real que sustenta essa marca.</div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Pessoa 1</div>
+            <div class="campo-linha-dupla"><span class="rotulo">Nome:</span><span class="preenchimento curto"></span><span class="rotulo">Resultado pelo qual ela responde de verdade:</span><span class="preenchimento"></span></div>
+            <div class="medidor-extremos"><span>Decide tudo sozinha</span><span>Tudo sobe até você</span></div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="medidor-instrucao-x">(marque com um X onde ela está hoje)</div>
+            <div class="decisoes-par">
+                <div class="decisao"><span class="rotulo-decisao">Decisão real e recente que ela já tomou sem te perguntar:</span><div class="linha"></div></div>
+                <div class="decisao"><span class="rotulo-decisao">Decisão real e recente que ainda veio até você, mesmo devendo ser dela:</span><div class="linha"></div></div>
+            </div>
+        </div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Pessoa 2</div>
+            <div class="campo-linha-dupla"><span class="rotulo">Nome:</span><span class="preenchimento curto"></span><span class="rotulo">Resultado pelo qual ela responde de verdade:</span><span class="preenchimento"></span></div>
+            <div class="medidor-extremos"><span>Decide tudo sozinha</span><span>Tudo sobe até você</span></div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="medidor-instrucao-x">(marque com um X onde ela está hoje)</div>
+            <div class="decisoes-par">
+                <div class="decisao"><span class="rotulo-decisao">Decisão real e recente que ela já tomou sem te perguntar:</span><div class="linha"></div></div>
+                <div class="decisao"><span class="rotulo-decisao">Decisão real e recente que ainda veio até você, mesmo devendo ser dela:</span><div class="linha"></div></div>
+            </div>
+        </div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Pessoa 3</div>
+            <div class="campo-linha-dupla"><span class="rotulo">Nome:</span><span class="preenchimento curto"></span><span class="rotulo">Resultado pelo qual ela responde de verdade:</span><span class="preenchimento"></span></div>
+            <div class="medidor-extremos"><span>Decide tudo sozinha</span><span>Tudo sobe até você</span></div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="medidor-instrucao-x">(marque com um X onde ela está hoje)</div>
+            <div class="decisoes-par">
+                <div class="decisao"><span class="rotulo-decisao">Decisão real e recente que ela já tomou sem te perguntar:</span><div class="linha"></div></div>
+                <div class="decisao"><span class="rotulo-decisao">Decisão real e recente que ainda veio até você, mesmo devendo ser dela:</span><div class="linha"></div></div>
+            </div>
+        </div>
+
+        <div class="medidor-bloco">
+            <div class="medidor-titulo">Pessoa 4</div>
+            <div class="campo-linha-dupla"><span class="rotulo">Nome:</span><span class="preenchimento curto"></span><span class="rotulo">Resultado pelo qual ela responde de verdade:</span><span class="preenchimento"></span></div>
+            <div class="medidor-extremos"><span>Decide tudo sozinha</span><span>Tudo sobe até você</span></div>
+            <div class="medidor-escala">
+                <div class="linha-base"></div>
+                <div class="tick t0"></div>
+                <div class="tick t25"></div>
+                <div class="tick t50"></div>
+                <div class="tick t75"></div>
+                <div class="tick t100"></div>
+            </div>
+            <div class="medidor-numeros"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <div class="medidor-instrucao-x">(marque com um X onde ela está hoje)</div>
+            <div class="decisoes-par">
+                <div class="decisao"><span class="rotulo-decisao">Decisão real e recente que ela já tomou sem te perguntar:</span><div class="linha"></div></div>
+                <div class="decisao"><span class="rotulo-decisao">Decisão real e recente que ainda veio até você, mesmo devendo ser dela:</span><div class="linha"></div></div>
+            </div>
+        </div>
+
+        <div class="hint-segmentos">ex. comércio: balconista que já decide reposição de giro rápido sem perguntar, mas ainda te consulta pra negociar prazo com fornecedor novo · ex. serviço: supervisor de campo que já realoca equipe entre contratos no mesmo dia, mas ainda te espera pra autorizar desconto fora da tabela · ex. indústria: encarregado de linha que já reorganiza prioridade quando falta insumo, mas ainda te aguarda pra decidir qual cliente atrasa · ex. e-commerce: atendente de chat que já aprova reembolso de pedido com defeito sem perguntar, mas ainda te aguarda pra decidir se bloqueia comprador reincidente em chargeback</div>
+
+        <div class="pergunta-chave">O nome cujo medidor está mais perto de 100% — mais decisão sozinha — é o mesmo nome que carrega o cargo de líder?</div>
+        <div class="contato-linha">☐ Sim &nbsp;&nbsp;&nbsp; ☐ Não — se não, escreva os dois nomes lado a lado:</div>
+        <div class="contato-linha">Cargo de líder: <span class="campo-preenchimento"></span></div>
+        <div class="contato-linha">Quem decide de fato: <span class="campo-preenchimento"></span></div>
+
+        <div class="pergunta-chave">Se a decisão que hoje "ainda vem até você" parar de vir — o que muda na sua semana?</div>
+        <div class="resposta-linha"></div>
+        <div class="resposta-linha"></div>
+
+        <div class="pergunta-chave">Se ela continuar vindo até você pelos próximos doze meses — o que isso custa pra fábrica, mesmo que nada pareça estar errado?</div>
+        <div class="resposta-linha"></div>
+        <div class="resposta-linha"></div>
+
+        <div class="duvida-item">
+            <strong>"Tenho medo que ela não aguente o peso quando começar a errar."</strong>
+            <span>Ela já erra hoje, sem autoridade nenhuma pra sustentar o erro. Formalizar não cria o risco — só dá a ela o que falta pra responder por ele.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Sinto que estou traindo quem sempre foi leal e tem mais tempo de casa."</strong>
+            <span>Lealdade e tempo de casa não são a mesma coisa que decisão. Reconhecer os onze anos de alguém não obriga você a manter esse alguém num cargo que ele não está exercendo.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Meu time vai achar que estou promovendo por simpatia, não por mérito."</strong>
+            <span>Vão achar, até verem a pessoa decidindo o que já decide há meses — só que agora com o nome certo no lugar certo.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Não sei se estou pronto pra parar de ser eu a resolver tudo."</strong>
+            <span>Ninguém está pronto pra isso. A pergunta não é se você está pronto. É até quando a operação aguenta esperar você estar.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você para de confundir tempo de casa com liderança real — e passa a saber, nome por nome, quem decide de verdade o que na sua operação. Se o cargo e a decisão continuam sendo pessoas diferentes, pelo menos agora você sabe exatamente qual conversa vinha evitando.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 18 — Canvas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
+        .subtitulo { font-size: 12px; color: #888; margin-bottom: 14px; font-style: italic; line-height: 1.6; }
+
+        .vinculo-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 11px; }
+
+        .vinculo-table thead tr th {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 7px 8px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #555;
+            text-align: left;
+        }
+
+        .vinculo-table tbody tr td {
+            border: 1px solid #eee;
+            height: 24px;
+            padding: 0 8px;
+        }
+
+        .vinculo-table tbody tr td.col-risco {
+            text-align: center;
+            font-size: 10px;
+            color: #bbb;
+            white-space: nowrap;
+        }
+
+        .vinculo-table tbody tr:nth-child(even) td {
+            background: #fafafa;
+        }
+
+        .hint { font-size: 10px; color: #999; font-style: italic; margin: 8px 0 18px 0; line-height: 1.6; }
+
+        .resumo { margin: 18px 0; padding: 14px 16px; border-left: 3px solid #999; background: #fafafa; }
+        .resumo-item { display: flex; align-items: flex-end; gap: 8px; font-size: 12px; color: #555; margin-bottom: 10px; }
+        .resumo-item:last-child { margin-bottom: 0; }
+        .resumo-linha { flex: 1; border-bottom: 1px solid #ccc; height: 18px; min-width: 30px; }
+
+        .acao-box { margin: 20px 0; }
+        .acao-box .pergunta-chave { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 10px; }
+        .acao-box .linha-preenchimento { display: block; border-bottom: 1px solid #999; height: 20px; margin-bottom: 10px; }
+
+        .duvida-item { margin-bottom: 10px; font-size: 12px; }
+        .duvida-item strong { display: block; margin-bottom: 2px; color: #333; }
+        .duvida-item span { color: #666; }
+
+        .resultado { margin-top: 14px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; height: auto; margin: 0; padding: 36px 40px; box-shadow: none; page-break-after: always; }
+            .vinculo-table { page-break-inside: avoid; }
+            .resumo, .acao-box { page-break-inside: avoid; }
+        }
+    </style>
+<link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
+  </head>
+<body>
+    <div class="page">
+        <div class="badge">🏛️ Legado — Vendas</div>
+
+        <div class="titulo">Quem Seu Cliente Liga Se Ele Sair Amanhã</div>
+        <div class="subtitulo">Edmar levou sete contas porque o vínculo era com ele, não com a distribuidora de Zuleica. Mapeie seus principais clientes agora — antes que alguém saia e você descubra do jeito difícil de quem era a relação.</div>
+
+        <table class="vinculo-table">
+            <thead>
+                <tr>
+                    <th style="width: 22%;">Cliente</th>
+                    <th style="width: 26%;">Com quem é o vínculo real</th>
+                    <th style="width: 32%;">O que está documentado em nome da empresa</th>
+                    <th style="width: 20%;">Risco se essa pessoa sair</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td></td><td></td><td></td><td class="col-risco">Alto &nbsp;·&nbsp; Médio &nbsp;·&nbsp; Baixo</td></tr>
+                <tr><td></td><td></td><td></td><td class="col-risco">Alto &nbsp;·&nbsp; Médio &nbsp;·&nbsp; Baixo</td></tr>
+                <tr><td></td><td></td><td></td><td class="col-risco">Alto &nbsp;·&nbsp; Médio &nbsp;·&nbsp; Baixo</td></tr>
+                <tr><td></td><td></td><td></td><td class="col-risco">Alto &nbsp;·&nbsp; Médio &nbsp;·&nbsp; Baixo</td></tr>
+            </tbody>
+        </table>
+
+        <div class="hint">ex. comércio: conta grande que só negocia com o vendedor de campo, sem contrato de tabela registrado · ex. serviço: cliente recorrente cujo contato direto é o celular pessoal do consultor, sem canal da empresa · ex. indústria: comprador que só fecha pedido com o representante técnico, sem histórico de negociação em sistema · ex. e-commerce: cliente recorrente que só finaliza a compra pelo link que o atendente manda no direct, sem pedido registrado na loja</div>
+
+        <div class="resumo">
+            <div class="resumo-item">Soma do faturamento dos clientes marcados "Alto": <div class="resumo-linha"></div></div>
+            <div class="resumo-item">Percentual sobre o faturamento total: <div class="resumo-linha"></div></div>
+        </div>
+
+        <div class="acao-box">
+            <div class="pergunta-chave">Para cada conta de risco alto, o que muda esta semana — canal institucional criado, contrato revisado, visita feita em dupla:</div>
+            <div class="linha-preenchimento"></div>
+            <div class="linha-preenchimento"></div>
+        </div>
+
+        <div class="duvida-item">
+            <strong>"Se eu documentar tudo, meu vendedor vai sentir que eu não confio nele."</strong>
+            <span> → Confiança não é deixar a relação sem registro. É documentar sem tirar dele a conta.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Meu melhor vendedor é bom justamente porque o cliente confia nele, não na empresa."</strong>
+            <span> → A confiança pode continuar sendo dele. O contrato e o canal institucional, não.</span>
+        </div>
+        <div class="duvida-item">
+            <strong>"Isso é coisa de empresa grande, com departamento comercial estruturado."</strong>
+            <span> → Empresa pequena perde a conta inteira quando o vendedor sai. Empresa grande absorve a saída.</span>
+        </div>
+
+        <div class="resultado">
+            Feito isso, você sabe exatamente quantos dos seus melhores clientes pertencem à empresa e quantos pertencem a quem atende. Se a resposta incomodar, é porque parte da sua carteira pode ir embora na próxima demissão, pedido de saída ou proposta da concorrência.
+        </div>
+    </div>
+</body>
+</html>

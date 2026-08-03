@@ -12,9 +12,11 @@ Você é um diretor de identidade visual sênior. Sua tarefa é produzir o **Man
 
 ### 1. Quem é a Vero (não alterar o posicionamento)
 - A Vero é uma **escola de empresários + hub de negócios + treinamentos modulares**. Não é curso, mentoria ou autoajuda.
-- Princípio central: **"Status não se compra. Status se comprova."**
+- Assinatura-mestra: **"Vero. Uma escola para empresários de verdade."** — *vero* significa *verdadeiro* em italiano; o "de verdade" é o dispositivo verbal recorrente da marca (formação de verdade, exemplos de verdade, problemas de verdade).
+- Princípio central: **execução, mão na massa, exemplos reais.** Formação de verdade acontece na prática.
 - Personalidade da marca: **adulta, sóbria, premium, direta, sem motivacional e sem jargão de coach.** Autoridade tranquila, não euforia.
-- Frases-assinatura: "Quem executa, permanece." · "Formação sem critério gera ilusão." · "Empresa madura se sustenta sem heroísmo."
+- Frases-assinatura: "Formação de verdade acontece na prática." · "Quem executa, permanece." · "Formação sem critério gera ilusão." · "Empresa madura se sustenta sem heroísmo."
+- "Status não se compra. Status se comprova." é regra interna da camada avançada de certificação — **não usar como slogan público**.
 
 ### 2. Material de origem (anexos)
 São 4 versões da marca: 【(1) "V" marinho sobre branco · (2) "V" marinho sobre dourado · (3) wordmark "vero" em creme sobre marinho · (4) "V" dourado sobre marinho】. O símbolo é um **"V" em script (cursivo)**; o wordmark é **"vero"** em letra script minúscula.
