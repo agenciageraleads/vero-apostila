@@ -5,66 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 09 — Canvas</title>
     <style>
+        :root {
+          --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+          --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+          --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+          --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+          --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+          --white:      #FFFFFF;   /* fundo principal da página — mantém */
+          --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+          --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+          --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+          --line:       #E3DECF;   /* bordas simples de tabela/grade */
+          --red:        #C0392B;   /* se houver categoria de risco/saída */
+          --red-bg:     #FBEDEA;
+          --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+          --green-bg:   #EAF3EC;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: var(--body); }
 
-        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 32px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 32px 40px; background: var(--white); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-dk); margin-bottom: 14px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        .titulo { font-size: 16px; font-weight: bold; margin-bottom: 4px; color: #000; }
-        .subtitulo { font-size: 11px; color: #888; margin-bottom: 10px; font-style: italic; line-height: 1.5; }
+        .titulo { font-size: 16px; font-weight: bold; margin-bottom: 4px; color: var(--navy); }
+        .subtitulo { font-size: 11px; color: var(--mute); margin-bottom: 10px; font-style: italic; line-height: 1.5; }
 
         /* ---------- Roda das três conversas ---------- */
         .roda-wrap { position: relative; width: 100%; height: 440px; margin: 34px 0 8px 0; }
 
         .roda-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .roda-svg line { stroke: #bbb; stroke-width: 1; stroke-dasharray: 2 3; }
+        .roda-svg line { stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 3; }
 
         .roda-centro {
             position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
             width: 160px; height: 160px; border-radius: 50%;
-            border: 2px solid #333; background: #fafafa;
+            border: 2px solid var(--navy); background: var(--panel);
             display: flex; align-items: center; justify-content: center;
             text-align: center; padding: 11px;
         }
-        .roda-centro-txt { font-size: 8px; line-height: 1.28; color: #222; }
+        .roda-centro-txt { font-size: 8px; line-height: 1.28; color: var(--body); }
         .roda-centro-pergunta { font-weight: bold; display: block; }
         .roda-centro-resp { display: flex; align-items: center; justify-content: center; gap: 4px; margin: 4px 0 9px 0; }
         .roda-centro-resp:last-child { margin-bottom: 0; }
-        .roda-centro-linha { display: inline-block; border-bottom: 1px solid #999; width: 22px; height: 10px; }
-        .roda-centro-de3 { font-size: 8px; color: #444; white-space: nowrap; }
+        .roda-centro-linha { display: inline-block; border-bottom: 1px solid var(--line); width: 22px; height: 10px; }
+        .roda-centro-de3 { font-size: 8px; color: var(--mute); white-space: nowrap; }
 
         .roda-item {
             position: absolute; width: 190px; transform: translate(-50%, -50%);
-            border: 1px solid #ccc; border-radius: 6px; padding: 8px 9px;
-            background: white;
+            border: 1px solid var(--line); border-radius: 6px; padding: 8px 9px;
+            background: var(--white);
         }
-        .roda-item-campo { font-size: 8.5px; color: #555; margin-bottom: 2px; }
-        .roda-item-linha { display: block; border-bottom: 1px solid #ccc; height: 11px; width: 100%; margin-bottom: 5px; }
+        .roda-item-campo { font-size: 8.5px; color: var(--mute); margin-bottom: 2px; }
+        .roda-item-linha { display: block; border-bottom: 1px solid var(--line); height: 11px; width: 100%; margin-bottom: 5px; }
         .roda-item-linha:last-child { margin-bottom: 0; }
 
         .roda-p1 { left: 50%; top: 14%; }
         .roda-p2 { left: 85%; top: 80%; }
         .roda-p3 { left: 15%; top: 80%; }
 
-        .dica { font-size: 10px; color: #888; font-style: italic; margin: 0 0 11px 0; line-height: 1.5; }
+        .dica { font-size: 10px; color: var(--mute); font-style: italic; margin: 0 0 11px 0; line-height: 1.5; }
 
-        .secao-titulo { font-size: 12.5px; font-weight: bold; margin: 4px 0 8px 0; color: #000; }
+        .secao-titulo { font-size: 12.5px; font-weight: bold; margin: 4px 0 8px 0; color: var(--navy); }
 
         .pergunta-item { margin-bottom: 9px; }
         .pergunta-item:last-of-type { margin-bottom: 8px; }
-        .pergunta-label { font-size: 12px; font-weight: bold; color: #000; margin-bottom: 7px; line-height: 1.4; }
+        .pergunta-label { font-size: 12px; font-weight: bold; color: var(--navy); margin-bottom: 7px; line-height: 1.4; }
 
         .resposta-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; flex-wrap: wrap; }
-        .resposta-prefix { font-size: 12px; color: #666; white-space: nowrap; }
-        .input-line { display: inline-block; border-bottom: 1px solid #999; height: 17px; flex: 1; min-width: 140px; }
+        .resposta-prefix { font-size: 12px; color: var(--mute); white-space: nowrap; }
+        .input-line { display: inline-block; border-bottom: 1px solid var(--line); height: 17px; flex: 1; min-width: 140px; }
 
         .duvida-item { margin-bottom: 6px; font-size: 11px; }
-        .duvida-item strong { color: #333; display: block; margin-bottom: 2px; }
-        .duvida-item span { color: #666; }
+        .duvida-item strong { color: var(--body); display: block; margin-bottom: 2px; }
+        .duvida-item span { color: var(--mute); }
 
-        .resultado { margin-top: 9px; padding-top: 8px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.55; color: #444; }
+        .resultado { margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 11px; line-height: 1.55; color: var(--body); }
 
         @media print {
             body { margin: 0; }

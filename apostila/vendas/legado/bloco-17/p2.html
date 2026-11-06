@@ -5,22 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 17 — Canvas</title>
     <style>
+        :root {
+          --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+          --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+          --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+          --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+          --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+          --white:      #FFFFFF;   /* fundo principal da página — mantém */
+          --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+          --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+          --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+          --line:       #E3DECF;   /* bordas simples de tabela/grade */
+          --red:        #C0392B;   /* se houver categoria de risco/saída */
+          --red-bg:     #FBEDEA;
+          --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+          --green-bg:   #EAF3EC;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: var(--body); }
 
-        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: var(--white); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-dk); margin-bottom: 16px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        .titulo { font-size: 18px; font-weight: bold; margin: 20px 0 4px 0; color: #000; }
+        .titulo { font-size: 18px; font-weight: bold; margin: 20px 0 4px 0; color: var(--navy); }
 
-        .instrucao { font-size: 13px; color: #666; margin-bottom: 15px; font-style: italic; }
+        .instrucao { font-size: 13px; color: var(--mute); margin-bottom: 15px; font-style: italic; }
 
         table { width: 100%; border-collapse: collapse; margin: 20px 0 10px 0; font-size: 11.5px; }
-        table th { background: #f5f5f5; padding: 9px 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; }
-        table td { padding: 8px; border: 1px solid #ddd; height: 32px; }
+        table th { background: var(--panel); padding: 9px 8px; text-align: left; border: 1px solid var(--line); font-weight: bold; color: var(--navy); }
+        table td { padding: 8px; border: 1px solid var(--line); height: 32px; }
 
-        .nota-canvas { font-size: 11px; color: #777; font-style: italic; line-height: 1.6; margin: 8px 0 22px 0; padding-top: 10px; border-top: 1px solid #eee; }
+        .nota-canvas { font-size: 11px; color: var(--mute); font-style: italic; line-height: 1.6; margin: 8px 0 22px 0; padding-top: 10px; border-top: 1px solid var(--line); }
 
         .resumo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 22px; }
 
@@ -29,29 +45,29 @@
             align-items: flex-end;
             gap: 8px;
             font-size: 12px;
-            color: #555;
-            border-bottom: 1px solid #ddd;
+            color: var(--mute);
+            border-bottom: 1px solid var(--line);
             padding-bottom: 4px;
         }
 
-        .resumo-item span { font-weight: bold; color: #222; }
+        .resumo-item span { font-weight: bold; color: var(--body); }
 
         .resumo-linha {
             flex: 1;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid var(--line);
             height: 18px;
             min-width: 30px;
         }
 
-        .pergunta-chave { font-size: 14px; font-weight: bold; margin: 22px 0 10px 0; color: #000; }
+        .pergunta-chave { font-size: 14px; font-weight: bold; margin: 22px 0 10px 0; color: var(--navy); }
 
-        .linha-resposta { border-bottom: 1px solid #ccc; height: 26px; margin-bottom: 20px; }
+        .linha-resposta { border-bottom: 1px solid var(--line); height: 26px; margin-bottom: 20px; }
 
         .duvida-item { margin: 18px 0; font-size: 13px; }
-        .duvida-item strong { display: block; margin-bottom: 5px; color: #333; }
-        .duvida-item p { color: #666; line-height: 1.6; }
+        .duvida-item strong { display: block; margin-bottom: 5px; color: var(--body); }
+        .duvida-item p { color: var(--mute); line-height: 1.6; }
 
-        .resultado { margin: 26px 0 0 0; padding-top: 18px; border-top: 1px solid #ddd; font-size: 13px; line-height: 1.7; color: #333; }
+        .resultado { margin: 26px 0 0 0; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13px; line-height: 1.7; color: var(--body); }
 
         @media print {
             body { margin: 0; }

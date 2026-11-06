@@ -5,22 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 05 — Canvas</title>
     <style>
+        :root {
+          --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+          --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+          --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+          --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+          --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+          --white:      #FFFFFF;   /* fundo principal da página — mantém */
+          --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+          --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+          --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+          --line:       #E3DECF;   /* bordas simples de tabela/grade */
+          --red:        #C0392B;   /* se houver categoria de risco/saída */
+          --red-bg:     #FBEDEA;
+          --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+          --green-bg:   #EAF3EC;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: var(--body); }
 
-        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 36px 40px; background: var(--white); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-dk); margin-bottom: 16px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
-        .subtitulo { font-size: 12px; color: #888; margin-bottom: 20px; font-style: italic; }
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: var(--navy); }
+        .subtitulo { font-size: 12px; color: var(--mute); margin-bottom: 20px; font-style: italic; }
 
-        .decomp { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; border: 1px solid #ddd; }
+        .decomp { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; border: 1px solid var(--line); }
 
         .decomp-row {
             display: flex;
             align-items: center;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--line);
             padding: 8px 14px;
             gap: 12px;
         }
@@ -30,12 +46,12 @@
         .decomp-label {
             flex: 1;
             font-size: 12px;
-            color: #444;
+            color: var(--body);
         }
 
         .decomp-valor {
             font-size: 12px;
-            color: #666;
+            color: var(--mute);
             display: flex;
             align-items: center;
             gap: 4px;
@@ -44,54 +60,54 @@
 
         .val-linha {
             display: inline-block;
-            border-bottom: 1px solid #bbb;
+            border-bottom: 1px solid var(--mute);
             width: 70px;
             height: 18px;
         }
 
         .decomp-row.total {
-            background: #f5f5f5;
-            border-top: 2px solid #bbb;
-            border-bottom: 2px solid #bbb;
+            background: var(--panel);
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
         }
 
         .decomp-row.total .decomp-label {
             font-weight: bold;
             font-size: 12px;
-            color: #222;
+            color: var(--navy);
             text-transform: uppercase;
             letter-spacing: 0.4px;
         }
 
         .decomp-row.total .decomp-valor {
             font-weight: bold;
-            color: #222;
+            color: var(--navy);
         }
 
         .decomp-row.preco-correto {
-            background: #222;
+            background: var(--navy);
         }
 
         .decomp-row.preco-correto .decomp-label {
             font-weight: bold;
             font-size: 12px;
-            color: #fff;
+            color: var(--cream);
             text-transform: uppercase;
             letter-spacing: 0.4px;
         }
 
         .decomp-row.preco-correto .decomp-valor {
-            color: #fff;
+            color: var(--cream);
             font-weight: bold;
         }
 
         .decomp-row.preco-correto .val-linha {
-            border-bottom-color: #888;
+            border-bottom-color: var(--gold);
         }
 
         .decomp-row.diferenca {
-            background: #fafafa;
-            border-top: 1px solid #ccc;
+            background: var(--panel);
+            border-top: 1px solid var(--line);
         }
 
         .ajuste-box { margin-bottom: 16px; }
@@ -99,7 +115,7 @@
         .ajuste-label {
             font-size: 12px;
             font-weight: bold;
-            color: #333;
+            color: var(--navy);
             margin-bottom: 8px;
         }
 
@@ -110,22 +126,22 @@
             align-items: center;
             gap: 6px;
             font-size: 12px;
-            color: #555;
+            color: var(--body);
         }
 
         .check-box {
             width: 14px;
             height: 14px;
-            border: 1px solid #aaa;
+            border: 1px solid var(--mute);
             display: inline-block;
             flex-shrink: 0;
         }
 
         .duvida-item { margin-bottom: 7px; font-size: 12px; }
-        .duvida-item strong { color: #333; }
-        .duvida-item span { color: #666; }
+        .duvida-item strong { color: var(--navy); }
+        .duvida-item span { color: var(--body); }
 
-        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12px; line-height: 1.7; color: var(--body); }
 
         @media print {
             body { margin: 0; }
@@ -152,7 +168,7 @@
             </div>
             <div class="decomp-row">
                 <span class="decomp-label">Tempo invisível (reunião, ajuste, retrabalho, entrega)
-                    <br><span style="font-size:10px;color:#aaa;">ex. comércio: prazo de reposição · serviço: deslocamento · indústria: setup e refugo · e-commerce: tempo tratando chargeback e reposição de estoque sem loja física</span>
+                    <br><span style="font-size:10px;color:var(--mute);">ex. comércio: prazo de reposição · serviço: deslocamento · indústria: setup e refugo · e-commerce: tempo tratando chargeback e reposição de estoque sem loja física</span>
                 </span>
                 <span class="decomp-valor">R$ <span class="val-linha"></span></span>
             </div>
@@ -178,7 +194,7 @@
             </div>
             <div class="decomp-row diferenca">
                 <span class="decomp-label" style="font-weight:bold;">Diferença</span>
-                <span class="decomp-valor">R$ <span class="val-linha"></span> &nbsp;<span style="font-size:11px;color:#888;">☐ a mais &nbsp;☐ a menos</span></span>
+                <span class="decomp-valor">R$ <span class="val-linha"></span> &nbsp;<span style="font-size:11px;color:var(--mute);">☐ a mais &nbsp;☐ a menos</span></span>
             </div>
         </div>
 

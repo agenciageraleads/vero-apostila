@@ -1,103 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloco 01 — Canvas</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
-
-        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 20px; border-bottom: 2px solid #999; padding-bottom: 5px; }
-
-        .titulo { font-size: 18px; font-weight: bold; margin: 20px 0; color: #000; }
-
-        .instrucao { font-size: 13px; color: #666; margin-bottom: 15px; font-style: italic; }
-
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 12px; }
-        table th { background: #f5f5f5; padding: 10px; text-align: left; border: 1px solid #ddd; font-weight: bold; }
-        table td { padding: 8px 10px; border: 1px solid #ddd; height: 30px; }
-
-        .soma-box { margin: 20px 0; padding: 15px; border-left: 3px solid #999; background: #fafafa; font-size: 13px; }
-        .soma-box p { margin-bottom: 8px; }
-
-        .pergunta-chave { font-size: 14px; font-weight: bold; margin: 25px 0 10px 0; color: #000; }
-
-        .duvida-item { margin: 20px 0; font-size: 13px; }
-        .duvida-item strong { display: block; margin-bottom: 5px; color: #333; }
-        .duvida-item p { color: #666; line-height: 1.6; }
-
-        .resultado { margin: 30px 0 0 0; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; line-height: 1.7; color: #333; }
-
-        @media print {
-            body { margin: 0; }
-            .page { width: 100%; height: auto; margin: 0; padding: 40px; box-shadow: none; page-break-after: always; }
-            table { page-break-inside: avoid; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 01 · P2 · Canvas — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Estilos: fonte de verdade em _estilo/estilo.css -->
+<style>
+:root {
+  --navy:       #052B5A;
+  --navy-deep:  #192C4C;
+  --gold:       #DEBB5F;
+  --gold-dk:    #B08D2E;
+  --cream:      #F2E4B6;
+  --white:      #FFFFFF;
+  --panel:      #F5F1E6;
+  --body:       #3D4658;
+  --mute:       #8A91A0;
+  --line:       #E3DECF;
+  --red:        #C0392B;
+  --red-bg:     #FBEDEA;
+  --green:      #2E7D46;
+  --green-bg:   #EAF3EC;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--panel);color:var(--body);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--line);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy);}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold-dk);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;}
+.doc-meta span{color:var(--gold-dk);}
+.bloco-header{padding:2.5rem 3rem 2rem;border-bottom:1px solid var(--line);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--navy);}
+.bloco-sub{font-size:0.85rem;font-weight:300;color:var(--mute);margin-top:0.5rem;}
+.canvas-section{padding:2.5rem 3rem;border-bottom:1px solid var(--line);}
+.canvas-table{width:100%;border-collapse:collapse;font-size:0.78rem;}
+.canvas-table thead tr{background:var(--navy);}
+.canvas-table thead th{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);padding:0.6rem 0.7rem;text-align:left;font-weight:400;}
+.canvas-table tbody tr td{padding:0.55rem 0.7rem;border-bottom:1px solid var(--line);font-weight:300;color:var(--body);height:1.8rem;}
+.canvas-table tbody tr:nth-child(even) td{background:var(--panel);}
+.soma-box{margin-top:1.8rem;padding:1.4rem 1.6rem;background:var(--panel);border-left:3px solid var(--gold);}
+.soma-box p{font-size:0.85rem;color:var(--body);margin-bottom:0.5rem;}
+.soma-box p:last-child{margin-bottom:0;}
+.soma-box strong{color:var(--navy);}
+.pergunta-chave-section{padding:1.8rem 3rem;border-bottom:1px solid var(--line);background:var(--panel);}
+.pergunta-chave{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--navy);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.duvidas-section{padding:2.2rem 3rem;border-bottom:1px solid var(--line);}
+.duvida-item{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--line);}
+.duvida-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.duvida-q{font-family:'Playfair Display',serif;font-size:0.88rem;font-style:italic;color:var(--navy);margin-bottom:0.4rem;}
+.duvida-a{font-size:0.85rem;font-weight:300;line-height:1.65;color:var(--body);padding-left:1rem;border-left:2px solid var(--gold);}
+.resultado-section{padding:2rem 3rem;border-bottom:1px solid var(--line);background:var(--panel);}
+.resultado-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.resultado-text{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.65;color:var(--navy);}
+.resultado-text strong{font-weight:700;}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--mute);text-transform:uppercase;}
+.footer-nav a{color:var(--gold-dk);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--mute);border:1px solid var(--line);padding:0.25rem 0.6rem;}
+@media print{body{background:var(--white);}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}table{page-break-inside:avoid;}}
+</style>
 <link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">
   </head>
 <body>
-    <div class="page">
-        <div class="badge">🌱 Raiz — Vendas</div>
+<div class="page">
 
-        <div class="titulo">Auditoria de Venda — Últimas 10 Vendas</div>
-
-        <div class="instrucao">Preencha cada venda do último mês ou trimestre:</div>
-
-        <table>
-            <tr>
-                <th style="width: 12%;">Data</th>
-                <th style="width: 20%;">Cliente</th>
-                <th style="width: 12%;">Valor</th>
-                <th style="width: 20%;">Como soube?</th>
-                <th style="width: 18%;">Você fez 1º contato?</th>
-                <th style="width: 18%;">Acompanhamentos seus</th>
-            </tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
-        </table>
-
-        <div class="soma-box">
-            <p><strong>Soma:</strong></p>
-            <p>Quantas você iniciou pessoalmente? ___</p>
-            <p>Quantas você acompanhou até o fim? ___</p>
-            <p>Quantas fecharam SEM seu toque pessoal? ___</p>
-        </div>
-
-        <div class="pergunta-chave">
-            Agora tire a coluna "Acompanhamentos seus" da sua cabeça. Quanto daquelas 10 vendas realmente fecha?
-        </div>
-
-        <div class="duvida-item">
-            <strong>"Mas eu sou bom nisso, as pessoas me procuram."</strong>
-            <p>Se procuram você, por que não procuram a empresa?</p>
-        </div>
-
-        <div class="duvida-item">
-            <strong>"Se eu não acompanhasse, ninguém ia fechar."</strong>
-            <p>Verdade. O que isso significa sobre o seu negócio?</p>
-        </div>
-
-        <div class="duvida-item">
-            <strong>"Meu time é ruim."</strong>
-            <p>Seu time nunca foi treinado em vender porque você nunca precisou deles. Você fez tudo.</p>
-        </div>
-
-        <div class="resultado">
-            <p>Depois deste Canvas, você deixa de chamar "relacionamento" o que é prisão. E vê: enquanto cada venda depender de você correndo atrás, você não tem negócio. Tem um emprego onde você é o único funcionário que importa.</p>
-            <p style="margin-top: 12px;"><strong>Se dói, funcionou.</strong></p>
-        </div>
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
     </div>
+    <div class="doc-meta">Vendas · Raiz · <span>Bloco 01</span> · Página <span>02</span></div>
+  </header>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">Auditoria de venda — últimas 10 vendas</h1>
+    <p class="bloco-sub">Preencha cada venda do último mês ou trimestre.</p>
+  </div>
+
+  <div class="canvas-section">
+    <table class="canvas-table">
+      <thead>
+        <tr>
+          <th style="width:12%">Data</th>
+          <th style="width:20%">Cliente</th>
+          <th style="width:12%">Valor</th>
+          <th style="width:20%">Como soube?</th>
+          <th style="width:18%">Você fez 1º contato?</th>
+          <th style="width:18%">Acompanhamentos seus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>Sim / Não</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="soma-box">
+      <p><strong>Soma:</strong></p>
+      <p>Quantas você iniciou pessoalmente? ___</p>
+      <p>Quantas você acompanhou até o fim? ___</p>
+      <p>Quantas fecharam SEM seu toque pessoal? ___</p>
+    </div>
+  </div>
+
+  <div class="pergunta-chave-section">
+    <p class="pergunta-chave">Agora tire a coluna "Acompanhamentos seus" da sua cabeça. Quanto daquelas 10 vendas realmente fecha?</p>
+  </div>
+
+  <div class="duvidas-section">
+    <div class="duvida-item">
+      <p class="duvida-q">"Mas eu sou bom nisso, as pessoas me procuram."</p>
+      <p class="duvida-a">Se procuram você, por que não procuram a empresa?</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Se eu não acompanhasse, ninguém ia fechar."</p>
+      <p class="duvida-a">Verdade. O que isso significa sobre o seu negócio?</p>
+    </div>
+    <div class="duvida-item">
+      <p class="duvida-q">"Meu time é ruim."</p>
+      <p class="duvida-a">Seu time nunca foi treinado em vender porque você nunca precisou deles. Você fez tudo.</p>
+    </div>
+  </div>
+
+  <div class="resultado-section">
+    <div class="resultado-inner">
+      <p class="resultado-text">Depois deste exercício, você deixa de chamar "relacionamento" o que é prisão. E vê: enquanto cada venda depender de você correndo atrás, você não tem negócio. Tem um emprego onde você é o único funcionário que importa. <strong>Se dói, funcionou.</strong></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">← <a href="p1.html">Narrativa</a></div>
+    <div class="page-num">P2</div>
+  </footer>
+
+</div>
 </body>
 </html>

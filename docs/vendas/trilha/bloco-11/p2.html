@@ -5,43 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 11 — Canvas</title>
     <style>
+        :root {
+          --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+          --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+          --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+          --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+          --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+          --white:      #FFFFFF;   /* fundo principal da página — mantém */
+          --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+          --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+          --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+          --line:       #E3DECF;   /* bordas simples de tabela/grade */
+          --red:        #C0392B;   /* se houver categoria de risco/saída */
+          --red-bg:     #FBEDEA;
+          --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+          --green-bg:   #EAF3EC;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.5; color: #222; }
+        body { font-family: 'Georgia', serif; line-height: 1.5; color: var(--body); }
 
-        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 32px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 32px 40px; background: var(--white); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-dk); margin-bottom: 14px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
-        .subtitulo { font-size: 11.5px; color: #888; margin-bottom: 14px; font-style: italic; line-height: 1.5; }
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: var(--navy); }
+        .subtitulo { font-size: 11.5px; color: var(--mute); margin-bottom: 14px; font-style: italic; line-height: 1.5; }
 
-        .secao-titulo { font-size: 12.5px; font-weight: bold; margin: 12px 0 3px 0; color: #000; }
-        .secao-nota { font-size: 10.5px; color: #777; margin-bottom: 5px; }
+        .secao-titulo { font-size: 12.5px; font-weight: bold; margin: 12px 0 3px 0; color: var(--navy); }
+        .secao-nota { font-size: 10.5px; color: var(--mute); margin-bottom: 5px; }
 
         /* Perguntas lineares */
         .pergunta-item { margin-bottom: 10px; }
-        .pergunta { font-size: 12.5px; font-weight: bold; color: #000; margin-bottom: 3px; line-height: 1.4; }
-        .exemplo { font-size: 10.5px; color: #888; font-style: italic; margin: 4px 0 6px 0; line-height: 1.5; }
-        .resposta-linha { border-bottom: 1px solid #ccc; height: 16px; margin-bottom: 4px; }
+        .pergunta { font-size: 12.5px; font-weight: bold; color: var(--navy); margin-bottom: 3px; line-height: 1.4; }
+        .exemplo { font-size: 10.5px; color: var(--mute); font-style: italic; margin: 4px 0 6px 0; line-height: 1.5; }
+        .resposta-linha { border-bottom: 1px solid var(--line); height: 16px; margin-bottom: 4px; }
 
         /* Tabelas */
         table { width: 100%; border-collapse: collapse; margin: 4px 0 4px 0; font-size: 10.5px; }
-        table th { background: #f5f5f5; padding: 5px 7px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 9.5px; }
-        table td { padding: 0 7px; border: 1px solid #ddd; height: 18px; }
-        table td.col-sim-nao { text-align: center; font-size: 9.5px; color: #999; white-space: nowrap; }
+        table th { background: var(--panel); padding: 5px 7px; text-align: left; border: 1px solid var(--line); font-weight: bold; font-size: 9.5px; }
+        table td { padding: 0 7px; border: 1px solid var(--line); height: 18px; }
+        table td.col-sim-nao { text-align: center; font-size: 9.5px; color: var(--mute); white-space: nowrap; }
 
-        .soma-box { margin: 10px 0; padding: 10px 12px; border-left: 3px solid #999; background: #fafafa; font-size: 11.5px; }
+        .soma-box { margin: 10px 0; padding: 10px 12px; border-left: 3px solid var(--gold); background: var(--panel); font-size: 11.5px; }
         .soma-box p { margin-bottom: 5px; }
         .soma-box p:last-child { margin-bottom: 0; }
 
         .contato-linha { font-size: 11.5px; margin-bottom: 5px; }
-        .contato-linha .campo-preenchimento { display: inline-block; min-width: 160px; border-bottom: 1px solid #ccc; height: 14px; }
+        .contato-linha .campo-preenchimento { display: inline-block; min-width: 160px; border-bottom: 1px solid var(--line); height: 14px; }
 
         .duvida-item { margin-bottom: 6px; font-size: 11.5px; }
-        .duvida-item strong { color: #333; }
-        .duvida-item span { color: #666; }
+        .duvida-item strong { color: var(--navy); }
+        .duvida-item span { color: var(--body); }
 
-        .resultado { margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11.5px; line-height: 1.55; color: #444; }
+        .resultado { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 11.5px; line-height: 1.55; color: var(--body); }
 
         @media print {
             body { margin: 0; }

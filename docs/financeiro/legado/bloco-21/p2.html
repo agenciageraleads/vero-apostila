@@ -6,38 +6,53 @@
 <title>Bloco 21 · P2 — Vero</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--white:#FFFFFF;--bg:#F0EBE1;--surface:#F2EDE4;--ink:#1A1A1A;--ink-light:#909090;--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.08);--border:#E0D9CE;--border-dark:#C8BFB0;}
+:root {
+  --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+  --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+  --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+  --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+  --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+  --white:      #FFFFFF;   /* fundo principal da página — mantém */
+  --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+  --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+  --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+  --line:       #E3DECF;   /* bordas simples de tabela/grade */
+  --red:        #C0392B;   /* se houver categoria de risco/saída */
+  --red-bg:     #FBEDEA;
+  --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+  --green-bg:   #EAF3EC;
+}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;}
+body{background:var(--panel);color:var(--body);font-family:'DM Sans',sans-serif;}
 .page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
-header{border-bottom:1px solid var(--border);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
-.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
-.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
-.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
-.doc-meta span{color:var(--gold);}
-.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
-.canvas-header{padding:2rem 3rem;border-bottom:1px solid var(--border);}
-.canvas-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--ink);}
-.instrucao-section{padding:1.6rem 3rem;border-bottom:1px solid var(--border);background:var(--surface);}
-.instrucao-text{font-style:italic;font-size:0.9rem;line-height:1.6;color:var(--ink);}
+header{border-bottom:1px solid var(--line);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy);}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold-dk);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;}
+.doc-meta span{color:var(--gold-dk);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.2em;color:var(--gold-dk);text-transform:uppercase;border:1px solid var(--gold);padding:0.2rem 0.55rem;opacity:0.75;}
+.canvas-header{padding:2rem 3rem;border-bottom:1px solid var(--line);}
+.canvas-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--navy);}
+.instrucao-section{padding:1.6rem 3rem;border-bottom:1px solid var(--line);background:var(--panel);}
+.instrucao-text{font-style:italic;font-size:0.9rem;line-height:1.6;color:var(--body);}
 .campos-section{padding:2rem 3rem;}
-.pergunta-item{margin-bottom:2rem;padding-bottom:1.6rem;border-bottom:1px solid var(--border);}
+.pergunta-item{margin-bottom:2rem;padding-bottom:1.6rem;border-bottom:1px solid var(--line);}
 .pergunta-item:last-child{border-bottom:none;}
-.pergunta-label{font-weight:500;font-size:0.9rem;margin-bottom:0.8rem;color:var(--ink);line-height:1.5;}
-.linha-resposta{border:none;border-bottom:1px solid var(--border-dark);width:100%;padding:0.6rem 0;display:block;margin-bottom:0.3rem;}
-.hint{font-style:italic;font-size:0.75rem;color:var(--ink-light);margin-top:0.5rem;line-height:1.5;}
-.duvidas-section{padding:2rem 3rem;border-top:1px solid var(--border);background:var(--surface);}
-.duvidas-title{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1.4rem;}
+.pergunta-label{font-weight:500;font-size:0.9rem;margin-bottom:0.8rem;color:var(--navy);line-height:1.5;}
+.linha-resposta{border:none;border-bottom:1px solid var(--line);width:100%;padding:0.6rem 0;display:block;margin-bottom:0.3rem;}
+.hint{font-style:italic;font-size:0.75rem;color:var(--mute);margin-top:0.5rem;line-height:1.5;}
+.duvidas-section{padding:2rem 3rem;border-top:1px solid var(--line);background:var(--panel);}
+.duvidas-title{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--gold-dk);text-transform:uppercase;margin-bottom:1.4rem;}
 .duvida-item{margin-bottom:1.2rem;}
-.duvida-pergunta{font-weight:500;font-size:0.88rem;color:var(--ink);margin-bottom:0.3rem;}
-.duvida-resposta{font-size:0.85rem;line-height:1.6;color:var(--ink);font-weight:300;}
-.resultado-section{padding:2rem 3rem;border-top:1px solid var(--border);background:var(--surface);}
+.duvida-pergunta{font-weight:500;font-size:0.88rem;color:var(--navy);margin-bottom:0.3rem;}
+.duvida-resposta{font-size:0.85rem;line-height:1.6;color:var(--body);font-weight:300;}
+.resultado-section{padding:2rem 3rem;border-top:1px solid var(--line);background:var(--panel);}
 .resultado-inner{border-left:3px solid var(--gold);padding:0.6rem 0 0.6rem 1.4rem;}
-.resultado-title{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.6rem;}
-.resultado-text{font-size:0.9rem;line-height:1.65;color:var(--ink);}
-footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
-.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
-.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--ink-light);border:1px solid var(--border);padding:0.25rem 0.6rem;}
+.resultado-title{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--gold-dk);text-transform:uppercase;margin-bottom:0.6rem;}
+.resultado-text{font-size:0.9rem;line-height:1.65;color:var(--body);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--mute);border:1px solid var(--line);padding:0.25rem 0.6rem;}
 @media print{body{background:#fff;}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 </style>
 <link rel="stylesheet" href="/vero-apostila/assets/css/estilo.css">

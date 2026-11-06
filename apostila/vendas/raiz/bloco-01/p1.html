@@ -1,60 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloco 01 — Vendas Raiz</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.7; color: #222; }
-
-        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 20px; border-bottom: 2px solid #999; padding-bottom: 5px; }
-
-        .pergunta-provocativa { font-size: 20px; font-weight: bold; line-height: 1.4; margin: 30px 0; color: #000; }
-
-        .narrativa { font-size: 15px; line-height: 1.8; margin: 20px 0; color: #333; }
-        .narrativa p { margin-bottom: 15px; }
-
-        .problema-exposto { font-size: 14px; margin: 30px 0 0 0; padding-top: 20px; border-top: 1px solid #ddd; line-height: 1.7; color: #222; }
-
-        .fechamento { font-size: 15px; font-style: italic; margin: 25px 0 0 0; color: #444; line-height: 1.7; }
-
-        @media print {
-            body { margin: 0; }
-            .page { width: 100%; height: auto; margin: 0; padding: 40px; box-shadow: none; page-break-after: always; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloco 01 · P1 — Vero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Estilos: fonte de verdade em _estilo/estilo.css -->
+<style>
+:root {
+  --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+  --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+  --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+  --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+  --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+  --white:      #FFFFFF;   /* fundo principal da página — mantém */
+  --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+  --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+  --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+  --line:       #E3DECF;   /* bordas simples de tabela/grade */
+  --red:        #C0392B;   /* se houver categoria de risco/saída */
+  --red-bg:     #FBEDEA;
+  --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+  --green-bg:   #EAF3EC;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--panel);color:var(--body);font-family:'DM Sans',sans-serif;}
+.page{max-width:760px;margin:0 auto;background:var(--white);box-shadow:0 2px 40px rgba(0,0,0,0.07);}
+header{border-bottom:1px solid var(--line);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);position:sticky;top:0;z-index:100;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy);}
+.logo-sub{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.3em;color:var(--gold-dk);text-transform:uppercase;margin-top:2px;}
+.doc-meta{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;}
+.doc-meta span{color:var(--gold-dk);}
+.hero-image{position:relative;height:260px;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(20%) brightness(0.88);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,0.95) 100%);}
+.bloco-header{padding:2rem 3rem;border-bottom:1px solid var(--line);}
+.bloco-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--navy);}
+.pergunta-section{padding:1.8rem 3rem;border-bottom:1px solid var(--line);background:var(--panel);}
+.pergunta-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--navy);border-left:2px solid var(--gold);padding-left:1.2rem;}
+.narrativa-section{padding:2.8rem 3rem;border-bottom:1px solid var(--line);}
+.narrativa-body p{font-size:0.95rem;line-height:1.85;font-weight:300;color:var(--body);margin-bottom:1.3rem;}
+.narrativa-body p:last-child{margin-bottom:0;}
+.narrativa-body strong{font-weight:500;color:var(--navy);}
+.fechamento-section{padding:2rem 3rem;border-bottom:1px solid var(--line);background:var(--panel);}
+.fechamento-inner{border-left:3px solid var(--gold);padding:0.4rem 0 0.4rem 1.4rem;}
+.fechamento-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.65;color:var(--navy);}
+footer{padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);}
+.footer-left{font-family:'DM Mono',monospace;font-size:0.44rem;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;}
+.footer-nav{font-family:'DM Mono',monospace;font-size:0.46rem;letter-spacing:0.15em;color:var(--mute);text-transform:uppercase;}
+.footer-nav a{color:var(--gold-dk);text-decoration:none;}
+.page-num{font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--mute);border:1px solid var(--line);padding:0.25rem 0.6rem;}
+@media print{body{background:var(--white);}.page{box-shadow:none;}header{position:static;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
 </head>
 <body>
-    <div class="page">
-        <div class="badge">🌱 Raiz — Vendas</div>
+<div class="page">
 
-        <div class="pergunta-provocativa">
-            Se você não ligar pessoalmente, quantas vendas fecham sozinhas?
-        </div>
-
-        <div class="narrativa">
-            <p>Gustavo vende software de gestão para pequenas empresas. No mês passado, fechou 5 contratos. Todos vieram da mesma forma: ligou para antigos clientes, ouviu "ah, agora temos essa dor", marcou reunião, apresentou, negociou, fechou.</p>
-
-            <p>Abriu o funil ontem. 127 leads chegaram no mês passado de forma "orgânica" (site, campanhas antigas, indicação). Ele contatou 8. Fechou 2.</p>
-
-            <p>Os 119 outros? Ninguém os contatou. Porque ele não os contatou.</p>
-
-            <p>Tentou resolver isso uma vez. Pediu à equipe que entrasse em contato com os leads não tocados. Duas semanas depois: zero vendas daquele lote. Ele reclamou. Voltou a fazer pessoalmente. Fechou 3 em 10 dias. O funil voltou a funcionar.</p>
-
-            <p>Quando sai de férias, a empresa não vende. Quando volta, liga para 20 potenciais antigos. Fecha 4. Aquele mês deixava de ser prejuízo porque ele correu atrás.</p>
-        </div>
-
-        <div class="problema-exposto">
-            <strong>Enquanto a venda só sair da sua atividade pessoal, seu negócio não é um negócio. É um emprego onde você é o único funcionário que importa.</strong>
-            <p style="margin-top: 10px;">Você cresce quando tem energia para correr. Cai quando cansa. E não sabe o quanto disso é capacidade sua ou puro desgaste constante repetido.</p>
-        </div>
-
-        <div class="fechamento">
-            Enquanto isso depender só de você, quando você parar, tudo para. E você vai achar que é culpa da equipe.
-        </div>
+  <header>
+    <div>
+      <div class="logo-name">Vero</div>
+      <div class="logo-sub">Escola de Empresários</div>
     </div>
+    <div class="doc-meta">Vendas · Raiz · <span>Bloco 01</span> · Página <span>01</span></div>
+  </header>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="Aperto de mão fechando uma venda pessoalmente" style="object-position:center 35%;">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="bloco-header">
+    <h1 class="bloco-title">A venda só acontece quando o dono corre atrás</h1>
+  </div>
+
+  <div class="pergunta-section">
+    <p class="pergunta-text">Se você não ligar pessoalmente, quantas vendas fecham sozinhas?</p>
+  </div>
+
+  <div class="narrativa-section">
+    <div class="narrativa-body">
+      <p>Gustavo vende software de gestão para pequenas empresas. No mês passado, fechou 5 contratos. Todos vieram da mesma forma: ligou para antigos clientes, ouviu "ah, agora temos essa dor", marcou reunião, apresentou, negociou, fechou.</p>
+      <p>Abriu o funil ontem. 127 leads chegaram no mês passado de forma "orgânica" (site, campanhas antigas, indicação). Ele contatou 8. Fechou 2.</p>
+      <p>Os 119 outros? Ninguém os contatou. <strong>Porque ele não os contatou.</strong></p>
+      <p>Tentou resolver isso uma vez. Pediu à equipe que entrasse em contato com os leads não tocados. Duas semanas depois: zero vendas daquele lote. Ele reclamou. Voltou a fazer pessoalmente. Fechou 3 em 10 dias. <strong>O funil voltou a funcionar.</strong></p>
+      <p>Quando sai de férias, a empresa não vende. Quando volta, liga para 20 potenciais antigos. Fecha 4. Aquele mês deixava de ser prejuízo porque ele correu atrás.</p>
+      <p>Enquanto a venda só sair da sua atividade pessoal, seu negócio não é um negócio. É um emprego onde você é o único funcionário que importa. <strong>Você cresce quando tem energia para correr. Cai quando cansa.</strong> E não sabe o quanto disso é capacidade sua ou puro desgaste constante repetido.</p>
+    </div>
+  </div>
+
+  <div class="fechamento-section">
+    <div class="fechamento-inner">
+      <p class="fechamento-text">Enquanto isso depender só de você, quando você parar, tudo para. E você vai achar que é culpa da equipe.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Vero — Apostila Oficial · 2026</div>
+    <div class="footer-nav">Próximo: <a href="p2.html">Canvas →</a></div>
+    <div class="page-num">P1</div>
+  </footer>
+
+</div>
 </body>
 </html>

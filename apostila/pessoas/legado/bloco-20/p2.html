@@ -5,53 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 20 — Pessoas Legado — Canvas</title>
     <style>
+        :root {
+          --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+          --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+          --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+          --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+          --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+          --white:      #FFFFFF;   /* fundo principal da página — mantém */
+          --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+          --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+          --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+          --line:       #E3DECF;   /* bordas simples de tabela/grade */
+          --red:        #C0392B;   /* se houver categoria de risco/saída */
+          --red-bg:     #FBEDEA;
+          --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+          --green-bg:   #EAF3EC;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: var(--body); }
 
-        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 34px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 34px 40px; background: var(--white); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-dk); margin-bottom: 14px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 6px; color: #000; }
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 6px; color: var(--navy); }
 
-        .instrucao { font-size: 12px; color: #666; margin-bottom: 8px; font-style: italic; line-height: 1.55; }
+        .instrucao { font-size: 12px; color: var(--mute); margin-bottom: 8px; font-style: italic; line-height: 1.55; }
 
-        .instrucao-forte { font-size: 12px; color: #333; margin-bottom: 14px; line-height: 1.55; }
+        .instrucao-forte { font-size: 12px; color: var(--body); margin-bottom: 14px; line-height: 1.55; }
 
-        .medidor-bloco { margin: 16px 0; padding: 12px 14px; border: 1px solid #e2e2e2; background: #fcfcfc; }
+        .medidor-bloco { margin: 16px 0; padding: 12px 14px; border: 1px solid var(--line); background: var(--panel); }
         .medidor-bloco + .medidor-bloco { margin-top: 12px; }
 
-        .medidor-titulo { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 3px; }
-        .medidor-instrucao { font-size: 10.5px; color: #777; font-style: italic; margin-bottom: 10px; }
+        .medidor-titulo { font-size: 13px; font-weight: bold; color: var(--navy); margin-bottom: 3px; }
+        .medidor-instrucao { font-size: 10.5px; color: var(--mute); font-style: italic; margin-bottom: 10px; }
 
         .medidor-escala { position: relative; height: 26px; margin: 4px 4px 2px 4px; }
-        .medidor-escala .linha-base { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #999; }
-        .medidor-escala .tick { position: absolute; top: calc(50% - 7px); width: 1px; height: 14px; background: #999; }
+        .medidor-escala .linha-base { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--line); }
+        .medidor-escala .tick { position: absolute; top: calc(50% - 7px); width: 1px; height: 14px; background: var(--line); }
         .medidor-escala .tick.t0 { left: 0; }
         .medidor-escala .tick.t25 { left: 25%; }
         .medidor-escala .tick.t50 { left: 50%; }
         .medidor-escala .tick.t75 { left: 75%; }
         .medidor-escala .tick.t100 { left: 100%; }
 
-        .medidor-numeros { display: flex; justify-content: space-between; font-size: 10px; color: #888; margin: 0 4px 10px 4px; }
+        .medidor-numeros { display: flex; justify-content: space-between; font-size: 10px; color: var(--mute); margin: 0 4px 10px 4px; }
 
-        .hint-segmentos { font-size: 10.5px; color: #888; font-style: italic; line-height: 1.55; margin: 0 0 14px 0; }
+        .hint-segmentos { font-size: 10.5px; color: var(--mute); font-style: italic; line-height: 1.55; margin: 0 0 14px 0; }
 
-        .campo-linha { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; font-size: 11.5px; color: #333; }
-        .campo-linha .preenchimento { flex: 1; border-bottom: 1px solid #bbb; height: 15px; min-width: 40px; }
+        .campo-linha { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; font-size: 11.5px; color: var(--body); }
+        .campo-linha .preenchimento { flex: 1; border-bottom: 1px solid var(--line); height: 15px; min-width: 40px; }
 
-        .pergunta-chave { font-size: 13px; font-weight: bold; margin: 20px 0 4px 0; color: #000; }
-        .pergunta-sub { font-size: 11.5px; color: #777; font-style: italic; margin-bottom: 10px; }
+        .pergunta-chave { font-size: 13px; font-weight: bold; margin: 20px 0 4px 0; color: var(--navy); }
+        .pergunta-sub { font-size: 11.5px; color: var(--mute); font-style: italic; margin-bottom: 10px; }
 
-        .soma-box { margin: 16px 0; padding: 12px 14px; border-left: 3px solid #999; background: #fafafa; font-size: 12px; }
+        .soma-box { margin: 16px 0; padding: 12px 14px; border-left: 3px solid var(--gold); background: var(--panel); font-size: 12px; }
         .soma-box p { margin-bottom: 7px; }
         .soma-box p:last-child { margin-bottom: 0; }
 
         .duvida-item { margin: 12px 0; font-size: 12px; }
-        .duvida-item strong { display: block; margin-bottom: 3px; color: #333; }
-        .duvida-item p { color: #666; line-height: 1.55; }
+        .duvida-item strong { display: block; margin-bottom: 3px; color: var(--body); }
+        .duvida-item p { color: var(--mute); line-height: 1.55; }
 
-        .resultado { margin: 18px 0 0 0; padding-top: 14px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.6; color: #333; }
+        .resultado { margin: 18px 0 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12px; line-height: 1.6; color: var(--body); }
 
         @media print {
             body { margin: 0; }

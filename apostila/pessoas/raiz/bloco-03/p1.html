@@ -5,21 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 03 — Pessoas Raiz</title>
     <style>
+        :root {
+          --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+          --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+          --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+          --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+          --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+          --white:      #FFFFFF;   /* fundo principal da página — mantém */
+          --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+          --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+          --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+          --line:       #E3DECF;   /* bordas simples de tabela/grade */
+          --red:        #C0392B;   /* se houver categoria de risco/saída */
+          --red-bg:     #FBEDEA;
+          --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+          --green-bg:   #EAF3EC;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.7; color: #222; }
+        body { font-family: 'Georgia', serif; line-height: 1.7; color: var(--body); }
 
-        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .page { width: 210mm; height: 297mm; margin: 20px auto; padding: 40px; background: var(--white); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 20px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-dk); margin-bottom: 20px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        .nota-sozinho { font-family: 'Georgia', serif; font-size: 12px; font-style: italic; color: #666; margin: -10px 0 20px 0; }
+        .nota-sozinho { font-family: 'Georgia', serif; font-size: 12px; font-style: italic; color: var(--mute); margin: -10px 0 20px 0; }
 
-        .pergunta-provocativa { font-size: 20px; font-weight: bold; line-height: 1.4; margin: 30px 0; color: #000; }
+        .pergunta-provocativa { font-size: 20px; font-weight: bold; line-height: 1.4; margin: 30px 0; color: var(--navy); }
 
-        .narrativa { font-size: 15px; line-height: 1.8; margin: 20px 0; color: #333; }
+        .narrativa { font-size: 15px; line-height: 1.8; margin: 20px 0; color: var(--body); }
         .narrativa p { margin-bottom: 15px; }
 
-        .fechamento { font-size: 15px; font-style: italic; margin: 30px 0 0 0; padding-top: 20px; border-top: 1px solid #ddd; color: #444; line-height: 1.7; }
+        .fechamento { font-size: 15px; font-style: italic; margin: 30px 0 0 0; padding-top: 20px; border-top: 1px solid var(--line); color: var(--body); line-height: 1.7; }
 
         @media print {
             body { margin: 0; }

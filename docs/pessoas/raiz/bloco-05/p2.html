@@ -5,54 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 05 — Canvas</title>
     <style>
+        :root {
+          --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+          --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+          --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+          --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+          --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+          --white:      #FFFFFF;   /* fundo principal da página — mantém */
+          --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+          --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+          --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+          --line:       #E3DECF;   /* bordas simples de tabela/grade */
+          --red:        #C0392B;   /* se houver categoria de risco/saída */
+          --red-bg:     #FBEDEA;
+          --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+          --green-bg:   #EAF3EC;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: var(--body); }
 
-        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 28px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 28px 40px; background: var(--white); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 12px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-dk); margin-bottom: 12px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        .titulo { font-size: 17px; font-weight: bold; margin: 0 0 5px 0; color: #000; }
+        .titulo { font-size: 17px; font-weight: bold; margin: 0 0 5px 0; color: var(--navy); }
 
-        .instrucao { font-size: 12px; color: #666; margin-bottom: 10px; font-style: italic; }
+        .instrucao { font-size: 12px; color: var(--mute); margin-bottom: 10px; font-style: italic; }
 
-        .hint-intro { font-size: 10.5px; color: #888; font-style: italic; line-height: 1.5; margin-bottom: 14px; padding-left: 10px; border-left: 2px solid #ccc; }
+        .hint-intro { font-size: 10.5px; color: var(--mute); font-style: italic; line-height: 1.5; margin-bottom: 14px; padding-left: 10px; border-left: 2px solid var(--line); }
 
         .pedido-prioritario { margin-bottom: 16px; }
-        .pedido-label { font-size: 11.5px; font-weight: bold; color: #000; margin-bottom: 6px; line-height: 1.4; }
-        .resposta-linha { display: block; border-bottom: 1px solid #999; height: 16px; width: 100%; }
+        .pedido-label { font-size: 11.5px; font-weight: bold; color: var(--navy); margin-bottom: 6px; line-height: 1.4; }
+        .resposta-linha { display: block; border-bottom: 1px solid var(--line); height: 16px; width: 100%; }
 
         .sequencia { display: flex; flex-direction: column; }
 
-        .etapa-card { border: 1px solid #ddd; border-radius: 3px; background: #fafafa; padding: 9px 14px; }
-        .etapa-titulo { font-size: 11.5px; font-weight: bold; color: #000; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #ddd; }
+        .etapa-card { border: 1px solid var(--line); border-radius: 3px; background: var(--panel); padding: 9px 14px; }
+        .etapa-titulo { font-size: 11.5px; font-weight: bold; color: var(--navy); margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
 
         .etapa-campo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 5px; }
-        .campo-label { font-size: 9.5px; font-weight: bold; color: #666; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; flex-shrink: 0; width: 88px; }
-        .campo-linha { flex: 1; border-bottom: 1px solid #999; height: 13px; }
+        .campo-label { font-size: 9.5px; font-weight: bold; color: var(--gold-dk); text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; flex-shrink: 0; width: 88px; }
+        .campo-linha { flex: 1; border-bottom: 1px solid var(--line); height: 13px; }
 
-        .etapa-checks { margin-top: 6px; padding-top: 6px; border-top: 1px dashed #ccc; }
+        .etapa-checks { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); }
         .check-grupo { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-bottom: 4px; font-size: 9.8px; }
         .check-grupo:last-child { margin-bottom: 0; }
-        .check-label { color: #333; font-weight: bold; }
-        .check-opcao { color: #555; font-weight: normal; white-space: nowrap; }
-        .check-grupo.trava .check-label { color: #000; }
+        .check-label { color: var(--body); font-weight: bold; }
+        .check-opcao { color: var(--body); font-weight: normal; white-space: nowrap; }
+        .check-grupo.trava .check-label { color: var(--navy); }
 
         .conector { display: flex; justify-content: center; margin: 2px 0; }
-        .conector-linha { width: 1px; height: 10px; background: #bbb; }
+        .conector-linha { width: 1px; height: 10px; background: var(--line); }
 
-        .etapa-final { border: 1.5px solid #000; background: #fff; }
-        .soma-item { font-size: 11px; color: #333; line-height: 1.6; margin-bottom: 4px; }
+        .etapa-final { border: 1.5px solid var(--navy); background: var(--white); }
+        .soma-item { font-size: 11px; color: var(--body); line-height: 1.6; margin-bottom: 4px; }
         .soma-item:last-of-type { margin-bottom: 4px; }
-        .soma-linha { display: inline-block; min-width: 36px; border-bottom: 1px solid #999; height: 12px; vertical-align: middle; }
-        .soma-item-full { font-size: 11px; color: #333; line-height: 1.5; margin-top: 4px; }
-        .soma-linha-longa { display: block; border-bottom: 1px solid #999; height: 15px; width: 100%; margin-top: 5px; }
+        .soma-linha { display: inline-block; min-width: 36px; border-bottom: 1px solid var(--line); height: 12px; vertical-align: middle; }
+        .soma-item-full { font-size: 11px; color: var(--body); line-height: 1.5; margin-top: 4px; }
+        .soma-linha-longa { display: block; border-bottom: 1px solid var(--line); height: 15px; width: 100%; margin-top: 5px; }
 
         .duvida-item { margin: 7px 0; font-size: 11px; }
-        .duvida-item strong { display: block; margin-bottom: 2px; color: #333; font-style: italic; }
-        .duvida-item p { color: #666; line-height: 1.4; }
+        .duvida-item strong { display: block; margin-bottom: 2px; color: var(--body); font-style: italic; }
+        .duvida-item p { color: var(--mute); line-height: 1.4; }
 
-        .resultado { margin: 10px 0 0 0; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.5; color: #333; }
+        .resultado { margin: 10px 0 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 11px; line-height: 1.5; color: var(--body); }
 
         @media print {
             body { margin: 0; }

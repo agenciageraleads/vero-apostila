@@ -6,25 +6,41 @@
 
 /* VARIÁVEIS */
 :root {
+  /* Paleta oficial Vero — navy + dourado + creme */
+  --navy:           #052B5A;   /* primária — títulos, texto-comando, tiles */
+  --navy-deep:      #192C4C;   /* marinho escuro — só blocos de destaque pontuais */
+  --gold-oficial:   #DEBB5F;   /* acento — bordas, destaques, divisórias */
+  --gold-dk:        #B08D2E;   /* dourado escuro — rótulos/labels pequenos sobre branco */
+  --cream:          #F2E4B6;   /* texto/realce sobre marinho */
+  --panel:          #F5F1E6;   /* cartão/painel claro quente */
+  --body:           #3D4658;   /* corpo de texto (slate-navy) */
+  --mute:           #8A91A0;   /* legendas, labels discretos, texto secundário */
+  --line:           #E3DECF;   /* bordas simples de tabela/grade */
+  --red:            #C0392B;   /* categoria de risco/saída */
+  --red-bg:         #FBEDEA;
+  --green:          #2E7D46;   /* categoria de entrada/oportunidade */
+  --green-bg:       #EAF3EC;
+
+  /* Nomes legados mantidos (cascata usada em outros arquivos) — só os valores mudam */
   --white:          #FFFFFF;
-  --bg:             #F0EBE1;
-  --surface:        #F2EDE4;
-  --ink:            #1A1A1A;
-  --ink-mid:        #4A4A4A;
-  --ink-light:      #909090;
-  --gold:           #C9A84C;
-  --gold-dim:       rgba(201,168,76,0.08);
-  --border:         #E0D9CE;
-  --border-dark:    #C8BFB0;
+  --bg:             var(--panel);
+  --surface:        var(--panel);
+  --ink:            var(--navy);
+  --ink-mid:        var(--body);
+  --ink-light:      var(--mute);
+  --gold:           var(--gold-oficial);
+  --gold-dim:       rgba(222,187,95,0.08);
+  --border:         var(--line);
+  --border-dark:    var(--mute);
 
   /* Canvas — grupos de cores */
-  --entrada-bg:         #F7FBF4;
-  --entrada-border:     #C8DFBE;
-  --saida-emp-bg:       #FBF7F4;
-  --saida-emp-border:   #DFCEC8;
-  --saida-pes-bg:       #FBF9F4;
-  --saida-pes-border:   #DFD9C8;
-  --total-bg:           #F0EBE1;
+  --entrada-bg:         var(--green-bg);
+  --entrada-border:     var(--green);
+  --saida-emp-bg:       var(--red-bg);
+  --saida-emp-border:   var(--red);
+  --saida-pes-bg:       var(--panel);
+  --saida-pes-border:   var(--line);
+  --total-bg:           var(--panel);
 }
 
 /* RESET */
@@ -281,9 +297,9 @@ footer {
   font-weight: 500;
   border-bottom: none;
 }
-.group-entrada .group-header td  { color: #5A8A4A; background: var(--entrada-bg); }
-.group-saida-emp .group-header td { color: #8A5A4A; background: var(--saida-emp-bg); }
-.group-saida-pes .group-header td { color: #8A7A4A; background: var(--saida-pes-bg); }
+.group-entrada .group-header td  { color: var(--green); background: var(--entrada-bg); }
+.group-saida-emp .group-header td { color: var(--red); background: var(--saida-emp-bg); }
+.group-saida-pes .group-header td { color: var(--gold-dk); background: var(--saida-pes-bg); }
 
 /* Linhas de dados */
 .canvas-table tbody tr.data-row td {
@@ -426,4 +442,21 @@ footer {
   .page { box-shadow: none; }
   header { position: static; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* controle de quebra de pagina — evita conteudo cortado no meio */
+  table { break-inside: auto; }
+  tr, td, th, thead { break-inside: avoid; page-break-inside: avoid; }
+  img { break-inside: avoid; page-break-inside: avoid; }
+  h1, h2, h3, .bloco-title, .titulo, .fase-title { break-after: avoid; page-break-after: avoid; }
+
+  /* blocos/caixas de conteudo — por convencao de nome de classe usada no projeto inteiro */
+  [class*="section"], [class$="-item"], [class*="-box"], .box,
+  [class$="-inner"], [class$="-row"], [class*="celula"], [class*="etapa"],
+  [class*="medidor"], [class*="quadrante"], [class*="raio"], [class*="funil"],
+  [class*="ponto"], [class*="fatia"], [class*="fase"], [class*="risco"],
+  .duvida-item, .pergunta-item, .resumo-item, .checkbox-row, .resposta-row,
+  .hero-image, .mid-image, .pergunta-final, .soma-box, .dica {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 }

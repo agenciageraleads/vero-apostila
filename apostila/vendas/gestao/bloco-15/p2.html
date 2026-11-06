@@ -5,64 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 15 — Canvas</title>
     <style>
+        :root {
+          --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+          --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+          --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+          --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+          --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+          --white:      #FFFFFF;   /* fundo principal da página — mantém */
+          --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+          --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+          --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+          --line:       #E3DECF;   /* bordas simples de tabela/grade */
+          --red:        #C0392B;   /* se houver categoria de risco/saída */
+          --red-bg:     #FBEDEA;
+          --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+          --green-bg:   #EAF3EC;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: var(--body); }
 
-        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 34px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 34px 40px; background: var(--white); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 14px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-dk); margin-bottom: 14px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: #000; }
-        .subtitulo { font-size: 12px; color: #888; margin-bottom: 14px; font-style: italic; }
+        .titulo { font-size: 17px; font-weight: bold; margin-bottom: 4px; color: var(--navy); }
+        .subtitulo { font-size: 12px; color: var(--mute); margin-bottom: 14px; font-style: italic; }
 
-        .tabela-intro { font-size: 12px; color: #333; margin-bottom: 14px; line-height: 1.6; }
-        .tabela-intro strong { color: #000; }
+        .tabela-intro { font-size: 12px; color: var(--body); margin-bottom: 14px; line-height: 1.6; }
+        .tabela-intro strong { color: var(--navy); }
 
         /* Roda de horas comerciais */
         .roda-wrap { display: flex; gap: 26px; align-items: center; margin-bottom: 10px; }
         .roda-svg-box { flex: 0 0 220px; }
         .roda-svg-box svg { width: 220px; height: 220px; display: block; }
-        .roda-label-txt { font-size: 12px; font-weight: bold; fill: #000; font-family: 'Georgia', serif; }
+        .roda-label-txt { font-size: 12px; font-weight: bold; fill: var(--navy); font-family: 'Georgia', serif; }
 
         .fatias-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
-        .fatia-item { font-size: 10.5px; padding-bottom: 8px; border-bottom: 1px dotted #ddd; }
-        .fatia-label { font-weight: bold; color: #000; margin-bottom: 6px; line-height: 1.4; }
+        .fatia-item { font-size: 10.5px; padding-bottom: 8px; border-bottom: 1px dotted var(--line); }
+        .fatia-label { font-weight: bold; color: var(--navy); margin-bottom: 6px; line-height: 1.4; }
         .fatia-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-        .fatia-row .resposta-prefix { font-size: 10.5px; color: #666; white-space: nowrap; }
-        .input-line-sm { display: inline-block; border-bottom: 1px solid #999; height: 13px; width: 34px; }
-        .simnao { color: #888; font-size: 10px; white-space: nowrap; margin-left: auto; }
+        .fatia-row .resposta-prefix { font-size: 10.5px; color: var(--mute); white-space: nowrap; }
+        .input-line-sm { display: inline-block; border-bottom: 1px solid var(--line); height: 13px; width: 34px; }
+        .simnao { color: var(--mute); font-size: 10px; white-space: nowrap; margin-left: auto; }
 
-        .dica { font-size: 10px; color: #888; font-style: italic; margin: 8px 0 16px 0; line-height: 1.55; }
+        .dica { font-size: 10px; color: var(--mute); font-style: italic; margin: 8px 0 16px 0; line-height: 1.55; }
 
-        .instrucao-pintura { font-size: 11.5px; color: #222; background: #f7f7f5; border: 1px solid #ddd; padding: 9px 12px; margin: 4px 0 18px 0; line-height: 1.6; }
-        .instrucao-pintura strong { color: #000; }
+        .instrucao-pintura { font-size: 11.5px; color: var(--body); background: var(--panel); border: 1px solid var(--line); padding: 9px 12px; margin: 4px 0 18px 0; line-height: 1.6; }
+        .instrucao-pintura strong { color: var(--navy); }
 
         table { width: 100%; border-collapse: collapse; margin-bottom: 6px; font-size: 11px; }
-        table th { background: #f5f5f5; padding: 7px 8px; text-align: left; border: 1px solid #ddd; font-weight: bold; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: #555; }
-        table td { padding: 5px 8px; border: 1px solid #eee; height: 21px; }
-        table tbody tr:nth-child(even) td { background: #fafafa; }
+        table th { background: var(--panel); padding: 7px 8px; text-align: left; border: 1px solid var(--line); font-weight: bold; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--gold-dk); }
+        table td { padding: 5px 8px; border: 1px solid var(--line); height: 21px; }
+        table tbody tr:nth-child(even) td { background: var(--panel); }
 
         .pergunta-item { margin-bottom: 16px; }
         .pergunta-item:last-child { margin-bottom: 0; }
-        .pergunta-label { font-size: 13px; font-weight: bold; color: #000; margin-bottom: 9px; line-height: 1.5; }
+        .pergunta-label { font-size: 13px; font-weight: bold; color: var(--navy); margin-bottom: 9px; line-height: 1.5; }
 
         .resposta-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; flex-wrap: wrap; }
         .resposta-row:last-child { margin-bottom: 0; }
-        .resposta-prefix { font-size: 12px; color: #666; white-space: nowrap; }
-        .input-line { display: inline-block; border-bottom: 1px solid #999; height: 18px; flex: 1; min-width: 100px; }
+        .resposta-prefix { font-size: 12px; color: var(--mute); white-space: nowrap; }
+        .input-line { display: inline-block; border-bottom: 1px solid var(--line); height: 18px; flex: 1; min-width: 100px; }
 
-        .resposta-aberta { display: block; border-bottom: 1px solid #999; height: 18px; width: 100%; margin-top: 7px; }
+        .resposta-aberta { display: block; border-bottom: 1px solid var(--line); height: 18px; width: 100%; margin-top: 7px; }
 
-        .pergunta-hint { font-size: 10px; font-style: italic; color: #888; margin-top: 7px; line-height: 1.5; }
+        .pergunta-hint { font-size: 10px; font-style: italic; color: var(--mute); margin-top: 7px; line-height: 1.5; }
 
         .tabela-secundaria { margin: 16px 0 16px 0; }
-        .tabela-secundaria-label { font-size: 12px; font-weight: bold; color: #333; margin-bottom: 7px; }
+        .tabela-secundaria-label { font-size: 12px; font-weight: bold; color: var(--navy); margin-bottom: 7px; }
 
         .duvida-item { margin-bottom: 7px; font-size: 12px; }
-        .duvida-item strong { color: #333; }
-        .duvida-item span { color: #666; }
+        .duvida-item strong { color: var(--body); }
+        .duvida-item span { color: var(--mute); }
 
-        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 12px; line-height: 1.7; color: #444; }
+        .resultado { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12px; line-height: 1.7; color: var(--body); }
 
         @media print {
             body { margin: 0; }
@@ -84,13 +100,13 @@
         <div class="roda-wrap">
             <div class="roda-svg-box">
                 <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="200" cy="200" r="150" fill="#ffffff" stroke="#222" stroke-width="1.5"/>
-                    <path d="M200,200 L200,50 A150,150 0 0,1 329.9,125 Z" fill="none" stroke="#222" stroke-width="1"/>
-                    <path d="M200,200 L329.9,125 A150,150 0 0,1 329.9,275 Z" fill="none" stroke="#222" stroke-width="1"/>
-                    <path d="M200,200 L329.9,275 A150,150 0 0,1 200,350 Z" fill="none" stroke="#222" stroke-width="1"/>
-                    <path d="M200,200 L200,350 A150,150 0 0,1 70.1,275 Z" fill="none" stroke="#222" stroke-width="1"/>
-                    <path d="M200,200 L70.1,275 A150,150 0 0,1 70.1,125 Z" fill="none" stroke="#222" stroke-width="1"/>
-                    <path d="M200,200 L70.1,125 A150,150 0 0,1 200,50 Z" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="200" cy="200" r="150" fill="var(--white)" stroke="var(--navy)" stroke-width="1.5"/>
+                    <path d="M200,200 L200,50 A150,150 0 0,1 329.9,125 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
+                    <path d="M200,200 L329.9,125 A150,150 0 0,1 329.9,275 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
+                    <path d="M200,200 L329.9,275 A150,150 0 0,1 200,350 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
+                    <path d="M200,200 L200,350 A150,150 0 0,1 70.1,275 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
+                    <path d="M200,200 L70.1,275 A150,150 0 0,1 70.1,125 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
+                    <path d="M200,200 L70.1,125 A150,150 0 0,1 200,50 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
 
                     <text class="roda-label-txt" x="247.5" y="112" text-anchor="middle" font-size="15">Prospecção</text>
                     <text class="roda-label-txt" x="247.5" y="128" text-anchor="middle" font-size="15">fria</text>

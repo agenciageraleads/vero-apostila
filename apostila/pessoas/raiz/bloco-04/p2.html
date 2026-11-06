@@ -5,44 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 04 — Canvas</title>
     <style>
+        :root {
+          --navy:       #052B5A;   /* PRIMÁRIA — títulos, texto-comando, tiles */
+          --navy-deep:  #192C4C;   /* marinho escuro — só para blocos de destaque pontuais, nunca fundo de página inteira */
+          --gold:       #DEBB5F;   /* ACENTO — bordas, destaques, divisórias — NUNCA como texto pequeno sobre branco */
+          --gold-dk:    #B08D2E;   /* dourado escuro — para rótulos/labels pequenos legíveis sobre branco (regra de contraste) */
+          --cream:      #F2E4B6;   /* texto/realce sobre marinho */
+          --white:      #FFFFFF;   /* fundo principal da página — mantém */
+          --panel:      #F5F1E6;   /* cartão/painel claro quente, para caixas de destaque */
+          --body:       #3D4658;   /* corpo de texto (slate-navy) — substitui preto/cinza escuro */
+          --mute:       #8A91A0;   /* legendas, labels discretos, texto secundário — substitui cinza médio */
+          --line:       #E3DECF;   /* bordas simples de tabela/grade */
+          --red:        #C0392B;   /* se houver categoria de risco/saída */
+          --red-bg:     #FBEDEA;
+          --green:      #2E7D46;   /* se houver categoria de entrada/oportunidade */
+          --green-bg:   #EAF3EC;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #222; }
+        body { font-family: 'Georgia', serif; line-height: 1.6; color: var(--body); }
 
-        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 28px 40px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 28px 40px; background: var(--white); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 12px; border-bottom: 2px solid #999; padding-bottom: 5px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-dk); margin-bottom: 12px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        .titulo { font-size: 17px; font-weight: bold; margin: 0 0 5px 0; color: #000; }
+        .titulo { font-size: 17px; font-weight: bold; margin: 0 0 5px 0; color: var(--navy); }
 
-        .instrucao { font-size: 12px; color: #666; margin-bottom: 10px; font-style: italic; }
+        .instrucao { font-size: 12px; color: var(--mute); margin-bottom: 10px; font-style: italic; }
 
-        .roda-intro { font-size: 11.5px; color: #333; margin-bottom: 10px; line-height: 1.5; }
-        .roda-intro strong { color: #000; }
+        .roda-intro { font-size: 11.5px; color: var(--body); margin-bottom: 10px; line-height: 1.5; }
+        .roda-intro strong { color: var(--navy); }
 
         .roda-svg-box { text-align: center; margin: 0 0 8px 0; }
         .roda-svg-box svg { width: 178px; height: 178px; display: inline-block; }
-        .roda-label-txt { font-size: 13px; font-weight: bold; fill: #000; font-family: 'Georgia', serif; }
+        .roda-label-txt { font-size: 13px; font-weight: bold; fill: var(--navy); font-family: 'Georgia', serif; }
 
         .pontos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; margin-bottom: 8px; }
-        .ponto-item { font-size: 10.5px; padding: 6px 0; border-bottom: 1px dotted #ccc; }
+        .ponto-item { font-size: 10.5px; padding: 6px 0; border-bottom: 1px dotted var(--line); }
         .ponto-item:nth-last-child(-n+2) { border-bottom: none; }
-        .ponto-label { font-weight: bold; color: #000; font-size: 11px; margin-bottom: 2px; line-height: 1.3; display: block; }
-        .ponto-exemplo { font-size: 9px; color: #888; font-style: italic; line-height: 1.35; display: block; margin-bottom: 4px; }
-        .ponto-check { font-size: 9.8px; color: #555; margin-bottom: 4px; }
+        .ponto-label { font-weight: bold; color: var(--navy); font-size: 11px; margin-bottom: 2px; line-height: 1.3; display: block; }
+        .ponto-exemplo { font-size: 9px; color: var(--mute); font-style: italic; line-height: 1.35; display: block; margin-bottom: 4px; }
+        .ponto-check { font-size: 9.8px; color: var(--body); margin-bottom: 4px; }
 
         .ponto-item .resposta-row { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; flex-wrap: wrap; }
         .ponto-item .resposta-row:last-child { margin-bottom: 0; }
-        .ponto-item .resposta-prefix { font-size: 9.3px; color: #666; white-space: nowrap; }
-        .ponto-item .input-line { display: inline-block; border-bottom: 1px solid #999; height: 12px; flex: 1; min-width: 40px; }
+        .ponto-item .resposta-prefix { font-size: 9.3px; color: var(--mute); white-space: nowrap; }
+        .ponto-item .input-line { display: inline-block; border-bottom: 1px solid var(--line); height: 12px; flex: 1; min-width: 40px; }
 
-        .centro-pergunta { font-size: 12px; font-weight: bold; margin: 8px 0 0 0; padding-top: 9px; border-top: 1px solid #ddd; color: #000; line-height: 1.4; }
-        .centro-resposta { display: block; border-bottom: 1px solid #999; height: 16px; width: 100%; margin-top: 7px; }
+        .centro-pergunta { font-size: 12px; font-weight: bold; margin: 8px 0 0 0; padding-top: 9px; border-top: 1px solid var(--line); color: var(--navy); line-height: 1.4; }
+        .centro-resposta { display: block; border-bottom: 1px solid var(--line); height: 16px; width: 100%; margin-top: 7px; }
 
         .duvida-item { margin: 7px 0; font-size: 11px; }
-        .duvida-item strong { display: block; margin-bottom: 2px; color: #333; font-style: italic; }
-        .duvida-item p { color: #666; line-height: 1.4; }
+        .duvida-item strong { display: block; margin-bottom: 2px; color: var(--body); font-style: italic; }
+        .duvida-item p { color: var(--mute); line-height: 1.4; }
 
-        .resultado { margin: 10px 0 0 0; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11px; line-height: 1.5; color: #333; }
+        .resultado { margin: 10px 0 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 11px; line-height: 1.5; color: var(--body); }
 
         @media print {
             body { margin: 0; }
@@ -64,12 +80,12 @@
 
         <div class="roda-svg-box">
             <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="200" cy="200" r="150" fill="#ffffff" stroke="#222" stroke-width="1.5"/>
-                <path d="M200,200 L200,50 A150,150 0 0,1 342.7,153.7 Z" fill="none" stroke="#222" stroke-width="1"/>
-                <path d="M200,200 L342.7,153.7 A150,150 0 0,1 288.2,321.4 Z" fill="none" stroke="#222" stroke-width="1"/>
-                <path d="M200,200 L288.2,321.4 A150,150 0 0,1 111.8,321.4 Z" fill="none" stroke="#222" stroke-width="1"/>
-                <path d="M200,200 L111.8,321.4 A150,150 0 0,1 57.3,153.7 Z" fill="none" stroke="#222" stroke-width="1"/>
-                <path d="M200,200 L57.3,153.7 A150,150 0 0,1 200,50 Z" fill="none" stroke="#222" stroke-width="1"/>
+                <circle cx="200" cy="200" r="150" fill="var(--white)" stroke="var(--navy)" stroke-width="1.5"/>
+                <path d="M200,200 L200,50 A150,150 0 0,1 342.7,153.7 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
+                <path d="M200,200 L342.7,153.7 A150,150 0 0,1 288.2,321.4 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
+                <path d="M200,200 L288.2,321.4 A150,150 0 0,1 111.8,321.4 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
+                <path d="M200,200 L111.8,321.4 A150,150 0 0,1 57.3,153.7 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
+                <path d="M200,200 L57.3,153.7 A150,150 0 0,1 200,50 Z" fill="none" stroke="var(--navy)" stroke-width="1"/>
 
                 <text class="roda-label-txt" x="255.8" y="115" text-anchor="middle">Desconto /</text>
                 <text class="roda-label-txt" x="255.8" y="130" text-anchor="middle">negociação</text>
