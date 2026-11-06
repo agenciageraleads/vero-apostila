@@ -37,3 +37,11 @@ _artefatos/*.jpg
 # Build e deploy temporários
 _build/*.log
 .github/workflows/*.log
+
+# Dependências (reinstalar com npm install)
+node_modules/
+
+# Artefatos regeneráveis de render de vídeo
+_artefatos/videos-marcas/**/*.wav
+_artefatos/videos-marcas/**/render.log
+_artefatos/videos-marcas/**/probe
