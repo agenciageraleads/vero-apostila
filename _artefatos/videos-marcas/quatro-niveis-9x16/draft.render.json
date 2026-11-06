@@ -1,0 +1,18 @@
+{
+ "comp": "/Users/Lucas-Lenovo/Projetos/Vero - Escola de Empres\u00e1rios/_artefatos/videos-marcas/quatro-niveis-9x16/comp.html",
+ "fps": 30,
+ "scale": 1,
+ "size": [
+  1080,
+  1920
+ ],
+ "shutter": 180.0,
+ "samples": 8,
+ "workers": 4,
+ "frames": 570,
+ "still_frames": 346,
+ "cut_frames": 25,
+ "captures": 2484,
+ "seconds": 109.5,
+ "final": false
+}

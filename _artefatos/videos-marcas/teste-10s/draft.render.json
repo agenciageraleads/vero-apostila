@@ -1,0 +1,18 @@
+{
+ "comp": "/Users/Lucas-Lenovo/Projetos/Vero - Escola de Empres\u00e1rios/_artefatos/videos-marcas/teste-10s/comp.html",
+ "fps": 30,
+ "scale": 1,
+ "size": [
+  1920,
+  1080
+ ],
+ "shutter": 180.0,
+ "samples": 8,
+ "workers": 8,
+ "frames": 300,
+ "still_frames": 178,
+ "cut_frames": 35,
+ "captures": 1332,
+ "seconds": 158.4,
+ "final": false
+}

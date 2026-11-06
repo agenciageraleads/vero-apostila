@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Vero · quatro níveis 9x16</title>
+<style>
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
+body{font-family:var(--text);color:var(--ink)}
+#stage{position:absolute;inset:0;overflow:hidden;background:var(--ground)}
+.abs{position:absolute;left:0;top:0;white-space:nowrap;will-change:transform,opacity}
+.h{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-tracking);line-height:1.08}
+.m{font-family:var(--mono);font-size:30px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+#bar{background:var(--accent);will-change:transform}
+.trail{position:absolute;height:6px;border-radius:3px;background:var(--line)}
+#v{width:200px;height:auto}
+#hud{position:absolute;right:14px;bottom:10px;font:13px monospace;color:#c00;display:none}
+</style></head>
+<body><div id="stage">
+ <div id="q1" class="abs h" style="font-size:96px">Em que nível está</div>
+ <div id="q2" class="abs h" style="font-size:96px;font-style:italic">a sua empresa?</div>
+ <div id="trails"></div>
+ <div id="bar" class="abs"></div>
+ <div id="lvls"></div>
+ <div id="f1" class="abs h" style="font-size:84px">Nenhum nível<br>é melhor que outro.</div>
+ <div id="f2" class="abs" style="font-size:52px;font-weight:500">Cada um cobra<br>um preço diferente.</div>
+ <img id="v" class="abs" src="vero-v-gold-hd.png" alt="">
+ <div id="brand" class="abs h" style="font-size:150px">Vero.</div>
+ <div id="tag" class="abs" style="font-size:42px;font-weight:500">Uma escola para<br>empresários de verdade.</div>
+ <div id="hud"></div>
+</div>
+<script src="motion.js"></script><script src="look.js"></script>
+<script>
+const DUR=19; window.__meta={dur:DUR,fps:30,w:1080,h:1920};
+const {clamp,lerp,sstep,ease}=OM; const $=id=>document.getElementById(id);
+const E=ease.expoOut, IO=ease.cubicInOut; const D=(t,a,b)=>clamp((t-a)/(b-a));
+const LV=[{t:3.0,n:'Raiz',p:'Para de se perder.',s:'Falta de previsibilidade, não de esforço.'},
+          {t:5.4,n:'Trilha',p:'Para de recomeçar.',s:'Inconsistência, não ignorância.'},
+          {t:7.8,n:'Gestão',p:'Para de acumular.',s:'Excesso, não execução.'},
+          {t:10.2,n:'Legado',p:'Para de ser necessário.',s:'Dependência invisível, não controle.'}];
+const T_F=12.9, T_END=15.0;
+const BAR=i=>({x:80+i*215,y:1530-i*130,w:200,h:56});
+const TILE={x:80,y:1280,w:280,h:280};
+LV.forEach((l,i)=>{ const tr=document.createElement('div');tr.className='trail';$('trails').appendChild(tr);l.tr=tr;
+  l.a=document.createElement('div');l.a.className='abs h';l.a.style.fontSize='170px';l.a.textContent=l.n;$('lvls').appendChild(l.a);
+  l.b=document.createElement('div');l.b.className='abs';l.b.style.cssText='font-size:62px;font-weight:600';l.b.textContent=l.p;$('lvls').appendChild(l.b);
+  l.c=document.createElement('div');l.c.className='abs m';l.c.style.cssText='font-size:28px;letter-spacing:.06em;text-transform:none';l.c.textContent=l.s;$('lvls').appendChild(l.c); });
+function word(el,x,y,t,t0){const w=OM.wordRise(t,t0);el.style.opacity=w.op;el.style.transform=`translate(${x}px,${(y+w.y).toFixed(1)}px) scale(${w.s.toFixed(4)})`;}
+function seek(t){
+  { const u=IO(D(t,2.0,2.9)); [['q1',0.3,690,100],['q2',0.7,800,166]].forEach(([id,t0,y0,y1])=>{const w=OM.wordRise(t,t0); const y=lerp(y0,y1,u)+(u>0?0:w.y); const e=$(id); e.style.opacity=w.op; e.style.transformOrigin='0 0'; e.style.transform=`translate(80px,${y.toFixed(1)}px) scale(${(w.s*lerp(1,0.5,u)).toFixed(4)})`;}); }
+  // a barra dourada sobe a escada; os degraus anteriores ficam como rastro
+  let r,rad=10; const bar=$('bar');
+  if(t<LV[0].t){const u=E(D(t,LV[0].t-0.8,LV[0].t)); const B=BAR(0); r={x:B.x,y:B.y,w:B.w*u,h:B.h};}
+  else { let i=0; while(i+1<LV.length&&t>=LV[i+1].t) i++; r=BAR(i); if(i>0) r=OM.morphRect(t,LV[i].t-0.1,LV[i].t+0.8,BAR(i-1),BAR(i),{curve:ease.cubicInOut}); }
+  if(t>=T_F&&t<T_END){ r=OM.morphRect(t,T_F,T_F+0.9,BAR(3),{x:80,y:1530,w:920,h:56},{curve:ease.cubicInOut}); }
+  if(t>=T_END){ r=OM.morphRect(t,T_END,T_END+0.9,{x:80,y:1530,w:920,h:56},TILE); rad=lerp(10,34,E(D(t,T_END,T_END+0.9))); }
+  bar.style.left=r.x+'px';bar.style.top=r.y+'px';bar.style.width=r.w+'px';bar.style.height=r.h+'px';bar.style.borderRadius=rad+'px';
+  bar.style.background=t>=T_END+0.3?'var(--ink)':'var(--accent)';
+  LV.forEach((l,i)=>{ const B=BAR(i); l.tr.style.left=B.x+'px';l.tr.style.top=(B.y+25)+'px';l.tr.style.width=B.w+'px'; l.tr.style.opacity=t>=LV[i].t+0.5?(t<T_F?1:1-sstep(T_F,T_F+0.4,t)):0;
+    const next=LV[i+1]?LV[i+1].t:T_F-0.05; const w=OM.wordRise(t,l.t+0.25,{dist:50}); let op=w.op,y=w.y; if(t>=next-0.05){const u=D(t,next-0.05,next+0.25);op*=1-u;y-=u*50;}
+    [[l.c,700],[l.a,760],[l.b,980]].forEach(([e,yy])=>{e.style.opacity=op;e.style.transform=`translate(80px,${(yy+y).toFixed(1)}px)`;}); });
+  // fecho
+  const gone=sstep(T_END-0.05,T_END+0.2,t);
+  const w1=OM.wordRise(t,T_F+0.3); $('f1').style.opacity=w1.op*(1-gone); $('f1').style.transform=`translate(80px,${(560+w1.y).toFixed(1)}px)`;
+  const w2=OM.wordRise(t,T_F+0.9); $('f2').style.opacity=w2.op*(1-gone); $('f2').style.transform=`translate(80px,${(820+w2.y).toFixed(1)}px)`;
+  const lg=OM.wordRise(t,T_END+0.8,{dist:10}); const v=$('v'); v.style.opacity=lg.op; v.style.transform=`translate(${80+(280-200)/2}px,${(1280+(280-v.offsetHeight)/2+lg.y).toFixed(1)}px)`;
+  word($('brand'),400,1290,t,T_END+1.0); word($('tag'),404,1470,t,T_END+1.4);
+  $('hud').textContent='t='+t.toFixed(3); return Promise.resolve();
+}
+window.__seek=async t=>{await seek(t);return true;};
+window.__ready=(window.LOOK?LOOK.ready:Promise.resolve()).then(()=>document.fonts.ready).then(()=>new Promise(r=>{const i=$('v');i.complete?r():i.onload=r;})).then(()=>seek(0));
+const q=new URLSearchParams(location.search); if(q.has('t')) __ready.then(()=>seek(parseFloat(q.get('t')))); if(q.has('hud')) $('hud').style.display='block';
+if(q.has('play')) __ready.then(()=>{const t0=performance.now();(function loop(){seek(((performance.now()-t0)/1000)%DUR);requestAnimationFrame(loop);})();});
+</script></body></html>

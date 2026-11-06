@@ -1,0 +1,18 @@
+
+draft.mp4 — energy map:
+  0.0s |                          ...                   |
+  4.0s |                     .                          |
+  8.0s |  .                           ..                |
+ 12.0s |          .    .. .                  .. :       |
+ 16.0s |                                    |
+
+  skip  cadence    (pass --shots t0,t1,… to check shot-length variety)
+  PASS  rest       still 0.715  longest quiet 3.58 s
+  WARN  burst      no burst — fine for a concept without hits; --ref holds it to a reference
+  PASS  not-flat   row-profile variation 0.47 (advisory, >= 0.35)
+  PASS  audio      peak -7.2 dBFS  clipped 0  quiet 0.237
+  FAIL  continuity carry score 0.00 over 5 boundaries; nothing carried at [5.53, 7.93, 10.33, 13.1, 14.97] (probe.py lists each)
+  PASS  curves     peak 80 px/frame @30 fps (text:div#q2 at 2.03 s), shutter 180° (render.json); soft curves 78 % of travel, median t80 0.68
+  skip  framing    (declare window.__meta.inFrame = {id: [t0, t1] | [t0, t1, 'whole']} to check what must stay in frame)
+
+VERDICT: FAIL
