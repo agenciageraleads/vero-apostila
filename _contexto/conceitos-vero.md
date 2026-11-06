@@ -18,7 +18,9 @@
 **Não é** curso, mentoria, comunidade ou autoajuda.
 **É** uma escola que elimina improviso e forma empresários que operam com critério sustentável.
 
-**Marca única: Vero.** A Proativo está aposentada como marca comercial (D-012) — o hands-on personalizado que ela representava vive dentro da Vero Consultoria.
+**Marca única: Vero.** Tudo que a Vero comunica e vende é Vero (D-012).
+
+> **Sobre a Proativo:** ela **existe como empresa** e é do Ernane. Lucas não é sócio e não decide por ele. A absorção do hands-on da Proativo pela Vero Consultoria é **proposta de unificação de produto — não decisão tomada** (correção de escopo da D-012, 02/08). Nenhum material da Vero deve tratá-la como fato consumado.
 
 ---
 

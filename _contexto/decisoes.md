@@ -90,10 +90,20 @@
 
 ---
 
-### D-012: Marca unica — tudo e Vero, Proativo aposentada
+### D-012: Marca unica — tudo e Vero (Proativo: proposta, nao decisao)
 **Data**: 2026-08-02
-**Decisao**: A consultoria por nivel e produto **Vero**. A Proativo deixa de existir como marca comercial — o hands-on personalizado que ela representava vive dentro do braco Vero Consultoria. Resolve a contradicao entre a reuniao de 08/06 (Proativo = consultoria) e a D-010 (Vero vende consultoria).
-**Motivo**: Uma marca so, mensagem limpa, funil sem passagem de bastao. Decisao de Lucas em 02/08.
+**Decisao**: A consultoria por nivel e produto **Vero**. Uma marca so na comunicacao da Vero,
+mensagem limpa, funil sem passagem de bastao.
+**Motivo**: Decisao de Lucas em 02/08 sobre a marca Vero.
+
+> **CORRECAO DE ESCOPO (02/08, Lucas):** a redacao original dizia que "a Proativo deixa de existir
+> como marca comercial". **Isso extrapolou.** A Proativo **existe como empresa** e **Lucas nao e
+> socio dela nem pode decidir por Ernane.** Embora Ernane ja tenha falado em unificar, isso e
+> **sugestao de unificacao de produto — nao decisao tomada.**
+>
+> Redacao valida: a Vero opera com marca unica; **a eventual absorcao do hands-on da Proativo pela
+> Vero Consultoria e uma proposta a ser decidida por Ernane**, dono da Proativo. Nenhum documento
+> da Vero pode tratar isso como fato consumado.
 
 ---
 
