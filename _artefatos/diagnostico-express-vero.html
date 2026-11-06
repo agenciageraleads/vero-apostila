@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico Express Vero</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #F8F7F4;
+      --card:         #FFFFFF;
+      --txt-hi:       #18180E;
+      --txt-mid:      #5A5952;
+      --txt-lo:       #9A9990;
+      --accent:       #1D2C22;
+      --accent-sub:   #EBF0EC;
+      --border:       #E2E1D8;
+      --border-hi:    #1D2C22;
+
+      --raiz:         #9B7346;
+      --trilha:       #5B8B6A;
+      --gestao:       #4C6B96;
+      --legado:       #1D2C22;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--txt-hi);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Progress ── */
+    .progress-track {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--border);
+      z-index: 50;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── Wrapper ── */
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px 96px;
+    }
+
+    /* ── Screens ── */
+    .screen { display: none; }
+    .screen.active { display: block; animation: fadeUp 0.28s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(7px); }
+      to   { opacity: 1; transform: translateY(0);   }
+    }
+
+    /* ═══════════════════════════════════════
+       INTRO
+    ═══════════════════════════════════════ */
+    .intro-brand {
+      padding-top: 52px;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--txt-lo);
+      margin-bottom: 56px;
+    }
+    .intro-title {
+      font-size: clamp(30px,6vw,46px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.025em;
+      margin-bottom: 14px;
+    }
+    .intro-sub {
+      font-size: clamp(15px,2.5vw,17px);
+      color: var(--txt-mid);
+      line-height: 1.5;
+      margin-bottom: 44px;
+    }
+    .intro-box {
+      border-left: 2px solid var(--border);
+      padding: 20px 24px;
+      background: var(--card);
+      margin-bottom: 44px;
+    }
+    .intro-box p {
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--txt-mid);
+    }
+    .intro-box p + p { margin-top: 11px; }
+    .intro-box strong { color: var(--txt-hi); font-weight: 600; }
+    .intro-meta {
+      font-size: 13px;
+      color: var(--txt-lo);
+      margin-bottom: 36px;
+    }
+
+    /* ═══════════════════════════════════════
+       QUESTION
+    ═══════════════════════════════════════ */
+    .q-wrap { padding-top: 48px; }
+
+    /* fade inner content between questions */
+    .q-inner { transition: opacity .18s ease; }
+    .q-inner.out { opacity: 0; }
+
+    .q-tag {
+      font-size: 11px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--txt-lo);
+      margin-bottom: 8px;
+    }
+    .q-step {
+      font-size: 13px;
+      color: var(--txt-lo);
+      margin-bottom: 24px;
+    }
+    .q-text {
+      font-size: clamp(18px,3vw,22px);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -.01em;
+      margin-bottom: 32px;
+    }
+
+    /* Options */
+    .opts {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .opt {
+      position: relative;
+      padding: 18px 20px;
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      background: var(--card);
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--txt-hi);
+      cursor: pointer;
+      transition: border-color .12s, background .12s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .opt:hover { border-color: #C4C3BC; }
+    .opt.sel {
+      border-color: var(--border-hi);
+      background: var(--accent-sub);
+    }
+    .opt.sel::before {
+      content: '';
+      position: absolute;
+      left: -1.5px; top: -1.5px; bottom: -1.5px;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 3px 0 0 3px;
+    }
+
+    /* Next button */
+    .btn-wrap {
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity .22s ease, transform .22s ease;
+    }
+    .btn-wrap.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ═══════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════ */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px 24px;
+      border: none;
+      border-radius: 3px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: .01em;
+      transition: opacity .15s;
+      font-family: inherit;
+    }
+    .btn:hover { opacity: .85; }
+
+    .btn-dark { background: var(--accent); color: #fff; }
+    .btn-ghost {
+      background: none;
+      border: 1.5px solid var(--border);
+      color: var(--txt-mid);
+    }
+    .btn-ghost:hover {
+      border-color: var(--txt-mid);
+      color: var(--txt-hi);
+      opacity: 1;
+    }
+
+    /* ═══════════════════════════════════════
+       RESULT
+    ═══════════════════════════════════════ */
+    .r-wrap { padding-top: 48px; }
+
+    .r-eyebrow {
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--txt-lo);
+      margin-bottom: 10px;
+    }
+    .r-emoji { font-size: 36px; line-height: 1; margin-bottom: 10px; }
+
+    .r-level {
+      font-size: clamp(34px,7vw,54px);
+      font-weight: 700;
+      letter-spacing: -.025em;
+      line-height: 1.05;
+      margin-bottom: 40px;
+    }
+    .r-level.raiz  { color: var(--raiz); }
+    .r-level.trilha { color: var(--trilha); }
+    .r-level.gestao { color: var(--gestao); }
+    .r-level.legado { color: var(--legado); }
+
+    .r-reading {
+      font-size: 15.5px;
+      line-height: 1.72;
+      color: var(--txt-mid);
+      padding: 22px 24px;
+      border-left: 2px solid var(--border);
+      background: var(--card);
+      margin-bottom: 32px;
+    }
+    .r-impact {
+      font-size: clamp(16px,2.8vw,19px);
+      font-weight: 600;
+      line-height: 1.4;
+      font-style: italic;
+      color: var(--txt-hi);
+      margin-bottom: 48px;
+    }
+
+    .hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    /* Pillar map */
+    .map-label {
+      font-size: 11px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--txt-lo);
+      margin-bottom: 16px;
+    }
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .p-card {
+      padding: 16px 18px;
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+    }
+    .p-card.lim { border-color: var(--border-hi); }
+    .p-name {
+      font-size: 10.5px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--txt-lo);
+      margin-bottom: 7px;
+    }
+    .p-lvl {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .p-lvl.raiz  { color: var(--raiz); }
+    .p-lvl.trilha { color: var(--trilha); }
+    .p-lvl.gestao { color: var(--gestao); }
+    .p-lvl.legado { color: var(--legado); }
+
+    .p-bar { display: flex; gap: 3px; }
+    .seg {
+      height: 3px;
+      flex: 1;
+      background: var(--border);
+      border-radius: 1.5px;
+    }
+    .seg.on.raiz  { background: var(--raiz); }
+    .seg.on.trilha { background: var(--trilha); }
+    .seg.on.gestao { background: var(--gestao); }
+    .seg.on.legado { background: var(--legado); }
+
+    .p-tag {
+      font-size: 10px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--txt-lo);
+      margin-top: 8px;
+    }
+
+    /* Limiting section */
+    .lim-section { margin-bottom: 40px; }
+    .lim-label {
+      font-size: 11px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--txt-lo);
+      margin-bottom: 6px;
+    }
+    .lim-value {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--txt-hi);
+    }
+
+    /* CTA */
+    .cta-block {
+      padding: 24px;
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 36px;
+    }
+    .cta-block p {
+      font-size: 14px;
+      line-height: 1.68;
+      color: var(--txt-mid);
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 420px) {
+      .wrap { padding: 0 18px 64px; }
+      .intro-brand { padding-top: 36px; margin-bottom: 40px; }
+      .pillar-grid { gap: 8px; }
+      .p-card { padding: 14px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-track">
+  <div class="progress-fill" id="pFill" style="width:0%"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- ══ INTRO ══ -->
+  <div class="screen active" id="sIntro">
+    <p class="intro-brand">Vero — Escola de Empresários</p>
+    <h1 class="intro-title">Diagnóstico<br>Express Vero</h1>
+    <p class="intro-sub">O que acontece com sua empresa quando você não está em cima?</p>
+    <div class="intro-box">
+      <p>Este diagnóstico não mede faturamento, ambição ou potencial.</p>
+      <p>Ele observa como sua empresa se comporta quando sua presença, vigilância ou decisão deixam de sustentar o sistema.</p>
+      <p><strong>Responda pelo que normalmente acontece, não pelo que você gostaria que acontecesse.</strong></p>
+    </div>
+    <p class="intro-meta">8 perguntas · 4 pilares · aproximadamente 4 minutos</p>
+    <button class="btn btn-dark" onclick="start()">Iniciar diagnóstico</button>
+  </div>
+
+  <!-- ══ QUESTION ══ -->
+  <div class="screen" id="sQuestion">
+    <div class="q-wrap">
+      <div class="q-inner" id="qInner">
+        <p class="q-tag"  id="qTag"></p>
+        <p class="q-step" id="qStep"></p>
+        <h2 class="q-text" id="qText"></h2>
+        <ul class="opts" id="optList"></ul>
+      </div>
+      <div class="btn-wrap" id="nextWrap">
+        <button class="btn btn-dark" id="btnNext" onclick="advance()">Próxima</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ RESULT ══ -->
+  <div class="screen" id="sResult">
+    <div class="r-wrap" id="rContent"></div>
+  </div>
+
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+
+const LVL = {
+  1: { name:'Raiz',   emoji:'🌱', cls:'raiz'   },
+  2: { name:'Trilha', emoji:'🛤️', cls:'trilha' },
+  3: { name:'Gestão', emoji:'🧠', cls:'gestao' },
+  4: { name:'Legado', emoji:'🏛️', cls:'legado' }
+};
+
+const READINGS = {
+  1: 'Sua empresa ainda depende fortemente da sua presença para funcionar. Quando você não está, decisões travam, urgências crescem e o sistema perde clareza.',
+  2: 'Sua empresa já possui alguma estrutura, mas ela ainda depende da sua vigilância. Quando você afrouxa, o sistema continua por um tempo, mas começa a perder ritmo.',
+  3: 'Sua empresa já funciona com previsibilidade, mas ainda depende do seu critério para decisões relevantes. O desafio não é mais fazer funcionar; é decidir o que deve ou não continuar existindo.',
+  4: 'Sua empresa demonstra sinais de autonomia institucional. As decisões não dependem apenas da sua presença, e parte importante do sistema continua mesmo sem sua intervenção.'
+};
+
+const IMPACTS = {
+  1: '"Hoje, o principal sistema da empresa ainda é você."',
+  2: '"Hoje, a empresa funciona, mas ainda precisa que você vigie para não voltar ao improviso."',
+  3: '"Hoje, o risco não é parar de funcionar; é continuar carregando complexidade demais."',
+  4: '"Hoje, a empresa começa a mostrar que consegue existir além da sua presença."'
+};
+
+const PILLAR = { fin:'Financeiro', op:'Operação', pes:'Pessoas', vnd:'Vendas' };
+
+/*
+  Opções embaralhadas: ordem das alternativas varia por pergunta
+  para que a progressão Raiz→Legado não seja visível.
+  Mapeamento interno (l): 1=Raiz, 2=Trilha, 3=Gestão, 4=Legado
+*/
+const QS = [
+  {
+    p: 'fin',
+    t: 'Quando surge uma despesa inesperada relevante, o que normalmente acontece?',
+    opts: [
+      { t:'Existem critérios claros para lidar com isso sem depender de mim.', l:4 },
+      { t:'Eu preciso decidir rapidamente o que será pago, adiado ou sacrificado.', l:1 },
+      { t:'A empresa consegue absorver boa parte da situação sem grande ruptura.', l:3 },
+      { t:'Existe alguma organização, mas normalmente eu preciso intervir para ajustar.', l:2 }
+    ]
+  },
+  {
+    p: 'fin',
+    t: 'Se você parar de acompanhar os números por 30 dias, o cenário mais provável é:',
+    opts: [
+      { t:'Algumas coisas seguiriam, mas surgiriam surpresas no fechamento.', l:2 },
+      { t:'Os critérios financeiros continuariam sendo seguidos sem minha presença.', l:4 },
+      { t:'Eu provavelmente perderia a noção real do que está acontecendo.', l:1 },
+      { t:'A maior parte continuaria sob controle, com poucos ajustes depois.', l:3 }
+    ]
+  },
+  {
+    p: 'op',
+    t: 'Quando surge um problema operacional importante, o que costuma acontecer?',
+    opts: [
+      { t:'Só situações específicas escalam para mim.', l:3 },
+      { t:'Ele chega rapidamente até mim.', l:1 },
+      { t:'A operação resolve usando critérios conhecidos.', l:4 },
+      { t:'Tentam resolver antes, mas normalmente eu acabo entrando.', l:2 }
+    ]
+  },
+  {
+    p: 'op',
+    t: 'Se você parar de acompanhar a operação por 30 dias, o mais provável é:',
+    opts: [
+      { t:'O sistema continuaria se autorregulando.', l:4 },
+      { t:'A operação continuaria, mas começaria a variar.', l:2 },
+      { t:'O padrão se perderia rapidamente.', l:1 },
+      { t:'O padrão se manteria na maior parte do tempo.', l:3 }
+    ]
+  },
+  {
+    p: 'pes',
+    t: 'Quando aparece um conflito interno relevante, o que normalmente acontece?',
+    opts: [
+      { t:'Tentam resolver antes de me envolver.', l:2 },
+      { t:'Existe um critério conhecido para tratar isso sem depender de mim.', l:4 },
+      { t:'Eu sou chamado rapidamente.', l:1 },
+      { t:'Os líderes absorvem a maior parte da situação.', l:3 }
+    ]
+  },
+  {
+    p: 'pes',
+    t: 'Se você parar de acompanhar o time por 30 dias, o cenário mais provável é:',
+    opts: [
+      { t:'Os líderes sustentariam boa parte da rotina.', l:3 },
+      { t:'Surgiriam conflitos ou desalinhamentos rapidamente.', l:1 },
+      { t:'Os comportamentos esperados continuariam sendo reproduzidos.', l:4 },
+      { t:'O ambiente continuaria, mas começaria a perder ritmo.', l:2 }
+    ]
+  },
+  {
+    p: 'vnd',
+    t: 'Quando as vendas começam a cair, o que tende a acontecer primeiro?',
+    opts: [
+      { t:'Existem critérios claros para correção sem minha presença.', l:4 },
+      { t:'O time reage, mas depende de mim para corrigir o caminho.', l:2 },
+      { t:'Eu preciso assumir a frente rapidamente.', l:1 },
+      { t:'O sistema comercial reage antes de depender de mim.', l:3 }
+    ]
+  },
+  {
+    p: 'vnd',
+    t: 'Se você parar de acompanhar o comercial por 30 dias, o resultado mais provável é:',
+    opts: [
+      { t:'As vendas cairiam rapidamente.', l:1 },
+      { t:'Boa parte da previsibilidade seria mantida.', l:3 },
+      { t:'As vendas oscilariam bastante.', l:2 },
+      { t:'O processo continuaria seguindo critérios claros.', l:4 }
+    ]
+  }
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+
+let qi = 0;
+let answers = [];
+let chosen = null;
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+
+function start() {
+  qi = 0; answers = []; chosen = null;
+  renderQ();
+  showScreen('sQuestion');
+  setProgress(0);
+}
+
+function advance() {
+  if (chosen === null) return;
+  answers.push({ p: QS[qi].p, l: chosen });
+  qi++;
+  setProgress((qi / QS.length) * 100);
+  if (qi >= QS.length) {
+    buildResult();
+    showScreen('sResult');
+  } else {
+    renderQ();
+  }
+}
+
+function restart() {
+  setProgress(0);
+  showScreen('sIntro');
+}
+
+// ─── RENDER QUESTION ─────────────────────────────────────────────────────────
+
+function renderQ() {
+  const inner = document.getElementById('qInner');
+  chosen = null;
+
+  inner.classList.add('out');
+  setTimeout(() => {
+    const q = QS[qi];
+    document.getElementById('qTag').textContent  = PILLAR[q.p];
+    document.getElementById('qStep').textContent = `${qi + 1} de ${QS.length}`;
+    document.getElementById('qText').textContent = q.t;
+
+    const list = document.getElementById('optList');
+    list.innerHTML = '';
+    q.opts.forEach(o => {
+      const li = document.createElement('li');
+      li.className   = 'opt';
+      li.textContent = o.t;
+      li.addEventListener('click', () => pick(li, o.l));
+      list.appendChild(li);
+    });
+
+    document.getElementById('btnNext').textContent =
+      qi === QS.length - 1 ? 'Ver resultado' : 'Próxima';
+    document.getElementById('nextWrap').classList.remove('show');
+
+    inner.classList.remove('out');
+  }, 190);
+}
+
+function pick(el, level) {
+  document.querySelectorAll('#optList .opt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+  chosen = level;
+  document.getElementById('nextWrap').classList.add('show');
+}
+
+// ─── CALCULATE & RENDER RESULT ───────────────────────────────────────────────
+
+function buildResult() {
+  // Group scores by pillar
+  const map = {};
+  answers.forEach(a => {
+    if (!map[a.p]) map[a.p] = [];
+    map[a.p].push(a.l);
+  });
+
+  // Each pillar = minimum of its two question scores
+  const ps = {};
+  for (const [p, sc] of Object.entries(map)) ps[p] = Math.min(...sc);
+
+  // Final level = weakest pillar
+  const allScores = Object.values(ps);
+  const finalScore = Math.min(...allScores);
+  const minScore   = finalScore;
+
+  const limitingPillars = Object.entries(ps)
+    .filter(([, s]) => s === minScore)
+    .map(([p]) => PILLAR[p]);
+
+  renderResult(finalScore, ps, limitingPillars);
+}
+
+function renderResult(score, ps, limitingPillars) {
+  const lvl    = LVL[score];
+  const minSc  = Math.min(...Object.values(ps));
+  const plural = limitingPillars.length > 1;
+
+  const limitingText = plural
+    ? limitingPillars.slice(0,-1).join(', ') + ' e ' + limitingPillars.at(-1)
+    : limitingPillars[0];
+
+  // Pillar cards
+  const PILLAR_ORDER = ['fin','op','pes','vnd'];
+  const cardsHTML = PILLAR_ORDER.map(p => {
+    const s   = ps[p];
+    const pl  = LVL[s];
+    const lim = s === minSc;
+    const segs = [1,2,3,4].map(i =>
+      `<div class="seg${i<=s?' on '+pl.cls:''}"></div>`
+    ).join('');
+    return `
+      <div class="p-card${lim?' lim':''}">
+        <div class="p-name">${PILLAR[p]}</div>
+        <div class="p-lvl ${pl.cls}">${pl.emoji} ${pl.name}</div>
+        <div class="p-bar">${segs}</div>
+        ${lim ? '<div class="p-tag">pilar limitante</div>' : ''}
+      </div>`;
+  }).join('');
+
+  document.getElementById('rContent').innerHTML = `
+    <p class="r-eyebrow">Estado operacional atual</p>
+    <div class="r-emoji">${lvl.emoji}</div>
+    <div class="r-level ${lvl.cls}">Vero ${lvl.name}</div>
+
+    <div class="r-reading">${READINGS[score]}</div>
+    <p class="r-impact">${IMPACTS[score]}</p>
+
+    <hr class="hr">
+
+    <p class="map-label">Mapa por pilar</p>
+    <div class="pillar-grid">${cardsHTML}</div>
+
+    <div class="lim-section">
+      <p class="lim-label">Pilar${plural?'es':''} limitante${plural?'s':''}</p>
+      <p class="lim-value">${limitingText}</p>
+    </div>
+
+    <hr class="hr">
+
+    <div class="cta-block">
+      <p>Esse diagnóstico não pede ação imediata. Ele apenas mostra onde o sistema ainda depende de você. O próximo passo existe — mas a decisão de dar ou não não acontece aqui.</p>
+    </div>
+
+    <button class="btn btn-ghost" onclick="restart()">Refazer diagnóstico</button>
+  `;
+}
+
+// ─── UTILS ───────────────────────────────────────────────────────────────────
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function setProgress(pct) {
+  document.getElementById('pFill').style.width = pct + '%';
+}
+</script>
+
+</body>
+</html>

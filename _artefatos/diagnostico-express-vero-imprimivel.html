@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico Express Vero — Imprimível</title>
+  <style>
+    @page { size: A4; margin: 16mm 20mm; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10pt;
+      color: #111;
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Tela: simula folha A4 centralizada ── */
+    @media screen {
+      body { background: #DDDBD6; padding: 28px 0; }
+      .page {
+        background: #fff;
+        max-width: 210mm;
+        margin: 0 auto 28px;
+        padding: 16mm 20mm;
+        box-shadow: 0 2px 12px rgba(0,0,0,.18);
+      }
+      .print-bar {
+        max-width: 210mm;
+        margin: 0 auto 16px;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .print-bar button {
+        padding: 9px 20px;
+        background: #1D2C22;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        font-size: 13px;
+        font-family: inherit;
+        cursor: pointer;
+        letter-spacing: .02em;
+      }
+      .print-bar button:hover { opacity: .85; }
+    }
+
+    /* ── Impressão ── */
+    @media print {
+      .print-bar { display: none; }
+      /* Scoring page sempre começa em nova folha */
+      #pg-scoring { page-break-before: always; }
+      /* Impede quebra no meio de questões e cards */
+      .question, .level-card { page-break-inside: avoid; }
+      .pillar-block { page-break-inside: avoid; }
+    }
+
+    /* ════════════════════════════════════════
+       CABEÇALHO DO DOCUMENTO
+    ════════════════════════════════════════ */
+    .doc-brand {
+      font-size: 8pt;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 12px;
+    }
+
+    .doc-title {
+      font-size: 21pt;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: 5px;
+    }
+
+    .doc-subtitle {
+      font-size: 10pt;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .instructions {
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.6;
+      border-left: 2px solid #ccc;
+      padding: 9px 14px;
+      margin-bottom: 18px;
+    }
+
+    /* ── Campos nome/empresa/data ── */
+    .id-row {
+      display: flex;
+      gap: 24px;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #DDD;
+    }
+    .id-field { flex: 1; }
+    .id-field.narrow { max-width: 90px; }
+    .id-field label {
+      display: block;
+      font-size: 8pt;
+      color: #999;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .id-field .line {
+      border-bottom: 1px solid #999;
+      height: 20px;
+    }
+
+    /* ════════════════════════════════════════
+       BLOCOS DE PILAR
+    ════════════════════════════════════════ */
+    .pillar-block { margin-bottom: 16px; }
+
+    .pillar-label {
+      font-size: 7.5pt;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #999;
+      border-bottom: 1px solid #E4E4DC;
+      padding-bottom: 4px;
+      margin-bottom: 13px;
+    }
+
+    /* ════════════════════════════════════════
+       QUESTÕES
+    ════════════════════════════════════════ */
+    .question { margin-bottom: 13px; }
+
+    .q-head {
+      font-size: 9.5pt;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 7px;
+    }
+
+    .q-num { color: #BBB; font-weight: 400; margin-right: 5px; }
+
+    /* ── Opções ── */
+    .opts { padding-left: 2px; }
+
+    .opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-bottom: 5px;
+    }
+
+    .opt-letter {
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #BBB;
+      min-width: 11px;
+      padding-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .opt-bubble {
+      width: 13px;
+      height: 13px;
+      border: 1.5px solid #555;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1.5px;
+    }
+
+    .opt-text {
+      font-size: 9pt;
+      line-height: 1.45;
+      color: #222;
+    }
+
+    /* ════════════════════════════════════════
+       PÁGINA DE CÁLCULO
+    ════════════════════════════════════════ */
+    .scoring-title {
+      font-size: 17pt;
+      font-weight: 700;
+      letter-spacing: -.015em;
+      margin-bottom: 5px;
+    }
+
+    .scoring-sub {
+      font-size: 9pt;
+      color: #555;
+      margin-bottom: 18px;
+    }
+
+    /* ── Escala de referência ── */
+    .scale-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+      font-size: 9pt;
+      padding: 9px 14px;
+      background: #F5F4F0;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .scale-bar strong { margin-right: 4px; }
+    .scale-arrow { color: #BBB; }
+    .scale-note { color: #999; font-size: 8pt; margin-left: 6px; }
+
+    /* ── Label de seção ── */
+    .section-label {
+      font-size: 7.5pt;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 9px;
+    }
+
+    /* ── Gabarito ── */
+    .gab-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 22px;
+      font-size: 9pt;
+    }
+
+    .gab-table th {
+      padding: 6px 8px;
+      border: 1px solid #D4D4CC;
+      background: #F5F4F0;
+      font-weight: 700;
+      font-size: 8pt;
+      letter-spacing: .04em;
+      text-align: center;
+    }
+    .gab-table th:first-child { text-align: left; padding-left: 10px; }
+
+    .gab-table td {
+      padding: 5px 8px;
+      border: 1px solid #D4D4CC;
+      text-align: center;
+      font-size: 8.5pt;
+    }
+    .gab-table td:first-child {
+      text-align: left;
+      padding-left: 10px;
+      font-size: 8.5pt;
+      background: #FAFAF8;
+    }
+    .gab-table tr:nth-child(even) td:not(:first-child) {
+      background: #FDFCFA;
+    }
+
+    /* ── Planilha de cálculo ── */
+    .ws-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 9pt;
+    }
+
+    .ws-table th {
+      padding: 6px 10px;
+      border: 1px solid #D4D4CC;
+      background: #F5F4F0;
+      font-weight: 700;
+      font-size: 8pt;
+      letter-spacing: .04em;
+      text-align: left;
+    }
+
+    .ws-table td {
+      padding: 7px 10px;
+      border: 1px solid #D4D4CC;
+      font-size: 8.5pt;
+    }
+
+    /* Linhas de pilar (menor nível) */
+    .ws-table tr.row-pillar td {
+      background: #F0EFE8;
+      font-weight: 700;
+    }
+    .ws-table tr.row-pillar td.fill-cell {
+      background: #fff;
+    }
+
+    /* Linha de resultado final */
+    .ws-table tr.row-final td {
+      background: #111;
+      color: #fff;
+      font-weight: 700;
+    }
+    .ws-table tr.row-final td.fill-cell {
+      background: #222;
+      color: #fff;
+    }
+
+    /* ── Instrução inline ── */
+    .row-note {
+      font-size: 7.5pt;
+      font-weight: 400;
+      color: #999;
+      margin-left: 5px;
+    }
+
+    /* ── Cards de nível ── */
+    .level-card {
+      border: 1px solid #D4D4CC;
+      border-radius: 2px;
+      padding: 10px 14px;
+      margin-bottom: 7px;
+    }
+
+    .level-head {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .level-text {
+      font-size: 8.5pt;
+      color: #333;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .level-phrase {
+      font-size: 8.5pt;
+      font-style: italic;
+      color: #666;
+    }
+
+    /* ── Rodapé cognitivo ── */
+    .cta-footer {
+      margin-top: 18px;
+      padding: 11px 14px;
+      border: 1px solid #D4D4CC;
+      border-radius: 2px;
+      font-size: 8.5pt;
+      color: #555;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Botão de impressão (só aparece na tela) -->
+<div class="print-bar">
+  <button onclick="window.print()">Imprimir / Salvar PDF</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PÁGINA 1-2 — PERGUNTAS
+══════════════════════════════════════════════════════════ -->
+<div class="page" id="pg-questions">
+
+  <p class="doc-brand">Vero — Escola de Empresários</p>
+  <h1 class="doc-title">Diagnóstico Express Vero</h1>
+  <p class="doc-subtitle">O que acontece com sua empresa quando você não está em cima?</p>
+
+  <div class="instructions">
+    Este diagnóstico não mede faturamento, ambição ou potencial. Ele observa como sua empresa se comporta quando sua presença, vigilância ou decisão deixam de sustentar o sistema.<br>
+    <strong>Marque a opção que descreve o que normalmente acontece — não o que você gostaria que acontecesse.</strong>
+  </div>
+
+  <div class="id-row">
+    <div class="id-field">
+      <label>Nome</label>
+      <div class="line"></div>
+    </div>
+    <div class="id-field">
+      <label>Empresa</label>
+      <div class="line"></div>
+    </div>
+    <div class="id-field narrow">
+      <label>Data</label>
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <!-- ── FINANCEIRO ── -->
+  <div class="pillar-block">
+    <div class="pillar-label">Financeiro</div>
+
+    <div class="question">
+      <p class="q-head"><span class="q-num">1.</span> Quando surge uma despesa inesperada relevante, o que normalmente acontece?</p>
+      <div class="opts">
+        <div class="opt"><span class="opt-letter">A</span><span class="opt-bubble"></span><span class="opt-text">Existe alguma organização, mas normalmente eu preciso intervir para ajustar.</span></div>
+        <div class="opt"><span class="opt-letter">B</span><span class="opt-bubble"></span><span class="opt-text">Eu preciso decidir rapidamente o que será pago, adiado ou sacrificado.</span></div>
+        <div class="opt"><span class="opt-letter">C</span><span class="opt-bubble"></span><span class="opt-text">Existem critérios claros para lidar com isso sem depender de mim.</span></div>
+        <div class="opt"><span class="opt-letter">D</span><span class="opt-bubble"></span><span class="opt-text">A empresa consegue absorver boa parte da situação sem grande ruptura.</span></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <p class="q-head"><span class="q-num">2.</span> Se você parar de acompanhar os números por 30 dias, o cenário mais provável é:</p>
+      <div class="opts">
+        <div class="opt"><span class="opt-letter">A</span><span class="opt-bubble"></span><span class="opt-text">Eu provavelmente perderia a noção real do que está acontecendo.</span></div>
+        <div class="opt"><span class="opt-letter">B</span><span class="opt-bubble"></span><span class="opt-text">A maior parte continuaria sob controle, com poucos ajustes depois.</span></div>
+        <div class="opt"><span class="opt-letter">C</span><span class="opt-bubble"></span><span class="opt-text">Algumas coisas seguiriam, mas surgiriam surpresas no fechamento.</span></div>
+        <div class="opt"><span class="opt-letter">D</span><span class="opt-bubble"></span><span class="opt-text">Os critérios financeiros continuariam sendo seguidos sem minha presença.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── OPERAÇÃO ── -->
+  <div class="pillar-block">
+    <div class="pillar-label">Operação</div>
+
+    <div class="question">
+      <p class="q-head"><span class="q-num">3.</span> Quando surge um problema operacional importante, o que costuma acontecer?</p>
+      <div class="opts">
+        <div class="opt"><span class="opt-letter">A</span><span class="opt-bubble"></span><span class="opt-text">Só situações específicas escalam para mim.</span></div>
+        <div class="opt"><span class="opt-letter">B</span><span class="opt-bubble"></span><span class="opt-text">A operação resolve usando critérios conhecidos.</span></div>
+        <div class="opt"><span class="opt-letter">C</span><span class="opt-bubble"></span><span class="opt-text">Ele chega rapidamente até mim.</span></div>
+        <div class="opt"><span class="opt-letter">D</span><span class="opt-bubble"></span><span class="opt-text">Tentam resolver antes, mas normalmente eu acabo entrando.</span></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <p class="q-head"><span class="q-num">4.</span> Se você parar de acompanhar a operação por 30 dias, o mais provável é:</p>
+      <div class="opts">
+        <div class="opt"><span class="opt-letter">A</span><span class="opt-bubble"></span><span class="opt-text">O sistema continuaria se autorregulando.</span></div>
+        <div class="opt"><span class="opt-letter">B</span><span class="opt-bubble"></span><span class="opt-text">O padrão se perderia rapidamente.</span></div>
+        <div class="opt"><span class="opt-letter">C</span><span class="opt-bubble"></span><span class="opt-text">A operação continuaria, mas começaria a variar.</span></div>
+        <div class="opt"><span class="opt-letter">D</span><span class="opt-bubble"></span><span class="opt-text">O padrão se manteria na maior parte do tempo.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PESSOAS ── -->
+  <div class="pillar-block">
+    <div class="pillar-label">Pessoas</div>
+
+    <div class="question">
+      <p class="q-head"><span class="q-num">5.</span> Quando aparece um conflito interno relevante, o que normalmente acontece?</p>
+      <div class="opts">
+        <div class="opt"><span class="opt-letter">A</span><span class="opt-bubble"></span><span class="opt-text">Os líderes absorvem a maior parte da situação.</span></div>
+        <div class="opt"><span class="opt-letter">B</span><span class="opt-bubble"></span><span class="opt-text">Eu sou chamado rapidamente.</span></div>
+        <div class="opt"><span class="opt-letter">C</span><span class="opt-bubble"></span><span class="opt-text">Existe um critério conhecido para tratar isso sem depender de mim.</span></div>
+        <div class="opt"><span class="opt-letter">D</span><span class="opt-bubble"></span><span class="opt-text">Tentam resolver antes de me envolver.</span></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <p class="q-head"><span class="q-num">6.</span> Se você parar de acompanhar o time por 30 dias, o cenário mais provável é:</p>
+      <div class="opts">
+        <div class="opt"><span class="opt-letter">A</span><span class="opt-bubble"></span><span class="opt-text">Os líderes sustentariam boa parte da rotina.</span></div>
+        <div class="opt"><span class="opt-letter">B</span><span class="opt-bubble"></span><span class="opt-text">O ambiente continuaria, mas começaria a perder ritmo.</span></div>
+        <div class="opt"><span class="opt-letter">C</span><span class="opt-bubble"></span><span class="opt-text">Surgiriam conflitos ou desalinhamentos rapidamente.</span></div>
+        <div class="opt"><span class="opt-letter">D</span><span class="opt-bubble"></span><span class="opt-text">Os comportamentos esperados continuariam sendo reproduzidos.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VENDAS ── -->
+  <div class="pillar-block">
+    <div class="pillar-label">Vendas</div>
+
+    <div class="question">
+      <p class="q-head"><span class="q-num">7.</span> Quando as vendas começam a cair, o que tende a acontecer primeiro?</p>
+      <div class="opts">
+        <div class="opt"><span class="opt-letter">A</span><span class="opt-bubble"></span><span class="opt-text">O time reage, mas depende de mim para corrigir o caminho.</span></div>
+        <div class="opt"><span class="opt-letter">B</span><span class="opt-bubble"></span><span class="opt-text">O sistema comercial reage antes de depender de mim.</span></div>
+        <div class="opt"><span class="opt-letter">C</span><span class="opt-bubble"></span><span class="opt-text">Existem critérios claros para correção sem minha presença.</span></div>
+        <div class="opt"><span class="opt-letter">D</span><span class="opt-bubble"></span><span class="opt-text">Eu preciso assumir a frente rapidamente.</span></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <p class="q-head"><span class="q-num">8.</span> Se você parar de acompanhar o comercial por 30 dias, o resultado mais provável é:</p>
+      <div class="opts">
+        <div class="opt"><span class="opt-letter">A</span><span class="opt-bubble"></span><span class="opt-text">O processo continuaria seguindo critérios claros.</span></div>
+        <div class="opt"><span class="opt-letter">B</span><span class="opt-bubble"></span><span class="opt-text">As vendas cairiam rapidamente.</span></div>
+        <div class="opt"><span class="opt-letter">C</span><span class="opt-bubble"></span><span class="opt-text">Boa parte da previsibilidade seria mantida.</span></div>
+        <div class="opt"><span class="opt-letter">D</span><span class="opt-bubble"></span><span class="opt-text">As vendas oscilariam bastante.</span></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pg-questions -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PÁGINA 3 — CÁLCULO DO RESULTADO
+     (sempre imprime em nova folha)
+══════════════════════════════════════════════════════════ -->
+<div class="page" id="pg-scoring">
+
+  <p class="doc-brand">Vero — Escola de Empresários</p>
+  <h2 class="scoring-title">Como calcular seu resultado</h2>
+  <p class="scoring-sub">Siga os três passos abaixo na ordem. Não há calculadora necessária.</p>
+
+  <div class="scale-bar">
+    <strong>Ordem dos níveis:</strong>
+    <span>🌱 Raiz</span>
+    <span class="scale-arrow">→</span>
+    <span>🛤️ Trilha</span>
+    <span class="scale-arrow">→</span>
+    <span>🧠 Gestão</span>
+    <span class="scale-arrow">→</span>
+    <span>🏛️ Legado</span>
+    <span class="scale-note">(do mais dependente ao mais autônomo)</span>
+  </div>
+
+  <!-- ── PASSO 1: Gabarito ── -->
+  <p class="section-label">Passo 1 — Descubra o nível de cada resposta</p>
+  <table class="gab-table">
+    <thead>
+      <tr>
+        <th>Pergunta</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 — Financeiro</td><td>Trilha</td><td>Raiz</td><td>Legado</td><td>Gestão</td></tr>
+      <tr><td>2 — Financeiro</td><td>Raiz</td><td>Gestão</td><td>Trilha</td><td>Legado</td></tr>
+      <tr><td>3 — Operação</td><td>Gestão</td><td>Legado</td><td>Raiz</td><td>Trilha</td></tr>
+      <tr><td>4 — Operação</td><td>Legado</td><td>Raiz</td><td>Trilha</td><td>Gestão</td></tr>
+      <tr><td>5 — Pessoas</td><td>Gestão</td><td>Raiz</td><td>Legado</td><td>Trilha</td></tr>
+      <tr><td>6 — Pessoas</td><td>Gestão</td><td>Trilha</td><td>Raiz</td><td>Legado</td></tr>
+      <tr><td>7 — Vendas</td><td>Trilha</td><td>Gestão</td><td>Legado</td><td>Raiz</td></tr>
+      <tr><td>8 — Vendas</td><td>Legado</td><td>Raiz</td><td>Gestão</td><td>Trilha</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ── PASSO 2: Planilha ── -->
+  <p class="section-label">Passo 2 — Preencha a planilha</p>
+  <table class="ws-table">
+    <thead>
+      <tr>
+        <th style="width:42%">Pergunta</th>
+        <th style="width:22%">Minha resposta</th>
+        <th style="width:36%">Nível (gabarito acima)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Financeiro -->
+      <tr>
+        <td>1 — Financeiro</td>
+        <td class="fill-cell"></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <tr>
+        <td>2 — Financeiro</td>
+        <td class="fill-cell"></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <tr class="row-pillar">
+        <td colspan="2">Nível do Financeiro <span class="row-note">(anote o menor entre P1 e P2)</span></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <!-- Operação -->
+      <tr>
+        <td>3 — Operação</td>
+        <td class="fill-cell"></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <tr>
+        <td>4 — Operação</td>
+        <td class="fill-cell"></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <tr class="row-pillar">
+        <td colspan="2">Nível da Operação <span class="row-note">(anote o menor entre P3 e P4)</span></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <!-- Pessoas -->
+      <tr>
+        <td>5 — Pessoas</td>
+        <td class="fill-cell"></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <tr>
+        <td>6 — Pessoas</td>
+        <td class="fill-cell"></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <tr class="row-pillar">
+        <td colspan="2">Nível de Pessoas <span class="row-note">(anote o menor entre P5 e P6)</span></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <!-- Vendas -->
+      <tr>
+        <td>7 — Vendas</td>
+        <td class="fill-cell"></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <tr>
+        <td>8 — Vendas</td>
+        <td class="fill-cell"></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <tr class="row-pillar">
+        <td colspan="2">Nível de Vendas <span class="row-note">(anote o menor entre P7 e P8)</span></td>
+        <td class="fill-cell"></td>
+      </tr>
+      <!-- Resultado final -->
+      <tr class="row-final">
+        <td colspan="2">Meu resultado <span class="row-note" style="color:#888">(o pilar com menor nível entre os quatro)</span></td>
+        <td class="fill-cell"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── PASSO 3: Leituras ── -->
+  <p class="section-label">Passo 3 — Leia o que o resultado significa</p>
+
+  <div class="level-card">
+    <p class="level-head">🌱 Vero Raiz</p>
+    <p class="level-text">Sua empresa ainda depende fortemente da sua presença para funcionar. Quando você não está, decisões travam, urgências crescem e o sistema perde clareza.</p>
+    <p class="level-phrase">"Hoje, o principal sistema da empresa ainda é você."</p>
+  </div>
+
+  <div class="level-card">
+    <p class="level-head">🛤️ Vero Trilha</p>
+    <p class="level-text">Sua empresa já possui alguma estrutura, mas ela ainda depende da sua vigilância. Quando você afrouxa, o sistema continua por um tempo, mas começa a perder ritmo.</p>
+    <p class="level-phrase">"Hoje, a empresa funciona, mas ainda precisa que você vigie para não voltar ao improviso."</p>
+  </div>
+
+  <div class="level-card">
+    <p class="level-head">🧠 Vero Gestão</p>
+    <p class="level-text">Sua empresa já funciona com previsibilidade, mas ainda depende do seu critério para decisões relevantes. O desafio não é mais fazer funcionar; é decidir o que deve ou não continuar existindo.</p>
+    <p class="level-phrase">"Hoje, o risco não é parar de funcionar; é continuar carregando complexidade demais."</p>
+  </div>
+
+  <div class="level-card">
+    <p class="level-head">🏛️ Vero Legado</p>
+    <p class="level-text">Sua empresa demonstra sinais de autonomia institucional. As decisões não dependem apenas da sua presença, e parte importante do sistema continua mesmo sem sua intervenção.</p>
+    <p class="level-phrase">"Hoje, a empresa começa a mostrar que consegue existir além da sua presença."</p>
+  </div>
+
+  <div class="cta-footer">
+    Esse diagnóstico não pede ação imediata. Ele apenas mostra onde o sistema ainda depende de você. O próximo passo existe — mas a decisão de dar ou não não acontece aqui.
+  </div>
+
+</div><!-- /pg-scoring -->
+
+</body>
+</html>
