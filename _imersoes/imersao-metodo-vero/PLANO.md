@@ -48,8 +48,8 @@ Sem motivacional, sem pitch antecipado. Tom Vero do início ao fim: provocar + m
 | 5 | **Canvas Diagnóstico de Fase** (novo — onde estou em cada pilar) | 🔜 S1 | — | Íris |
 | 6 | **Oferta / pricing da matrícula (Raiz/Trilha)** | 📄 FAIXAS DOCUMENTADAS em `_docs-originais/MODELO DE NEGÓCIO VERO.docx` (§10). Falta: valor exato dentro da faixa + os 2 pontos da proposta de reenquadramento (item #8) | Lucas + Ernane | Lucas + Ernane |
 | 7 | **Simulação de 100 empresários** — `SIMULACAO-100-EMPRESARIOS.md` | ✅ FEITA 18/07 — gerou os itens #8, #9 e o redesenho da tarde já aplicado no deck v5 | — | Claude |
-| 8 | **Proposta de reenquadramento da mensalidade** — `_estrategia/proposta-reenquadramento-mensalidade.md` | ✍️ RASCUNHO pronto, 2 campos `[DEFINIR]`: duração do ciclo por nível + cadência de validação por nível | Lucas + Ernane preenchem os 2 campos | Lucas + Ernane |
-| 9 | **Prova de execução para o palco** (1-2 casos reais com número, priorizando Gestão) | ⚠️ BLOQUEIO DE CONTEÚDO — precisa de caso real (Proativo ou piloto Vero); **não fabricar número** | Lucas + Ernane fornecem o caso | Lucas + Ernane |
+| 8 | **Proposta de reenquadramento da mensalidade** — `_estrategia/proposta-reenquadramento-mensalidade.md` | 🟡 PARCIAL (18/07): **ciclo definido** — anuidade com renovação. **Falta**: tabela de cadência/formato/duração de validação por nível (tarefa de desenho de Lucas + Ernane, não pergunta rápida) — dela sai também a carga horária semanal do slide 54, por cálculo | Lucas + Ernane desenham a tabela | Lucas + Ernane |
+| 9 | **Prova de execução para o palco** (1-2 casos reais com número, priorizando Gestão) | 🟡 AÇÃO (18/07): Lucas acredita que existe caso, mas não tem a informação em mãos agora — **ação: perguntar ao Ernane** | Ernane confirma/fornece o caso | Lucas → Ernane |
 | 10 | **Ensaio + logística** (impressão, projetor, links) | 🔜 S3 | #2, #3, #6, #8, #9 prontos | Lucas + Ernane |
 
 ### ⚠️ Bloqueios reais (produção não resolve sozinha)

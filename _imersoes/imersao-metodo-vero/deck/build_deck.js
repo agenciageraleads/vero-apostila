@@ -664,9 +664,11 @@ exercicioHold("última",20,"Não escreva o que você deveria fazer. Escreva o qu
 `Circular sem pressa. Este é o exercício que vira compromisso — não interromper o silêncio da sala.`);
 
 // S52c — PENDENTE: objeção de tempo (redesenho pós-simulação — item mais citado entre quem já disse "sim")
+// 18/07: depende da tabela de cadência de validação por nível (proposta de reenquadramento,
+// item 2) — uma vez preenchida, a hora/semana sai por cálculo, não precisa de nova decisão.
 pendente("Quanto tempo por semana o método exige — dito com número",
-"Lucas + Ernane: carga horária real de validação/acompanhamento por nível + como funciona sem exigir presença física",
-`PLACEHOLDER — a simulação de 100 empresários apontou "falta de tempo pra executar" como a objeção Nº1 de quem JÁ disse SIM (maior preditor de abandono/churn, não de recusa na hora). Ninguém no palco responde isso hoje com número. Precisa: horas/semana por nível + explicar que a validação não exige o dono presente/parado. Ver SIMULACAO-100-EMPRESARIOS.md, objeção #2. Posicionar este slide na fala antes do Exercício 6, dito em voz alta pelo condutor.`);
+"Consequência direta da tabela de cadência de validação (proposta-reenquadramento-mensalidade.md, item 2) — Lucas + Ernane ainda precisam desenhar essa tabela",
+`PLACEHOLDER — a simulação de 100 empresários apontou "falta de tempo pra executar" como a objeção Nº1 de quem JÁ disse SIM (maior preditor de abandono/churn, não de recusa na hora). Ninguém no palco responde isso hoje com número. Depende da tabela de cadência/formato/duração por nível — uma vez que Lucas+Ernane a desenharem, a hora/semana sai por cálculo (duração × cadência ÷ 4 semanas). Ver SIMULACAO-100-EMPRESARIOS.md, objeção #2, e a proposta de reenquadramento. Posicionar este slide na fala antes do Exercício 6, dito em voz alta pelo condutor.`);
 
 // S53 — A escola
 s=slide(`Como a escola funciona por dentro — 3 minutos, factual, sem promessa: fases → blocos → execução → validação → certificação. A apostila completa (4 pilares × 4 fases) é o material do aluno; hoje vocês usaram a edição da imersão. O aluno recebe o material da fase em que está — e avança comprovando execução, não pagando.`);
@@ -687,9 +689,10 @@ quote(null,"O aluno não avança pagando. Avança executando.",null,
 `A régua da escola — fecha o círculo com o slide 3 ("empresários de verdade"). Aqui a venda começa sem pedir nada: o filtro é o próprio método. "Se isso afasta alguém, era pra afastar."`,{size:34,edgeH:1.7,h:1.8,divY:4.1});
 
 // S54b — PENDENTE: prova de caixa / caso-piloto (redesenho pós-simulação)
+// 18/07: Lucas acredita que existe caso mas não tem a informação em mãos — ação: perguntar ao Ernane.
 pendente("Prova de execução — 1-2 casos com número real",
-"Lucas + Ernane: um caso Proativo (ou piloto Vero) com resultado em R$/dias — NÃO fabricar número",
-`PLACEHOLDER — a simulação apontou "ninguém me mostrou um caso com número" como objeção forte, concentrada em Gestão (maior tíquete, pior conversão: 20%) e em quem já queimou dinheiro com mentoria antes. Precisa de 1-2 casos REAIS (mesmo que da consultoria Proativo) com ponte explícita "este canvas → este resultado em reais". Ver SIMULACAO-100-EMPRESARIOS.md, objeção #5 e risco #5. Posicionar antes da oferta — é o que credencia o preço que vem a seguir.`);
+"Ação (18/07): Lucas acredita que existe um caso Proativo/piloto Vero, mas não tem a informação agora — perguntar ao Ernane. NÃO fabricar número",
+`PLACEHOLDER — a simulação apontou "ninguém me mostrou um caso com número" como objeção forte, concentrada em Gestão (maior tíquete, pior conversão: 20%) e em quem já queimou dinheiro com mentoria antes. Precisa de 1-2 casos REAIS (mesmo que da consultoria Proativo) com ponte explícita "este canvas → este resultado em reais". Ver SIMULACAO-100-EMPRESARIOS.md, objeção #5 e risco #5. Posicionar antes da oferta — é o que credencia o preço que vem a seguir. Se o Ernane não tiver nenhum caso, avisar — o slide precisa de um plano B em vez de ficar pendente até o dia do evento.`);
 
 // S54c — Trilha Gestão/Legado (redesenho pós-simulação: maior tíquete, pior conversão — 20% em Gestão)
 s=slide(`A simulação de 100 empresários mostrou conversão de só 20% em Gestão (vs. 45% em Raiz) — o público de maior tíquete diagnosticado na manhã genérica sente que "a manhã foi básica demais" e pede prova/conversa antes de assinar. Este momento nomeia isso no palco: quem se diagnosticou em Gestão/Legado não recebe a oferta padrão de matrícula — recebe um convite pra aprofundar.`);
@@ -705,9 +708,11 @@ gestaoItens.forEach((it,i)=>{ let y=giy+i*0.75;
 footer(s,N);
 
 // S55 — PENDENTE oferta (Raiz/Trilha — a maioria da sala)
+// 18/07: ciclo já definido (anuidade com renovação) — falta só a tabela de cadência/formato
+// por nível (proposta-reenquadramento-mensalidade.md, item 2) + valor exato dentro da faixa.
 pendente("A oferta — investimento, formato e condição de turma (Raiz/Trilha)",
-"Pricing e formato da matrícula — decisão Lucas + Ernane (entregável #6). Faixas já documentadas em MODELO DE NEGÓCIO VERO.docx; falta fixar valor exato + estrutura de ciclo — ver proposta em _estrategia/proposta-reenquadramento-mensalidade.md",
-`PLACEHOLDER — slide central do fechamento comercial, para quem se diagnosticou em Raiz ou Trilha (Gestão/Legado tem o momento próprio no slide anterior). Estrutura sugerida: o que está incluído (fase + material + validação) · entrada · ciclo de manutenção NOMEADO (ver proposta de reenquadramento) · condição de Fundador da turma de hoje. Sem desconto teatral — condição real, prazo real. Liderar com O QUE CHEGA TODO MÊS, preço depois — é a ordem que a simulação recomendou.`);
+"Ciclo JÁ DEFINIDO: anuidade com renovação. Falta: valor exato dentro da faixa (MODELO DE NEGÓCIO VERO.docx) + tabela de cadência de validação por nível (proposta-reenquadramento-mensalidade.md, item 2) — Lucas + Ernane",
+`PLACEHOLDER — slide central do fechamento comercial, para quem se diagnosticou em Raiz ou Trilha (Gestão/Legado tem o momento próprio no slide anterior). Estrutura sugerida: o que está incluído (fase + material + validação) · entrada · "anuidade, com renovação" NOMEADA como ciclo (já decidido — falta o entregável mensal específico) · condição de Fundador da turma de hoje. Sem desconto teatral — condição real, prazo real. Liderar com O QUE CHEGA TODO MÊS, preço depois — é a ordem que a simulação recomendou.`);
 
 // S56 — Como entrar
 s=slide(`CTA prático: matrícula ou lista da próxima turma. Repetir o QR verbalmente ("aponta a câmera agora — leva 10 segundos"). Ernane circula com apoio a quem quiser conversar individualmente no fim.`);

@@ -26,30 +26,34 @@ antes de mostrar o preço.**
 
 ## O que a proposta muda: só a ordem e o nome
 
-### 1. Nomear um ciclo
+### 1. Nomear um ciclo — ✅ DEFINIDO (Lucas, 18/07)
 
-Hoje a manutenção soa indefinida. Proposta: dar um nome e uma duração ao ciclo de cada nível
-— ex. **"Ciclo Vero"**, com duração até a certificação do nível, renovação opcional depois.
+**Anuidade, com possibilidade de renovação.** Ciclo de 12 meses por nível, renovação opcional
+ao final — não é assinatura sem fim, é "matrícula anual" no vocabulário que a sala já entende
+("escola tem formatura"). Vale pros 4 níveis até segunda ordem; se algum nível precisar de
+ciclo diferente (Gestão/Legado mais longos, por exemplo), é ajuste futuro, não bloqueio de hoje.
 
-**[DEFINIR — Lucas + Ernane]**: quantos meses é realista até a validação de certificação em
-cada nível, hoje, na prática? Sugestão de piso para calibrar (não é recomendação, é ponto de
-partida para a conversa): Raiz e Trilha ~12 meses, Gestão e Legado ~18-24 meses (ciclos mais
-longos condizem com a profundidade da fase, mas só vocês sabem o tempo real de validação).
-
-### 2. Nomear o entregável mensal, por nível
+### 2. Nomear o entregável mensal, por nível — 🔧 EM DESENHO (Lucas + Ernane, tarefa própria)
 
 Antes do preço, dizer **o que chega todo mês** — quem revisa, quantas vezes, com que
 profundidade. A simulação registrou quase a mesma frase em ~8 respostas de Trilha:
 *"só pago se for gente olhando meu número, não formulário automático"*.
 
-**[DEFINIR — Lucas + Ernane]**: a cadência real de validação por nível. Ponto de partida:
+Isso ainda precisa ser desenhado e validado — não é uma pergunta de resposta rápida, é uma
+tarefa própria de vocês dois. **Nota importante**: a carga horária semanal do método (a outra
+pendência do deck, slide 54) é consequência direta desta tabela — uma vez definida a cadência,
+as horas/semana saem dela por cálculo, não precisam ser respondidas separadamente. Esqueleto
+para preencher quando fizerem essa sessão:
 
-| Nível | Cadência sugerida (validar) | Quem revisa |
-|---|---|---|
-| Raiz | Mensal | [definir] |
-| Trilha | Mensal + 1 checkpoint | [definir] |
-| Gestão | Quinzenal | [definir] |
-| Legado | Quinzenal + conselho | [definir] |
+| Nível | Cadência de validação | Formato (reunião / revisão async / outro) | Quem revisa | Duração por sessão |
+|---|---|---|---|---|
+| Raiz | [definir] | [definir] | [definir] | [definir] |
+| Trilha | [definir] | [definir] | [definir] | [definir] |
+| Gestão | [definir] | [definir] | [definir] | [definir] |
+| Legado | [definir] | [definir] | [definir] | [definir] |
+
+Quando tiverem isso, a carga horária semanal do slide 54 = (duração por sessão × cadência
+mensal) ÷ ~4 semanas, por nível — cálculo direto, não precisa de nova reunião.
 
 ### 3. Trocar a ordem no palco
 
@@ -75,6 +79,7 @@ condição de Fundador. O preço vem depois de a recorrência já fazer sentido 
 
 ## Decisão pendente
 
-Esta proposta só fecha quando Lucas + Ernane preencherem os dois `[DEFINIR]` acima
-(duração do ciclo por nível + cadência de validação por nível). Sem isso, o slide 59
-permanece como placeholder — é o único bloqueio de conteúdo que falta no deck v5.
+Falta só um ponto agora: a tabela de cadência/formato/duração por nível (item 2). O ciclo
+(item 1) já está fechado. Sem a tabela, os slides 54 (tempo semanal) e 59 (oferta) permanecem
+como placeholder — é o único bloqueio de DESENHO que falta no deck v5 (o outro bloqueio, o
+caso real de execução para o slide 57, é uma pergunta separada — ver nota em PLANO.md).
