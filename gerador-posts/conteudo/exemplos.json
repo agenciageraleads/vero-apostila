@@ -1,0 +1,16 @@
+[
+ {"id":"exemplo-institucional","layout":"foto-titulo","formatos":["feed","story"],"foto":"textura-marinho-linhas",
+  "chip":"Vero","titulo":"Quem executa, *permanece*.",
+  "apoio":"Formação sem critério gera ilusão. Aqui, o método vira rotina.","cta":"Descubra o seu nível"},
+ {"id":"exemplo-dica","layout":"dica","formatos":["feed"],"chip":"Dica","titulo":"3 perguntas sobre o seu *caixa*",
+  "itens":["Você sabe quanto a empresa paga da sua vida?","O preço que você cobra tem um cálculo por trás?","O que acontece se você ficar uma semana fora?"],"cta":"Análise de Maturidade"},
+ {"id":"exemplo-passos","layout":"passo","formatos":["feed"],"cta":"Análise de Maturidade","slides":[
+   {"titulo":"Liste o que *saiu*","apoio":"Tudo o que saiu da empresa no último mês."},
+   {"titulo":"Separe o que é *seu*","apoio":"Marque o que pagou a sua vida, não o negócio."},
+   {"titulo":"Compare com o que você *acha*","apoio":"Quanto você acha que ganha, e quanto de fato saiu?"}]},
+ {"id":"exemplo-numero","layout":"numero","formatos":["feed"],"numero":"4 × 4","titulo":"níveis e pilares: a *régua* do método","apoio":"Raiz, Trilha, Gestão e Legado, em Financeiro, Operação, Vendas e Pessoas.","cta":"Descubra o seu nível"},
+ {"id":"exemplo-mito","layout":"mito-verdade","formatos":["feed"],"titulo":"Empresa grande ou *pequena*?",
+  "mito":"Separar empresa e vida pessoal é coisa de empresa grande.","verdade":"Empresa grande quebra quando ignora isso. Empresa pequena quebra porque nunca fez.","cta":"Análise de Maturidade"},
+ {"id":"exemplo-blog","layout":"blog","formatos":["feed","story"],"foto":"textura-marinho-linhas","chip":"Da apostila","cta":"Leia o bloco",
+  "titulo":"Quando o dinheiro entra e *some*","apoio":"A pergunta do primeiro bloco de Financeiro · Raiz."}
+]

@@ -1,0 +1,21 @@
+{
+  "nome": "Vero Escola de Empresários",
+  "lema": "Vero. Uma escola para empresários de verdade.",
+  "cores": {"escuro": "#192C4C", "claro": "#F5F1E6", "tinta": "#052B5A", "acento": "#DEBB5F", "acento_texto": "#052B5A",
+            "destaque": "#DEBB5F", "mudo": "#3D4658", "linha": "#D6CFB8"},
+  "tipos": {"titulo": "Playfair Display", "texto": "DM Sans", "peso_titulo": 700},
+  "fontes": [
+    {"familia": "Playfair Display", "peso": "400 900", "arquivo": "assets/fontes/playfair-display-variable.ttf"},
+    {"familia": "DM Sans", "peso": "100 1000", "arquivo": "assets/fontes/dm-sans-variable.ttf"}
+  ],
+  "logos": {"escuro": "assets/logo-escuro.png", "claro": "assets/logo-claro.png"},
+  "fonte_da_verdade": "~/Projetos/Vero - Escola de Empresários/_contexto/identidade-visual-vero.md (o documento manda sobre ~/.claude/skills/video-marcas/marcas/vero.json)",
+  "notas": [
+    "Tema claro por padrão (creme #F5F1E6, tinta #052B5A); o motor usa tom escuro (#192C4C, texto creme, dourado) em foto-titulo, blog e numero: só para tela/social, nunca projetor.",
+    "Tipografia: a tabela 'Tipografia' do identidade-visual-vero.md define Playfair Display (títulos) e DM Sans (corpo) para web/peças fixas; Georgia/Arial são só do deck portável. Fraunces/Inter do vero.json não foram usadas.",
+    "Fontes variáveis (Playfair wght 400-900; DM Sans wght 100-1000) copiadas de ~/.claude/skills/video-marcas/fontes. Ambas OFL (Google Fonts).",
+    "Dourado nunca como texto pequeno sobre claro: só bloco/borda/marca-texto com texto #052B5A por cima (acento_texto). Sobre #192C4C o dourado tem contraste alto e pode ser texto.",
+    "'tinta' é a cor de texto no tom claro (marinho #052B5A); 'escuro' é o fundo do tom escuro (#192C4C).",
+    "Lema = assinatura-mestra (D-009). Não usar 'Status não se compra...' (restrita à certificação, congelada)."
+  ]
+}

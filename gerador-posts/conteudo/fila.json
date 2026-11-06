@@ -1,0 +1,120 @@
+[
+ {
+  "id": "2026-10-19-auditoria-de-venda",
+  "layout": "passo",
+  "formatos": [
+   "feed"
+  ],
+  "cta": "Análise de Maturidade",
+  "legenda": "Quanto das suas vendas fecha sem você?\nPegue as 10 últimas vendas e faça a conta no papel, sem defesa.\nSe o número assustar, ele só mostrou onde a venda depende de você.\nO exercício completo está no bloco Vendas · Raiz 01 da apostila Vero.\nDescubra em que nível sua empresa está: Análise de Maturidade (link a confirmar).",
+  "fonte": "apostila/vendas/raiz/bloco-01/p2.md (Auditoria de Venda)",
+  "slides": [
+   {
+    "titulo": "Liste as *10 últimas* vendas",
+    "apoio": "Data, cliente, valor e como o cliente chegou até você."
+   },
+   {
+    "titulo": "Marque as que *você iniciou*",
+    "apoio": "Em quantas o primeiro contato foi seu? Quantas você acompanhou até o fim?"
+   },
+   {
+    "titulo": "Conte as que fecharam *sem você*",
+    "apoio": "Tire o seu acompanhamento da conta. O que sobra fecha sozinho?"
+   },
+   {
+    "titulo": "Leia o número *sem defesa*",
+    "apoio": "Enquanto cada venda depender de você correndo atrás, você não tem uma máquina de vendas. Tem um emprego."
+   }
+  ]
+ },
+ {
+  "id": "2026-10-20-imprevisto-nao-e-custo",
+  "layout": "mito-verdade",
+  "formatos": [
+   "feed"
+  ],
+  "cta": "Análise de Maturidade",
+  "legenda": "Equipamento que quebra, cliente que não paga, funcionário que sai.\nQuando se repete, deixa de ser imprevisto.\nÉ custo que ficou fora do preço, e por isso o lucro do mês parecia maior do que era.\nBloco Financeiro · Raiz 03: o que você chama de lucro e o que sobra de verdade.",
+  "fonte": "apostila/financeiro/raiz/bloco-03/p2.md (dúvidas emocionais)",
+  "titulo": "Imprevisto ou *custo*?",
+  "mito": "Equipamento quebrado é imprevisto, não é custo.",
+  "verdade": "Imprevisto que se repete é custo. Você só não colocou no preço."
+ },
+ {
+  "id": "2026-10-21-para-onde-vai-o-dinheiro-do-mes",
+  "layout": "dica",
+  "formatos": [
+   "feed"
+  ],
+  "chip": "Financeiro",
+  "cta": "Análise de Maturidade",
+  "legenda": "Você sabe quanto ganha? Não a empresa: você.\nAntes de chamar o que sobra de retirada, responda as 3 perguntas com os números do último mês.\nSe travou em alguma, essa é a informação mais importante.\nExercício do bloco Financeiro · Raiz 02: separação mínima entre empresa e vida pessoal.",
+  "fonte": "apostila/financeiro/raiz/bloco-02/p2.md",
+  "titulo": "3 perguntas antes de chamar de *retirada*",
+  "itens": [
+   "Quanto saiu da empresa para a sua vida no último mês?",
+   "O que você tirou sem anotar como retirada?",
+   "Quanto você acha que ganha e quanto de fato saiu?"
+  ]
+ },
+ {
+  "id": "2026-10-22-o-que-fica-fora-do-lucro",
+  "layout": "numero",
+  "formatos": [
+   "feed"
+  ],
+  "cta": "Análise de Maturidade",
+  "legenda": "Oito itens que quase todo empresário esquece ao calcular o lucro do mês.\nImposto provisionado, pró-labore, férias e 13º, rescisão, depreciação, manutenção, inadimplência e reserva.\nMarque quais se aplicam à sua empresa e estime o valor mensal de cada um.\nO número vai cair. É a primeira vez que ele é verdadeiro.\nBloco Financeiro · Raiz 03.",
+  "fonte": "apostila/financeiro/raiz/bloco-03/p2.md (checklist de 8 itens)",
+  "numero": "8",
+  "titulo": "itens ficam fora do que você chama de *lucro*",
+  "apoio": "Impostos, pró-labore, férias e 13º, rescisão, depreciação, manutenção, inadimplência e reserva."
+ },
+ {
+  "id": "2026-10-23-quando-o-preco-sai-da-cabeca",
+  "layout": "blog",
+  "formatos": [
+   "feed",
+   "story"
+  ],
+  "foto": "pexels-8297024",
+  "chip": "Da apostila",
+  "cta": "Leia o bloco",
+  "legenda": "Você sabe por que colocou esse preço, ou só sabe que é esse o preço?\nPreço que sai da cabeça é adivinhação com aparência de verdade.\nBloco Financeiro · Raiz 04 da apostila Vero: quanto você cobrou, quanto gastou para entregar e quanto tempo levou.\nLink do bloco: a confirmar (publicação do bloco no canal/site ainda não definida).",
+  "fonte": "apostila/financeiro/raiz/bloco-04/p1.md (pergunta provocativa) e p2.md",
+  "titulo": "Quando o preço sai da *cabeça*",
+  "apoio": "Você sabe por que colocou esse preço, ou só sabe que é esse o preço?"
+ },
+ {
+  "id": "2026-10-26-o-que-para-quando-voce-sai",
+  "layout": "dica",
+  "formatos": [
+   "feed"
+  ],
+  "chip": "Operação",
+  "cta": "Análise de Maturidade",
+  "legenda": "Teste simples de dependência: pense na última vez que você ficou dois dias fora.\nO que parou, o que esperou, o que foi embora?\nAs 3 perguntas abaixo vêm do bloco Operação · Raiz 01.\nSe a dúvida aparece toda semana, não é dúvida: é ausência de critério.",
+  "fonte": "apostila/operacao/raiz/bloco-01/p2.md",
+  "titulo": "3 perguntas sobre o que *para* quando você sai",
+  "itens": [
+   "Qual decisão de rotina só você autoriza?",
+   "O que parou na última vez que você saiu por dois dias?",
+   "Quem poderia decidir isso sem você?"
+  ]
+ },
+ {
+  "id": "2026-10-27-formacao-de-verdade",
+  "layout": "foto-titulo",
+  "formatos": [
+   "feed",
+   "story"
+  ],
+  "foto": "pexels-5717065",
+  "chip": "Vero",
+  "cta": "Descubra o seu nível",
+  "legenda": "A Vero não é curso, mentoria, comunidade nem autoajuda.\nÉ uma escola para donos de comércio, serviço e indústria que querem eliminar o improviso e operar com critério.\nO método tem 4 níveis e 4 pilares. A Análise de Maturidade devolve o seu.\nLink da análise: a confirmar.",
+  "fonte": "_contexto/conceitos-vero.md §1, §2 e §5",
+  "titulo": "Formação de verdade acontece na *prática*.",
+  "apoio": "Uma escola que elimina o improviso e forma empresários que operam com critério sustentável."
+ }
+]
