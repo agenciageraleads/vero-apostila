@@ -45,7 +45,7 @@ Cada frente tem um dono, um próximo passo e o que a trava. A coordenadora abre 
 | # | Frente | Dono | Estado | Próximo passo | Travada por |
 |---|---|---|---|---|---|
 | **F0** | **Casa em ordem** (repo, commits, sessões) | Claude (coordenadora) | ✅ 06/11 | Working tree commitado em 7 commits por assunto, `node_modules` fora do git, 10 sessões arquivadas. Falta só o push | Lucas autorizar o push |
-| **F1** | **Funil de entrada — Análise de Maturidade** | Claude + Lucas | 🔄 em andamento (06/11) | Diagnóstico Express integrado; sessão filha `analise-maturidade` (Sonnet, worktree) constrói a v1 e abre PR para Lucas ler | Leitura do PR pelo Lucas |
+| **F1** | **Funil de entrada — Análise de Maturidade** | Claude + Lucas | 🟡 v1 pronta no PR #2 (06/11) | Lucas lê o PR e decide: 12 ou 8 perguntas, texto das Q9–Q12, canal de recebimento das candidaturas, critério de seleção, versão imprimível | Decisões do Lucas no PR #2 |
 | **F2** | **Imersão Vero** (dia inteiro, porta paga) | Lucas + Ernane | 🟡 deck v5 pronto, bloqueada | Fechar data; ingresso (proposta: R$ 197 por empresa, até 2 pessoas, R$ 100 creditáveis); pricing da matrícula | P-02 pricing · P-06 cadência por nível · P-07 caso real · data |
 | **F3** | **Apostila** (88/88 escrita) | Claude | 🟡 acabamento | Validar e commitar a repaleta (tokens navy/dourado em todos os blocos); PDFs por nível com capa nova; Apostila da Imersão (edição curada) | Lucas aprovar o novo visual |
 | **F4** | **Canal YouTube** | Lucas/Ernane + Claude | ❓ | Confirmar 1.3–1.5; depois Pauteiro como rotina → 1ª gravação em lote | T-01 OAuth · T-02 fotos · roteiro-piloto |
@@ -66,7 +66,7 @@ Cada frente tem um dono, um próximo passo e o que a trava. A coordenadora abre 
 | 2.1 | ✅ Commitar o working tree em commits por assunto; remover `node_modules` do git | F0 | Claude | Feito 06/11 (`0f0bfc3`..`e427bd5`), local, sem push |
 | 2.2 | ✅ Arquivar as 10 sessões antigas da seção Vero | F0 | Claude | Feito 06/11 — só a coordenadora aberta na seção |
 | 2.3 | ✅ Integrar a branch do Diagnóstico Express | F1 | Claude | Feito 06/11 (merge na main, enviado) |
-| 2.4 | 🔄 Análise de Maturidade v1 (esqueleto navegável + classificação) | F1 | Sessão filha `analise-maturidade` | Formulário + lógica de classificação + devolutiva por nível para Lucas ler |
+| 2.4 | 🟡 Análise de Maturidade v1 — PR #2 aberto, aguardando Lucas | F1 | Sessão filha `analise-maturidade` | Formulário + lógica de classificação + devolutiva por nível para Lucas ler |
 | 2.5 | Lucas responde: status de 1.3/1.4/1.5 e aprova (ou não) a repaleta da apostila | F3/F4 | Lucas | Respostas registradas aqui |
 | 2.6 | Conversa de 15 min com Ernane: caso real (P-07) + cadência por nível (P-06) + data da Imersão | F2 | Lucas → Ernane | Respostas, mesmo informais, trazidas para a coordenadora |
 
