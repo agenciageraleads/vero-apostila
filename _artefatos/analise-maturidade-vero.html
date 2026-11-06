@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de Maturidade Vero</title>
+<style>
+  :root{
+    --navy:#052B5A; --navy-deep:#192C4C; --gold:#DEBB5F; --gold-dk:#B08D2E; --cream:#F2E4B6;
+    --white:#FFFFFF; --panel:#F5F1E6; --body:#3D4658; --mute:#5E6678; --line:#E3DECF;
+    --red:#C0392B;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:'DM Sans','Segoe UI',-apple-system,Arial,sans-serif;background:var(--white);color:var(--body);line-height:1.55;min-height:100vh}
+  h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,'Times New Roman',serif;color:var(--navy);font-weight:700}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 22px 64px}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+  .tile{width:38px;height:38px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font:italic 700 24px Georgia,serif;border-radius:3px}
+  .brand span{font-family:'DM Mono',ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy)}
+  .screen{display:none}.screen.on{display:block}
+  .rule{height:3px;width:56px;background:var(--gold);margin:18px 0 22px}
+  h1{font-size:34px;line-height:1.15}
+  h2{font-size:25px;line-height:1.25}
+  h3{font-size:19px}
+  p{margin-bottom:14px}
+  .lead{font-size:18px;color:var(--navy)}
+  .note{border-left:3px solid var(--gold);background:var(--panel);padding:14px 18px;margin:22px 0;font-size:15px}
+  .label{font-family:'DM Mono',ui-monospace,Menlo,monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy)}
+  .btn{display:inline-block;background:var(--navy);color:var(--white);border:2px solid var(--navy);padding:13px 26px;font:600 15px inherit;font-family:inherit;cursor:pointer;border-radius:3px}
+  .btn:hover:not(:disabled){background:var(--navy-deep)}
+  .btn:focus-visible,.opt:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .btn:disabled{opacity:.35;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--navy)}
+  .btn.ghost:hover{background:var(--panel)}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:24px}
+  /* progresso */
+  .bar{height:4px;background:var(--line);margin-bottom:10px}
+  .bar i{display:block;height:100%;background:var(--gold);width:0;transition:width .25s}
+  .meta{display:flex;justify-content:space-between;margin-bottom:26px}
+  .qtext{font-size:23px;margin-bottom:22px}
+  .opts{list-style:none;display:grid;gap:10px}
+  .opt{width:100%;text-align:left;background:var(--white);border:2px solid var(--line);color:var(--body);padding:15px 18px;font:inherit;font-size:16px;cursor:pointer;border-radius:3px;line-height:1.45}
+  .opt:hover{border-color:var(--navy)}
+  .opt[aria-pressed="true"]{border-color:var(--navy);background:var(--navy);color:var(--white)}
+  /* resultado */
+  .nivel-box{background:var(--navy);color:var(--cream);padding:30px 28px;border-radius:3px;margin:8px 0 22px}
+  .nivel-box .label{color:var(--gold)}
+  .nivel-box h2{color:var(--white);font-size:38px;margin:6px 0 14px}
+  .nivel-box .frase{font-family:Georgia,serif;font-style:italic;font-size:19px;color:var(--cream);margin:0}
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 6px}
+  @media(max-width:520px){.pillars{grid-template-columns:1fr}.nivel-box h2{font-size:32px}h1{font-size:28px}}
+  .pcard{border:2px solid var(--line);padding:14px 16px;border-radius:3px}
+  .pcard.lim{border-color:var(--gold);background:var(--panel)}
+  .pcard .pn{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;color:var(--navy)}
+  .pcard .pn small{font-size:12px;color:var(--gold-dk);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .segs{display:flex;gap:4px;margin:10px 0 8px}
+  .segs i{flex:1;height:7px;background:var(--line)}
+  .segs i.f{background:var(--navy)}
+  .pcard .pl{font-size:14px;color:var(--mute)}
+  .block{margin:26px 0}
+  .block h3{margin-bottom:8px}
+  .lim-line{background:var(--panel);border-left:3px solid var(--gold);padding:12px 16px;margin-bottom:10px;font-size:15.5px}
+  .lim-line b{color:var(--navy)}
+  /* candidatura */
+  .cand{border-top:3px solid var(--gold);margin-top:40px;padding-top:26px}
+  .fields{display:grid;gap:16px;margin-top:18px}
+  .field label,.field legend{display:block;font-weight:600;color:var(--navy);margin-bottom:6px;font-size:15px}
+  .field input[type=text],.field input[type=tel]{width:100%;padding:12px 14px;border:2px solid var(--line);font:inherit;border-radius:3px;color:var(--navy)}
+  .field fieldset{border:0}
+  .seg-opts{display:flex;gap:10px;flex-wrap:wrap}
+  .seg-opts label{display:flex;align-items:center;gap:8px;border:2px solid var(--line);padding:11px 16px;border-radius:3px;font-weight:500;color:var(--body);cursor:pointer;margin:0}
+  .seg-opts input{accent-color:var(--navy)}
+  .err{color:var(--red);font-size:14px;margin-top:6px;min-height:18px}
+  textarea{width:100%;min-height:260px;padding:14px;border:2px solid var(--line);font:13px/1.5 'DM Mono',ui-monospace,Menlo,monospace;color:var(--navy);background:var(--panel);border-radius:3px}
+  .small{font-size:14px;color:var(--mute)}
+  footer{margin-top:50px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="tile" aria-hidden="true">V</div><span>Vero · Escola de Empresários</span></div>
+
+  <!-- INTRO -->
+  <section class="screen on" id="s-intro">
+    <h1>Análise de Maturidade</h1>
+    <div class="rule"></div>
+    <p class="lead">O que acontece com a sua empresa quando você deixa de estar em cima?</p>
+    <p>São 12 perguntas, uma por tela, cerca de 5 minutos. A Análise não mede faturamento, tamanho nem ambição. Ela observa como a empresa se comporta quando a sua presença, a sua vigilância e a sua decisão deixam de sustentar o sistema.</p>
+    <div class="note"><strong>Responda pelo que normalmente acontece, não pelo que você gostaria que acontecesse.</strong> Uma resposta honesta devolve uma leitura útil. Uma resposta otimista devolve uma leitura que não serve para nada.</div>
+    <p class="small">Ao final você vê o seu nível de maturidade operacional e o ponto onde o sistema cede. Nada é enviado a lugar nenhum: as respostas ficam nesta tela.</p>
+    <div class="row"><button class="btn" id="b-start">Começar</button></div>
+  </section>
+
+  <!-- PERGUNTAS -->
+  <section class="screen" id="s-q" aria-live="polite">
+    <div class="bar"><i id="bar"></i></div>
+    <div class="meta"><span class="label" id="q-pilar"></span><span class="label" id="q-count"></span></div>
+    <h2 class="qtext" id="q-text"></h2>
+    <ul class="opts" id="q-opts"></ul>
+    <div class="row">
+      <button class="btn ghost" id="b-back">Voltar</button>
+      <button class="btn" id="b-next" disabled>Próxima</button>
+    </div>
+  </section>
+
+  <!-- RESULTADO -->
+  <section class="screen" id="s-res">
+    <div class="label">Sua leitura</div>
+    <div class="nivel-box">
+      <div class="label">Nível de maturidade operacional</div>
+      <h2 id="r-nivel"></h2>
+      <p id="r-leitura" style="margin-bottom:16px"></p>
+      <p class="frase" id="r-frase"></p>
+    </div>
+
+    <div class="block">
+      <h3 id="r-lim-title"></h3>
+      <div id="r-lim"></div>
+    </div>
+
+    <div class="block">
+      <h3>Os quatro pilares</h3>
+      <p class="small">Cada pilar vale a pior das suas respostas. A empresa vale o pior pilar: o sistema cai pelo ponto fraco, não pela média.</p>
+      <div class="pillars" id="r-pillars"></div>
+      <p class="small" id="r-spread" style="margin-top:12px"></p>
+    </div>
+
+    <div class="block">
+      <h3 id="r-cobra-title"></h3>
+      <p id="r-cobra"></p>
+    </div>
+
+    <!-- CANDIDATURA (D-014: aplicação com seleção, não inscrição) -->
+    <div class="cand" id="cand">
+      <h2>Candidate-se</h2>
+      <p style="margin-top:12px">A Análise mostra onde você está. Seguir com a Vero não é inscrição, é candidatura. A Vero avalia cada empresário, confere se a turma do nível certo faz sentido para o momento da empresa, e responde.</p>
+      <p>Candidatar-se não garante vaga, não gera cobrança e não compromete você com nada.</p>
+      <form class="fields" id="f-cand" novalidate>
+        <div class="field"><label for="c-nome">Nome</label><input type="text" id="c-nome" autocomplete="name"></div>
+        <div class="field"><label for="c-empresa">Empresa</label><input type="text" id="c-empresa" autocomplete="organization"></div>
+        <div class="field"><label for="c-zap">WhatsApp (com DDD)</label><input type="tel" id="c-zap" inputmode="tel" autocomplete="tel"></div>
+        <div class="field"><fieldset><legend>Segmento da empresa</legend>
+          <div class="seg-opts">
+            <label><input type="radio" name="seg" value="Comércio"> Comércio</label>
+            <label><input type="radio" name="seg" value="Serviço"> Serviço</label>
+            <label><input type="radio" name="seg" value="Indústria"> Indústria</label>
+          </div></fieldset></div>
+        <div class="err" id="c-err" role="alert"></div>
+        <div class="row" style="margin-top:0"><button type="submit" class="btn">Preparar candidatura</button></div>
+      </form>
+
+      <div id="c-out" style="display:none;margin-top:26px">
+        <p class="label" style="margin-bottom:8px">Resumo da candidatura</p>
+        <textarea id="c-text" readonly aria-label="Resumo da candidatura"></textarea>
+        <div class="row">
+          <button class="btn" id="b-copy">Copiar respostas</button>
+          <span class="small" id="c-copied" role="status"></span>
+        </div>
+        <p class="small" style="margin-top:14px">Nesta versão nada é enviado automaticamente. Copie o resumo e mande à Vero pelo canal que a Vero indicar. A Vero lê a candidatura, avalia e responde.</p>
+      </div>
+    </div>
+
+    <div class="row"><button class="btn ghost" id="b-redo">Refazer a Análise</button></div>
+    <footer>Vero. Uma escola para empresários de verdade.</footer>
+  </section>
+</div>
+
+<script>
+/* ===== Dados ===== */
+const LVL = {
+  1:{nome:'Raiz',   leitura:'Sua empresa ainda depende fortemente da sua presença para funcionar. Quando você não está, decisões travam, urgências crescem e o sistema perde clareza.',
+     frase:'Hoje, o principal sistema da empresa ainda é você.',
+     cobra:'Cobra tirar a empresa da sua cabeça. O primeiro passo não é estratégia: é separar o caixa da empresa do seu, registrar as rotinas mínimas e definir quem decide o quê. O preço é aceitar que nem tudo será resolvido por você na hora.'},
+  2:{nome:'Trilha', leitura:'Sua empresa já possui alguma estrutura, mas ela ainda depende da sua vigilância. Quando você afrouxa, o sistema continua por um tempo, mas começa a perder ritmo.',
+     frase:'Hoje, a empresa funciona, mas ainda precisa que você vigie para não voltar ao improviso.',
+     cobra:'Cobra um padrão mínimo que se mantenha sem vigilância. O preço é a disciplina da rotina sem graça: executar do mesmo jeito mesmo quando o improviso parece mais rápido, e parar de recomeçar.'},
+  3:{nome:'Gestão', leitura:'Sua empresa já funciona com previsibilidade, mas ainda depende do seu critério para decisões relevantes. O desafio não é mais fazer funcionar; é decidir o que deve ou não continuar existindo.',
+     frase:'Hoje, o risco não é parar de funcionar; é continuar carregando complexidade demais.',
+     cobra:'Cobra renúncia. Dizer não a cliente, produto e processo que dispersam, e escrever os critérios das decisões que hoje só você toma. O preço é abrir mão de parte do que já funciona.'},
+  4:{nome:'Legado', leitura:'Sua empresa demonstra sinais de autonomia institucional. As decisões não dependem apenas da sua presença, e parte importante do sistema continua mesmo sem sua intervenção.',
+     frase:'Hoje, a empresa começa a mostrar que consegue existir além da sua presença.',
+     cobra:'Cobra dispensabilidade. Delegar critério, não apenas tarefa; preparar a sucessão das funções centrais; aceitar que decisões tomadas sem você nem sempre serão as suas. O preço é deixar de ser necessário.'}
+};
+const PIL = {fin:'Financeiro', op:'Operação', pes:'Pessoas', vnd:'Vendas'};
+const PIL_ORDER = ['fin','op','pes','vnd'];
+
+/* O que o pilar limitante revela, por nível */
+const PIL_LEITURA = {
+  fin:{1:'No Financeiro, o dinheiro da empresa e o seu ainda se confundem na decisão do dia. Sem separação e sem rotina de números, você decide no escuro.',
+       2:'No Financeiro, existe organização, mas ela depende de você revisar. O fechamento do mês ainda traz surpresas.',
+       3:'No Financeiro, os números sustentam a rotina. O que falta é critério escrito para as decisões de maior valor, que ainda passam por você.',
+       4:'No Financeiro, as regras funcionam sem você. O ponto de atenção é revisar os critérios antes que o contexto mude e eles envelheçam.'},
+  op: {1:'Na Operação, o padrão está em você e em quem faz há mais tempo. Quando você sai, o jeito de fazer varia ou para.',
+       2:'Na Operação, há rotina, mas ela varia quando ninguém vigia. O padrão ainda não é do sistema, é do seu olhar.',
+       3:'Na Operação, o padrão se mantém. O custo agora é o excesso: processos e exceções que ninguém decidiu encerrar.',
+       4:'Na Operação, o sistema se regula. Resta garantir que o padrão seja revisto por quem executa, e não só preservado.'},
+  pes:{1:'Em Pessoas, você é a instância final de conflito, de cobrança e de direção. O time espera por você para agir.',
+       2:'Em Pessoas, o time tenta resolver antes de te chamar, mas o ritmo cai quando você afrouxa. Falta critério compartilhado.',
+       3:'Em Pessoas, os líderes seguram a rotina. O ponto aberto é quem decide quando o critério não está escrito: ainda é você.',
+       4:'Em Pessoas, a cultura se reproduz sem você. O ponto de atenção é a sucessão das funções que sustentam isso.'},
+  vnd:{1:'Em Vendas, quando o resultado cai você assume a frente. A venda ainda é função sua, não da empresa.',
+       2:'Em Vendas, o time reage, mas oscila e depende da sua correção de rota. Falta processo comercial que se sustente sozinho.',
+       3:'Em Vendas, há previsibilidade. O que falta é critério de onde competir e o que recusar, que ainda é decisão sua.',
+       4:'Em Vendas, o sistema comercial corrige o próprio caminho. O ponto de atenção é manter os critérios vivos sem que dependam de uma pessoa.'}
+};
+
+/* Perguntas. l: 1 Raiz, 2 Trilha, 3 Gestão, 4 Legado. Q1-8 vêm do Diagnóstico Express (texto idêntico). Q9-12 são novas. */
+const QS = [
+ {p:'fin', t:'Quando surge uma despesa inesperada relevante, o que normalmente acontece?', o:[
+   {l:2,x:'Existe alguma organização, mas normalmente eu preciso intervir para ajustar.'},
+   {l:1,x:'Eu preciso decidir rapidamente o que será pago, adiado ou sacrificado.'},
+   {l:4,x:'Existem critérios claros para lidar com isso sem depender de mim.'},
+   {l:3,x:'A empresa consegue absorver boa parte da situação sem grande ruptura.'}]},
+ {p:'fin', t:'Se você parar de acompanhar os números por 30 dias, o cenário mais provável é:', o:[
+   {l:1,x:'Eu provavelmente perderia a noção real do que está acontecendo.'},
+   {l:3,x:'A maior parte continuaria sob controle, com poucos ajustes depois.'},
+   {l:2,x:'Algumas coisas seguiriam, mas surgiriam surpresas no fechamento.'},
+   {l:4,x:'Os critérios financeiros continuariam sendo seguidos sem minha presença.'}]},
+ {p:'op', t:'Quando surge um problema operacional importante, o que costuma acontecer?', o:[
+   {l:3,x:'Só situações específicas escalam para mim.'},
+   {l:4,x:'A operação resolve usando critérios conhecidos.'},
+   {l:1,x:'Ele chega rapidamente até mim.'},
+   {l:2,x:'Tentam resolver antes, mas normalmente eu acabo entrando.'}]},
+ {p:'op', t:'Se você parar de acompanhar a operação por 30 dias, o mais provável é:', o:[
+   {l:4,x:'O sistema continuaria se autorregulando.'},
+   {l:1,x:'O padrão se perderia rapidamente.'},
+   {l:2,x:'A operação continuaria, mas começaria a variar.'},
+   {l:3,x:'O padrão se manteria na maior parte do tempo.'}]},
+ {p:'pes', t:'Quando aparece um conflito interno relevante, o que normalmente acontece?', o:[
+   {l:3,x:'Os líderes absorvem a maior parte da situação.'},
+   {l:1,x:'Eu sou chamado rapidamente.'},
+   {l:4,x:'Existe um critério conhecido para tratar isso sem depender de mim.'},
+   {l:2,x:'Tentam resolver antes de me envolver.'}]},
+ {p:'pes', t:'Se você parar de acompanhar o time por 30 dias, o cenário mais provável é:', o:[
+   {l:3,x:'Os líderes sustentariam boa parte da rotina.'},
+   {l:2,x:'O ambiente continuaria, mas começaria a perder ritmo.'},
+   {l:1,x:'Surgiriam conflitos ou desalinhamentos rapidamente.'},
+   {l:4,x:'Os comportamentos esperados continuariam sendo reproduzidos.'}]},
+ {p:'vnd', t:'Quando as vendas começam a cair, o que tende a acontecer primeiro?', o:[
+   {l:2,x:'O time reage, mas depende de mim para corrigir o caminho.'},
+   {l:3,x:'O sistema comercial reage antes de depender de mim.'},
+   {l:4,x:'Existem critérios claros para correção sem minha presença.'},
+   {l:1,x:'Eu preciso assumir a frente rapidamente.'}]},
+ {p:'vnd', t:'Se você parar de acompanhar o comercial por 30 dias, o resultado mais provável é:', o:[
+   {l:4,x:'O processo continuaria seguindo critérios claros.'},
+   {l:1,x:'As vendas cairiam rapidamente.'},
+   {l:3,x:'Boa parte da previsibilidade seria mantida.'},
+   {l:2,x:'As vendas oscilariam bastante.'}]},
+ /* Novas: perguntas de evidência (o que existe hoje, não o que aconteceria) */
+ {p:'fin', t:'Se alguém perguntar hoje quanto a empresa terá em caixa daqui a 60 dias, o que acontece?', o:[
+   {l:3,x:'Há uma projeção atualizada, mantida pela equipe; eu valido as decisões que fogem do previsto.'},
+   {l:1,x:'Eu respondo de cabeça, com uma estimativa, e não tenho como comprovar.'},
+   {l:4,x:'A projeção é rotina, tem responsável e regras de alerta; decisões dentro das regras andam sem mim.'},
+   {l:2,x:'Existe planilha ou relatório, mas nem sempre está atualizado e só eu sei interpretá-lo.'}]},
+ {p:'op', t:'Como o jeito certo de executar as tarefas principais está registrado hoje?', o:[
+   {l:2,x:'Há registros em algumas áreas, mas desatualizados ou pouco seguidos.'},
+   {l:4,x:'Os padrões são documentados, revistos periodicamente, e quem executa pode propor ajuste sem passar por mim.'},
+   {l:1,x:'Está na minha cabeça e na de quem faz há mais tempo.'},
+   {l:3,x:'Os processos principais estão documentados e são seguidos; as exceções chegam até mim.'}]},
+ {p:'pes', t:'Se a pessoa mais importante da operação (não você) saísse amanhã, o que aconteceria?', o:[
+   {l:1,x:'Eu teria de assumir o trabalho dela e a empresa sentiria de imediato.'},
+   {l:3,x:'Há alguém preparado para as funções centrais; a transição ainda pede ajustes meus.'},
+   {l:2,x:'Alguém cobriria, mas com perda de qualidade e exigindo meu acompanhamento próximo.'},
+   {l:4,x:'A função tem sucessor ou rotina de substituição definidos, e a transição seguiria sem mim.'}]},
+ {p:'vnd', t:'De onde vêm seus clientes novos e como você sabe disso?', o:[
+   {l:4,x:'Canais e metas são acompanhados por quem lidera o comercial, com critérios de ajuste definidos.'},
+   {l:1,x:'Principalmente de indicação e do meu contato pessoal; não tenho número preciso.'},
+   {l:3,x:'Os canais são medidos e o comercial prevê o mês; eu decido onde investir mais.'},
+   {l:2,x:'Há alguns canais, mas o acompanhamento é irregular e sou eu quem junta os dados.'}]}
+];
+
+/* ===== Lógica (inegociável): pilar = mínimo das respostas; empresa = mínimo dos pilares; empate lista todos os limitantes ===== */
+function classificar(respostas){            // respostas: array de níveis (1-4) alinhado a QS
+  const porPilar = {fin:[],op:[],pes:[],vnd:[]};
+  QS.forEach((q,i)=>porPilar[q.p].push(respostas[i]));
+  const ps = {};
+  for (const p of PIL_ORDER) ps[p] = Math.min(...porPilar[p]);
+  const final = Math.min(...PIL_ORDER.map(p=>ps[p]));
+  const limitantes = PIL_ORDER.filter(p=>ps[p]===final);
+  return {ps, final, limitantes};
+}
+
+/* ===== Estado e embaralhamento anti-viés ===== */
+let ordem = [];      // por pergunta: opções embaralhadas
+let resp = [];       // índice escolhido na ordem embaralhada
+let qi = 0;
+
+function embaralhar(opts){
+  const bad = a => { const s=a.map(o=>o.l).join(''); return s==='1234'||s==='4321'; };
+  let a;
+  do {
+    a = opts.slice();
+    for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  } while (bad(a));
+  return a;
+}
+const $ = id => document.getElementById(id);
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on')); $(id).classList.add('on'); window.scrollTo(0,0); }
+
+function iniciar(){
+  ordem = QS.map(q=>embaralhar(q.o));
+  resp = QS.map(()=>null);
+  qi = 0;
+  $('c-out').style.display='none'; $('c-err').textContent='';
+  $('f-cand').reset();
+  show('s-q'); renderQ();
+}
+function renderQ(){
+  const q = QS[qi];
+  $('q-pilar').textContent = PIL[q.p];
+  $('q-count').textContent = (qi+1)+' / '+QS.length;
+  $('bar').style.width = (qi/QS.length*100)+'%';
+  $('q-text').textContent = q.t;
+  const ul = $('q-opts'); ul.innerHTML='';
+  ordem[qi].forEach((o,k)=>{
+    const li=document.createElement('li'); const b=document.createElement('button');
+    b.type='button'; b.className='opt'; b.textContent=o.x;
+    b.setAttribute('aria-pressed', resp[qi]===k ? 'true':'false');
+    b.addEventListener('click',()=>{ resp[qi]=k; ul.querySelectorAll('.opt').forEach((e,n)=>e.setAttribute('aria-pressed',n===k?'true':'false')); $('b-next').disabled=false; });
+    li.appendChild(b); ul.appendChild(li);
+  });
+  $('b-next').disabled = resp[qi]===null;
+  $('b-next').textContent = qi===QS.length-1 ? 'Ver minha leitura' : 'Próxima';
+  $('b-back').style.visibility = qi===0 ? 'hidden':'visible';
+}
+function niveis(){ return resp.map((k,i)=>ordem[i][k].l); }
+
+function resultado(){
+  const r = classificar(niveis());
+  const L = LVL[r.final];
+  $('r-nivel').textContent = 'Vero '+L.nome;
+  $('r-leitura').textContent = L.leitura;
+  $('r-frase').textContent = '“'+L.frase+'”';
+  const plural = r.limitantes.length>1;
+  $('r-lim-title').textContent = plural ? 'Pilares limitantes: '+r.limitantes.map(p=>PIL[p]).join(' e ') : 'Pilar limitante: '+PIL[r.limitantes[0]];
+  $('r-lim').innerHTML='';
+  if (plural){
+    const n=document.createElement('p'); n.textContent='Há empate: mais de um pilar vale '+L.nome+'. A Vero não desempata, porque o sistema cede nos dois ao mesmo tempo.'; $('r-lim').appendChild(n);
+  }
+  r.limitantes.forEach(p=>{ const d=document.createElement('div'); d.className='lim-line'; d.textContent=PIL_LEITURA[p][r.final]; $('r-lim').appendChild(d); });
+  $('r-pillars').innerHTML = PIL_ORDER.map(p=>{
+    const s=r.ps[p], lim=s===r.final;
+    const segs=[1,2,3,4].map(i=>'<i class="'+(i<=s?'f':'')+'"></i>').join('');
+    return '<div class="pcard'+(lim?' lim':'')+'"><div class="pn"><span>'+PIL[p]+'</span>'+(lim?'<small>limitante</small>':'')+'</div><div class="segs">'+segs+'</div><div class="pl">'+LVL[s].nome+'</div></div>';
+  }).join('');
+  const max = Math.max(...PIL_ORDER.map(p=>r.ps[p]));
+  $('r-spread').textContent = max-r.final>=2
+    ? 'Os pilares estão em níveis distantes entre si. É comum: o pilar forte não compensa o fraco. O nível da empresa é o do mais fraco.'
+    : (max===r.final ? 'Os quatro pilares estão no mesmo nível.' : '');
+  $('r-cobra-title').textContent = 'O que o nível '+L.nome+' cobra';
+  $('r-cobra').textContent = L.cobra;
+  $('bar').style.width='100%';
+  show('s-res');
+}
+
+/* ===== Candidatura ===== */
+function resumo(f){
+  const r = classificar(niveis());
+  const linhas = [];
+  linhas.push('ANÁLISE DE MATURIDADE VERO — CANDIDATURA');
+  linhas.push('Data: '+new Date().toLocaleDateString('pt-BR'));
+  linhas.push('');
+  linhas.push('Nome: '+f.nome); linhas.push('Empresa: '+f.empresa);
+  linhas.push('WhatsApp: '+f.zap); linhas.push('Segmento: '+f.seg);
+  linhas.push('');
+  linhas.push('Nível: '+LVL[r.final].nome);
+  linhas.push('Pilares: '+PIL_ORDER.map(p=>PIL[p]+' '+LVL[r.ps[p]].nome).join(' | '));
+  linhas.push('Limitante(s): '+r.limitantes.map(p=>PIL[p]).join(', '));
+  linhas.push('');
+  linhas.push('Respostas:');
+  QS.forEach((q,i)=>{ const o=ordem[i][resp[i]]; linhas.push((i+1)+'. ['+PIL[q.p]+'] '+q.t+'\n   → '+o.x+' ('+LVL[o.l].nome+')'); });
+  return linhas.join('\n');
+}
+function copiar(txt){
+  const ok = () => { $('c-copied').textContent='Copiado.'; };
+  const fallback = () => { const t=$('c-text'); t.removeAttribute('readonly'); t.select(); try{ document.execCommand('copy'); ok(); }catch(e){ $('c-copied').textContent='Selecione o texto e copie manualmente.'; } t.setAttribute('readonly',''); };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+}
+
+$('b-start').addEventListener('click', iniciar);
+$('b-next').addEventListener('click', ()=>{ if (qi<QS.length-1){ qi++; renderQ(); } else resultado(); });
+$('b-back').addEventListener('click', ()=>{ if(qi>0){ qi--; renderQ(); } });
+$('b-redo').addEventListener('click', ()=>{ show('s-intro'); });
+$('f-cand').addEventListener('submit', e=>{
+  e.preventDefault();
+  const f = {nome:$('c-nome').value.trim(), empresa:$('c-empresa').value.trim(), zap:$('c-zap').value.trim(),
+             seg:(document.querySelector('input[name=seg]:checked')||{}).value};
+  const digits = f.zap.replace(/\D/g,'');
+  const falta = !f.nome ? 'Informe o seu nome.' : !f.empresa ? 'Informe a empresa.' : digits.length<10||digits.length>13 ? 'Informe um WhatsApp válido, com DDD.' : !f.seg ? 'Escolha o segmento da empresa.' : '';
+  $('c-err').textContent = falta;
+  if (falta) return;
+  $('c-text').value = resumo(f); $('c-copied').textContent='';
+  $('c-out').style.display='block';
+  $('c-out').scrollIntoView({behavior:'smooth',block:'start'});
+});
+$('b-copy').addEventListener('click', ()=>copiar($('c-text').value));
+</script>
+</body>
+</html>
