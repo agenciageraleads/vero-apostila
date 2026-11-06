@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vero 2.0 — Plano para Ernane</title>
+<style>
+  :root{
+    --navy:#052B5A; --navy-deep:#192C4C; --gold:#DEBB5F; --cream:#F2E4B6;
+    --white:#FFFFFF; --panel:#F5F1E6; --panel-cool:#F2F4F7;
+    --body:#3D4658; --mute:#8A91A0; --line:#E3DECF;
+    --red:#C0392B; --red-bg:#FBEDEA; --green:#2E7D46; --green-bg:#EAF3EC;
+    --gold-dk:#B08D2E;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--white); color:var(--body);
+    font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:1.62;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px 90px}
+  h1,h2,h3,h4{font-family:Georgia,'Times New Roman',serif;color:var(--navy);margin:0}
+  .label{
+    font-family:Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gold-dk);font-weight:700
+  }
+
+  /* capa */
+  .cover{background:var(--navy-deep);color:var(--cream);padding:64px 0 56px;margin-bottom:44px}
+  .cover .wrap{padding-bottom:0}
+  .vmark{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:56px;height:56px;border:2px solid var(--gold);color:var(--gold);
+    font-family:Georgia,serif;font-size:30px;font-style:italic;margin-bottom:26px
+  }
+  .cover h1{color:var(--white);font-size:41px;line-height:1.16;letter-spacing:-.01em}
+  .cover .sub{color:var(--cream);font-size:17px;margin-top:16px;max-width:640px}
+  .cover .meta{
+    margin-top:30px;padding-top:18px;border-top:1px solid rgba(222,187,95,.34);
+    font-size:12.5px;color:rgba(242,228,182,.82);letter-spacing:.04em
+  }
+  .cover .label{color:var(--gold)}
+
+  section{margin-top:46px}
+  h2{font-size:25px;line-height:1.26;margin-bottom:6px}
+  h2 .n{color:var(--gold-dk);font-size:15px;font-family:Arial,sans-serif;font-weight:700;
+        letter-spacing:.12em;display:block;margin-bottom:8px}
+  h3{font-size:17.5px;margin:26px 0 8px}
+  p{margin:11px 0}
+  .lead{font-size:17px;color:var(--navy);font-family:Georgia,serif;line-height:1.55}
+
+  /* destaque marinho */
+  .tile{background:var(--navy);color:var(--white);padding:24px 28px;margin:22px 0;border-left:5px solid var(--gold)}
+  .tile p{margin:0;color:#E8ECF3}
+  .tile strong{color:var(--cream)}
+  .tile .big{font-family:Georgia,serif;font-size:20px;color:#fff;line-height:1.4}
+
+  /* cartão claro */
+  .card{background:var(--panel);border-left:4px solid var(--gold);padding:18px 22px;margin:18px 0}
+  .card h4{font-size:15.5px;margin-bottom:5px}
+  .card p{margin:5px 0;font-size:14.3px}
+  .card.cool{background:var(--panel-cool);border-left-color:var(--navy)}
+  .card.warn{background:var(--red-bg);border-left-color:var(--red)}
+  .card.warn h4{color:var(--red)}
+  .card.ok{background:var(--green-bg);border-left-color:var(--green)}
+  .card.ok h4{color:var(--green)}
+
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.8px}
+  th{
+    background:var(--navy);color:var(--white);text-align:left;padding:10px 12px;
+    font-family:Arial,sans-serif;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:700
+  }
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#FBF9F3}
+  td strong{color:var(--navy)}
+  .num{white-space:nowrap;font-variant-numeric:tabular-nums}
+
+  ol,ul{margin:11px 0;padding-left:20px}
+  li{margin:7px 0}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  @media(max-width:700px){.grid{grid-template-columns:1fr}}
+
+  .layers{margin:20px 0}
+  .layer{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+  .layer:last-child{border-bottom:none}
+  .layer .k{
+    flex:0 0 92px;font-family:Georgia,serif;font-size:13px;color:var(--white);
+    background:var(--navy);padding:5px 10px;text-align:center;letter-spacing:.04em
+  }
+  .layer.hl .k{background:var(--gold);color:var(--navy);font-weight:bold}
+  .layer .t{flex:1}
+  .layer .t b{color:var(--navy);font-size:15px}
+  .layer .t span{display:block;font-size:13.6px;color:var(--body);margin-top:3px}
+
+  .quote{
+    border-left:3px solid var(--gold);padding:4px 0 4px 18px;margin:16px 0;
+    font-family:Georgia,serif;font-style:italic;color:var(--navy);font-size:15.5px
+  }
+  .src{font-size:12px;color:var(--mute);font-style:normal;display:block;margin-top:6px;font-family:Arial,sans-serif}
+
+  .decide{border:1px solid var(--line);border-top:4px solid var(--gold);padding:22px 24px;margin:20px 0;background:#fff}
+  .decide h4{font-size:16px;margin-bottom:4px}
+  .decide .ask{color:var(--gold-dk);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+
+  .sig{
+    margin-top:56px;background:var(--navy-deep);color:var(--cream);
+    padding:32px 28px;text-align:center;font-family:Georgia,serif;font-size:19px
+  }
+  .sig span{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+            color:var(--gold);font-family:Arial,sans-serif;margin-top:10px}
+
+  @media print{
+    body{font-size:11.5pt}
+    .cover{padding:38px 0 32px}
+    .cover h1{font-size:30pt}
+    section{page-break-inside:auto}
+    h2{page-break-after:avoid}
+    table,.tile,.card,.decide{page-break-inside:avoid}
+    .brk{page-break-before:always}
+    @page{margin:14mm}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="wrap">
+    <div class="vmark">V</div>
+    <div class="label">Documento interno · sócios</div>
+    <h1>Vero 2.0<br>De certificação a centro<br>integrado de formação e serviços</h1>
+    <p class="sub">Proposta de revisão dos fundamentos da Vero e desenho do primeiro ciclo de turmas.</p>
+    <div class="meta">02 de agosto de 2026 · Preparado por Lucas para leitura e acordo com Ernane</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <h2><span class="n">01</span>O que muda</h2>
+  <p class="lead">A Vero para de se organizar como um sistema de certificação e passa a operar como
+  uma escola com dois braços — Formação e Consultoria. O método continua idêntico. O que muda é a
+  arquitetura comercial em volta dele.</p>
+
+  <div class="tile">
+    <p class="big">A Vero deixa de vender selo e passa a vender execução guiada.</p>
+    <p style="margin-top:12px">A certificação de aluno fica <strong>congelada no roadmap</strong>:
+    não se comunica e não se constrói agora. “Status não se compra. Status se comprova.” fica
+    reservada para a <strong>curadoria de prestadores</strong> do hub, quando o hub existir.
+    O rigor não é abandonado — é realocado.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card cool">
+      <h4>Vero Formação</h4>
+      <p>Forma o empresário pelo método: conteúdo aberto, treinamentos modulares e a Imersão Vero.</p>
+    </div>
+    <div class="card cool">
+      <h4>Vero Consultoria</h4>
+      <p>Aplica o método dentro da empresa dele: execução guiada nos quatro níveis.</p>
+    </div>
+  </div>
+  <p><strong>Marca única.</strong> Tudo que a Vero comunica e vende é Vero.</p>
+
+  <div class="card">
+    <h4>Sobre a Proativo — proposta, não decisão</h4>
+    <p>A Proativo é sua e continua existindo. Eu não sou sócio e não decido por você.
+    Trazer o hands-on dela para dentro da Vero Consultoria é <strong>uma sugestão de unificação
+    de produto</strong> — quem decide isso é você, no seu tempo.</p>
+  </div>
+
+  <p>Os documentos fundadores de 2026 foram escritos antes de existir a visão de ecossistema.
+  Eles prendem a Vero a duas linhas de receita, exigem diagnóstico obrigatório como porta única
+  e não preveem treinamento modular, hub ou serviço. São incompatíveis com o rumo que a Vero
+  já tomou na prática.</p>
+</section>
+
+<section>
+  <h2><span class="n">02</span>O que o mercado mostra</h2>
+  <p>Modelamos cinco referências antes de decidir qualquer coisa: G4, Escola Conquer, AUVP,
+  Seja AP (Marcos Freitas) e EAG.</p>
+
+  <div class="tile">
+    <p class="big">Nenhuma delas monetiza principalmente educação.</p>
+    <p style="margin-top:12px">A educação qualifica o cliente. O acompanhamento recorrente é onde
+    está a margem. Todas operam o mesmo motor: <strong>imersão curta na frente, programa de
+    acompanhamento atrás</strong>.</p>
+  </div>
+
+  <table>
+    <tr><th>Empresa</th><th>Porta de entrada</th><th>Onde está a margem</th><th>Receita</th></tr>
+    <tr><td><strong>G4</strong></td><td>Imersões R$ 18–22 mil</td><td>Marketplace de serviços (take rate 20–30%)</td><td class="num">R$ 505 mi (2025)</td></tr>
+    <tr><td><strong>Seja AP</strong></td><td>APN, 3 dias, R$ 18 mil</td><td>Elite — consultoria recorrente</td><td class="num">R$ 100 mi (2025)</td></tr>
+    <tr><td><strong>Conquer</strong></td><td>Curso liberado grátis 5 dias</td><td>Assinatura + pós + corporativo (30%)</td><td class="num">R$ 115–130 mi</td></tr>
+    <tr><td><strong>AUVP</strong></td><td>Curso ~R$ 2–3 mil</td><td>Consultoria fee-based recorrente</td><td class="num">~R$ 120–140 mi</td></tr>
+    <tr><td><strong>EAG</strong></td><td>Imersão 3 dias</td><td>12 meses de acompanhamento (~R$ 22,6 mil)</td><td class="num">n/d</td></tr>
+  </table>
+
+  <h3>Duas descobertas que mudam nosso jogo</h3>
+
+  <div class="card ok">
+    <h4>Os quatro níveis são nossos</h4>
+    <p>A pesquisa não confirmou que a Seja AP tenha consultoria em quatro níveis com faixas de preço —
+    o Elite é produto único. Raiz, Trilha, Gestão e Legado são construção da Vero, não cópia.
+    É o nosso diferencial de método.</p>
+  </div>
+
+  <div class="card ok">
+    <h4>Atendemos quem os grandes recusam na porta</h4>
+    <p>O Elite exige faturamento acima de R$ 300 mil/mês. O APN exige R$ 100 mil/mês e mais de
+    10 colaboradores. O G4 Traction começa em R$ 1 milhão/ano. Nossa apostila foi escrita e validada
+    para o empresário que está abaixo desses cortes.</p>
+  </div>
+
+  <h3>E a falha do mercado que nos dá o nome</h3>
+  <div class="quote">
+    Apenas 12% dos brasileiros concluem o que compram na categoria consultoria, mentoria e coaching.
+    63% consideram o conteúdo superficial.
+    <span class="src">CNDL / SPC Brasil / Offerwise, 2024 — 880 entrevistados, margem de 3,3 p.p.</span>
+  </div>
+  <p>Num mercado assim, “de verdade” deixa de ser adjetivo e vira contraposição factual.
+  A condição é conseguir provar — e a apostila de 88 blocos é exatamente a prova que
+  nenhum concorrente tem.</p>
+</section>
+
+<section class="brk">
+  <h2><span class="n">03</span>A arquitetura</h2>
+
+  <div class="layers">
+    <div class="layer">
+      <div class="k">Etapa 1</div>
+      <div class="t"><b>Conteúdo aberto</b><span>Canal, blocos completos publicados de graça, palestras. Aquisição. Gera demanda pela execução guiada — não compete com ela.</span></div>
+    </div>
+    <div class="layer">
+      <div class="k">Etapa 2</div>
+      <div class="t"><b>Análise de Maturidade Operacional</b><span>Qualificador. Devolve ao empresário a fase dele e impede matrícula em nível errado — nos dois sentidos.</span></div>
+    </div>
+    <div class="layer hl">
+      <div class="k">Etapa 3</div>
+      <div class="t"><b>Imersão Vero — produto principal</b><span>A porta de entrada paga do método. Dia completo, com apostila curada impressa.</span></div>
+    </div>
+    <div class="layer hl">
+      <div class="k">Etapa 4</div>
+      <div class="t"><b>Método Vero aplicado por nível</b><span>Turmas de execução guiada. É a continuidade e é onde mora a receita recorrente.</span></div>
+    </div>
+    <div class="layer">
+      <div class="k">Paralelo</div>
+      <div class="t"><b>Treinamentos modulares</b><span>Complementos e canais extras de aquisição — nunca o centro.</span></div>
+    </div>
+    <div class="layer">
+      <div class="k">Futuro</div>
+      <div class="t"><b>Hub de serviços</b><span>Rede curada de especialistas. Só abre quando houver base viva.</span></div>
+    </div>
+  </div>
+
+  <div class="tile">
+    <p class="big">A turma não é um produto separado da consultoria. A turma é o método de
+    acompanhamento da consultoria.</p>
+    <p style="margin-top:12px">Formação e execução no mesmo lugar, com o mesmo método e o mesmo material.
+    A turma é a forma de entrar mais gente na consultoria de uma vez.</p>
+  </div>
+
+  <div class="card">
+    <h4>A apostila muda de função</h4>
+    <p>Ela deixa de ser material de apoio e vira o motor da entrega. O empresário lê a página 1 e
+    preenche o canvas da página 2 <strong>antes</strong> do encontro. O encontro não é aula — é a
+    discussão do canvas já preenchido. É isso que permite dois sócios em tempo parcial sustentarem
+    a promessa.</p>
+    <p>Publicar os blocos abertos no canal não esvazia a turma. O bloco aberto gera demanda pela
+    execução guiada. O que vendemos não é acesso ao conteúdo — é o acompanhamento de quem o aplica.</p>
+  </div>
+</section>
+
+<section class="brk">
+  <h2><span class="n">04</span>O passo zero: evento de lançamento</h2>
+  <p class="lead">Antes da primeira Imersão, um encontro curto com convidados nossos para apresentar
+  o que é a Vero e o calendário — e para ler a reação de quem já nos conhece. Ingresso baixo,
+  suficiente para o dia se pagar sozinho.</p>
+
+  <table>
+    <tr><th>Parâmetro</th><th>Definição</th></tr>
+    <tr><td>Formato</td><td>2h a 3h, fim de tarde ou noite</td></tr>
+    <tr><td>Público</td><td><strong>25 a 30 empresas</strong> da nossa rede — BNI Cerrado, ACEG, alunos do Ernane</td></tr>
+    <tr><td><strong>Ingresso</strong></td><td class="num"><strong>R$ 197 por empresa, até 2 pessoas</strong> (dono + sócio ou cônjuge) · R$ 100 creditáveis na Imersão</td></tr>
+    <tr><td>Condução</td><td><strong>Nós dois juntos</strong> — é o teste da hipótese A</td></tr>
+    <tr><td>Fecho</td><td>Convite para a Análise de Maturidade — <strong>não é venda</strong></td></tr>
+  </table>
+
+  <h3>Por que cobrar</h3>
+  <p>O evento tem que se pagar — não vamos gastar dinheiro nosso com ele. Mas o motivo mais forte
+  de cobrar nem é o custo: <strong>é o sinal</strong>.</p>
+  <p>Convite de graça de amigo gera presença educada e muita ausência de última hora. Ingresso pago,
+  mesmo barato, filtra quem tem interesse de verdade — e interesse de verdade é exatamente o que
+  esse dia existe para medir. Um “achei ótimo” de quem entrou de graça não vale nada.
+  De quem pagou, vale.</p>
+  <p><strong>Cobrar por empresa, e não por pessoa</strong>, resolve a objeção que aparece depois em
+  toda venda para PME: “preciso falar com meu sócio”. Se o sócio ou o cônjuge esteve na sala,
+  a objeção não existe.</p>
+
+  <table>
+    <tr><th>Conta do dia (25 a 30 empresas, ~40 pessoas)</th><th>Estimativa</th></tr>
+    <tr><td>Espaço</td><td class="num">R$ 0 a 1.500 — pode ser cedido</td></tr>
+    <tr><td>Coffee break (~R$ 30 × 40)</td><td class="num">R$ 1.200</td></tr>
+    <tr><td>Material impresso (~R$ 15 × 40)</td><td class="num">R$ 600</td></tr>
+    <tr><td><strong>Custo total</strong></td><td class="num"><strong>R$ 1.800 a 3.300</strong></td></tr>
+    <tr><td><strong>Receita a R$ 197 × 25 empresas</strong></td><td class="num"><strong>R$ 4.925</strong></td></tr>
+    <tr><td><strong>Resultado</strong></td><td class="num"><strong>Positivo mesmo pagando o espaço</strong></td></tr>
+  </table>
+
+  <div class="card">
+    <h4>Alternativa mais simples</h4>
+    <p>Se cobrar por empresa complicar a operação: <strong>R$ 97 por pessoa, sem crédito</strong>,
+    comunicado como “cobre o custo do dia”. Mensagem mais limpa, mas perde a vinda do sócio
+    ou do cônjuge junto.</p>
+  </div>
+
+  <h3>O que ele resolve</h3>
+  <ol>
+    <li><strong>Testa o preço sem risco.</strong> Apresentamos o calendário e os valores e medimos
+    a reação antes de imprimir material e fixar número.</li>
+    <li><strong>Alimenta a Análise de Maturidade.</strong> É a forma concreta de rodar os trinta
+    diagnósticos — e é a Análise que decide qual nível abre primeiro.</li>
+    <li><strong>Ensaia a Imersão</strong> com plateia amiga e custo zero.</li>
+    <li><strong>Faz o grupo de WhatsApp nascer com ritual.</strong> O erro do grupo dos corretores
+    não foi tê-lo criado — foi não ter ritual nenhum depois.</li>
+    <li>Gera material de conteúdo para o canal.</li>
+  </ol>
+
+  <div class="tile">
+    <p class="big">Cobrar o ingresso não é vender no evento.</p>
+    <p style="margin-top:12px">São coisas diferentes: <strong>o ingresso paga o dia e filtra a sala;
+    a venda do método acontece fora</strong>, pela Análise de Maturidade. Opinião de conhecido em
+    sala é educada — o sinal real é <strong>quantos completam a Análise nos dias seguintes</strong>.
+    Ação vale mais que aplauso, e é coerente com o que a gente diz ser: sem escassez artificial,
+    sem pressão de fechamento.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">05</span>O primeiro ciclo</h2>
+  <p>Desenhado para a nossa restrição real: <strong>dois consultores em tempo parcial</strong>,
+  cada um cuidando da própria empresa. O gargalo não é demanda — é hora de entrega.</p>
+
+  <table>
+    <tr><th>Parâmetro</th><th>Definição</th><th>Por quê</th></tr>
+    <tr><td><strong>Turmas simultâneas</strong></td><td>1</td><td>Capacidade parcial não sustenta duas</td></tr>
+    <tr><td><strong>Níveis por turma</strong></td><td>1 só</td><td>Turma misturada é a queixa nº 1 do setor</td></tr>
+    <tr><td><strong>Tamanho</strong></td><td>10 a 12 empresas</td><td>Cada empresa precisa falar em 3h</td></tr>
+    <tr><td><strong>Duração</strong></td><td>Ciclo fechado de 6 meses</td><td>Ciclo com fim não obriga a gente para sempre</td></tr>
+    <tr><td><strong>Cadência</strong></td><td>Quinzenal, 3h online + 2 presenciais</td><td>≈6h/mês de entrega para os dois</td></tr>
+    <tr><td><strong>Individual</strong></td><td>Zero no 1º ciclo</td><td>É o que destrói capacidade</td></tr>
+    <tr><td><strong>Comunidade</strong></td><td>1 provocação por semana no grupo</td><td>Comunidade ativa dobra a conclusão</td></tr>
+  </table>
+
+  <h3>Como a gente conduz — em aberto</h3>
+  <p>Isso não está definido. O que já sabemos é o que funcionou: no treinamento dos corretores
+  nós dois conduzimos juntos, passando a bola, e a dinâmica ficou boa. Então a pergunta não é
+  quem faz o quê — é quanto tempo cada um tem.</p>
+
+  <div class="grid">
+    <div class="card cool">
+      <h4>Hipótese A — dupla junta</h4>
+      <p>Os dois em todos os encontros, alternando a condução dentro da mesma sessão.
+      É o que já funcionou. Melhor para a entrega, dobra a hora de cada um.</p>
+    </div>
+    <div class="card cool">
+      <h4>Hipótese B — alternada</h4>
+      <p>Cada um lidera cerca de um encontro por mês. Metade da hora,
+      mas perde a dinâmica que agradou.</p>
+    </div>
+  </div>
+  <p>Sugestão: <strong>testar no evento de lançamento</strong> e decidir depois, sabendo quanto
+  tempo real cada um consegue dar.</p>
+
+  <h3>Como enchemos a primeira turma</h3>
+  <ol>
+    <li>Rodar a Análise de Maturidade em cerca de <strong>30 contatos quentes</strong> — BNI Cerrado, ACEG, alunos do Ernane.</li>
+    <li>Ver onde eles se concentram: Raiz ou Trilha.</li>
+    <li>Abrir a turma <strong>apenas daquele nível</strong>.</li>
+    <li>Tratar a Análise como <strong>aplicação com seleção</strong>, não como inscrição.</li>
+  </ol>
+  <p>Somos a única empresa desse mercado que pode fazer seleção sem soar arrogante,
+  porque a seleção sempre foi o nosso princípio.</p>
+</section>
+
+<section class="brk">
+  <h2><span class="n">06</span>Os números</h2>
+
+  <table>
+    <tr><th>Item</th><th>Valor proposto</th></tr>
+    <tr><td><strong>Imersão Vero</strong> — dia completo, com apostila curada impressa</td><td class="num"><strong>R$ 1.497</strong> — R$ 500 creditáveis na continuidade</td></tr>
+    <tr><td><strong>Método Vero aplicado — ciclo Raiz de 6 meses</strong></td><td class="num"><strong>R$ 900/mês × 6 = R$ 5.400</strong> (R$ 4.900 à vista)</td></tr>
+    <tr><td>Condição de Fundador (1ª turma)</td><td class="num"><strong>30% → R$ 630/mês = R$ 3.780</strong></td></tr>
+    <tr><td>Contrapartida do desconto fundador</td><td>Case documentado, depoimento e direito de uso do resultado</td></tr>
+    <tr><td>Treinamento modular de 1 dia (complemento)</td><td class="num"><strong>R$ 397 a R$ 497</strong></td></tr>
+  </table>
+
+  <div class="card">
+    <h4>De onde veio o preço do treinamento modular</h4>
+    <p>Registro honesto: o valor entrou primeiro como âncora de proposta, sem base declarada.
+    Conferido depois contra o mercado, a faixa real de evento curto é <strong>R$ 347</strong>
+    (Gestão que Multiplica, da Seja AP, 3h presenciais) a <strong>R$ 396–452</strong>
+    (Rumo Empresário, dia completo).</p>
+    <p>Ou seja: <strong>R$ 397 é o piso defensável e R$ 497 é o teto</strong> — e o teto só se
+    entregarmos material impresso da apostila junto.</p>
+  </div>
+
+  <div class="card">
+    <h4>Por que 30% e não os 50% do documento original</h4>
+    <p>50% ancora o preço baixo demais e, pela regra do próprio documento, é irrecuperável.
+    30% com contrapartida deixa de ser desconto e vira permuta: preserva o preço de referência
+    e nos dá a prova social que ainda não temos.</p>
+  </div>
+
+  <h3>Projeção</h3>
+  <table>
+    <tr><th>Cenário</th><th>Cálculo</th><th>Receita</th></tr>
+    <tr><td>1ª Imersão Vero, 30 participantes</td><td class="num">30 × R$ 1.497</td><td class="num"><strong>R$ 44.910</strong></td></tr>
+    <tr><td>1º ciclo de turma, 10 fundadores</td><td class="num">10 × R$ 3.780</td><td class="num"><strong>R$ 37.800</strong></td></tr>
+    <tr><td><strong>Subtotal do primeiro movimento</strong></td><td></td><td class="num"><strong>R$ 82.710</strong></td></tr>
+    <tr><td>Turma cheia, preço normal</td><td class="num">12 × R$ 5.400</td><td class="num">R$ 64.800/ciclo</td></tr>
+    <tr><td>Dois ciclos + duas imersões por ano</td><td></td><td class="num"><strong>~R$ 219.600</strong></td></tr>
+  </table>
+
+  <h3>Onde isso nos coloca no mercado</h3>
+  <table>
+    <tr><th>Produto</th><th>Preço</th></tr>
+    <tr><td><strong>Vero — Imersão de 1 dia</strong></td><td class="num"><strong>R$ 1.497</strong></td></tr>
+    <tr><td>APN — Seja AP, imersão de 3 dias</td><td class="num">R$ 18.000</td></tr>
+    <tr><td>G4 Traction — imersão de 3 dias</td><td class="num">R$ 18.000 a 22.000</td></tr>
+    <tr><td>EAG — imersão + 12 meses</td><td class="num">~R$ 22.677</td></tr>
+    <tr><td><strong>Vero — turma de até 12, 6h/mês</strong></td><td class="num"><strong>R$ 900/mês</strong></td></tr>
+    <tr><td>Grupo PME Brasil — 20 pessoas, 4h/mês</td><td class="num">R$ 997/mês</td></tr>
+  </table>
+
+  <div class="tile">
+    <p class="big">Entramos um degrau abaixo em preço e um degrau acima em método.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">07</span>Dois riscos que precisamos tratar agora</h2>
+
+  <div class="card warn">
+    <h4>O contrato da imersão</h4>
+    <p>O maior passivo documentado dessa categoria é exatamente o nosso cenário: venda no
+    fechamento de um evento. Em agosto de 2025 o TJSP afastou o direito de arrependimento de
+    7 dias para venda presencial em evento, mas derrubou a multa de 100% e limitou a retenção a 33%.</p>
+    <p><strong>O que fazemos:</strong> contrato escrito entregue no ato, política de cancelamento
+    explícita, multa não superior a um terço e canal de cancelamento acessível. Custa pouco agora
+    e caro depois.</p>
+  </div>
+
+  <div class="card warn">
+    <h4>O nome “escola de empresários” já está ocupado</h4>
+    <p>A EAG se autodenomina “a primeira escola de empresários do Brasil”, com ticket de cerca de
+    R$ 22,6 mil e o mesmo funil que estamos desenhando.</p>
+    <p><strong>Nossa defesa é factual, não retórica:</strong> num mercado em que 12% concluem e 63%
+    acham o conteúdo raso, “de verdade” é uma afirmação verificável. A apostila de 88 blocos é a prova.
+    Precisamos decidir juntos se mantemos a assinatura como está.</p>
+  </div>
+</section>
+
+<section class="brk">
+  <h2><span class="n">08</span>O que preciso decidir com você</h2>
+
+  <div class="decide">
+    <div class="ask">Decisão 01</div>
+    <h4>Data do evento de lançamento</h4>
+    <p>É o primeiro passo de tudo. Tudo o que vem depois depende do que a gente ler nesse dia.</p>
+  </div>
+
+  <div class="decide">
+    <div class="ask">Decisão 02</div>
+    <h4>Ingresso do lançamento e preços que vamos apresentar nele</h4>
+    <p>Ingresso: R$ 197 por empresa, até 2 pessoas, com R$ 100 creditáveis.</p>
+    <p>A apresentar no dia: Imersão a R$ 1.497 com R$ 500 creditáveis · ciclo Raiz a R$ 900/mês
+    por 6 meses · treinamento modular entre R$ 397 e R$ 497.</p>
+  </div>
+
+  <div class="decide">
+    <div class="ask">Decisão 03</div>
+    <h4>Data da primeira Imersão e da primeira turma</h4>
+    <p>Turma com data marcada converte 64% de conclusão contra 48% em ritmo livre. A data não é
+    detalhe operacional — é parte do método.</p>
+  </div>
+
+  <div class="decide">
+    <div class="ask">Decisão 04</div>
+    <h4>Como a gente conduz</h4>
+    <p>Dupla junta em todos os encontros, como fizemos com os corretores, ou alternando?
+    Sugestão: testar no lançamento e decidir com base no tempo real de cada um.</p>
+  </div>
+
+  <div class="decide">
+    <div class="ask">Decisão 05 — só sua</div>
+    <h4>A Proativo</h4>
+    <p>Faz sentido trazer o hands-on da Proativo para dentro da Vero Consultoria? É proposta,
+    não decisão minha. A empresa é sua.</p>
+  </div>
+
+  <div class="decide">
+    <div class="ask">Decisão 06</div>
+    <h4>A assinatura da marca</h4>
+    <p>Mantemos “Vero. Uma escola para empresários de verdade.” diante da ocupação do termo pela EAG?</p>
+  </div>
+
+  <div class="card cool">
+    <h4>Já decidido — não reabrir</h4>
+    <p>Certificação de aluno congelada · Imersão Vero como produto principal ·
+    tudo que a Vero vende é Vero · Condição de Fundador em 30% com contrapartida.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">09</span>O que não fazemos no primeiro ciclo</h2>
+  <ul>
+    <li>Abrir dois níveis ao mesmo tempo</li>
+    <li>Vender consultoria individual</li>
+    <li>Prometer recorrência sem prazo de fim</li>
+    <li>Abrir o hub de terceiros</li>
+    <li>Misturar níveis na mesma turma</li>
+  </ul>
+  <p>Tudo isso é conversa para depois do primeiro ciclo fechado — quando tivermos doze casos reais
+  e soubermos quanto tempo a entrega realmente consome.</p>
+</section>
+
+</div>
+
+<div class="sig">
+  Vero. Uma escola para empresários de verdade.
+  <span>Documento interno · 02 de agosto de 2026</span>
+</div>
+
+</body>
+</html>

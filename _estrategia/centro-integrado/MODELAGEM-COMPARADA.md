@@ -209,17 +209,21 @@ e o ticket alto migra para o serviço (Camada 3), onde ele se paga com resultado
 | 3 | Proativo dentro ou fora | **Dentro.** Ernane já afirmou repetidamente que a Proativo se funde com a Vero em algum momento. Direção definida; **prazo e forma não**. |
 | 4 | Princípio de pricing | **Adequar ao mercado, pensando em escala.** Princípio definido; **números não**. |
 
-### 8.2 Correção de rota que a fusão provoca
+### 8.2 Correção de rota ~~que a fusão provoca~~ — REVOGADA por Lucas (02/08)
 
-A §5 recomendava construir base antes do hub, porque G4 (5 anos) e AUVP (3 anos) fizeram assim.
-**Com a fusão da Proativo, essa recomendação se inverte parcialmente.**
+> **Versão anterior (descartada):** propunha usar a base de clientes da Proativo como semente da
+> base da Vero, já que G4 e AUVP tiveram de criar a camada de serviço do zero e a Vero já a tem.
 
-Aqueles dois tiveram de *criar* a camada de serviço do zero, depois da base.
-A Vero **já tem** camada de serviço com receita, clientes e método rodando — a Proativo.
+**Lucas descartou.** A base começa **do zero**, não pelos clientes da Proativo.
+A alavanca de aquisição é **influência pessoal dos sócios**: Ernane como professor,
+Lucas como ex-presidente do BNI Cerrado e ex-diretor comercial da ACEG.
 
-Consequência: a base de clientes da Proativo pode ser a **semente** da base da Vero,
-e não o contrário. O que continua valendo da §5 é o alerta sobre o hub **de terceiros** —
-esse sim exige volume e não deve ser aberto cedo.
+Consequência: volta a valer integralmente o alerta da §5 — **base primeiro, hub depois**.
+Sem base herdada, a Vero está na mesma posição inicial de G4 (2019) e AUVP (2020),
+e o hub de terceiros fica distante.
+
+O reforço empírico está na §8.6: a única tentativa de base até hoje (grupo de WhatsApp
+dos corretores) morreu por falta de ritual.
 
 ### 8.3 Ainda em aberto
 
@@ -328,7 +332,7 @@ ANTES (proposto na §4)          DEPOIS (decisão de Lucas)
    das turmas. É o que dá densidade e método ao que, nos concorrentes, é só reunião.
 4. **O modelo de referência real deixa de ser G4/Conquer e passa a ser Marcos Freitas (APN/ELITE)** —
    imersão como porta, consultoria em níveis como núcleo, treinamentos temáticos como
-   aprofundamento, consultores entregando com o fundador como imagem central. Ver §11.
+   aprofundamento, consultores entregando com o fundador como imagem central. Ver §10.
 
 ### Sinal de alerta registrado
 
@@ -363,7 +367,279 @@ Alternativas ao take rate, para quando a decisão E chegar:
 
 ---
 
+## 10. Seja AP (Marcos Freitas) — o benchmark mais próximo da Vero
+
+Indicado por Lucas como inspiração declarada do método Vero. É o modelo mais aderente dos quatro
+pesquisados: imersão como porta, consultoria recorrente como núcleo, treinamentos temáticos como
+aprofundamento, consultores entregando com o fundador como imagem central.
+
+### Ficha
+
+| Campo | Dado |
+|---|---|
+| Empresa | **Seja AP** (SEJA ALTA PERFORMANCE TREINAMENTO DIGITAL LTDA, CNPJ 32.032.157/0001-95) |
+| Fundação | 2016, Fortaleza. Sede hoje em Alphaville/Barueri–SP. 3 unidades (Fortaleza, SP, Goiânia) |
+| Sócios | Marcos Freitas + Natália Simony Freitas (esposa) |
+| Porte | **95 funcionários** · **R$ 100 mi de faturamento (2025)** · certificada GPTW |
+| Metas | 48 unidades e 1.000 projetos de consultoria até 2028 (modelo jurídico das unidades não divulgado) |
+
+### Arquitetura de produto
+
+| Camada | Produto | Preço | Corte de entrada |
+|---|---|---|---|
+| Topo grátis | Sala de Evolução (live semanal 50 min, terça 20h) · Sala de Guerra · podcast · newsletter | R$ 0 | **Exige entrar em grupo de WhatsApp** |
+| Topo pago | Gestão que Multiplica (evento presencial de 3h) | 10x R$ 34,70, "compra 1 leve 2" | — |
+| Diagnóstico | **Raio-X Empresarial** — videochamada 1:1 de 30 min com especialista | R$ 0 | &gt; R$ 100 mil/mês e &gt; 10 colaboradores |
+| Porta de entrada | **APN** — imersão presencial de 3 dias, 88ª edição | **R$ 18.000** (tabela R$ 20k; 12x R$ 1.500) | idem |
+| Núcleo recorrente | **Elite Seja AP** (2022) — consultoria semanal + BI + 4 encontros/ano | **não divulgado** (indício: &gt; R$ 20k + adesão) | **&gt; R$ 300 mil/mês (R$ 3,6 mi/ano)** |
+| Aprofundamento | GAP (gestores, 24h online) · DH (recrutamento) · ElitEens (filhos 12–18) · Selo EAP | não divulgados | clientes Elite |
+
+Clientes Elite: **+300 empresas**, somando R$ 6,5 bi/ano de faturamento.
+
+### Duas premissas de Lucas que a pesquisa NÃO confirmou
+
+1. **"Consultoria dividida em 4 níveis com faixas de preço."** Não há evidência pública.
+   O Elite é **produto único**, sem tiers. O "4" da comunicação aparece em outros eixos:
+   4 pilares de entrega · 4 setores de turma (varejo, atacado, indústria, serviços) ·
+   4 pilares do Selo EAP. A segmentação real e pública é por **faixa de faturamento do lead**
+   (6 faixas, páginas `/dono-100/` a `/dono-acima-de-3m/`), e serve para rotear isca, não produto.
+   **Ressalva:** a Seja AP não publica **nenhum** preço de consultoria. Tiers podem existir
+   apenas dentro da conversa de venda. Conhecimento direto de Lucas prevalece sobre esta pesquisa.
+2. **"Consultores tocando o método."** Verdadeiro, mas **não é rede nem franquia** — é
+   **operação própria com 95 CLTs**. Não há ABF, não há página de franqueado. O padrão é
+   "Marcos vende e ancora autoridade; o time entrega", com folha de pagamento por trás.
+
+**Implicação:** os 4 níveis de maturidade (Raiz/Trilha/Gestão/Legado) são **construção da Vero**,
+não cópia do APN. A inspiração de Lucas foi na arquitetura comercial, não no método.
+
+### Três mecanismos a copiar
+
+1. **Diagnóstico como closer.** O Raio-X é videochamada de 30 min, barata de entregar, e é onde
+   o APN de R$ 18 mil é vendido. **A Vero já tem o Diagnóstico Vero** — resolve a decisão G:
+   ele deixa de ser pedágio e vira o instrumento comercial.
+2. **Inversão de status na oferta.** É "aplicação", com "seleção" e pré-requisitos declarados —
+   o cliente pede para ser aceito. Isso é nativamente compatível com o DNA Vero
+   ("status não se compra"), sem precisar de escassez artificial.
+3. **Ritual semanal sustenta a comunidade.** A Sala de Evolução (50 min, toda terça) é o que
+   mantém o grupo de WhatsApp vivo. **É exatamente o que faltou ao grupo dos corretores** (§8.6):
+   grupo sem ritual morre. O ativo capturado não é e-mail, é o número de WhatsApp.
+
+### O espaço que a Seja AP deixa aberto
+
+O Elite exige **R$ 300 mil/mês**. O APN exige **R$ 100 mil/mês e 10+ colaboradores**.
+O G4 Traction atende R$ 1–10 mi/ano.
+
+Os validadores da apostila Vero — Roberto (loja de materiais elétricos), Carla (confecção de
+uniformes, 7 anos), Marcos (limpeza comercial, 20 colaboradores) — estão **abaixo desses cortes**.
+A apostila 88/88 foi escrita para um público que os dois maiores concorrentes recusam na porta.
+
+**Isso é posicionamento, não limitação.** É o "dinheiro desamparado" um degrau abaixo do
+que o mercado atende hoje.
+
+### Contraponto registrado
+
+Reclame Aqui: conteúdo considerado "motivacional, simples e superficial", que "aponta problemas
+sem mostrar soluções"; promessas de faturamento não cumpridas; questionamento sobre taxa de adesão.
+Todos os números da Seja AP são **autodeclarados**, sem auditoria, com inconsistências entre
+fontes (Elite aparece como 150, 200 e 300 empresas conforme a página).
+
+**Leitura para a Vero:** "aponta problemas sem mostrar solução" é exatamente o risco do tom Vero
+levado ao extremo — desconforto sem "como". O antídoto já está no CLAUDE.md ("provocar + mostrar
+o como") e na estrutura P1/P2 (narrativa + canvas). É uma vantagem competitiva se for preservada.
+
+---
+
+## 11. Consultoria em turma no Brasil — o que a pesquisa mostrou
+
+### 11.1 O achado que atravessa tudo
+
+**"Consultoria em turma com preço público" praticamente não existe no Brasil.**
+Os players privados de escala **não** vendem consultoria em turma. Vendem
+**imersão presencial de 3–4 dias (front-end) + programa anual recorrente (back-end)**.
+Quem faz consultoria individual dentro de turma são as instituições (FDC PAEX, Sebrae, SENAI) —
+e essas não publicam preço ou são subsidiadas.
+
+| Estágio | Produto | Função | Exemplos |
+|---|---|---|---|
+| Front-end | Imersão 3–4 dias, R$ 400 – R$ 22.000 | Qualifica, cria autoridade e **ambiente de venda** | APN (R$ 18k) · G4 Traction (R$ 18–22k) · Acelerador Empresarial · Imersão EAG |
+| Back-end | Programa anual, R$ 22.000 – R$ 400.000 | **É onde está a margem e a recorrência** | Elite Seja AP · Giants (R$ 229–400k/ano) · G4 Journey · EAG 12 meses |
+
+Confirmado literalmente na comunicação do Grupo Acelerador: o Giants é
+*"acessível apenas a quem já participou da imersão Acelerador Empresarial"*.
+
+**Grupo Acelerador (o caso mais transparente):** R$ 4 mi (2020) → R$ 91,9 mi (2023),
+**margem líquida ~50%**, 130 funcionários, valuation R$ 729 mi (9× EBITDA projetado).
+
+### 11.2 Peer advisory — a categoria mais próxima do que a Vero quer fazer
+
+| Player | Tamanho do grupo | Encontros | Preço |
+|---|---|---|---|
+| **Vistage** (global, opera no Brasil) | **12–16 membros** | 8h grupo/mês + **2h individuais/mês** | US$ 2.500 entrada + **US$ 10.500–16.500/ano** |
+| Renaissance Executive Forums BR | ~10 | mensal | R$ 35.000/ano (dado de 2010) |
+| Grupo PME Brasil | 20 | 4h/mês | **R$ 997/mês** |
+| **FDC PAEX** | **≤10 empresas** não concorrentes | **400h/ano** (individual + coletivo) | não publicado |
+
+Vistage: membros permanecem **em média 5 anos**. É o benchmark de retenção do formato.
+
+### 11.3 Ratio consultor/cliente — o único número público do Brasil
+
+**Sebrae ALI: 22–25 empresas por consultor** em ciclo de até 6 meses
+(3 encontros coletivos + 6 individuais por empresa), bolsa de R$ 5.000–6.500/mês.
+
+Nenhum player privado brasileiro publica seu ratio. Vistage opera 12–16 por grupo;
+FDC PAEX, ≤10 por grupo. **Quanto mais individual a entrega, menor o grupo.**
+
+### 11.4 A taxa de conclusão que ninguém divulga
+
+**CNDL/SPC Brasil/Offerwise** (n=880, margem 3,3 p.p., 95% confiança, 07/03/2024):
+
+| Métrica | Valor |
+|---|---|
+| Conclusão na categoria **consultoria/mentoria/coaching** | **12%** |
+| Consideraram o conteúdo **superficial** | **63%** |
+| Pediram reembolso | 12% |
+
+Efeito coorte medido (Ruzuku, 32 mil cursos): curso com **data marcada 64,2%** de conclusão
+vs. self-paced 48,2%; **com discussão ativa na comunidade 65,5%** vs. sem discussão 42,6%.
+
+> **Leitura para a Vero:** turma com data e comunidade viva não é preferência estética —
+> é o que dobra a taxa de conclusão. E conclusão é o que sustenta a promessa "de verdade".
+
+### 11.5 ⚠️ Colisão de marca — "escola de empresários" já está ocupado
+
+**A EAG (Empresa Autogerenciável, Marcelo Germano) se autodenomina
+"a 1ª escola de empresários do Brasil"**, com a URL `/programa-eag-escola-de-empresarios/`.
+Existem ainda "Paradigma Escola de Empresários" e "A Escola dos Empresários" (afiliada da EAG).
+
+Perfil da EAG: imersão 3 dias + 12 meses de acompanhamento; ticket indicado de
+**R$ 597 + 12× R$ 1.840 = R$ 22.677** (não confirmado em fonte primária); +8.000 empresas declaradas.
+
+Isso colide de frente com a assinatura-mestra da D-009:
+**"Vero. Uma escola para empresários de verdade."**
+
+**Mas a colisão é também a defesa.** Num mercado onde 63% acham o conteúdo superficial e
+apenas 12% concluem, o "de verdade" deixa de ser adjetivo e vira **contraposição factual**.
+A condição é conseguir provar — e a apostila 88/88 é exatamente a prova que os concorrentes
+não têm. Ver §11.6: as queixas do setor são todas sobre ausência de método.
+
+### 11.6 Catálogo de riscos — o que dá errado nesse modelo (evidência literal)
+
+| Risco | Evidência |
+|---|---|
+| **Venda sob pressão no fim da imersão** | *"A venda ocorreu no final de um evento exaustivo de três dias, em um ambiente com música alta, consumo liberado de bebidas alcoólicas e uma fortíssima pressão psicológica ('oferta válida apenas para hoje'). Não nos foi apresentado nenhum contrato físico ou digital detalhado no ato."* (RA, G4, R$ 18.900) |
+| **Cancelamento bloqueado** | Queixa nº 1 do G4 — **13,86%** de todos os problemas em 3 anos |
+| **Multa não informada** | G4: multa de ~R$ 6.500 após sinal de R$ 2.190. Acelerador: *"multa de 50%, que não foi informada, e não existe contrato nenhum informando isso"* — não respondida há 10 meses |
+| **Entrega genérica** | *"conteúdos superficiais, abordagem rasa dos temas... Minha insatisfação não é pontual, é estrutural."* |
+| **Turma heterogênea destrói o valor** | *"a turma contava com muitas pessoas, de diferentes formações, nichos e níveis... o público prometido era de outros donos de negócio e CEOs, mas o que encontrei foram majoritariamente empregados"* |
+| **Abandono pós-imersão** | *"Acompanhamento? Fui abandonado à própria sorte após as imersões."* (R$ 65 mil em 6 imersões) |
+| **Comunidade bloqueada p/ proteger upsell** | *"comecei a ser proibido de fazer networking por mensagem no grupo... era uma forma de evitar que perdessem vendas do G4 club"* |
+| **Dependência da figura central** | G4: 3 inquéritos do MPT (2024) + reportagem do Intercept (out/2025) sobre jornada e cultura interna |
+
+**Reputação no Reclame Aqui (painel 01/02–31/07/2026):** G4 nota **6,5**, 937 reclamações ativas,
+**43,7%** voltariam a fazer negócio. Conquer 8,4. EAG e Acelerador sem reputação (volume baixo —
+o que **não** é evidência de satisfação: o ecossistema Marcus Marques tem ≥4 perfis fragmentados no RA,
+e há caso documentado de intimidação jurídica a reclamante).
+
+### 11.7 Precedente judicial que define como o contrato deve ser escrito
+
+**TJSP 1009425-37.2024.8.26.0020**, 3ª Vara Cível — Foro Regional de N. Sra. do Ó/SP, 14/08/2025:
+contrato de mentoria de R$ 15.000 com multa de 100% por desistência.
+
+- **Art. 49 do CDC (arrependimento em 7 dias) foi AFASTADO** — venda presencial em evento
+  não é venda fora do estabelecimento, e o contrato foi classificado como serviço continuado.
+- A multa caiu por **art. 51, IV do CDC + art. 413 do CC** (redução equitativa da cláusula penal,
+  aplicável de ofício). Retenção limitada a **R$ 5.000 (33,33%)**.
+
+**Implicação para a Imersão Método Vero:** a oferta é o slide de fechamento do dia — exatamente
+o cenário do maior passivo documentado da categoria. **Contrato escrito entregue no ato, com
+política de cancelamento explícita e multa não superior a ~1/3**, é barato de fazer agora e
+caro de consertar depois.
+
+### 11.8 Sinal contrário registrado
+
+**A Endeavor abandonou o formato de coorte em fev/2025** no Scale-Up, migrando para avaliação
+contínua e aceleração personalizada. Justificativa declarada: maturidade maior dos empreendedores.
+Não houve crítica ao formato de turma em si — mas é o único player relevante que saiu dele.
+
+---
+
+## 12. Desenho operacional do 1º ciclo — proposta
+
+> **Restrição real:** 2 consultores (Lucas e Ernane), **ambos em tempo parcial** — cada um cuida
+> da própria empresa, a Vero ainda não é o negócio principal. Base zero. Sem marca reconhecida.
+> **Ativo:** apostila 88/88 pronta + rede pessoal (BNI Cerrado, ACEG, Ernane como professor).
+>
+> Todo o desenho abaixo otimiza **horas de entrega por empresa**, não volume.
+
+### 12.1 Formato recomendado
+
+| Parâmetro | Recomendação | Por quê |
+|---|---|---|
+| Turmas simultâneas | **1** | Capacidade parcial não sustenta duas |
+| Níveis abertos | **1 só** (definido pelo diagnóstico da 1ª leva) | Turma heterogênea é a queixa nº 1 da categoria (§11.6) |
+| Tamanho | **10–12 empresas, teto 12** | Vistage 12–16 · FDC PAEX ≤10. Cada empresa precisa falar em 3h |
+| Duração | **Ciclo fechado de 6 meses** | Ciclo com fim ≠ recorrência infinita. Part-time não pode se obrigar para sempre |
+| Cadência | **1 encontro quinzenal de 3h, online** + 1 presencial no meio + 1 no fim | ~6h/mês de entrega para os dois |
+| Consultoria individual | **Zero no 1º ciclo** | É o que destrói capacidade. Vira add-on pago depois |
+| Ritual de comunidade | **1 provocação por semana no WhatsApp** (não é live) | Comunidade ativa dobra a conclusão (§11.4); custo quase zero |
+
+### 12.2 A alavanca: sala invertida com a apostila
+
+**É isso que torna 2 pessoas em tempo parcial viáveis.**
+
+O empresário **lê a P1 e preenche o canvas da P2 antes do encontro**. O encontro não é aula —
+é discussão do canvas que ele já preencheu. A Conquer opera assim (*flipped classroom*: conteúdo
+em casa, prática em sala) e é o que permite densidade sem hora de professor.
+
+Consequência: a apostila deixa de ser material de apoio e vira **o motor da entrega**.
+Nenhum concorrente tem isso — o que eles chamam de acompanhamento é reunião com planilha.
+
+### 12.3 Divisão sugerida
+
+| Quem | Papel | Racional |
+|---|---|---|
+| **Ernane** | Conduz os encontros de método; alterna sessões com Lucas | É professor — é o que ele já faz bem |
+| **Lucas** | Conduz discussão de casos e a camada comercial/rede | Ex-presidente do BNI Cerrado e ex-diretor comercial da ACEG |
+
+Alternando, **cada um lidera ~1 encontro por mês**. Isso cabe em tempo parcial.
+
+### 12.4 Preço proposto
+
+| Item | Valor |
+|---|---|
+| Turma Raiz, ciclo de 6 meses | **R$ 900/mês × 6 = R$ 5.400** (ou R$ 4.900 à vista) |
+| **Turma Fundadora** (1ª turma) | **30% off → R$ 630/mês = R$ 3.780** |
+| Contrapartida do desconto fundador | **Case documentado + depoimento + direito de uso do resultado** — não é desconto puro |
+
+**Receita do 1º ciclo:** 10 empresas fundadoras = **R$ 37.800**. Turma cheia a preço normal
+(12 × R$ 5.400) = **R$ 64.800/ciclo**; dois ciclos/ano = **R$ 129.600**.
+
+**Referências:** Grupo PME Brasil R$ 997/mês (20 pessoas, 4h/mês) · APN R$ 18.000 (3 dias) ·
+EAG ~R$ 22.677 (imersão + 12 meses) · G4 Traction R$ 18–22 mil.
+A Vero entra **um degrau abaixo em preço e um degrau acima em método**.
+
+⚠️ **Contra a Condição de Fundador de 50% do v1.0:** 50% ancora baixo demais e o v1.0 diz que é
+irrecuperável. 30% com contrapartida é melhor negócio e não vira precedente de preço.
+
+### 12.5 Como encher a primeira turma
+
+1. **Rodar o Diagnóstico Vero em ~30 contatos quentes** (BNI Cerrado, ACEG, alunos do Ernane).
+2. **Ver onde eles se concentram** — Raiz ou Trilha — e abrir a turma **desse nível só**.
+3. Diagnóstico é **aplicação com seleção**, não inscrição (mecanismo da Seja AP, §10),
+   e isso é nativamente compatível com o DNA Vero — sem escassez artificial.
+
+### 12.6 O que NÃO fazer no 1º ciclo
+
+- Abrir dois níveis ao mesmo tempo · vender consultoria individual · prometer recorrência
+  sem fim · dar 50% de desconto · abrir o hub de terceiros · misturar níveis na mesma turma.
+
+---
+
 ## Fontes
+
+**Consultoria em turma:** [FDC PAEX](https://www.fdc.org.br/medias-empresas/paex) · [Vistage](https://vistage.com/membership/) · [Grupo PME Brasil](https://grupopmebrasil.com.br/) · [Edital ALI Sebrae/SP 001/2025](https://sebrae.com.br/content/dam/portal-sebrae/sp/midias/documentos/pdfs/ali/produtividade/ALI%20PRODUTIVIDADE%202025%20-%20EDITAL.pdf) · [CNDL/SPC — 12% de conclusão](https://site.cndl.org.br/54-dos-internautas-adquiram-algum-conteudo-ou-servico-digital-no-ultimo-ano-aponta-estudo-da-cndlspc-brasil/) · [Ruzuku — efeito coorte](https://www.ruzuku.com/learn/articles/completion-gap) · [Exame — Grupo Acelerador valuation](https://exame.com/negocios/valuation-em-expansao-grupo-acelerador-vale-r-729-milhoes-apos-venda-de-fatia/) · [EAG](https://eag.com.br/programa-eag-imersao/) · [Migalhas — multa de 100% abusiva (TJSP)](https://www.migalhas.com.br/quentes/436791/juiza-considera-abusiva-multa-de-100-por-desistencia-de-curso-online) · [Startups — Endeavor abandona coorte](https://startups.com.br/negocios/empreendedorismo/exclusivo-endeavor-anuncia-mudancas-no-programa-scale-up/) · [Intercept — G4](https://www.intercept.com.br/2025/10/22/g4educacao-rotina-frouxo-rivotril/)
+
+**Seja AP:** [Site oficial](https://sejaap.com.br/) · [Elite Seja AP](https://sejaap.com.br/elite) · [APN](https://sejaap.com.br/alta-performance-nos-negocios-apn/) · [Oferta APN — checkout R$ 18.000](https://altaperformancenosnegocios.com.br/oferta/) · [Raio-X Empresarial](https://altaperformancenosnegocios.com.br/raio-x/empresarial/) · [Sala de Evolução](https://sejaap.com.br/sala-de-evolucao/) · [Brazil Economy — R$ 100 mi, 300 projetos](https://brazileconomy.com.br/empresas/2026/01/brasil-e-o-melhor-pais-para-empreender-competidores-sao-amadores-diz-ceo-da-seja-ap/) · [Jornal de Brasília — expansão 48 unidades](https://jornaldebrasilia.com.br/blogs-e-colunas/analice-nicolau/marcos-freitas-e-natalia-freitas-anunciam-expansao-agressiva-da-seja-ap-e-miram-r-100-milhoes-em-faturamento-em-2025/) · [Reclame Aqui — Elite Empresarial](https://www.reclameaqui.com.br/seja-alta-performance-treinamento-digital/elite-empresarial_8GtffaYqaxY6lOeq/)
 
 **G4:** [InfoMoney — pós o primeiro bilhão](https://www.infomoney.com.br/business/apos-o-primeiro-bilhao-g4-quer-triplicar-receita-com-ia-e-marketplace-ate-2027/) · [Startups — G4 deixa educação de lado](https://startups.com.br/negocios/edtech/g4-deixa-educacao-de-lado-para-ser-plataforma-para-pmes/) · [NeoFeed — o dinheiro desamparado](https://neofeed.com.br/negocios/tallis-gomes-e-sua-g4-encontraram-o-dinheiro-desamparado-e-um-baita-filao/) · [Exame — R$ 200 mi em 2023](https://exame.com/negocios/de-imersao-a-saas-g4-educacao-cresce-51-e-chega-aos-r-200-milhoes-de-receita-em-2023/)
 
